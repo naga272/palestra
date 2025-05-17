@@ -1,0 +1,144 @@
+# changelog
+
+
+## version [1.1.4] - 24 / 09 / 2024
+
+- Scritte alcune lezioni per il linguaggio cpp
+
+
+## version [1.1.3] - 22 / 09 / 2024
+
+- Spiegazione python quasi finita 
+- Finita spiegazione del linguaggio C della sezione libreria
+- Modifica estetica HomePage
+
+
+## version [1.1.2] - 24 / 08 / 2024
+
+- cambiata estetica della Home Page
+
+
+## version [1.1.1] - 26 / 07 / 2024
+
+### added
+
+- Sistemato topbar dei template
+- modificata funzione js init_page
+- Aggiunta Licenza MIT
+
+
+## version [1.1.0] - 21 / 07 / 2024
+
+### added
+
+- Per ogni client ora è possibile mandare un massimo di 5 richieste di tipo post al minuto. Questo per evitare attacchi tipo bruteforce
+- abilita la login per fare domande all'interno del forum
+
+
+## version [1.0.12] - 13 / 07 / 2024
+
+### added
+
+- modificato css frontend
+
+
+## version [1.0.11] - 13 / 07 / 2024
+
+### added
+
+- fixato bug tabella BanWord
+- Modificata disposizione delle pagine in frontend
+
+
+## version [1.0.10] - 12 / 07 / 2024
+
+### added
+
+- aggiunto algoritmo per inserimento nella tabella banword del db le parole dei file inseriti dentro la cartella flussi/ cartella flussi e dalla admin suite
+- cambiata cartella ban_word/ con flussi/
+
+
+## version [1.0.9] - 10 / 07 / 2024
+
+### added
+
+- fixata visualizzazione della tabella top 20 linguaggi della sezione forum
+
+
+## version [1.0.8] - 09 / 07 / 2024
+
+### added
+
+- aggiustato buco di sicurezza della sezione forum
+- aggiunta tabella automatizzata nella sezione library che mostra la top 20 linguaggi di programmazione usati
+- automatizzato il cambio versione del programma (ora si basa sull'ultima versione del CHANGELOG.txt)
+
+
+## version [1.0.7] - 08 / 07 / 2024
+
+### added
+
+- Creata sezione Native assembly nella sezione library
+
+
+## version [1.0.6] - 07 / 07 / 2024
+
+### added
+
+- modificato nome file python per il filtro da utilty.py in utility.py
+- funzione per il filtraggio delle bad words finito, mancano solo i dataset da analizzare
+- finito capitolo 4 sugli operatori in C
+- fixati capitoli nella pagina intro del C
+- aggiunta contenuto al capitolo 1 del C
+
+
+## version [1.0.5] - 06 / 07 / 2024
+
+### added
+
+- aggiunti dataset per verificare il contenuto scritto nel form dagli utenti
+- fixati alcuni bug
+- modifiche struttura del programma
+
+
+## version [1.0.4] - 01 / 07 / 2024
+
+### added
+
+- sostituito il file run.bat conìl Makefile in cartella /bin/
+- modifiche al CHANGELOG.txt
+- modifiche al README.md
+
+
+## version [1.0.3] - 30 / 06 / 2024
+
+### added
+
+- migliorie alle spiegazioni dei capitoli 1, 2, 3 del linguaggio C
+- aggiunto capitolo 4 linguaggio C alla sezione library
+
+
+## version [1.0.2] - 27 / 06 / 2024
+
+### added
+
+- modificata sezione tutorial in sezione library
+- aggiunta admin suite
+- modifica estetica pagine html
+- piccoli miglioramenti estetici del codice python
+
+
+## version [1.0.1] - 26 / 06 / 2024
+
+### add
+
+- requirements.txt
+- CHANGELOG.txt
+- README.md
+- front end aggiunta sezione tutorial nella sezione library
+- primo template delle pagine html
+- Creata sezione esercizi, usata per esercitarsi nella programmazione
+- creata app Django
+- Creato progetto Django
+
+
