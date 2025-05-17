@@ -1,0 +1,149 @@
+
+*{
+    font-family: Arial, sans-serif;
+    margin:0px;
+    padding:0px;
+    text-decoration: none;
+}
+
+body{
+    background-color: var(#f9f9f9);
+    color: var(#333);
+    font-family: 'Arial', sans-serif;
+}
+
+html::-webkit-scrollbar {
+    width: 12px;
+}
+html::-webkit-scrollbar-track {
+    background-color: #0E2C40;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+html::-webkit-scrollbar-thumb {
+    background-color: #EFBC75;
+    border-radius: 10px;
+    
+}
+
+.topbar{
+    top: 0;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0E2C40;
+    padding: 1.5% 2.5%;
+    width: 100%;
+    transition: all 0.7s;
+    color: #EFBC75;
+    z-index: 1000;
+}
+
+.topbar:hover {
+    padding: 2.5% 2.5%;
+}
+
+.topbar h2{
+    margin-left:2%; 
+    margin-right:5%; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.topbar .section {
+    display: flex;
+    justify-content:flex-end;
+    margin-right:5%;
+    width: 100%;
+}
+
+.topbar .section a {
+    margin: 0 2.5%;
+    padding: 0.5% 1.5%; /* Padding interno per i link */
+    color: #EFBC75;
+    text-decoration: none;
+    transition: all 0.7s;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.topbar .section a:hover {
+    background-color: #EFBC75;
+    color: #0E2C40;
+    border-radius: 5px; 
+}
+
+main{
+    line-height: 1.6;
+    background-color: #bb2828;
+    padding-top: 70px;
+    padding-top:13%;
+    color:black;
+}
+
+main img{ /* non modificare */
+    width:90%;
+    height:auto;
+}
+
+.shell{
+    padding:1%;
+    background-color:black;
+    color:#fff;
+    width:90%;
+    overflow-x: auto;
+}
+
+.direttive{
+    color:rgb(54, 54, 243);
+}
+
+.type{
+    color:rgb(165, 237, 20);
+}
+
+.instruction{
+    color:darkmagenta;
+}
+
+.strings{
+    color:green;
+}
+
+.forgot-password {
+    margin-top: 5px;
+    font-size: 0.9em;
+}
+
+.forgot-password a {
+    color: #0E2C40;
+    font-weight: bold;
+    transition: color 0.3s, background-color 0.3s;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+.forgot-password a:hover {
+    color: #EFBC75;
+}
+
+
+@media (max-width: 600px) {
+    .topbar h2 {
+        font-size: 20px;
+    }
+
+    .content {
+        width: 0%
+    }
+
+    .shell {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+}
