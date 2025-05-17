@@ -1,0 +1,92 @@
+{% extends "components/base.html" %}
+
+
+{% block title %} 
+    {{ prodotto.nome_prod }}
+{% endblock title %}
+
+
+{% block main %}
+
+    <h1 style="font-size: 30px;">{{ prodotto.nome_prod }}</h1>
+    <br>
+    <p>
+        <h2 style="font-size: 20px;">Descrizione</h2>
+        {{ prodotto.bio_prod }}
+    </p>
+    <br>
+    <strong>quantita</strong>: {{ prodotto.quantita }}<br>
+    <strong>datetime</strong>: {{ prodotto.datetime }}<br>
+    <strong>importo</strong>: {{ prodotto.importo }}<br>
+    <strong>nome negozio</strong>: {{ negozio.nome_azienda}}<br>
+    <br>
+    <br>
+
+    <form method="post">
+        {% csrf_token %}
+        consegna a domicilio: {{ formAcquisto.cons_domicilio }}<br>
+        ritiro convenzionato: {{ formAcquisto.ritiro_conv }}<br>
+        ritiro da un locker: {{ formAcquisto.ritiro_lock }}<br>
+
+        <div id="field-convenzionato-addr">
+            inserisci indirizzo: {{ formAcquisto.ritiro_conv_addr }}<br>
+        </div>
+
+        
+        <div id="field-ritiro_lock-addr">
+            inserisci indirizzo: {{ formAcquisto.ritiro_lock_addr }}<br>
+        </div>
+        seleziona una quantita: {{ formAcquisto.quantita }}<br>
+        <input type="submit">
+    </form>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const cons_domicilio    = document.getElementById("id_cons_domicilio");
+            const ritiro_conv       = document.getElementById("id_ritiro_conv");
+            const ritiro_lock       = document.getElementById("id_ritiro_lock");
+            const addr_conven       = document.getElementById("field-convenzionato-addr");
+            const addr_lock         = document.getElementById("field-ritiro_lock-addr");
+
+            function check() {
+                // inizialmente non mostro nessun indirizzo, aspetto che l'utente selezioni un campo e poi lo mostro
+                if (addr_conven) 
+                    addr_conven.style.display  = "none";
+                
+                if (addr_lock) 
+                    addr_lock.style.display  = "none";
+
+                // se clicco sulla checkbox cons_domicilio allora this e' == a cons_domicilio
+                if (this === cons_domicilio && this.checked) {
+                    ritiro_conv.checked = false;
+                    ritiro_lock.checked = false;
+
+                } else if (this === ritiro_conv && this.checked) {
+                    cons_domicilio.checked = false;
+                    ritiro_lock.checked = false;
+                    
+                    if (addr_conven) 
+                        addr_conven.style.display = "block";
+        
+                } else if (this === ritiro_lock && this.checked) {
+                    cons_domicilio.checked = false;
+                    ritiro_conv.checked = false;
+                    
+                    if (addr_lock) 
+                        addr_lock.style.display = "block";
+            
+                }
+
+            }
+
+            cons_domicilio.addEventListener("change", check);
+            ritiro_conv.addEventListener("change", check);
+            ritiro_lock.addEventListener("change", check);
+
+            check();
+        });
+
+    </script>
+{% endblock %}
+

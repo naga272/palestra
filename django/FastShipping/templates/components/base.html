@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+      
+      *{
+        margin:0;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 1em;
+        text-decoration: none;
+      }
+
+      a {
+        color: blue;
+      }
+
+      .topbar{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+      }
+
+      .topbar .title{
+        font-size: 2em;
+        width: 40vh;
+      }
+
+      .topbar .topbar-links{
+        display: flex;
+        flex-direction: row;
+        width:100%;
+
+      }
+
+      .text-large{
+        font-size: 3em;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <header>
+
+    </header>
+    
+    <main>
+      {% block main %}{% endblock %}
+    </main>
+
+  </body>
+</html>
