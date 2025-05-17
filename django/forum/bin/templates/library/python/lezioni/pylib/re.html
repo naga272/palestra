@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+            .script {
+                padding: 1%;
+                background-color: black;
+                color: green;
+            }
+            .elenco {
+                margin: 0 auto;
+                text-align: center;
+                width: 80%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>re</h1>
+            <br><br>
+            <p>
+                Fornisce funzioni per la gestione delle regex.<br>
+                Le regex (dette anche espressioni regolari o regular esxpression) vengono usate per formare un modello di ricerca, quindi possono essere usate per verificare 
+                se all'interno di una stringa c'è il modello di ricerca rishiesto.<br>
+            </p>
+            <br>
+            
+            <h3>Funzioni</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>re.compile(pattern: str | bytes, flags: int = 0) -> Pattern</td> 
+                            <td>Compila un pattern di espressione regolare in un oggetto Pattern</td> 
+                        </tr>
+                        <tr>
+                            <td>re.search(pattern: str | bytes | Pattern, string: str | bytes, flags: int = 0) -> Match | None</td> 
+                            <td>Cerca la prima corrispondenza del pattern nella stringa e restituisce un oggetto Match o None se non trova corrispondenze.</td> 
+                        </tr>
+                        <tr>
+                            <td>re.match(pattern: str | bytes | Pattern, string: str | bytes, flags: int = 0) -> Match | None</td> 
+                            <td>Verifica se il pattern corrisponde all'inizio della stringa. Restituisce un Match o None.</td> 
+                        </tr>
+                        <tr>
+                            <td>re.fullmatch(pattern: str | bytes | Pattern, string: str | bytes, flags: int = 0) -> Match | None</td> 
+                            <td>Controlla se il pattern corrisponde all'intera stringa. Restituisce un oggetto Match o None.</td> 
+                        </tr>
+                        <tr>
+                            <td>re.split(pattern: str | bytes | Pattern, string: str | bytes, maxsplit: int = 0, flags: int = 0) -> list[str | bytes]</td> 
+                            <td>Divide la stringa utilizzando il pattern come delimitatore. Restituisce una lista.</td> 
+                        </tr>
+                        <tr>
+                            <td>re.findall(pattern: str | bytes | Pattern, string: str | bytes, flags: int = 0) -> list[str | tuple]</td> 
+                            <td>Restituisce tutte le corrispondenze del pattern nella stringa sotto forma di lista. Se ci sono gruppi di cattura, restituisce una lista di tuple.</td> 
+                        </tr>
+                        <tr>
+                            <td>re.finditer(pattern: str | bytes | Pattern, string: str | bytes, flags: int = 0) -> Iterator[Match]</td> 
+                            <td>Restituisce un iteratore sugli oggetti Match per tutte le corrispondenze trovate.</td> 
+                        </tr>
+                        <tr>
+                            <td>re.sub(pattern: str | bytes | Pattern, repl: str | bytes | Callable[[Match], str | bytes], string: str | bytes, count: int = 0, flags: int = 0) -> str | bytes</td> 
+                            <td>Sostituisce le corrispondenze del pattern con repl nella stringa. Restituisce la stringa o i byte modificati.</td> 
+                        </tr>
+                        <tr>
+                            <td>re.subn(pattern: str | bytes | Pattern, repl: str | bytes | Callable[[Match], str | bytes], string: str | bytes, count: int = 0, flags: int = 0) -> tuple[str | bytes, int]</td> 
+                            <td>Simile a sub(), ma restituisce una tupla con la stringa modificata e il numero di sostituzioni effettuate.</td> 
+                        </tr>
+                        <tr>
+                            <td>escape(string: str | bytes) -> str | bytes</td> 
+                            <td>Escapa i caratteri che hanno significato speciale nelle espressioni regolari. Restituisce una stringa o byte.</td> 
+                        </tr>
+                        <tr>
+                            <td>purge() -> None</td> 
+                            <td>Svuota la cache interna del modulo. Non accetta parametri e non restituisce nulla.</td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Costanti</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                        
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                        
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                        
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                        
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Classi</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                        
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                        
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                        
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                        
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <script>
+                if(window.innerWidth >= 400)
+                    name_sections_topbar.push("go back");
+            
+                init_page("re", "/library/py/lezione/lez6");
+            </script>
+        </main>
+    </body>
+</html>

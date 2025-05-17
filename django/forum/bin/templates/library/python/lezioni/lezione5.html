@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+
+			.type_table tr td, th{
+				width:40%;
+                border:1px solid black;
+				padding:1%;
+				transition:all .7s;
+			}
+			.type_table tr td:hover{
+				background-color:#0E2C40;
+				color:#EFBC75;
+			}
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+			<h1>Programmazione avanzata</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%;">
+                Sommario:
+				<ul style="margin-left:15px">
+                    <li>Moduli e pacchetti</li>
+                    <li>Gestione degli errori</li>
+                    <li>File e I/O</li>
+                    <li>Espressioni regolari</li>
+                    <li>string formatting</li>
+                    <li>*args, **kwargs</li>
+                </ul>
+
+                <h2>Moduli e pacchetti</h2>
+                Un modulo è un file contenente codice Python. <br>
+                Un pacchetto è una raccolta di moduli. <br>
+
+                <h2>Creare un modulo</h2>
+                Per creare un modulo, è sufficiente salvare il codice Python in un file con estensione .py. <br>
+                <div class="shell">
+                    <div style="color: green; width: 50%"># modulo.py</div><br>
+                    <span class="instruction">def</span> saluto(nome):<br>
+                        <span style="margin-left:15px"></span>print(<span class="strings">"Ciao, "</span> + nome)
+                </div>
+
+                <h2>Utilizzare un modulo</h2>
+                Per utilizzare un modulo, è necessario importarlo. <br>
+                <div class="shell">
+                    <span class="instruction">import</span> modulo<br><br>
+                    modulo.saluto(<span class="strings">"Anna"</span>)
+                </div>
+                A questo punto, il modulo mymodule verrà importato e la funzione greeting verrà eseguita.
+                <div class="shell">
+                    <div style="color: green; width: 50%">Ciao, Anna</div>
+                </div>
+
+                <h2>Gestione degli errori</h2>
+                <ul style="margin-left:15px">
+                    <li>try: blocco di codice in cui possono verificarsi errori</li>
+                    <li>except: blocco di codice che viene eseguito in caso di errore</li>
+                    <li>finally: blocco di codice che viene eseguito alla fine, indipendentemente dal risultato</li>
+                </ul>
+
+                Python fornisce un'ampia gamma di istruzioni per la gestione degli errori. <br>
+                <div class="shell">
+                    <span class="instruction">try</span>:<br>
+                    <span style="margin-left:15px"></span>print(x)<br>
+
+                    <span class="instruction">except</span> NameError:<br>
+                    <span style="margin-left:15px"></span>print(<span class="strings">"Il valore x non e' definito"</span>)
+                </div>
+                In questo caso, se la variabile x non è definita, verrà generata un'eccezione NameError.
+                Per vedere tutti i tipi di eccezioni, <a href="https://docs.python.org/3/library/exceptions.html">clicca qui</a>.
+
+                <h2>File e I/O</h2>
+                Python offre diverse funzionalità per la lettura e la scrittura di file. <br>
+                La chiave per lavorare con i file in Python è la funzione open(). <br>
+                Ci sono diversi modi per aprire un file:
+                <ul style="margin-left:15px">
+                    <li>"r" - Lettura - Default. Apre un file per la lettura, errore se il file non esiste</li>
+                    <li>"a" - Append - Apre un file per l'aggiunta, crea il file se non esiste</li>
+                    <li>"w" - Write - Apre un file per la scrittura, crea il file se non esiste, se il file esiste gia', verra' sovrascritto</li>
+                    <li>"x" - Create - Crea il file specificato, restituisce un errore se il file esiste</li>
+                </ul>
+
+                Per leggere un file:
+                <div class="shell">
+                    f = open(<span class="strings">"file.txt"</span>, <span class="strings">"r"</span>)<br>
+                    print(f.read())
+                </div>
+                Questo codice aprirà il file file.txt in modalità di lettura e stamperà il suo contenuto.
+                Invece, per scrivere su un file:
+                <div class="shell">
+                    f = open(<span class="strings">"file.txt"</span>, <span class="strings">"w"</span>)<br>
+                    f.write(<span class="strings">"Hello, World!"</span>)
+                </div>
+
+                In aggiunta, un file puo' essere aperto in due modalita' differenti:
+                <ul style="margin-left:15px">
+                    <li>"t" - Testo - Default. Modalita' di apertura in modalita' testuale</li>
+                    <li>"b" - Binario - Modalita' di apertura in modalita' binaria</li>
+                </ul>
+
+                Quando si lavora con file, è importante chiudere il file dopo averlo utilizzato. <br>
+                <div class="shell">
+                    f = open(<span class="strings">"file.txt"</span>, <span class="strings">"r"</span>)<br>
+                    print(f.read())<br>
+                    f.close()
+                </div>
+                Cosi' facendo, si evita di consumare risorse del sistema, e se qualcun'altro vuole accedere al file, non ci saranno problemi.
+
+                <h2>Espressioni regolari</h2>
+                Le espressioni regolari sono sequenze di caratteri che definiscono un modello di ricerca.<br>
+                Python offre il modulo 're' per lavorare con espressioni regolari. <br>
+                <div class="shell">
+                    <span class="instruction">import</span> re<br>
+                    txt = <span class="strings">"Il sole a Berlino"</span><br>
+                    x = re.search(<span class="strings">"^Il.*Berlino$"</span>, txt)
+                </div>
+                Questo codice cercherà una corrispondenza all'inizio della stringa con "Il" e alla fine con "Berlino".
+                Per vedere tutti i metodi disponibili, e i simboli utilizzabili con le re: <a href="https://docs.python.org/3/library/re.html">clicca qui</a>.
+
+                <h2>String formatting</h2>
+                Python offre diversi metodi per formattare le stringhe. <br>
+                <div class="shell">
+                    price = 49<br>
+                    txt = <span class="strings">"Il prezzo e' {} dollari"</span><br>
+                    print(txt.format(price))
+                </div>
+                Questo codice stamperà "Il prezzo è 49 dollari". <br>
+                Oppure, si puo' utilizzare il metodo f-string:
+                <div class="shell">
+                    price = 49<br>
+                    txt = <span class="strings">f"Il prezzo e' {price} dollari"</span><br>
+                    print(txt)
+                </div>
+
+                <h2>*args, **kwargs</h2>
+                1. '*args' (Argomenti non chiave):
+                Consente di passare un numero variabile di argomenti a una funzione. <br>
+                <div class="shell">
+                    <span class="instruction">def</span> giovane(*kids):<br>
+                        <span style="margin-left:15px"></span>print(<span class="strings">"Il piu' giovane e' "</span> + kids[2])<br><br>
+                    
+                    giovane(<span class="strings">"Emilia"</span>, <span class="strings">"Tobia"</span>, <span class="strings">"Luca"</span>)
+                </div>
+                In questo esempio, la funzione 'giovane' accetta un numero qualsiasi di argomenti. <br>
+                All'interno della funzione, 'args' e' una tupla contenente gli argomenti passati alla funzione.
+
+                2. '**kwargs' (Argomenti chiave):
+                Consente di passare un numero variabile di argomenti chiave a una funzione. <br>
+                <div class="shell">
+                    <span class="instruction">def</span> mio_amico(**amici):<br>
+                    <span style="margin-left:15px"></span>print(<span class="strings">"Il mio migliore amico e' "</span> + amici[<span class="strings">"best"</span>])<br><br>
+                    
+                    mio_amico(best=<span class="strings">"Mirco"</span>, second=<span class="strings">"Matteo"</span>)
+                </div>
+                In questo esempio, la funzione 'mio_amico' accetta un numero qualsiasi di argomenti chiave. <br>
+                All'interno della funzione, 'kwargs' e' un dizionario contenente gli argomenti chiave passati alla funzione.
+
+                Queste caratteristiche sono molto utili quando non si è sicuri in anticipo di quanti argomenti verranno passati alla funzione, o quando si desidera consentire agli utenti di passare argomenti con nome alla funzione.
+
+                <h2>Conclusioni</h2>
+                In questo capitolo abbiamo esaminato alcuni concetti avanzati di Python, come moduli e pacchetti, gestione degli errori, file e I/O, espressioni regolari e *args, **kwargs. <br>
+                Questi concetti sono fondamentali per la programmazione avanzata in Python e ti aiuteranno a scrivere codice più efficiente e pulito.
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+        init_page("capitolo 5", "../../py/intro");
+    </script>
+</html>

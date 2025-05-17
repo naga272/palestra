@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        <style>
+            .topbar h2{
+                width:30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Input</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%;">
+                Per acquisire un valore da tastiera, utilizziamo la funzione <span class="instruction">cin</span> della libreria <span class="instruction">iostream</span>.<br>
+                Ecco un esempio:<br><br>
+                <div class="shell">
+                    <span class="instruction">#include <iostream></span>
+                    <span class="instruction">using namespace std</span>;
+                    <span class="instruction">int main</span>(){
+                        <span class="instruction">int</span> x;
+                        <span class="instruction">cin</span> >> x;
+                        <span class="instruction">cout</span> << <span class="strings">"Hai inserito "</span> << x;
+                        <span class="instruction">return</span> 0;
+                    }
+                </div>
+                <br>
+                Questo codice acquisira' un valore da tastiera e lo stampera' a schermo.<br>
+                La funzione <span class="instruction">cin</span> e' seguita da <span class="instruction">>></span>, che indica l'inizio dell'acquisizione.<br>
+                Il valore acquisito verra' memorizzato nella variabile <span class="instruction">x</span>.<br>
+                Infine, il punto e virgola <span class="instruction">;</span> termina l'istruzione.<br>
+                Ad essa si possono concatenare più valori separandoli con <span class="instruction">>></span>.<br>
+                Ecco un esempio:<br><br>
+                <div class="shell">
+                    <span class="instruction">#include <iostream></span>
+                    <span class="instruction">using namespace std</span>;
+                    <span class="instruction">int main</span>(){
+                        <span class="instruction">int</span> x, y;
+                        <span class="instruction">cin</span> >> x >> y;
+                        <span class="instruction">cout</span> << <span class="strings">"Hai inserito "</span> << x << <span class="strings">" e "</span> << y;
+                        <span class="instruction">return</span> 0;
+                    }
+                </div>
+                <br>
+                Questo codice acquisira' due valori da tastiera e li stampera' a schermo.<br>
+
+                Come esercizio, scrivete un programma che acquisisca due numeri interi da tastiera e ne stampi la somma.<br>
+
+                NOTA: cin e cout si pronunciano "c-in" ('see-in') e "c-out" ('see-out') rispettivamente.<br>
+                Essi fanno parte della libreria iostream, che sta per "input-output stream" ('flusso di input-output').<br>
+			</div>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 4", "../../cpp/intro");
+    </script>
+</html>

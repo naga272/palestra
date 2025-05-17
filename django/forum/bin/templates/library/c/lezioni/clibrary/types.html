@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+        .script {
+            padding: 1%;
+            background-color: black;
+            color: green;
+        }
+        .elenco {
+            margin: 0 auto;
+            text-align: center;
+            width: 80%;
+            border-collapse: collapse;
+            text-align: left; /* Allinea il testo delle celle a sinistra */
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .elenco th, .elenco td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        .elenco thead {
+            background-color: #f2f2f2;
+        }
+        .elenco tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .elenco tbody tr:hover {
+            background-color: #0E2C40;
+            color:#EFBC75;
+        }
+        .elenco th {
+            background-color: #0E2C40;
+            color: white;
+        }
+        .table-container {
+            display: flex;
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .elenco .prototype {
+            width: 50%;
+        }
+        .elenco .descrizione {
+            width: 30%;
+        }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>sys/types</h1>
+            <br><br>
+            <p>
+                La libreria sys/types fornisce un set di definizioni di tipi di dato utilizzabili per vari tipi di identificatori e molte grandezze che vengono usate spesso nelle chiamate di sistema di basso livello
+            </p>
+            <br>
+            <h3>Tipi di dato</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>blkcnt_t</td>
+                            <td>Utilizzato per i conteggi dei blocchi di file.</td>
+                        </tr>
+                        <tr>
+                            <td>blksize_t</td>
+                            <td>Utilizzato per le dimensioni dei blocchi.</td>
+                        </tr>
+                        <tr>
+                            <td>clock_t</td>
+                            <td>Utilizzato per i tempi di sistema in tick di clock o CLOCKS_PER_SEC.</td>
+                        </tr>
+                        <tr>
+                            <td>clockid_t</td>
+                            <td>Utilizzato per il tipo di ID di clock nelle funzioni di clock e timer.</td>
+                        </tr>
+                        <tr>
+                            <td>dev_t</td>
+                            <td>Utilizzato per gli ID dei dispositivi.</td>
+                        </tr>
+                        <tr>
+                            <td>fsblkcnt_t</td>
+                            <td>Utilizzato per i conteggi dei blocchi del file system.</td>
+                        </tr>
+                        <tr>
+                            <td>fsfilcnt_t</td>
+                            <td>Utilizzato per i conteggi dei file nel file system.</td>
+                        </tr>
+                        <tr>
+                            <td>gid_t</td>
+                            <td>Utilizzato per gli ID dei gruppi.</td>
+                        </tr>
+                        <tr>
+                            <td>id_t</td>
+                            <td>Utilizzato come identificatore generale; può contenere almeno un pid_t, uid_t o gid_t.</td>
+                        </tr>
+                        <tr>
+                            <td>ino_t</td>
+                            <td>Utilizzato per i numeri seriali dei file.</td>
+                        </tr>
+                        <tr>
+                            <td>key_t</td>
+                            <td>Utilizzato per la comunicazione interprocesso XSI.</td>
+                        </tr>
+                        <tr>
+                            <td>mode_t</td>
+                            <td>Utilizzato per alcuni attributi dei file.</td>
+                        </tr>
+                        <tr>
+                            <td>nlink_t</td>
+                            <td>Utilizzato per i conteggi dei collegamenti.</td>
+                        </tr>
+                        <tr>
+                            <td>off_t</td>
+                            <td>Utilizzato per le dimensioni dei file.</td>
+                        </tr>
+                        <tr>
+                            <td>pid_t</td>
+                            <td>Utilizzato per gli ID di processo e gli ID dei gruppi di processo.</td>
+                        </tr>
+                        <tr>
+                            <td>pthread_attr_t</td>
+                            <td>Utilizzato per identificare un oggetto di attributo del thread.</td>
+                        </tr>
+                        <tr>
+                            <td>pthread_barrier_t</td>
+                            <td>Utilizzato per identificare una barriera.</td>
+                        </tr>
+                        <tr>
+                            <td>pthread_barrierattr_t</td>
+                            <td>Utilizzato per definire un oggetto di attributo della barriera.</td>
+                        </tr>
+                        <tr>
+                            <td>pthread_cond_t</td>
+                            <td>Utilizzato per le variabili di condizione. </td>
+                        </tr>
+                        <tr>
+                            <td>pthread_condattr_t</td>
+                            <td>Utilizzato per identificare un oggetto di attributi di condizione.</td>
+                        </tr>
+                        <tr>
+                            <td>pthread_key_t</td>
+                            <td>Utilizzato per le chiavi dei dati specifici del thread.</td>
+                        </tr>
+                        <tr>
+                            <td>pthread_mutex_t</td>
+                            <td>Utilizzato per i mutex.</td>
+                        </tr>
+                        <tr>
+                            <td>pthread_mutexattr_t</td>
+                            <td>Utilizzato per identificare un oggetto di attributi del mutex.</td>
+                        </tr>
+                        <tr>
+                            <td>pthread_once_t</td>
+                            <td>Utilizzato per l'inizializzazione dinamica dei pacchetti.</td>
+                        </tr>
+                        <tr>
+                            <td>pthread_rwlock_t</td>
+                            <td>Utilizzato per i lock di lettura-scrittura.</td>
+                        </tr>
+                        <tr>
+                            <td>pthread_rwlockattr_t</td>
+                            <td>Utilizzato per gli attributi dei lock di lettura-scrittura.</td>
+                        </tr>
+                        <tr>
+                            <td>pthread_spinlock_t</td>
+                            <td>Utilizzato per identificare un lock spin.</td>
+                        </tr>
+                        <tr>
+                            <td>pthread_t</td>
+                            <td>Utilizzato per identificare un thread.</td>
+                        </tr>
+                        <tr>
+                            <td>size_t</td>
+                            <td>Utilizzato per le dimensioni degli oggetti.</td>
+                        </tr>
+                        <tr>
+                            <td>ssize_t</td>
+                            <td>Utilizzato per un conteggio di byte o un'indicazione di errore.</td>
+                        </tr>
+                        <tr>
+                            <td>suseconds_t</td>
+                            <td>Utilizzato per il tempo in microsecondi.</td>
+                        </tr>
+                        <tr>
+                            <td>time_t</td>
+                            <td>Utilizzato per il tempo in secondi.</td>
+                        </tr>
+                        <tr>
+                            <td>timer_t</td>
+                            <td>Utilizzato per l'ID del timer restituito da timer_create()</td>
+                        </tr>
+                        <tr>
+                            <td>trace_attr_t</td>
+                            <td>tilizzato per identificare un oggetto di attributi di un flusso di traccia.</td>
+                        </tr>
+                        <tr>
+                            <td>trace_event_id_t</td>
+                            <td>Utilizzato per identificare un tipo di evento di traccia.</td>
+                        </tr>
+                        <tr>
+                            <td>trace_event_set_t</td>
+                            <td>Utilizzato per identificare un set di tipi di eventi di traccia.</td>
+                        </tr>
+                        <tr>
+                            <td>trace_id_t</td>
+                            <td>Utilizzato per identificare un flusso di traccia.</td>
+                        </tr>
+                        <tr>
+                            <td>uid_t</td>
+                            <td>Utilizzato per gli ID degli utenti.</td>
+                        </tr>
+                        <tr>
+                            <td>useconds_t</td>
+                            <td>Utilizzato per il tempo in microsecondi.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("sys/types", "../../c/lezione/lez13");
+    </script>
+</html>

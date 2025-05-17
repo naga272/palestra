@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+            .elenco {
+                text-align: center;
+                width: 80%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+			<h1>Costanti</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+				Una costante non è altro che una variabile che una volta dichiarata non può essere più modificata.<br>
+                ovviamente, come per le variabili, bisogna specificare il tipo della costante che creiamo.<br>
+                Ecco un esempio:<br><br>
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                    <br>
+                    <span class="type">const int</span> a = 18;</span>
+                    <br><br>
+                    <span class="type">int</span> main(){<br>
+                        <span style="margin-left: 20px; color:#fff"><span class="type">const char</span> b = <span class="strings">'s'</span>;</span><br>
+                        <span style="margin-left: 20px; color:#fff">printf(<span class="strings">"costante a: %i costante b: %c"</span>, a, c);</span><br>
+                        <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                    }<br>
+                </div>
+                <br>
+                <p>
+                    <h3>Compilazione del programma (ambiente linux)</h3>
+                    Da command line andare nella directory corrente e scrivere il seguente comando:
+                    <div class="shell" style="color:green">
+                        $ gcc ./costanti.c -o ./costanti
+                    </div><br>
+                    
+                    <h3>Output del programma</h3>
+                    <div class="shell" style="color:green">
+                        $ ./costanti<br>
+                        valore costante di a: 18, valore costante di b: s
+                    </div><br>
+                    
+                    <h3>Curiosità</h3>
+                    Cosa accade se provo a cambiare il valore di una costante?<br>
+                    Banalmente il compilatore darà errore, dicendo che stiamo provando a modificare una variabile che è di sola lettura.<br>
+                    Ecco un esempio:<br>
+                    <div class="shell">
+                        <br>
+                        <span class="type">const int</span> a = 18;</span>
+                        <br><br>
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin-left: 20px; color:#fff">printf(<span class="strings">"costante a: %i"</span>, a);</span><br>
+                            <span style="margin-left: 20px; color:#fff">a = 22;</span><br>
+                            <span style="margin-left: 20px; color:#fff">printf(<span class="strings">"costante a: %i"</span>, a);</span><br>
+                            <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                        }<br>
+                    </div><br>
+                    Il messaggio di errore che darà durante la compilazione sarà:
+                    <div class="shell" style="color:green">
+                        $ gcc costanti.c -o ./costanti<br>
+                        costanti.c: In function 'main':<br>
+                        costanti.c:5: <span style="color:red">error</span>: assigment of read-only variable 'a'<br>
+                        5 | a <span style="color:red">=</span> 22;
+                    </div><br>
+                    
+                </p>
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 3", "../../c/intro/");
+    </script>
+</html>

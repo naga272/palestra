@@ -1,0 +1,205 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+            table{
+                width:33%;
+            }
+            table th{
+                margin-left:2%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Lettura e scrittura su file</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+                <p>
+                    La gestione dei file è un aspetto cruciale per molte applicazioni, poiché consente di salvare e recuperare dati persistenti.<br> 
+                    Le operazioni di input e output su file permettono di leggere e scrivere su file, facilitando così la conservazione dei dati anche dopo la terminazione del programma.<br>
+                </p><br>
+                <h3>Apertura e chiusura dei file</h3>
+                <p>
+                    Prima di poter leggere o scrivere su un file, è necessario aprirlo utilizzando la funzione fopen(). <br>
+                    Questa funzione richiede due argomenti: <br>
+                    <ul>
+                        <li style="margin-left:20px;">il nome del file e la modalità di apertura.</li>
+                        <li style="margin-left:20px;">La modalità di apertura può essere:<br>
+                            <ul style="margin-left:40px;">
+                                <li>
+                                    <strong>r</strong>: apertura del file in modalità sola lettura
+                                </li>
+                                <li>
+                                    <strong>w</strong>: apertura del file in modalità sola scrittura(sovrascrive i dati del file esistente)
+                                </li>
+                                <li>
+                                    <strong>a</strong>: apertura del file in modalità append(aggiunge dati alla fine del file esistente)
+                                </li>
+                                <li>
+                                    <strong>r+</strong>: apertura del file in modalità lettura/scrittura
+                                </li>
+                                <li>
+                                    <strong>w+</strong>: apertura del file in modalità lettura/scrittura
+                                </li>
+                                <li>
+                                    <strong>a+</strong>: apertura del file in modalità lettura/append
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <br>
+                    <div class="shell">
+                        <span class="type">FILE</span> *file = fopen(<span class="strings">"example.txt"</span>, <span class="strings">"r"</span>);<br>
+                        <span class="instruction">if</span>(file == NULL) {<br>
+                            <span style="margin-left:20px;"></span>perror(<span class="strings">"file non trovato"</span>); <span class="strings">// scrivo un messaggio sullo standard error (stderr)</span><br>
+                            <span style="margin-left:20px;"></span>exit(1); <span class="strings">// forzo l'interruzione del programma nel caso in cui nom venga trovato il file</span><br> 
+                        }
+                    </div><br>
+                    La funzione fopen si trova all'interno dell'header stdio e restituisce come valore un puntatore al file se riesce a trovare il file (oppure anche a crearlo), altrimenti restituisce un puntatore NULL.<br>
+                    Questo puntatore punta al file descriptor, che non è altro che il numero identificativo del file. <br>
+                    Quindi, quando dovremo fare riferimento al file ci basterà riferirci al suo file descriptor.<br>
+                    Una volta che abbiamo eseguito i lavori che dovevamo fare sul nostro file dobbiamo sempre chiuderlo prima della fine del nostro programma tramite comando fclose():
+                    <div class="shell"> 
+                        fclose(file);
+                    </div><br>
+                    <h3>Lettura su file</h3>
+                    Per poter leggere su file possiamo fare riferimento sempre alla libreria stdio, che ci fornisce funzioni come fgetc e fgets.<br>
+                    Ecco un programma che legge carattere per carattere da file:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                        <span class="direttive">#include &lt;stdlib.h&gt;</span><br>
+                        <br>
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin:20px;"></span><span class="type">FILE</span> *file = fopen(<span class="strings">"my_file.txt"</span>, <span class="strings">"r"</span>);<br>
+                            <span style="margin:20px;"></span><span class="instruction">if</span>(file == NULL){<br>
+                            <span style="margin:40px;"></span><span>perror(<span class="strings">"file not found"</span>);</span><br>
+                            <span style="margin:40px;"></span><span>exit(1);<br>    
+                            <span style="margin:20px;"></span>}<br>
+
+                            <span style="margin:20px;"></span><span class="type">char</span> c;<br>
+                            <span style="margin:20px;"></span><span class="instruction">while</span>((c = fgetc(file)) != EOF)<br>
+                            <span style="margin:40px;"></span>putchar(c);<br><br>
+                            <span style="margin:20px;"></span>fclose(file);<br>
+                            <span style="margin:20px;"></span><span class="instruction">return</span> 0;
+                        <br>}
+                    </div>
+                    Questo programma fintanto che il contenuto della variabile c non è uguale alla fine del file(EOF = end of file), continua a leggere carattere per carattere dal file<br>
+                    Come accennavo prima, si può usare anche la fgets per leggere riga per riga finchè non si arriva all'EOF:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                        <span class="direttive">#include &lt;stdlib.h&gt;</span><br>
+                        <br>
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin:20px;"></span><span class="type">FILE</span> *file = fopen(<span class="strings">"my_file.txt"</span>, <span class="strings">"r"</span>);<br>
+                            <span style="margin:20px;"></span><span class="instruction">if</span>(file == NULL){<br>
+                            <span style="margin:40px;"></span><span>perror(<span class="strings">"file not found"</span>);</span><br>
+                            <span style="margin:40px;"></span><span>exit(1);<br>    
+                            <span style="margin:20px;"></span>}<br>
+                            
+                            <span style="margin:20px;"></span><span class="type">char</span> row[50];<br>
+                            <span style="margin:20px;"></span><span class="instruction">while</span>(fgets(row, 50, file) != NULL)<br>
+                            <span style="margin:40px;"></span>printf(<span class="strings">"%s"</span>, row);<br><br>
+                            <span style="margin:20px;"></span>fclose(file);<br>
+                            <span style="margin:20px;"></span><span class="instruction">return</span> 0;
+                        <br>}
+                    </div>
+                    La funzione fgets accetta tre parametri: 
+                    <ul style="margin-left:20px">
+                        <li>il primo è il vettore dove verrà inserito il contenuto del file</li> 
+                        <li>il secondo è il numero di caratteri che si possono inserire all'interno del vettore dalla riga del file</li>
+                        <li>il terzo è il file descriptor</li>
+                    </ul>
+                    restituisce NULL se ha raggiunto l'EOF
+                    <br><br>
+                    <h3>Scrittura su file</h3>
+                    Per la scrittura su file è possibile usare tre funzioni diverse:<br>
+                    <ul style="margin-left:20px">
+                        <li><strong>fputc</strong>: Scrive un carattere solo su file</li> 
+                        <li><strong>fputs</strong>: Scrivere una stringa su file</li>
+                        <li><strong>fprintf</strong>: Scrive una stringa formattata su file</li>
+                    </ul>
+
+                    Esempio di programma con fputc:
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                        <span class="direttive">#include &lt;stdlib.h&gt;</span><br><br>
+                        
+                        <span class="type">int</span> main() {<br>
+
+                        <span style="margin:20px"></span><span class="type">FILE</span> *file = fopen(<span class="strings">"output.txt"</span>, <span class="strings">"w"</span>);<br>
+                        <span style="margin:20px"></span><span class="instruction">if</span> (file == NULL) {<br>
+                        <span style="margin:40px"></span>perror(<span class="strings">"file not found"</span>);<br>
+                        <span style="margin:40px"></span>exit(1);<br>
+                        <span style="margin:20px"></span>}<br>
+                        
+                        <span style="margin:20px"></span>fputc(<span class="strings">'A'</span>, file);<br>
+                        
+                        <span style="margin:20px"></span>fclose(file);<br>
+                        <span style="margin:20px"></span><span class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+
+                    Ora passiamo alla funzione fputs:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                        <span class="direttive">#include &lt;stdlib.h&gt;</span><br><br>
+                        
+                        <span class="type">int</span> main() {<br>
+
+                        <span style="margin:20px"></span><span class="type">FILE</span> *file = fopen(<span class="strings">"output.txt"</span>, <span class="strings">"w"</span>);<br>
+                        <span style="margin:20px"></span><span class="instruction">if</span> (file == NULL) {<br>
+                        <span style="margin:40px"></span>perror(<span class="strings">"file not found"</span>);<br>
+                        <span style="margin:40px"></span>exit(1);<br>
+                        <span style="margin:20px"></span>}<br>
+                        
+                        <span style="margin:20px"></span>fputs(<span class="strings">"Sono un vettore di caratteri"</span>, file);<br>
+                        
+                        <span style="margin:20px"></span>fclose(file);<br>
+                        <span style="margin:20px"></span><span class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+                    Quello che accede e che se il file esiste già e ha al suo interno scritto qualcosa, tutto il contenuto viene sostituito col vettore "Sono un vettore di caratteri".<br>
+                    <br>
+
+                    Funzione printf:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                        <span class="direttive">#include &lt;stdlib.h&gt;</span><br><br>
+                        
+                        <span class="type">int</span> main() {<br>
+
+                        <span style="margin:20px"></span><span class="type">FILE</span> *file = fopen(<span class="strings">"output.txt"</span>, <span class="strings">"w"</span>);<br>
+                        <span style="margin:20px"></span><span class="instruction">if</span> (file == NULL) {<br>
+                        <span style="margin:40px"></span>perror(<span class="strings">"file not found"</span>);<br>
+                        <span style="margin:40px"></span>exit(1);<br>
+                        <span style="margin:20px"></span>}<br>
+                        <span style="margin:20px"></span><span class="type">int</span> valore = 123;<br>
+                        <span style="margin:20px"></span>fprintf(file, <span class="strings">"value: %i"</span>, valore);<br>
+                        
+                        <span style="margin:20px"></span>fclose(file);<br>
+                        <span style="margin:20px"></span><span class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+                    Il primo parametro della funzione è il puntatore al file descriptor, il secondo è una stringa formattata e il terzo tutti i valori da passare alla stringa formattata
+                    
+
+                </p>
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 15", "../../c/intro/");
+    </script>
+</html>

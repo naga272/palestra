@@ -1,0 +1,390 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+            table{
+                width:33%;
+            }
+            table th{
+                margin-left:2%;
+            }
+            .status_analisi_sorgente{
+                display:flex;
+                flex-direction:column;
+                width:100%;
+                text-align: center;
+            }
+            .status_analisi_sorgente .status_single{
+                margin-left:30%;
+                margin-right:30%;
+                color:#333;
+            }
+            .elenco {
+                width: 40%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Preprocessore</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+
+                <p>
+                    Il preprocessore è un programma che viene eseguito prima della fase di compilazione vera e propria, in una fase chiamata "precompilazione".<br>
+                    Il suo compito è leggere il codice sorgente e produrre un altro sorgente modificato, applicando macro, includendo file o eseguendo altre direttive.<br>
+                    <br><br>
+                    <div class="status_analisi_sorgente">
+                        <div class="status_single" style="background-color: #0E2C40; color:#EFBC75; padding-top:1%; padding-bottom:1%;">file.c</div>
+                        <div class="status_single">|</div>
+                        <div class="status_single">v</div>
+                        <div class="status_single" style="background-color: #0E2C40; color:#EFBC75; padding-top:1%; padding-bottom:1%;">precompilatore</div>
+                        <div class="status_single">|</div>
+                        <div class="status_single">v</div>
+                        <div class="status_single" style="background-color: #0E2C40; color:#EFBC75; padding-top:1%; padding-bottom:1%;">modified.c</div>
+                        <div class="status_single">|</div>
+                        <div class="status_single">v</div>
+                        <div class="status_single" style="background-color: #0E2C40; color:#EFBC75; padding-top:1%; padding-bottom:1%;">compilatore</div>
+                        <div class="status_single">|</div>
+                        <div class="status_single">v</div>
+                        <div class="status_single" style="background-color: #0E2C40; color:#EFBC75; padding-top:1%; padding-bottom:1%;">file object</div>
+                        <div class="status_single">|</div>
+                        <div class="status_single">v</div>
+                        <div class="status_single" style="background-color: #0E2C40; color:#EFBC75; padding-top:1%; padding-bottom:1%;">linking</div>
+                        <div class="status_single">|</div>
+                        <div class="status_single">v</div>
+                        <div class="status_single" style="background-color: #0E2C40; color:#EFBC75; padding-top:1%; padding-bottom:1%;">file.exe</div>
+                    </div>
+                </p><br><br><br>
+                <p>
+                    Le direttive del preprocessore rigurdano principalmente tutto ciò che comincia col carattere <strong>'#'</strong>:<br>
+                    <ul style="margin-left:20px;">
+                        <li><strong>#include</strong>: inclusione di file header</li>
+                        <li><strong>#define</strong>: definizione e sostituzione di simboli e macroistruzioni con parametri</li>  
+                        <li><strong>#if</strong>, <strong>#ifdef</strong>, <strong>#ifndef</strong>, <strong>#else</strong>, <strong>#elif</strong>, <strong>#endif</strong>: compilazione condizionale</li>
+                        <li><strong>#error</strong>: interruzione anomala della compilazione</li>
+                        <li><strong>#undef</strong>: annullamento di una definizione precedente di macro</li>
+                        <li><strong>#pragma</strong>: direttive specifiche del compilatore per controllare comportamenti particolari</li>
+                    </ul>
+                </p>
+                <br>
+                <h3>inclusione di file header</h3>
+                <p>
+                    In molti capitoli abbiamo già visto usare questa direttiva, consente in sostanza di cercare all'interno dei file header i prototype e altre direttive.<br>
+                    Ci sono due modi per riferirsi a un file .h, il primo è usando &lt;, &gt;; (come per esempio &lt;stdio.h&gt;) il secondo modo è usando i doppi apici (per esmepio "myheader.h").<br>
+                    Ma quando bisogna usare uno invece dell'altro metodo?<br>
+                    Si deve usare i &lt; e &gt; quando il file header si trova nella stessa directory del compilatore.<br>
+                    Quando invece usiamo i doppi apici, stiamo dicendo che prima deve controllare nella directory dove si trova il nostro sorgente c e se non viene trovato, la cerca nella directory del compilatore.<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                        <span class="direttive">#include "myfile.h"</span><br>
+                        <span class="strings">// resto del codice...</span>
+                    </div>
+                </p>
+                <br>
+
+                <h3>definizione di simboli</h3>
+                <p>
+                    Per define una macro basta scrivere: <br>
+                    #define &lt;nome&gt; &lt;operazioni&gt;<br>
+                    In questo modo, ogni volta che useremo il simbolo &lt;nome&gt; all'interno del nostro programma, verrà sostituita con &lt;operazioni&gt; in fase di precompilazione
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                        <span class="direttive">#define my_macro 45</span><br>
+                        <span class="direttive">#define my_macro2 (my_macro + 10)</span><br><br>
+                    
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin-left:15px;"></span>printf(<span class="strings">"valore di my_macro: %i\n"</span>, my_macro);<br>
+                            <span style="margin-left:15px;"></span>printf(<span class="strings">"valore di my_macro2: %i"</span>, my_macro2);<br>
+                            <span style="margin-left:15px;"></span><span class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+                    <h3>Output del programma</h3>
+                    <div class="shell strings">
+                        valore di my_macro: 45<br>
+                        valore di my_macro2: 55
+                    </div>
+
+                    Inoltre, è possibile passare alle macro dei parametri, consentendo di eseguire delle operazioni in base ai valori passati al parametro:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                        <span class="direttive">#define arraylen(x) (sizeof(x) / sizeof(x[0]))</span><br><br>
+                        
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin-left:15px;"></span><span class="type">int</span> array[10] = {0};<br>
+                            <span style="margin-left:15px;"></span>printf(<span class="strings">"numero di elementi nell'array: %li\n"</span>, arraylen(array));<br>
+                            <span style="margin-left:15px;"></span><span class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+
+                    Esiste anche la possibilità di creare delle macro multiline, cioè delle macro che consentono l'uso di più righe di codice.<br>
+                    Per poter fare questo però, a fine di ogni riga della macro dobbiamo aggiunge il "\", che serve a far capire al precompilatore<br>
+                    che la prossima riga fa parte sempre della stessa macro
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                        <span class="direttive">#include &lt;string.h&gt;</span><br>
+                        <span class="direttive">#include &lt;errno.h&gt;</span><br><br>
+
+                        <span class="direttive">#define checker(x) <span style="margin-left:50px"></span>\<br>
+                        <span style="margin-left:50px"></span>if (x) { <span style="margin-left:100px"></span>\<br>
+                        <span style="margin-left:70px"></span>printf("Errore - %i: %s", errno, strerror(errno)); \<br>
+                        <span style="margin-left:70px"></span>return errno; \<br>
+                        <span style="margin-left:50px"></span>}
+                        </span><br><br>
+                        
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin-left:15px;"></span><span class="type">FILE</span> *fptr = fopen(<span class="strings">"./myfile.txt"</span>, <span class="strings">"r"</span>);<br>
+                            <span style="margin-left:15px;"></span>checker(fptr == NULL);<br>
+                            <span style="margin-left:15px;"></span>printf(<span class="strings">"numero di elementi nell'array: %li\n"</span>, arraylen(array));<br>
+                            <span style="margin-left:15px;"></span><span class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+
+                    Quindi in fase di precompilazione "checker(fptr == NULL)" che si trova all'interno del main, verrà sostituito con:
+                    <div class="shell">
+                        <span class="instruction">if</span> (fptr == NULL) {<br>
+                            <span style="margin-left:20px"></span>printf(<span class="strings">"Errore - %i: %s"</span>, errno, strerror(errno));<br>
+                            <span style="margin-left:20px"></span><span class="instruction">return</span> errno;<br>
+                        }
+                    </div>
+
+                    Si possono usare i define anche per le stringification, cioè macro che consentono la conversione del nome di un parametro in una stringa.<br>
+                    Per fare questo ci basta inserire davanti al nome della variabile il '#' e in automatico gcc capirà che deve fare riferimento al nome della variabile e non al suo contenuto.<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                        <span class="direttive">#define name(x) (#x)</span>
+                        <br><br>
+                        
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin-left:15px;"></span><span class="type">int</span> my_variable = 17;<br>
+                            <span style="margin-left:15px;"></span>printf(<span class="strings">"valore della variabile %s: %i\n"</span>, name(my_variable), my_variable);<br>
+                            <span style="margin-left:15px;"></span><span class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+                    <h3>Output del programma</h3>
+                    <div class="shell strings">
+                        valore della variabile my_variable: 17
+                    </div>
+                    Infine, è possibile indefinire le macro definite precedentemente tramite il token #undef
+                </p>
+                <br>
+
+                <h3>compilazione condizionale</h3>
+                <p>
+                    Indichiamo quale pezzo di codice compilare a seconda delle situazioni che stanno avvenendo durante la precompilazione.<br>
+                    esempio, se voglio che un programma deve includere delle funzioni anchichè altre funzioni, dovrò usare il token #if, #else e #endif<br>
+                    (L'endif bisogna metterlo sempre per indicare la conclusione di un if, per ogni if ci deve essere sempre una sua endif).
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                        
+                        <span class="direttive">#ifndef X</span><br>
+                        <span style="margin-left:15px;"></span><span class="direttive">#define X 1</span><br>
+                        <span class="direttive">#endif</span><br>
+
+                        <br>
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin-left:15px;"></span><span class="direttive">#if X</span><br>
+                            <span style="margin-left:30px;"></span>printf(<span class="strings">"riga compilata se X &gt;= 1"</span>);<br>
+                            <span style="margin-left:15px;"></span><span class="direttive">#else</span><br>
+                            <span style="margin-left:30px;"></span>printf(<span class="strings">"riga compilata se X &lt; 1"</span>);<br>
+                            <span style="margin-left:15px;"></span><span class="direttive">#endif</span><br>
+                            
+                            <span style="margin-left:15px;"></span><span class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+                    Analizziamo riga per riga:<br>
+                    <strong>#ifndef X</strong>: questo significa che se la macro non è stata definita precedentemente da qualche libreria, allora fai qualcosa.<br>
+                    <strong>#define X 1</strong>: dichiarazione di una macro.<br>
+                    <strong>#endif</strong>: indica la fine della condizione.<br>
+                    <strong>#if X</strong>: Se la variabile definita è maggiore di 0 allora dovrà compilare il codice di questo if, non dell'else<br>
+                    <strong>#else</strong>: Se la condizione non è stata soddisfatta allora verrà compilato solo il codice di questa parte, non dell'if<br>
+                    <h3>Output del programma</h3>
+                    <div class="shell strings">
+                        riga compilata se X &gt;= 1
+                    </div>
+                </p>
+                <br>
+
+                <h3>Interruzione della compilazione</h3>
+                <p>
+                    Esiste la possibilità di interrompere la fase di compilazione tramite il comando #error, "" che oltre a interromperla consente di stampare a schermo un messaggio.<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                        
+                        <span class="direttive">#define X 1324</span><br>
+                        <span class="direttive">#ifndef X</span><br>
+                        <span style="margin-left:15px;"></span><span class="direttive">#define X 1</span><br>
+                        <span class="direttive">#else</span><br>
+                        <span style="margin-left:15px;"></span><span class="direttive">#error, "macro X already defined"</span><br>
+                        <span class="direttive">#endif</span><br>
+
+                        <br>
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin-left:15px;"></span><span class="direttive">#if X</span><br>
+                            <span style="margin-left:30px;"></span>printf(<span class="strings">"riga compilata se X &gt;= 1"</span>);<br>
+                            <span style="margin-left:15px;"></span><span class="direttive">#else</span><br>
+                            <span style="margin-left:30px;"></span>printf(<span class="strings">"riga compilata se X &lt; 1"</span>);<br>
+                            <span style="margin-left:15px;"></span><span class="direttive">#endif</span><br>
+                            <span style="margin-left:15px;"></span><span class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+                    <h3>Fase di compilazione</h3>
+                    <div class="shell strings">
+                        main.c:7:2: error: #error , "macro X already defined"<br>
+                        7 | #error, "macro X already defined"<br>
+                        <span style="margin-left:12px"></span>|  ^~~~~
+                    </div>
+                </p>
+                <br>
+
+                <h3>pragma</h3>
+                <p>
+                    Viene spesso usata per fornire delle istruzioni specifiche al compilatore (variano in base al compilatore che si usa).<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+
+                        <span class="strings">// Disabilita i warning relativi alla conversione implicita</span><br>
+                        <span class="direttive">#pragma GCC diagnostic push</span><br>
+                        <span class="direttive">#pragma GCC diagnostic ignored "-Wimplicit-int"</span><br>
+                            
+                        <span class="type">void</span> my_function() {<br>
+                            <span style="margin-left:15px"></span><span class="type">int</span> x;<br>
+                            <span style="margin-left:15px"></span>x = 5.7;  <span class="strings">// Questo normalmente genererebbe un warning, ma è stato disabilitato</span><br>
+                            <span style="margin-left:15px"></span>printf(<span class="strings">"Valore di x: %d\n"</span>, x);<br>
+                        }<br><br>
+                            
+                        <span class="direttive">#pragma GCC diagnostic pop</span>  <span class="strings">// Ripristina i warning</span>
+                        <br><br>
+                        <span class="type">int</span> main() {<br>
+                            <span style="margin-left:15px"></span>my_function();<br>
+                            <span style="margin-left:15px"></span><span class="instruction">return</span> 0;<br>
+                        }<br>
+                    </div>
+                    <h3>Output del programma</h3>
+                    <div class="shell strings">
+                        Valore di x: 5
+                    </div>
+                </p>
+                <br>
+                <h3>macro di default</h3>
+                <p>
+                    Il compilatore C offre di default una serie di macro:
+                    <div class="table-container">
+                        <table class="elenco">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Descrizione</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>__STDC_VERSION__</td>
+                                    <td>Indica la versione dello standard C a cui il compilatore aderisce. Per esempio, per C99 sarà definita come 199901L, per C11 come 201112L</td>
+                                </tr>
+                                <tr>
+                                    <td>__STDC__</td>
+                                    <td>Definita come 1 se il compilatore aderisce al C standard (ISO C). Può essere usata per verificare se il codice è compilato secondo lo standard C.</td>
+                                </tr>
+                                <tr>
+                                    <td>__func__ (o __FUNCTION__)</td>
+                                    <td>Restituisce il nome della funzione in cui è usata.</td>
+                                </tr>
+                                <tr>
+                                    <td>__TIME__</td>
+                                    <td>Restituisce l'orario di compilazione, come stringa nel formato "hh:mm".</td>
+                                </tr>
+                                <tr>
+                                    <td>__DATE__</td>
+                                    <td>Restituisce la data in cui il file è stato compilato, come stringa nel formato "Mmm gg aaaa".</td>
+                                </tr>
+                                <tr>
+                                    <td>__FILE__</td>
+                                    <td>Restituisce il nome del file sorgente attualmente in compilazione come una stringa.</td>
+                                </tr>
+                                <tr>
+                                    <td>__STDC_NO_ATOMICS__</td>
+                                    <td>Definita se il compilatore non supporta le operazioni atomiche, introdotte nello standard C11.</td>
+                                </tr>
+                                <tr>
+                                    <td>__STDC_NO_THREADS__</td>
+                                    <td>Definita se il compilatore non supporta la libreria di threading, introdotta nello standard C11.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </p>
+                <p>
+                    Esempio di programma che usa queste macro:
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+    
+                        <span class="type">void</span> my_fun() {<br>
+                            <span style="margin-left:15px"></span><span class="type">int</span> x = 5.7;<br>
+                            <span style="margin-left:15px"></span>printf(<span class="strings">"nella funzione %s il valore di x e': %d, riga: %d\n"</span>, __func__, x, __LINE__);<br>
+                        }<br>
+                        <br>
+                        <span class="type">int</span> main() {<br>
+                            <span style="margin-left:15px"></span>my_fun();<br>
+                            <span style="margin-left:15px"></span><span class="instruction">return</span> 0;<br>
+                        }<br>
+                    </div>
+                    <h3>Output del programma</h3>
+                    <div class="shell strings">
+                        nella funzione my_fun il valore di x e': 5, riga: 5
+                    </div>
+                </p>
+                <br>
+            </div>
+            <br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 17", "../../c/intro/");
+    </script>
+</html>

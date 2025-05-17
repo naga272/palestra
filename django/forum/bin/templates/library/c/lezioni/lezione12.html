@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+            table{
+                width:33%;
+            }
+            table th{
+                margin-left:2%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Modularità del codice</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+                <p>
+                    La modularità del codice è un concetto chiave nella programmazione che riguarda la suddivisione di un programma in parti più piccole e gestibili chiamate moduli. <br>
+                    Ogni modulo è una componente indipendente che realizza una specifica funzionalità del programma. <br>
+                    La modularità aiuta a rendere il codice più organizzato, leggibile, manutenibile e riutilizzabile.
+                    <br><br>
+                    <h3>Motivi per rendere modulare il codice</h3>
+                    <ul style="margin-left:20px;">
+                        <li>
+                            <strong>Manutenibilità</strong>: Quando il codice è suddiviso in moduli, è più facile individuare e correggere errori, apportare modifiche e aggiungere nuove funzionalità.
+                        </li>
+                        <li>
+                            <strong>Riutilizzabilità</strong>: I moduli possono essere riutilizzati in altri progetti o parti del programma, riducendo la duplicazione del codice.
+                        </li>
+                        <li>
+                            <strong>Leggibilità</strong>: Codice ben organizzato in moduli è più facile da leggere e comprendere, facilitando il lavoro in team.
+                        </li>
+                        <li>
+                            <strong>Isolamento</strong>: I problemi in un modulo non influenzano gli altri moduli, rendendo più semplice il debugging e il testing.
+                        </li>
+                    </ul>
+                    <br>
+                    Esempio pratico:<br>
+                    All'interno di file.h ci inseriamo tutte le firme delle funzioni (<strong>non il corpo</strong>)
+                    <div class="shell">
+                        <span class="type">int</span> somma(<span class="type">int</span>, <span class="type">int</span>);
+                    </div>
+                    <br>
+                    all'interno di module.c ci mettiamo i corpi di tutte le funzioni che abbiamo dichiarato all'interno di file.h
+                    <div class="shell">
+                        <span class="type">int</span> somma(<span class="type">int</span> x, <span class="type">int</span> y){<br>
+                            <span class="instruction" style="margin-left:20px">return </span> x + y;
+                        <br>}
+                    </div>
+                    <br>
+                    All'interno del nostro programma main.c inseriamo l'istruzione #include + il nome del file con estensione .h e facciamo le chiamate di funzione:
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                        <span class="direttive">#include "file.h"</span><br><br>
+                        
+                        <span class="type">int</span> main(){<br>
+                            <span class="type" style="margin-left:20px;">int</span> z;<br>
+                            <span style="margin-left:20px;">z = somma(15, 18);</span><br>
+                            <span style="margin-left:20px;">printf(<span class="strings">"%i\n"</span>, z);</span><br>
+                            <span style="margin-left:20px;">printf(<span class="strings">"%i\n"</span>, somma(32, 14));</span><br>
+                            <span class="instruction" style="margin-left:20px;">return</span> 0;
+                        <br>}
+                    </div>
+                    <h3>compilazione</h3>
+                    Per la compilazione dobbiamo passare al compilatore sia il file main.c che il file module.c:
+                    <div class="shell strings">
+                        $ gcc main.c module.c -o main<br>
+                    </div>
+                    I due file verranno riassemblati dal compilatore per resituire un eseguibile con il nostro programma composto
+                    <h3>Output</h3>
+                    <div class="shell strings">
+                        33<br>
+                        46
+                    </div>
+                </p>
+                <p>
+                    <br>
+                    Inoltre è possibile importare all'interno del proprio programma anche solo le singole funzioni di altri moduli c tramite l'istruzione extern:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                        <br>
+                        <span class="type">extern int</span> somma(<span class="type">int</span>, <span class="type">int</span>);<br>
+                        <br>
+                        <span class="type">int</span> main(){<br>
+                            <span class="type" style="margin-left:20px;">int</span> z;<br>
+                            <span style="margin-left:20px;">z = somma(15, 18);</span><br>
+                            <span style="margin-left:20px;">printf(<span class="strings">"%i\n"</span>, z);</span><br>
+                            <span style="margin-left:20px;">printf(<span class="strings">"%i\n"</span>, somma(32, 14));</span><br>
+                            <span class="instruction" style="margin-left:20px;">return</span> 0;
+                        <br>}
+                    </div>
+                    <h3>compilazione</h3>
+                    Al compilatore quando dobbiamo compilare dovremo passare sia main.c che module.c:
+                    <div class="shell strings">
+                        $ gcc main.c module.c -o main<br>
+                    </div>
+                    Il compilatore importerà solo quella singola dal funzione dal file module.c
+                    <h3>Output</h3>
+                    <div class="shell strings">
+                        33<br>
+                        46
+                    </div>
+                </p>
+                <br>
+                <p>
+                    <h3>Funzioni static</h3>
+                    Le funzioni static sono funzioni che sono visibili solo all'interno del modulo in cui esiste la loro firma e corpo, quindi non chiamabili da altri moduli.<br>
+                    Sono molto utili quando dobbiamo proteggere delle funzioni rendendole invisibili al resto del programma.<br>
+                    In pratica, per creare una funzione static, basta aggiungere all'interno della firma la parola static:<br>
+                    <div class="shell">
+                        <span class="type">static unsigned int</span> somma(<span class="type">int</span>, <span class="type">int</span>);
+                    </div>
+                    E anche nel corpo dobbiamo aggiungere la parola static:<br>
+                    <div class="shell">
+                        <span class="type">static unsigned int</span> somma(<span class="type">int</span> x, <span class="type">int</span> y) {<br>
+                            <span class="instruction" style="margin-left:15px;">return</span> x + y;<br>
+                        }
+                    </div>
+                    <strong>N.B.</strong>: il corpo e la firma devono essere all'interno dello stesso modulo
+                </p>
+                <br>
+                <p>
+                    <h3>Funzioni static inline</h3>
+                    Quando usiamo il token inline, suggeriamo al compilatore di sostituire le chiamate della funzione con direttamente il codice che sta all'interno del corpo della funzione.
+                    <div class="shell">
+                        <span class="type">static inline unsigned int</span> somma(<span class="type">int</span>, <span class="type">int</span>);
+                    </div>
+                    E anche nel corpo dobbiamo aggiungere la parola inline:<br>
+                    <div class="shell">
+                        <span class="type">static inline unsigned int</span> somma(<span class="type">int</span> x, <span class="type">int</span> y){<br>
+                            <span class="instruction" style="margin-left:15px;">return</span> x + y;<br>
+                        }
+                    </div>
+                    <strong>N.B.</strong>: le funzioni inline devono essere obbligatoriamente static, questo perchè il comportamento standard del C è che la funzione può essere inlined nel file in cui è definita.<br>
+                    Tuttavia, se non viene inlined (cioè, se il compilatore decide di non sostituire la chiamata con il corpo della funzione), allora ci si aspetta che esista una definizione "non inline" della funzione in un altro file che il linker può utilizzare.<br>
+                    Quindi se per esempio nel nostro codice scriviamo:<br>
+                    <div class="shell">
+                        somma(12, 24);
+                    </div>
+                    sostituirà la chiamata di funzione con il contenuto della funzione, che nel nostro caso diventa:<br>
+                    <div class="shell">
+                        12 + 24;
+                    </div>
+                </p>
+            </div>
+            <br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 12", "../../c/intro/");
+    </script>
+</html>

@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css'%}">
+        <style></style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Native Assembly</h1>
+            <div style="text-align: left; padding:2%">
+                <h2>Storia e Origini</h2>
+                NASM, acronimo di Netwide Assembler, è un assembler per il linguaggio assembly x86.<br>
+                La sua prima versione è stata rilasciata nel 1996 da Simon Tatham e Julian Hall. <br>
+                Il progetto è nato con l'obiettivo di creare un assembler gratuito e portabile, <br>
+                capace di funzionare su diverse piattaforme e di generare codice binario utilizzabile<br>
+                su sistemi operativi vari, come DOS, WIndows e Unix.<br>
+
+                <br><br><h2>Caratteristiche principali</h2>
+                <strong>Supporto per diverse architetture:</strong> supporta diverse varianti del set di istruzioni x86, inclusi x86-64, che permette la programmazione a 64 bit.
+                <br><strong>Sintassi semplice e chiara:</strong> rispetto ad altri compilatori assembly, utilizza una sintassi intuitiva e coerente,
+                <br> che lo rende accessibile sia ai principianti che agli esperti.
+                <br><strong>Modularità:</strong> può essere esteso tramite moduli, che permettono di aggiungere nuove funzionalità senza modificare il core dell'assembler.
+                <br><strong>Generazione di vari formati di output:</strong> può generare file binari, oggetti linkabili, file ELF, COFF, Mach-O e altro ancora.
+                <br><strong>Cross-platform:</strong> è disponibile per diverse piattaforme, inclusi Linux, Windows e macOS.
+                <br><strong>Documentazione completa:</strong> è ben documentato, con guide dettagliate e tutorial che aiutano gli sviluppatori a utilizzarlo efficacemente.
+                
+                <br><br><h2>Utilizzi e applicazioni</h2>
+                <strong>Sviluppo di sistemi operativi:</strong> è ampiamente utilizzato nello sviluppo di kernel e sistemi operativi per la sua capacità di lavorare a basso livello.
+                <br><strong>Programmazione embedded:</strong> È impiegato nella programmazione di dispositivi embedded dove il controllo dettagliato dell'hardware è essenziale.
+                <br><strong>Ottimizzazione di prestazioni:</strong> Utilizzato per scrivere sezioni critiche di codice ad alte prestazioni, dove l'ottimizzazione a livello di assembly può fare una differenza significativa.
+                <br><strong>Educazione:</strong> è spesso usato in corsi di programmazione assembly e architettura dei computer per insegnare i concetti fondamentali della programmazione a basso livello.
+                <br><strong>Progetti open-source:</strong> Molti progetti open-source utilizzano NASM per la sua flessibilità e la sua natura gratuita.
+                
+                <br><br><h2>Vantaggi</h2>
+                <strong>Prestazioni:</strong> I programmi assembly sono estremamente veloci rispetto a tutti gli altri linguaggi di programmazione
+                <br><strong>Accesso diretto all'hardware:</strong> Permette il controllo diretto sull'hardware, consentendo di manipolare i registri della cpu, la ram, le periferiche di i/o ecc..
+                <br><strong>Assenza di overhead:</strong> A differenza dei linguaggi di alto livello, che introducono un certo grado di overhead dovuto alla gestione della memoria, ai controlli runtime e ad altre funzionalità di astrazione, il codice assembly non ha praticamente alcun overhead. Ogni istruzione viene eseguita direttamente dal processore senza interventi intermedi.
+                
+                <br><br><h2>Svantaggi</h2>
+                <strong>Complessità:</strong> L'assembly, in generale, è un linguaggio che può risultare complesso a causa della necessità di comprendere dettagli tecnici dell'hardware e della gestione delle risorse del computer.
+                <br><strong>Sicurezza:</strong> Gli errori di programmazione, come buffer overflow e dangling pointers, possono portare a vulnerabilità di sicurezza.
+                <br><strong>Modularità Limitata:</strong> Rispetto ai linguaggi moderni, la modularità e l'astrazione sono limitate.
+            </div>
+            <br><br>
+            <h1>Installazione</h1>
+            <div style="text-align:left; padding:2%;">
+
+                <strong>Requisiti</strong>:<br>
+                Tratteremo la sintassi delle architetture a 64 bit, per i computer che sono a x32 i programmi potrebbere non funzionare.<br>
+                <br>
+                Esistono diversi compilatori di assembly, in questa sezione noi tratteremo il native-assembly (Nasm).<br>
+                Oltre a il compilatore, abbiamo bisogno di installare il linker (preferibilmente ld)<br>
+                Da <strong>linux</strong> puoi scaricarlo usando apt dal terminale.<br>
+                <br>
+                Per installare il Compilatore:<br>
+                <div class="shell strings">
+                    $ sudo apt install nasm
+                </div>
+                <br>Per installare il linker ld:<br>
+                <div class="shell strings">
+                    $ sudo apt install ld
+                </div>
+                <br>
+                Su Os <strong>Windows</strong> bisogna scaricarlo andando sul sito: <a href="https://www.nasm.us/pub/nasm/releasebuilds/2.16.03/win64/">https://www.nasm.us/pub/nasm/releasebuilds/2.16.03/win64/</a>
+                <br>Potete usare come linker il compilatore gcc.
+            </div>
+            <h2>Capitoli</h2>
+            <div>
+                <ul style="text-align: left; padding-left:2%;">
+                    <li><a href="/library/nasm/lezione/1">Capitolo 1 -&gt; Teoria di base</a></li>
+                    <li><a href="../lezione/2">Capitolo 2 -&gt; </a></li>
+                    <li><a href="../lezione/3">Capitolo 3 -&gt; </a></li>
+                    <li><a href="../lezione/4">Capitolo 4 -&gt; </a></li>
+                    <li><a href="../lezione/5">Capitolo 5 -&gt; </a></li>
+                    <li><a href="../lezione/6">Capitolo 6 -&gt; </a></li>
+                    <li><a href="../lezione/7">Capitolo 7 -&gt; </a></li>
+                    <li><a href="../lezione/8">Capitolo 8 -&gt; </a></li>
+                    <li><a href="../lezione/9">Capitolo 9 -&gt; </a></li>
+                    <li><a href="../lezione/10">Capitolo 10 -&gt; </a></li>
+                    <li><a href="../lezione/11">Capitolo 11 -&gt; </a></li>
+                    <li><a href="../lezione/12">Capitolo 12 -&gt; </a></li>
+                    <li><a href="../lezione/13">Capitolo 13 -&gt; </a></li>
+                    <li><a href="../lezione/14">Capitolo 14 -&gt; </a></li>
+                    <li><a href="../lezione/15">Capitolo 15 -&gt; </a></li>
+                    <li><a href="../lezione/16">Capitolo 16 -&gt; </a></li>
+                    <li><a href="../lezione/17">Capitolo 17 -&gt; </a></li>
+                    <li><a href="../lezione/18">Capitolo 18 -&gt; </a></li>
+                    <li><a href="../lezione/19">Capitolo 19 -&gt; </a></li>
+                </ul>
+            </div>
+            <br><br>
+        </main>
+    </body>
+    <script>init_page("Nasm");</script>
+</html>

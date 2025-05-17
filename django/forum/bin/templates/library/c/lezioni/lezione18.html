@@ -1,0 +1,278 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+            table{
+                width:33%;
+            }
+            table th{
+                margin-left:2%;
+            }
+            .ul_margin{
+                margin-left:20px;
+                margin-bottom:15px;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Processi in C</h1>
+            <h2>Requisiti per questa sezione</h2>
+            Molti degli strumenti che vengono usati in questo capitolo richiedono l'uso di un sistema operativo di tipo <a href="https://it.wikipedia.org/wiki/Unix-like">Unix-Like</a>. <br>
+            E' consigliabile quindi creare una <a href="https://it.wikipedia.org/wiki/Macchina_virtuale">macchina virtuale</a> con os Unix-like oppure se usate Windows, una <a href="https://it.wikipedia.org/wiki/Windows_Subsystem_for_Linux">wsl</a>.  
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+                <p>
+                    Prima di mostrare il codice, dobbiamo guardare alcuni aspetti fondamentali per gestire al meglio un processo.<br>
+                    I processi non sono altro che istanze di un programma, ovvero, ogni volta che eseguiamo un programma creiamo un processo.<br>
+                </p>
+                <h3>Come funziona?</h3>
+                <p>
+                    Principalmente, il mezzo che ci consente di creare un processo è il kernel del sistema operativo che stiamo usando.<br>
+                    Al suo interno viene descritta una tabella chiamata "tabella dei processi", che contiene tutti i processi aperti.<br>
+                    È importante sapere che questa tabella ha un numero predefinito di slot e quindi, esiste un limite massimo di processi attivi contemporaneamente.
+                </p>
+                <p>
+                    All'avvio del nostro PC, il kernel, essendo anch'esso un processo, si inserisce all'interno della tabella (in posizione 0) e crea in automatico
+                    un processo figlio chiamato init (che si trova solitamente in posizione 1) e che costituisce il processo "padre" del sistema, perché tutti
+                    i processi che verranno creati in seguito saranno generati da lui.
+                </p>
+                <p>
+                    Ogni volta che un processo viene creato, gli vengono assegnate delle caratteristiche, come:
+                </p>
+                <ul class="ul_margin">
+                    <li>Process-ID (PID): identificativo unico del processo</li>
+                    <li>Process-ID del processo padre (PPID): identificativo unico del processo padre</li>
+                    <li>User-ID reale (real UID)</li>
+                    <li>User-ID effettivo</li>
+                    <li>Process Group ID (PGID)</li>
+                    <li>User Group ID reale</li>
+                    <li>User Group ID effettivo</li>
+                </ul>
+                <p>
+                    Grazie al PID, si riesce a determinare la locazione in cui è contenuto il processo all'interno della tabella dei processi.
+                    Insieme a questi identificatori, gli vengono assegnate anche quattro sezioni logiche, che sono:
+                </p>
+                <ul class="ul_margin">
+                    <li><strong>codice</strong>, in cui è contenuto il codice del processo</li>
+                    <li><strong>dati</strong>, in cui sono contenuti i dati statici</li>
+                    <li><strong>heap</strong>, in cui sono contenuti i dati allocati dinamicamente</li>
+                    <li><strong>stack</strong>, in cui sono contenuti i dati locali alle chiamate di funzioni</li>
+                </ul>
+                <p>
+                    Tutti i processi possono trovarsi in vari stati:
+                </p>
+                <ul class="ul_margin">
+                    <li><strong>idle</strong>: stato iniziale, tipico di un processo appena creato tramite una fork() (lo vedremo tra poco)</li>
+                    <li><strong>runnable</strong>: pronto per l'esecuzione e in attesa che la CPU sia disponibile</li>
+                    <li><strong>running</strong>: in esecuzione (sta occupando la CPU)</li>
+                    <li>
+                        <strong>sleeping</strong>: in attesa di un evento per riattivarsi, ad esempio se un processo esegue una read(), 
+                        si addormenta fino a quando la richiesta di I/O non viene completata
+                    </li>
+                    <li>
+                        <strong>suspended</strong>: il processo è stato “congelato” (frozen) da un segnale, come ad esempio
+                        SIGSTOP; il processo è “scongelato” solo quando riceve il segnale SIGCONT;
+                    </li>
+                    <li><strong>zombified</strong>: risorse rilasciate ma ancora presente nella Tabella dei Processi;</li>
+                </ul>
+                <p>
+                    <img src="../../../../static/img/clesson/processi.png" alt="status_processi" width="20%" height="auto"><br>
+                    Come affermato precedentemente, la creazione di un processo avviene attraverso un meccanismo di duplicazione.
+                    Questo meccanismo avviene grazie a una chiamata di sistema chiamata fork(). In sostanza, una volta che il processo 
+                    chiama questa funzione, essa esegue la duplicazione del processo chiamante, quindi letteralmente lo duplica. Il processo che ha invocato la fork()
+                    viene chiamato processo padre, mentre il processo duplicato viene detto figlio. A parte il PID e il PPID, i due processi sono completamente uguali e inoltre, il figlio
+                    continua a eseguire il codice ereditato dal padre dal punto in cui è avvenuta la chiamata fork().
+                </p>
+                <br>
+                <h3>Conoscere il PID e PPID di un processo da programma</h3>
+                <p>
+                    Per conoscere il PID del processo che stiamo eseguendo e anche quello del padre, possiamo usare le funzioni getpid() e getppid() (descritte all'interno dell'header <a href="../../c/lezione/unistd.h">unistd.h</a>).<br>
+                    Ecco un esempio di programma:
+                </p>
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                    <span class="direttive">#include &lt;unistd.h&gt;</span><br>
+                    <br>
+                    <span class="type">int</span> main() {<br>
+                    <span style="margin-left:20px;"></span>printf(<span class="strings">"pid di questo processo: %i\npid processo padre: %i\n"</span>, getpid(), getppid());<br>
+                    <span style="margin-left:20px;"></span><span class="instruction">return</span> 0;<br>
+                    }<br>
+                </div>
+                <br>
+                <h3>Output programma</h3>
+                <div class="shell strings">
+                    pid di questo processo: 48602<br>
+                    pid processo padre: 331                   
+                </div><br>
+                
+                <h3>Duplicazione di un processo</h3>
+                Abbiamo già visto che un nuovo processo viene creato attraverso un meccanismo di “duplicazione” realizzato dalla chiamata di sistema fork().<br>
+                Questa chiamata viene descritta all'interno della libreria unistd e restituisce un valore intero diverso per il processo padre e per il processo figlio.<br>
+                Quindi, il processo padre avrà come valore restituito un numero intero positivo sempre diverso dal figlio.<br>
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                    <span class="direttive">#include &lt;unistd.h&gt;</span><br>
+                    <br>
+                    <span class="type">int</span> main() {<br>
+                    <span style="margin-left:20px;"></span>printf(<span class="strings">"Valore resituito dalla fork per il processo %i: %i\n"</span>, getpid(), fork());<br>
+                    <span style="margin-left:20px;"></span><span class="instruction">return</span> 0;<br>
+                    }<br>
+                </div><br>
+                
+                <h3>Output programma</h3>
+                <div class="shell strings">
+                    Valore resituito dalla fork per il processo 1243: 1244<br>
+                    Valore resituito dalla fork per il processo 1244: 0             
+                </div><br>
+
+                <h3>Manipolazione dei processi</h3>
+                Abbiamo appena visto che la funzione fork() restituisce al processo figlio sempre il valore 0. <br>
+                Di conseguenza, è possibile manipolare il flusso del programma sia per il processo padre che per il processo figlio usando delle semplici strutture di controllo.
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                    <span class="direttive">#include &lt;unistd.h&gt;</span><br>
+                    <br>
+                    <span class="type">int</span> main() {<br>
+                    <span style="margin-left:20px;"></span><span class="type">int</span> pid = fork();<br>
+                    <span style="margin-left:20px;"></span><span class="instruction">if</span>(pid){<br>
+                    <span style="margin-left:40px;"></span>printf(<span class="strings">"pid processo padre: %i\n"</span>, getpid());<br>
+                    <span style="margin-left:20px;"></span>}<span class="instruction">else</span>{<br>
+                    <span style="margin-left:40px;"></span>printf(<span class="strings">"pid processo figlio: %i\n"</span>, getpid());<br>
+                    <span style="margin-left:20px;"></span>}<br>
+                    <span style="margin-left:20px;"></span>printf(<span class="strings">"fine programma\n"</span>);<br>
+                    <span style="margin-left:20px;"></span><span class="instruction">return</span> 0;<br>
+                    }<br>
+                </div><br>
+
+                <h3>Output programma</h3>
+                <div class="shell strings">
+                    pid processo padre: 54659<br>
+                    fine programma<br>
+                    pid processo figlio: 54660<br>
+                    fine programma
+                </div>
+                <br>
+                <p>
+                    Come avrete notato, sia il processo padre che il processo figlio eseguono lo stesso flusso di istruzioni dopo aver terminato le operazioni all'interno del costrutto selettivo. <br>
+                    Ma se volessimo interrompere il processo figlio alla fine dell'else? Per fare questo, possiamo inserire all'interno dell'else la funzione exit(). <br>
+                    Questa funzione, passando come parametro lo stato di uscita del processo, dealloca il suo codice, dati, heap e stack, per poi terminarlo definitivamente.
+                </p>
+                
+                <p>
+                    Oltre a chiuderlo, exit() manda al processo padre il segnale SIGCHLD e attende che il codice di stato di uscita venga accettato. <br>
+                    Nel caso in cui il processo padre termini prima del processo figlio, il kernel si assicura che il figlio venga "adottato" dal processo init, provvedendo a settare il nuovo PPID (Process Parent ID) con quello di init.
+                </p>
+                
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                    <span class="direttive">#include &lt;unistd.h&gt;</span><br>
+                    <br>
+                    <br>
+                    <span class="type">int</span> main() {<br>
+                    <span style="margin-left:20px;"></span><span class="type">int</span> pid = fork();<br>
+                    <span style="margin-left:20px;"></span><span class="instruction">if</span>(pid){<br>
+                    <span style="margin-left:40px;"></span>printf(<span class="strings">"pid processo padre: %i\n"</span>, getpid());<br>
+                    <span style="margin-left:20px;"></span>}<span class="instruction">else</span>{<br>
+                    <span style="margin-left:40px;"></span>printf(<span class="strings">"pid processo figlio: %i\n"</span>, getpid());<br>
+                    <span style="margin-left:40px;"></span>exit(0);<br>
+                    <span style="margin-left:20px;"></span>}<br>
+                    <span style="margin-left:20px;"></span>printf(<span class="strings">"funzione eseguita solo dal processo padre\n"</span>);<br>
+                    <span style="margin-left:20px;"></span><span class="instruction">return</span> 0;<br>
+                    }<br>
+                </div><br>
+                <h3>Output programma</h3>
+                <div class="shell strings">
+                    pid processo padre: 1040<br>
+                    funzione eseguita solo dal processo padre<br>
+                    pid processo figlio: 1041
+                </div><br>
+                Come possiamo vedere, il padre non attende la terminazione del figlio. Abbiamo creato involontariamente un processo zombie, ovvero un processo che rimane allocato sempre<br>
+                all'interno della tabella dei processi ma che non occupa alcuna risorsa. Questo perchè il padre non esegue la chiamata di sistema wait() che è la responsabile per la ricezione del segnale SIGCHLD.<br>
+                Questo processo non avviene mai se il processo figlio viene adottato, in quanto il processo init accetta automaticamente i segnali.<br>
+                
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                    <span class="direttive">#include &lt;unistd.h&gt;</span><br>
+                    <span class="direttive">#include &lt;sys/wait.h&gt;</span><br>
+                    <br>
+                    <br>
+                    <span class="type">int</span> main() {<br>
+                    <span style="margin-left:20px;"></span><span class="type">int</span> pid = fork();<br>
+                    <span style="margin-left:20px;"></span><span class="instruction">if</span>(pid){<br>
+                    <span style="margin-left:40px;"></span>printf(<span class="strings">"pid processo padre: %i\n"</span>, getpid());<br>
+                    <span style="margin-left:40px;"></span>wait(NULL);  <span class="strings">// Il padre attende la terminazione del figlio per evitare la creazione del processo zombie</span><br>
+                    <span style="margin-left:20px;"></span>}<span class="instruction">else</span>{<br>
+                    <span style="margin-left:40px;"></span>printf(<span class="strings">"pid processo figlio: %i\n"</span>, getpid());<br>
+                    <span style="margin-left:40px;"></span>exit(0);<br>
+                    <span style="margin-left:20px;"></span>}<br>
+                    <span style="margin-left:20px;"></span>printf(<span class="strings">"funzione eseguita solo dal processo padre\n"</span>);<br>
+                    <span style="margin-left:20px;"></span><span class="instruction">return</span> 0;<br>
+                    }<br>
+                </div><br>
+                wait() sospende un processo fino alla terminazione di uno qualunque dei suoi processi figli. <br>
+                In particolare, la chiamata attende la terminazione di un processo figlio e ne ritorna il PID, mentre <br>
+                nel parametro di uscita viene inserito il motivo della terminazione e lo stato di uscita del processo che termina. <br>
+                Se al momento della chiamata esiste un processo figlio zombie, la chiamata serve immediatamente il corrispondente segnale e termina.<br>
+                Il prametro può essere valutato tramite delle semplici macro:<br><br>
+                <ul class="ul_margin">
+                    <li><strong>WIFEXITED(status)</strong>: viene valutata ad un valore diverso da 0 se il figlio è terminato normalmente</li>
+                    <li>
+                        <strong>WEXITSTATUS(status)</strong>: restituisce il codice di ritorno codificato negli 8 bit meno significativi di status. <br>
+                        Può essere utilizzata solo se WIFEXITED(status) ha restituito un valore diverso da 0.
+                    </li>
+                </ul>
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                    <span class="direttive">#include &lt;unistd.h&gt;</span><br>
+                    <span class="direttive">#include &lt;sys/types.h&gt;</span><br>
+                    <span class="direttive">#include &lt;sys/wait.h&gt;</span><br>
+                    <br><br>
+                    <span class="type">int</span> main(){<br>
+                        <span style="margin-left:20px;"></span><span class="type">int</span><br>
+                        <span style="margin-left:35px;"></span>pid,<br>
+                        <span style="margin-left:35px;"></span>pidw,<br>
+                        <span style="margin-left:35px;"></span>status;<br><br>
+                        
+                        <span style="margin-left:20px;"></span><span class="instruction">if</span>(pid = fork()){ <br>
+                            <span style="margin-left:40px;"></span><span class="strings">// siamo nel padre</span><br>
+                            <span style="margin-left:40px;"></span>printf(<span class="strings">"Processo padre(pid=%d): ho generato figlio (pid=%d)\n"</span>, getpid(), pid);<br>
+                            <span style="margin-left:40px;"></span>pidw = wait(&status); <span class="strings">// aspetto che venga terminato il figlio</span><br><br>
+
+                            <span style="margin-left:40px;"></span><span class="instruction">if</span>(WIFEXITED(status))<br>
+                            <span style="margin-left:60px;"></span>printf(<span class="strings">"Processo padre(pid=%d): processo %d terminato con exit(%d)\n"</span>, getpid(), pidw, WEXITSTATUS(status));<br>
+                            <span style="margin-left:40px;"></span><span class="instruction">else</span><br>
+                            <span style="margin-left:60px;"></span>printf(<span class="strings">"Processo padre(pid=%d): processo %d terminato con segnale\n"</span>, getpid(), pidw);<br>
+                            <span style="margin-left:20px;"></span>}<span class="instruction">else</span>{<br>
+                            <span style="margin-left:60px;"></span><span class="strings">// siamo nel figlio</span><br>
+                            <span style="margin-left:60px;"></span>printf(<span class="strings">"Processo figlio(pid=%d): sono generato dal processo (pid=%d)\n"</span>, getpid(), getppid());<br>
+                            <span style="margin-left:60px;"></span>sleep(1);<br>
+                            <span style="margin-left:20px;"></span>}<br>
+                            <span style="margin-left:20px;"></span><span class="strings">// il padre e figlio restituiscono 0</span><br>
+                            <span style="margin-left:20px;"></span><span class="instruction">return</span> 0;<br>
+                        }    
+                </div><br>
+                <h3>Output del programma</h3>
+                <div class="shell strings">
+                    Processo padre(pid=22429): ho generato figlio (pid=22430)<br>
+                    Processo figlio(pid=22430): sono generato dal processo (pid=22429)<br>
+                    Processo padre(pid=22429): processo 22430 terminato con exit(0)
+                </div>
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 18", "../../c/intro/");
+    </script>
+</html>

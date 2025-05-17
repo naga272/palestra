@@ -1,0 +1,314 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+        .script {
+            padding: 1%;
+            background-color: black;
+            color: green;
+        }
+        .elenco {
+            margin: 0 auto;
+            text-align: center;
+            width: 80%;
+            border-collapse: collapse;
+            text-align: left; /* Allinea il testo delle celle a sinistra */
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .elenco th, .elenco td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        .elenco thead {
+            background-color: #f2f2f2;
+        }
+        .elenco tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .elenco tbody tr:hover {
+            background-color: #0E2C40;
+            color:#EFBC75;
+        }
+        .elenco th {
+            background-color: #0E2C40;
+            color: white;
+        }
+        .table-container {
+            display: flex;
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .elenco .prototype {
+            width: 50%;
+        }
+        .elenco .descrizione {
+            width: 30%;
+        }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>stdio</h1>
+            <br><br>
+            <p>
+                La libreria stdio sta per standard input / output e ha al suo interno un set di macro, procedure e funzioni per interagire con l'input e output.
+            </p>
+            <br>
+
+            <h3>Funzioni</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                            <th class="prototype">prototype</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>fclose</td>
+                            <td>consente di chiudere un file che è stato aperto</td>
+                            <td>void fclose(FILE*);</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                fopen, <br>
+                                freopen, <br>
+                                fdopen
+                            </td>
+                            <td>consentono l'apertura di un file in lettura o in scrittura</td>
+                            <td>
+                                FILE *fopen(const char *file_name, const char *mode_of_operation);<br>
+                                FILE *freopen(const char *filename, const char *mode, FILE *stream);<br>
+                                FILE *fdopen(int fildes, const char *mode);
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>remove</td>
+                            <td>consente di rimuovere un file</td>
+                            <td>void remove(const char *filename);</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>rename</td>
+                            <td>consente di rinominare un file.</td>
+                            <td>void rename(const char *filename);</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>rewind</td>
+                            <td>Agisce come se fosse stata chiamata la funzione fseek(stream, 0L, SEEK_SET) sullo stream passatole; in aggiunta, cancella il suo indicatore d'errore</td>
+                            <td>void rewind(FILE *fp);</td>
+                        </tr>
+
+                        <tr>
+                            <td>tmpfile</td>
+                            <td>Crea ed apre un file temporaneo, che viene poi cancellato e chiuso con fclose()</td>
+                            <td>FILE *tmpfile(void);</td>
+                        </tr>
+                        <tr>
+                            <td>fgetc</td>
+                            <td>Restituisce un carattere da un file.</td>
+                            <td>int getc(FILE *stream);</td>
+                        </tr>
+                        <tr>
+                            <td>gets</td>
+                            <td>
+                                Legge caratteri da stdin finché non incontra un carattere di nuova riga (newline) o un EOF e salva il risultato nell'argomento passatole (char *)
+                                <br><strong>Funzione obsoleta e fortemente sconsigliata.</strong>
+                            </td>
+                            <td>char *gets(char *str);</td>
+                        </tr>                        
+                        <tr>
+                            <td>fgets</td>
+                            <td>La stringa presa termina sempre con un carattere di nuova riga ('\n') o con il carattere nullo ('\0'). Restituisce una stringa presa in input (sia da file che da standard input).</td>
+                            <td>char *fgets(char *stringa, int len, FILE *fp);</td>
+                        </tr>
+                        <tr>
+                            <td>fputc</td>
+                            <td>Scrive un carattere su un file.</td>
+                            <td>int fputc(int character, FILE *stream);</td>
+                        </tr>                        
+                        <tr>
+                            <td>fputs</td>
+                            <td>Scrive una stringa su un file.</td>
+                            <td>int fputs(const char *str, FILE *stream);</td>
+                        </tr>                        
+                        <tr>
+                            <td>ftell</td>
+                            <td>Restituisce un indicatore di posizione sul file che può essere passato alla funzione fseek().</td>
+                            <td>long int ftell(FILE *stream);</td>
+                        </tr>                     
+                        <tr>
+                            <td>fseek</td>
+                            <td>Si sposta attraverso un file</td>
+                            <td>int fseek(FILE *stream, long int offset, int whence);</td>
+                        </tr>                     
+                        <tr>
+                            <td>fsetpos</td>
+                            <td>Imposta l'indicatore di posizionamento del file di uno stream associato al primo argomento (un FILE *) come memorizzato nel suo secondo argomento (un fpos_t *)</td>
+                            <td>int fsetpos(FILE *stream, const fpos_t *pos);</td>
+                        </tr>                     
+                        <tr>
+                            <td>fread</td>
+                            <td>Legge da file dei dati di diverse dimensioni</td>
+                            <td>size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);</td>
+                        </tr>                     
+                        <tr>
+                            <td>fwrite</td>
+                            <td>Scrive su file dei dati di diverse dimensioni</td>
+                            <td>size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream);</td>
+                        </tr>                     
+                        <tr>
+                            <td>getc</td>
+                            <td>Legge e restituisce un carattere dallo stream passatole ed incrementa l'indicatore di posizionamento nel file; è possibile che venga implementato come macro con gli stessi effetti di fgetc(), tranne che potrebbe agire sullo stream più di una volta</td>
+                            <td>int getc(FILE *stream);</td>
+                        </tr>                     
+                        <tr>
+                            <td>ungetc</td>
+                            <td>Restituisce allo stream almeno un carattere. Alla successiva chiamata di getc verrà passato il carattere restituito da ungetc</td>
+                            <td>int ungetc(int c, FILE *stream);</td>
+                        </tr>                     
+                        <tr>
+                            <td>getchar</td>
+                            <td>Ha gli stessi effetti di getc(stdin)</td>
+                            <td>int getchar(void);</td>
+                        </tr>                     
+                        <tr>
+                            <td>
+                                printf, <br>
+                                fprintf, <br>
+                                sprintf, <br>
+                                snprintf, <br>
+                                vprintf
+                            </td>
+                            <td>Utilizzato per stampare vari tipi di dato su stdout e su file</td>
+                            <td>
+                                size_t printf(const char*, ...);<br>
+                                int fprintf(FILE *fp, char *formato, ...);<br>
+                                int sprintf(char *str, const char *format, ...);<br>
+                                int snprintf (char *str, size_t size, const char *format, ...);<br>
+                                int vprintf(const char *format, va_list arg);
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>perror</td>
+                            <td>
+                                Scrive un messaggio di errore sul file descriptor stderr (= standard error).
+                                un carattere in uno stream di input.
+                            </td>
+                            <td>void perror(const char *str);</td>
+                        </tr>                     
+                        <tr>
+                            <td>puts</td>
+                            <td>Scrive una stringa su stdout</td>
+                            <td>int puts(const char *str);</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Macro / Costanti</h3>
+            <div class="table-container">
+                <table class="elenco" s>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>EOF</td>
+                            <td>Un numero intero negativo di tipo int usato per indicare la fine del file.</td>
+                        </tr>
+                        <tr>
+                            <td>NULL</td>
+                            <td>viene usato per i puntatori (sono ugali a NULL se si verifica un errore)</td>
+                        </tr>
+                        <tr>
+                            <td>SEEK_SET</td>
+                            <td>Un intero che può essere passato alla funzione fseek() per richiedere un posizionamento relativo rispetto alla posizione attuale nel file.</td>
+                        </tr>
+                        <tr>
+                            <td>SEEK_END</td>
+                            <td>Un intero che può essere passato alla funzione fseek() per richiedere il posizionamento alla fine del file.</td>
+                        </tr>
+                        <tr>
+                            <td>SEEK_CUR</td>
+                            <td>Un intero che può essere passato alla funzione fseek() per richiedere un posizionamento relativo rispetto alla posizione attuale nel file.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Tipi di dato</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>FILE</td>
+                            <td>
+                                Una struttura contenente le informazioni su un file (o in genere uno stream), necessarie per eseguire su di esso le operazioni di input/output, come ad esempio:
+                                <ul style="margin:20px;">
+                                    <li>la posizione attuale nello stream</li>
+                                    <li>un indicatore di fine file</li>
+                                    <li>un indicatore d'errore</li>
+                                    <li>un puntatore al buffer dello stream, se applicabile</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>size_t</td>
+                            <td>Un tipo intero che è il tipo del valore restituito dall'operatore sizeof</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>Variabili</h3>                
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>stdin</td>
+                            <td>Un puntatore a FILE che si riferisce allo stream di standard input, generalmente la tastiera. (ha valore 0)</td>
+                        </tr>
+                        <tr>
+                            <td>stdout</td>
+                            <td>Un puntatore a FILE che si riferisce allo stream di standard output, generalmente un terminale (ha valore 1).</td>
+                        </tr>
+                        <tr>
+                            <td>stderr</td>
+                            <td>Un puntatore a FILE che si riferisce allo stream di standard error, generalmente un terminale (ha valore 2).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("stdio", "../../c/lezione/lez13");
+    </script>
+</html>

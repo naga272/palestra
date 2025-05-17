@@ -1,0 +1,224 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../../static/js/main.js"></script>
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <style>
+        main div div img {
+            width: 30px;
+            cursor: pointer;
+            transition: all .7s;
+            height: auto;
+        }
+        main div div img:hover {
+            width: 35px;
+            height: auto;
+        }
+        .topbar h2 {
+            width: 20%;
+        }
+
+        .contenitore_main, .contenitore_submain, textarea, 
+            .content_domanda, #id_username, #id_password, 
+            input[type='submit'], #id_titolo{
+                margin: 0 auto;
+            }
+            .contenitore_main{
+                width:70%; 
+                background-color:rgb(253, 252, 252);     
+                padding-top:1%;
+                padding-bottom:1%;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                border:1px solid black;
+                transition: box-shadow 0.3s ease;
+            }.contenitore_main:hover {
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            }
+            .contenitore_submain{
+                width:90%; 
+                margin-bottom: 20px;
+            }
+            .contenitore_submain .content_domanda{
+                background-color: #e9ddcc;
+                text-align: left;
+                overflow-x: auto;
+                padding:1%;
+                border:1px solid #e9ddcc;
+                transition:all .7s;
+                    
+            }.contenitore_submain .content_domanda:hover{
+                border:1px solid black;
+            }
+
+            .form_dati{
+                display:flex;
+                flex-direction: column;
+            }
+
+            textarea, .content_domanda, #id_titolo{
+                width: 90%;
+                padding: 0.5%;
+                display: block;
+            }
+
+            #id_username, #id_password, textarea, #id_titolo{
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            }textarea:focus, #id_username:focus, #id_password:focus, #id_titolo:focus{
+                border-color: #0E2C40;
+                box-shadow: 0 4px 10px rgba(14, 44, 64, 0.2);
+                outline: none;
+            }
+            #id_username, #id_password, input[type='submit']{
+                width: 30%;
+            }
+
+            .form_dati a{
+                color:#0E2C40;
+                text-decoration:none;
+            }
+            .form_dati a:hover {
+                text-decoration: underline;
+            }
+
+            input[type='submit']{
+                padding: 10px;
+                border-radius: 10px;
+                background-color: #0E2C40;
+                color: #EFBC75;
+                cursor: pointer;
+                border: 1px solid #EFBC75;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                transition: all 0.5s ease;
+            }input[type='submit']:hover{
+                background-color: #EFBC75;
+                color: #0E2C40;
+                border-color: #0E2C40;
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            input[type='submit'], #id_username, #id_password, textarea, #id_titolo{
+                font-size: 1.1em;
+            }
+            
+            .captcha-container {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .captcha img {
+                width: 30%; /* Imposta la larghezza desiderata */
+                height: auto; /* Mantiene il rapporto d'aspetto */
+                border: 1px solid #ccc;
+                padding: 5px;
+                background-color: #f9f9f9;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                display: block;
+                margin: 0 auto;
+            }
+
+            .captcha img:hover{
+                width: 30%; /* Imposta la larghezza desiderata */
+                height: auto; /* Mantiene il rapporto d'aspetto */
+                
+            }
+            .captcha-input {
+                margin-top: 10px;
+                display: block;
+                width: 50%;
+                padding: 10px;
+                font-size: 1.1em;
+                border-radius: 5px;
+                border: 1px solid #ddd;
+                box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.1);
+                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+                margin: 10px auto;
+            }
+
+            .captcha-input:focus {
+                border-color: #0E2C40;
+                box-shadow: 0 4px 10px rgba(14, 44, 64, 0.2);
+                outline: none;
+            }
+
+            .captcha-refresh {
+                display: inline-block;
+                margin-left: 10px;
+                cursor: pointer;
+                color: #0E2C40;
+                font-weight: bold;
+                transition: color 0.3s ease;
+            }
+
+            .captcha-refresh:hover {
+                color: #EFBC75;
+            }
+    </style>
+</head>
+<body>
+    <main style="width: 100%; padding-top: 10%;">
+        <div class="contenitore_main"> 
+            <div class="contenitore_submain">
+                <div>
+                    <div>
+                        <form action="" method="post" class="form_dati">
+                            {% csrf_token %}
+                            
+                            <div style="margin: 0 auto;">Username:</div>
+                            {{ form.username }}<br>
+                            <div style="margin: 0 auto;">Password:</div>
+                            {{ form.password }}
+                            <div style="margin: 0 auto; margin-top: 5px;">
+                                <a href="https://campus.marconivr.it/login/forgot_password.php">Non ricordi la password?</a>
+                            </div><br>
+                            <div style="margin: 0 auto;">Dai un titolo al tuo problema:</div>
+                            {{ form.titolo }}<br>
+                            <div style="margin: 0 auto;">Spiega il tuo problema:</div>
+                            {{ form.contenuto }}<br>
+
+                            <div class="captcha-container">
+                                <div>Risolvi il captcha:</div>
+                                <div class="captcha">
+                                    {{ form.captcha }} <!-- Questo renderizza tutto il campo CAPTCHA, inclusa l'immagine -->
+                                    <br>
+                                    <a onclick="refreshCaptcha(); return false;" class="captcha-refresh">Ricarica CAPTCHA</a>
+                                </div>
+                                <input type="text" name="captcha" placeholder="Inserisci il testo del CAPTCHA" class="captcha-input" required>
+                            </div>
+
+                            <input type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>init_page("Forum form");</script>
+    <script>
+        $("#id_username").attr("placeholder", "Inserisci il tuo username di campus!");
+        $("#id_password").attr("type", "password");
+        $("#id_password").attr("placeholder", "Inserisci la tua password di campus!");
+        $("#id_titolo").attr("placeholder", "Inserisci il tuo titolo!");
+
+        function refreshCaptcha() {
+            // Trova l'immagine del CAPTCHA
+            const captchaImage = document.querySelector('.captcha img');
+            
+            if (captchaImage) {
+                // Aggiungi un timestamp alla sorgente per forzare il ricaricamento
+                captchaImage.src = captchaImage.src.split('?')[0] + '?rand=' + Math.random();
+            } else {
+                console.error("Immagine CAPTCHA non trovata.");
+            }
+        }
+    </script>
+</body>
+</html>

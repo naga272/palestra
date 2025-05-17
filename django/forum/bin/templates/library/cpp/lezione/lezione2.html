@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        <style>
+            .topbar h2{
+                width:30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Output</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%;">
+                Per stampare un messaggio a schermo, utilizziamo la funzione <span class="instruction">cout</span> della libreria <span class="instruction">iostream</span>.<br>
+                Ecco un esempio:<br><br>
+                <div class="shell">
+                    <span class="instruction">#include <iostream></span>
+                    <span class="instruction">using namespace std</span>;
+                    <span class="instruction">int main</span>(){
+                        <span class="instruction">cout</span> << <span class="strings">"Hello World!"</span>;
+                        <span class="instruction">return</span> 0;
+                    }
+                </div>
+                <br>
+                Questo codice stampera' "Hello World!" a schermo.<br>
+                La funzione <span class="instruction">cout</span> e' seguita da <span class="instruction"><<</span>, che indica l'inizio del messaggio da stampare.<br>
+                Il messaggio da stampare e' racchiuso tra virgolette.<br>
+                Infine, il punto e virgola <span class="instruction">;</span> termina l'istruzione.<br>
+                Ad essa si possono concatenare più messaggi separandoli con <span class="instruction"><<</span>.<br>, oltre a variabili e costanti.<br>
+                Ecco un esempio:<br><br>
+                <div class="shell">
+                    <span class="instruction">#include <iostream></span>
+                    <span class="instruction">using namespace std</span>;
+                    <span class="instruction">int main</span>(){
+                        <span class="instruction">int</span> x = 5;
+                        <span class="instruction">cout</span> << <span class="strings">"Il valore di x e': "</span> << x;
+                        <span class="instruction">return</span> 0;
+                    }
+                </div>
+
+                Per andare a capo, possiamo utilizzare <span class="instruction">endl</span>.<br>
+                Ecco un esempio:<br><br>
+                <div class="shell">
+                    <span class="instruction">#include <iostream></span>
+                    <span class="instruction">using namespace std</span>;
+                    <span class="instruction">int main</span>(){
+                        <span class="instruction">cout</span> << <span class="strings">"Hello World!"</span> << <span class="instruction">endl</span>;
+                        <span class="instruction">return</span> 0;
+                    }
+                </div>
+                Oppure possiamo utilizzare il carattere di escape <span class="instruction">\n</span>.<br>
+                Ecco un esempio:<br><br>
+                <div class="shell">
+                    <span class="instruction">#include <iostream></span>
+                    <span class="instruction">using namespace std</span>;
+                    <span class="instruction">int main</span>(){
+                        <span class="instruction">cout</span> << <span class="strings">"Hello World!\n"</span>;
+                        <span class="instruction">return</span> 0;
+                    }
+                </div>
+			</div>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 2", "../../cpp/intro");
+    </script>
+</html>

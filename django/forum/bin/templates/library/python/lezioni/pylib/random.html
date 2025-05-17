@@ -1,0 +1,254 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+            .script {
+                padding: 1%;
+                background-color: black;
+                color: green;
+            }
+            .elenco {
+                margin: 0 auto;
+                text-align: center;
+                width: 80%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>random</h1>
+            <br><br>
+            <p>
+                Fornisce algoritmi per generare numeri casuali
+            </p>
+            <br>
+            
+            <h3>Funzioni</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>random.seed(a: Optional[Hashable] = None, version: int = 2) -> None</td> 
+                            <td>Inizializza il generatore di numeri casuali con un valore di seed. Se non viene fornito, usa un valore di sistema casuale.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.getstate() -> object</td> 
+                            <td>Restituisce l'oggetto interno che rappresenta lo stato del generatore di numeri casuali.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.setstate(state: object) -> None</td> 
+                            <td>Imposta lo stato del generatore di numeri casuali con un oggetto stato precedentemente salvato.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.randbytes(n: int) -> bytes</td> 
+                            <td>Restituisce una stringa di byte casuali di lunghezza n.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.randrange(start: int, stop: Optional[int] = None, step: int = 1) -> int</td> 
+                            <td>Restituisce un numero intero casuale tra `start` e `stop-1` con un passo opzionale.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.randint(a: int, b: int) -> int</td> 
+                            <td>Restituisce un numero intero casuale tra `a` e `b`, inclusi entrambi gli estremi.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.choice(seq: Sequence) -> Any</td> 
+                            <td>Restituisce un elemento casuale da una sequenza non vuota.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.choices(population: Sequence, weights: Optional[Sequence] = None, *, cum_weights: Optional[Sequence] = None, k: int = 1) -> list</td> 
+                            <td>Restituisce una lista di scelte casuali con sostituzione da una popolazione. Le probabilità possono essere influenzate da pesi o pesi cumulativi.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.shuffle(x: list, random: Optional[Callable] = None) -> None</td> 
+                            <td>Mischia casualmente la sequenza fornita in-place.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.sample(population: Sequence, k: int, *, counts: Optional[Sequence] = None) -> list</td> 
+                            <td>Restituisce un nuovo elenco contenente `k` elementi unici selezionati dalla popolazione senza sostituzione.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.random() -> float</td> 
+                            <td>Restituisce un numero a virgola mobile casuale tra 0.0 e 1.0.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.uniform(a: float, b: float) -> float</td> 
+                            <td>Restituisce un numero a virgola mobile casuale tra `a` e `b`.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.triangular(low: float = 0.0, high: float = 1.0, mode: float = None) -> float</td> 
+                            <td>Restituisce un numero casuale secondo una distribuzione triangolare.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.betavariate(alpha: float, beta: float) -> float</td> 
+                            <td>Restituisce un numero casuale da una distribuzione Beta con i parametri `alpha` e `beta`.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.expovariate(lambd: float) -> float</td> 
+                            <td>Restituisce un numero casuale secondo una distribuzione esponenziale.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.gammavariate(alpha: float, beta: float) -> float</td> 
+                            <td>Restituisce un numero casuale secondo una distribuzione Gamma.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.gauss(mu: float, sigma: float) -> float</td> 
+                            <td>Restituisce un numero casuale secondo una distribuzione normale (Gaussiana) con media `mu` e deviazione standard `sigma`.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.lognormvariate(mu: float, sigma: float) -> float</td> 
+                            <td>Restituisce un numero casuale secondo una distribuzione log-normale.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.normalvariate(mu: float, sigma: float) -> float</td> 
+                            <td>Restituisce un numero casuale secondo una distribuzione normale (Gaussiana) con media `mu` e deviazione standard `sigma`.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.vonmisesvariate(mu: float, kappa: float) -> float</td> 
+                            <td>Restituisce un numero casuale secondo una distribuzione di Von Mises.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.paretovariate(alpha: float) -> float</td> 
+                            <td>Restituisce un numero casuale secondo una distribuzione di Pareto.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.weibullvariate(alpha: float, beta: float) -> float</td> 
+                            <td>Restituisce un numero casuale secondo una distribuzione di Weibull.</td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Costanti</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>random.TWOPI</td> 
+                            <td>Una costante che rappresenta il valore di 2 * π (approssimativamente 6.283185307179586).</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.LOG4</td> 
+                            <td>Una costante che rappresenta il valore di log(4) (approssimativamente 1.3862943611198906).</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.SG_MAGICCONST</td> 
+                            <td>Una costante utilizzata internamente per l'algoritmo di distribuzione Gaussiana (σ = 1.0).</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.BPF</td> 
+                            <td>Una costante che rappresenta il numero di bit per la precisione floating-point (approssimativamente 53).</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.RECIP_BPF</td> 
+                            <td>Una costante che rappresenta l'inverso di BPF, usata per generare numeri casuali a virgola mobile (approssimativamente 2**-53).</td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Classi</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>random.Random</td> 
+                            <td>La classe principale utilizzata per generare numeri casuali. Fornisce un generatore di numeri casuali pseudo-casuale basato su Mersenne Twister.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>random.SystemRandom</td> 
+                            <td>Una sottoclasse di `Random` che utilizza le fonti di casualità del sistema operativo per generare numeri casuali (ad esempio, `/dev/urandom` su Unix).</td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <script>
+                if(window.innerWidth >= 400)
+                    name_sections_topbar.push("go back");
+            
+                init_page("random", "/library/py/lezione/lez6");
+            </script>
+        </main>
+    </body>
+</html>

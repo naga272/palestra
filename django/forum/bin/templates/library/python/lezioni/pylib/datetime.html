@@ -1,0 +1,304 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+            .script {
+                padding: 1%;
+                background-color: black;
+                color: green;
+            }
+            .elenco {
+                margin: 0 auto;
+                text-align: center;
+                width: 80%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>datetime</h1>
+            <br><br>
+            <p>
+
+            </p>
+            <br>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>datetime.datetime.now(tz: Optional[timezone] = None) -> datetime</td> 
+                            <td>Restituisce la data e l'ora attuale. È possibile specificare un fuso orario opzionale.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.today() -> datetime</td> 
+                            <td>Restituisce la data e l'ora attuale del giorno corrente, senza fuso orario.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.utcnow() -> datetime</td> 
+                            <td>Restituisce la data e l'ora attuale in UTC (tempo universale coordinato).</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.fromtimestamp(timestamp: float, tz: Optional[timezone] = None) -> datetime</td> 
+                            <td>Restituisce un oggetto datetime a partire da un timestamp (secondi dal 1 gennaio 1970). Può includere un fuso orario.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.utcfromtimestamp(timestamp: float) -> datetime</td> 
+                            <td>Restituisce un oggetto datetime in UTC basato su un timestamp.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.strptime(date_string: str, format: str) -> datetime</td> 
+                            <td>Parsa una stringa di data in base a un formato specifico e restituisce un oggetto datetime.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.combine(date: date, time: time, tzinfo: Optional[timezone] = None) -> datetime</td> 
+                            <td>Combina un oggetto date e un oggetto time in un unico oggetto datetime.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.fromisoformat(date_string: str) -> datetime</td> 
+                            <td>Parsa una stringa in formato ISO 8601 e restituisce un oggetto datetime.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.isoformat(sep: str = 'T', timespec: str = 'auto') -> str</td> 
+                            <td>Restituisce una stringa ISO 8601 che rappresenta la data e l'ora.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.timetuple() -> time.struct_time</td> 
+                            <td>Restituisce una struct_time che rappresenta l'oggetto datetime.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.utctimetuple() -> time.struct_time</td> 
+                            <td>Restituisce una struct_time che rappresenta l'oggetto datetime in UTC.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.ctime() -> str</td> 
+                            <td>
+                                Restituisce una stringa rappresentativa della data e dell'ora in formato leggibile (è un metodo di istanza).
+                            </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.timestamp() -> float</td> 
+                            <td>Restituisce il timestamp di un oggetto datetime (secondi dal 1 gennaio 1970).</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.weekday() -> int</td> 
+                            <td>Restituisce il giorno della settimana come un intero, dove il lunedì è 0 e la domenica è 6.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.isoweekday() -> int</td> 
+                            <td>Restituisce il giorno della settimana come un intero, dove il lunedì è 1 e la domenica è 7.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.isocalendar() -> tuple[int, int, int]</td> 
+                            <td>Restituisce una tupla (anno ISO, numero della settimana ISO, giorno della settimana ISO).</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.astimezone(tz: Optional[timezone] = None) -> datetime</td> 
+                            <td>Converte l'oggetto datetime in un altro fuso orario.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.datetime.replace(year: int, month: int, day: int, hour: int = 0, minute: int = 0, second: int = 0, microsecond: int = 0, tzinfo: Optional[timezone] = None) -> datetime</td> 
+                            <td>Restituisce una copia dell'oggetto datetime con alcuni attributi modificati.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.date.today() -> date</td> 
+                            <td>Restituisce la data corrente.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.date.fromtimestamp(timestamp: float) -> date</td> 
+                            <td>Restituisce una data basata su un timestamp.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.date.fromordinal(ordinal: int) -> date</td> 
+                            <td>Restituisce una data basata su un numero ordinale.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.date.isoformat() -> str</td> 
+                            <td>Restituisce una stringa che rappresenta la data in formato ISO 8601.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.date.strftime(format: str) -> str</td> 
+                            <td>Restituisce una stringa che rappresenta la data, formattata secondo le specifiche date.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.time.isoformat(timespec: str = 'auto') -> str</td> 
+                            <td>Restituisce una stringa che rappresenta il tempo in formato ISO 8601.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.timedelta.total_seconds() -> float</td> 
+                            <td>Restituisce la durata in secondi come float.</td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.time.strftime(format: str) -> str</td> 
+                            <td>Restituisce una stringa che rappresenta il tempo, formattata secondo le specifiche date.</td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Objects</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>datetime.datetime</td>
+                            <td>Rappresenta una combinazione di data e ora, con attributi per l'anno, mese, giorno, ora, minuto, secondo, microsecondo e informazioni sul fuso orario opzionale.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.date</td>
+                            <td>Rappresenta solo una data (anno, mese, giorno), senza informazioni sull'ora.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.time</td>
+                            <td>Rappresenta solo un'ora del giorno (ora, minuto, secondo, microsecondo), senza informazioni sulla data.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.timedelta</td>
+                            <td>Rappresenta una durata o intervallo di tempo, con differenza di giorni, secondi e microsecondi.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.tzinfo</td>
+                            <td>Una classe base astratta per gestire i fusi orari, che può essere sottoclassata per implementare comportamenti personalizzati legati ai fusi orari.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.timezone</td>
+                            <td>Una sottoclasse di `tzinfo` che rappresenta un fuso orario con un offset fisso rispetto a UTC.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.MINYEAR</td>
+                            <td>La costante che rappresenta l'anno minimo supportato da `datetime` (anno 1).</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>datetime.MAXYEAR</td>
+                            <td>La costante che rappresenta l'anno massimo supportato da `datetime` (anno 9999).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Classi</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>datetime.datetime</td>
+                            <td>Rappresenta una combinazione di data e ora, con attributi per l'anno, mese, giorno, ora, minuto, secondo, microsecondo e informazioni sul fuso orario opzionale.</td>
+                        </tr>
+                        <tr>
+                            <td>datetime.date</td>
+                            <td>Rappresenta solo una data (anno, mese, giorno), senza informazioni sull'ora.</td>
+                        </tr>
+                        <tr>
+                            <td>datetime.time</td>
+                            <td>Rappresenta solo un'ora del giorno (ora, minuto, secondo, microsecondo), senza informazioni sulla data.</td>
+                        </tr>
+                        <tr>
+                            <td>datetime.timedelta</td>
+                            <td>Rappresenta una durata o intervallo di tempo, con differenza di giorni, secondi e microsecondi.</td>
+                        </tr>
+                        <tr>
+                            <td>datetime.tzinfo</td>
+                            <td>Una classe base astratta per gestire i fusi orari, che può essere sottoclassata per implementare comportamenti personalizzati legati ai fusi orari.</td>
+                        </tr>
+                        <tr>
+                            <td>datetime.timezone</td>
+                            <td>Una sottoclasse di `tzinfo` che rappresenta un fuso orario con un offset fisso rispetto a UTC.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+
+        init_page("datetime", "/library/py/lezione/lez6");
+    </script>
+</html>

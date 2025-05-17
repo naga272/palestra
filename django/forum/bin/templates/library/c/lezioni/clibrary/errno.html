@@ -1,0 +1,264 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+        .script {
+            padding: 1%;
+            background-color: black;
+            color: green;
+        }
+        .elenco {
+            margin: 0 auto;
+            text-align: center;
+            width: 80%;
+            border-collapse: collapse;
+            text-align: left; /* Allinea il testo delle celle a sinistra */
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .elenco th, .elenco td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        .elenco thead {
+            background-color: #f2f2f2;
+        }
+        .elenco tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .elenco tbody tr:hover {
+            background-color: #0E2C40;
+            color:#EFBC75;
+        }
+        .elenco th {
+            background-color: #0E2C40;
+            color: white;
+        }
+        .table-container {
+            display: flex;
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .elenco .prototype {
+            width: 50%;
+        }
+        .elenco .descrizione {
+            width: 30%;
+        }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>errno</h1>
+            <br><br>
+            <p>
+                La libreria errno.h è un header standard del linguaggio C che definisce macro per la gestione degli errori e dichiara la variabile globale errno. <br>
+                Le macro rappresentano diversi codici di errore che possono essere impostati dalle chiamate di sistema e dalle funzioni della libreria standard per indicare vari tipi di errori,<br> 
+                come EPERM (operazione non permessa) e ENOENT (file o directory non esistente). <br>
+                La variabile errno contiene il codice dell'ultimo errore verificatosi, permettendo ai programmatori di diagnosticare e gestire gli errori in modo efficace.
+            </p><br>
+            <h3>Macro / Costanti</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>EPERM</td>
+                            <td>Operazione non permessa</td>
+                        </tr>
+                        <tr>
+                            <td>ENOENT</td>
+                            <td>File o directory non esistente</td>
+                        </tr>
+                        <tr>
+                            <td>ESRCH</td>
+                            <td>Processo non esistente</td>
+                        </tr>
+                        <tr>
+                            <td>EINTR</td>
+                            <td>Chiamata di sistema interrotta</td>
+                        </tr>
+                        <tr>
+                            <td>EIO</td>
+                            <td>Errore di I/O</td>
+                        </tr>
+                        <tr>
+                            <td>ENXIO</td>
+                            <td>Nessun dispositivo o indirizzo di questo tipo</td>
+                        </tr>
+                        <tr>
+                            <td>E2BIG</td>
+                            <td>Argomento di lista troppo lungo</td>
+                        </tr>
+                        <tr>
+                            <td>ENOEXEC</td>
+                            <td>Formato eseguibile non valido</td>
+                        </tr>
+                        <tr>
+                            <td>EBADF</td>
+                            <td>File descriptor non valido</td>
+                        </tr>
+                        <tr>
+                            <td>ECHILD</td>
+                            <td>Nessun processo figlio</td>
+                        </tr>
+                        <tr>
+                            <td>EAGAIN / EWOULDBLOCK</td>
+                            <td>Risorsa temporaneamente non disponibile</td>
+                        </tr>
+                        <tr>
+                            <td>ENOMEM</td>
+                            <td>Memoria insufficiente</td>
+                        </tr>
+                        <tr>
+                            <td>EACCES</td>
+                            <td>Permesso negato</td>
+                        </tr>
+                        <tr>
+                            <td>EFAULT</td>
+                            <td>Indirizzo errato</td>
+                        </tr>
+                        <tr>
+                            <td>EBUSY</td>
+                            <td>Risorsa occupata</td>
+                        </tr>
+                        <tr>
+                            <td>EEXIST</td>
+                            <td>File esistente</td>
+                        </tr>
+                        <tr>
+                            <td>EXDEV</td>
+                            <td>Cross-device link non valido</td>
+                        </tr>
+                        <tr>
+                            <td>ENODEV</td>
+                            <td>Nessun dispositivo di questo tipo</td>
+                        </tr>
+                        <tr>
+                            <td>ENOTDIR</td>
+                            <td>Non è una directory</td>
+                        </tr>
+                        <tr>
+                            <td>EISDIR</td>
+                            <td>È una directory</td>
+                        </tr>
+                        <tr>
+                            <td>EINVAL</td>
+                            <td>Argomento non valido</td>
+                        </tr>
+                        <tr>
+                            <td>ENFILE</td>
+                            <td>Tavola dei file del sistema piena</td>
+                        </tr>
+                        <tr>
+                            <td>EMFILE</td>
+                            <td>Troppi file aperti</td>
+                        </tr>
+                        <tr>
+                            <td>ENOTTY</td>
+                            <td>Operazione I/O non valida per il dispositivo</td>
+                        </tr>
+                        <tr>
+                            <td>ETXTBSY</td>
+                            <td>Testo del file aperto occupato</td>
+                        </tr>
+                        <tr>
+                            <td>EFBIG</td>
+                            <td>File troppo grande</td>
+                        </tr>
+                        <tr>
+                            <td>ENOSPC</td>
+                            <td>Nessuno spazio disponibile sul dispositivo</td>
+                        </tr>
+                        <tr>
+                            <td>ESPIPE</td>
+                            <td>Seek su un file non valido</td>
+                        </tr>
+                        <tr>
+                            <td>EROFS</td>
+                            <td>File system in sola lettura</td>
+                        </tr>
+                        <tr>
+                            <td>EMLINK</td>
+                            <td>Troppe link per il file</td>
+                        </tr>
+                        <tr>
+                            <td>EPIPE</td>
+                            <td>Broken pipe</td>
+                        </tr>
+                        <tr>
+                            <td>EDOM</td>
+                            <td>Argomento al di fuori del dominio del matematico</td>
+                        </tr>
+                        <tr>
+                            <td>ERANGE</td>
+                            <td>Risultato fuori dall'intervallo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Variabili</h3>                
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>errno</td>
+                            <td>
+                                Variabile di tipo int che viene utilizzata dalle funzioni delle librerie standard e dalle chiamate di sistema per indicare errori.<br>
+                                Quando una funzione restituisce un valore che indica un errore (tipicamente -1 o NULL), errno viene impostata a un valore specifico che rappresenta il tipo di errore avvenuto.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>programma esempio per l'uso di errno.h</h3>
+            <div style="float:left; text-align:left; padding-left:10%; width:90%;">
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                    <span class="direttive">#include &lt;errno.h&gt;</span><br>
+                    <span class="direttive">#include &lt;string.h&gt;</span><br><br>
+
+                    <span class="type">int</span> main() {<br>
+                        <span style="margin-left:20px"></span><span class="type">FILE</span>* handle = fopen(<span class="strings">"myfile.txt"</span>, <span class="strings">"r"</span>);<br>
+                        <span style="margin-left:20px"></span><span class="instruction">if</span>(handle == NULL){<br>
+                        <span style="margin-left:40px"></span><span class="strings">// stampo a schermo il tipo di errore che è avvenuto in base al valore di errno</span><br>
+                        <span style="margin-left:40px"></span>printf(<span class="strings">"%i: %s\n"</span>, errno, strerror(errno));<br>
+                        <span style="margin-left:20px"></span>}<br>
+                        <span style="margin-left:20px"></span><span class="instruction">return</span> errno; <span class="strings">// se tutto il programma è andato a buon fino, la variabile errno ha come valore 0</span><br>
+                    }
+                </div>
+                <br>
+                <strong>Output del programma nel caso in cui non viene trovato il file "myfile.txt":</strong><br>
+                <div class="shell strings">
+                    2: No such file or directory
+                </div>
+                <br><br>
+            </div>        
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("errno", "../../c/lezione/lez13");
+    </script>
+</html>

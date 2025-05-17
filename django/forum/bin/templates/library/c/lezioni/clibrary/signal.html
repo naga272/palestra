@@ -1,0 +1,432 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+        .script {
+            padding: 1%;
+            background-color: black;
+            color: green;
+        }
+        .elenco {
+            margin: 0 auto;
+            text-align: center;
+            width: 80%;
+            border-collapse: collapse;
+            text-align: left; /* Allinea il testo delle celle a sinistra */
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .elenco th, .elenco td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        .elenco thead {
+            background-color: #f2f2f2;
+        }
+        .elenco tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .elenco tbody tr:hover {
+            background-color: #0E2C40;
+            color:#EFBC75;
+        }
+        .elenco th {
+            background-color: #0E2C40;
+            color: white;
+        }
+        .table-container {
+            display: flex;
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .elenco .prototype {
+            width: 50%;
+        }
+        .elenco .descrizione {
+            width: 30%;
+        }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>signal</h1>
+            <br><br>
+            <p>
+                <strong>N.B:</strong> Molte funzionalità che vengono descritte in questa libreria funzionano solo su un os Unix-like, quindi non su os windows (le cose funzionano diversamente a basso livello).<br>
+                L'header signal.h consente l'uso di segnali per poter rispondere a eventi asincroni come interruzioni hardware, segnali di sistema o richieste terminazione di processi.<br>
+            </p>
+            <br>
+            <h3>Funzioni</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                            <th class="prototype">prototype</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>bsd_signal</td>
+                            <td>Imposta una funzione di gestione dei segnali per il segnale specificato sig (come SIGINT, SIGTERM, ecc.). Questa è una versione BSD della funzione signal.</td>
+                            <td>void (*bsd_signal(int, void (*)(int)))(int);</td>
+                        </tr>
+                        <tr>
+                            <td>kill</td>
+                            <td>Invia un segnale specificato da sig a un processo o un gruppo di processi identificati da pid.</td>
+                            <td>int kill(pid_t, int);</td>
+                        </tr>
+                        <tr>
+                            <td>killpg</td>
+                            <td>Invia un segnale specificato da sig a tutti i processi in un gruppo di processi identificati da pgrp.</td>
+                            <td>int killpg(pid_t, int);</td>
+                        </tr>
+                        <tr>
+                            <td>pthread_kill</td>
+                            <td>Invia un segnale specificato da sig a un thread specifico identificato da thread all'interno dello stesso processo.</td>
+                            <td>int pthread_kill(pthread_t, int);</td>
+                        </tr>
+                        <tr>
+                            <td>pthread_sigmask</td>
+                            <td>Modifica il set di segnali bloccati per il thread corrente, secondo l'operazione specificata da how (come SIG_BLOCK, SIG_UNBLOCK, SIG_SETMASK).</td>
+                            <td>int pthread_sigmask(int, const sigset_t *, sigset_t *);</td>
+                        </tr>
+                        <tr>
+                            <td>raise</td>
+                            <td>Invia un segnale specificato da sig al processo chiamante.</td>
+                            <td>int raise(int);</td>
+                        </tr>
+                        <tr>
+                            <td>sigaction</td>
+                            <td>Imposta l'azione da intraprendere quando viene ricevuto un segnale specificato da sig, sostituendo una vecchia gestione di segnale se necessario.</td>
+                            <td>int sigaction(int, const struct sigaction *, struct sigaction *);</td>
+                        </tr>
+                        <tr>
+                            <td>sigaddset</td>
+                            <td>Aggiunge il segnale sig al set di segnali set.</td>
+                            <td>int sigaddset(sigset_t *, int);</td>
+                        </tr>
+                        <tr>
+                            <td>sigaltstack</td>
+                            <td>Imposta o recupera lo stack alternativo utilizzato durante la gestione dei segnali.</td>
+                            <td>int sigaltstack(const stack_t *, stack_t *);</td>
+                        </tr>
+                        <tr>
+                            <td>sigdelset</td>
+                            <td>Rimuove il segnale sig dal set di segnali set.</td>
+                            <td>int sigdelset(sigset_t *, int);</td>
+                        </tr>
+                        <tr>
+                            <td>sigemptyset</td>
+                            <td>Inizializza il set di segnali set per essere vuoto (cioè nessun segnale incluso).</td>
+                            <td>int sigemptyset(sigset_t *);</td>
+                        </tr>
+                        <tr>
+                            <td>sigfillset</td>
+                            <td>Inizializza il set di segnali per includere tutti i segnali.</td>
+                            <td>int sigfillset(sigset_t *);</td>
+                        </tr>
+                        <tr>
+                            <td>sighold</td>
+                            <td>Blocca il segnale sig per il processo chiamante (funzione specifica di alcune implementazioni, non portabile).</td>
+                            <td>int sighold(int);</td>
+                        </tr>
+                        <tr>
+                            <td>sigignore</td>
+                            <td>Ignora il segnale sig impostando la sua gestione su SIG_IGN.</td>
+                            <td>int sigignore(int);</td>
+                        </tr>
+                        <tr>
+                            <td>siginterrupt</td>
+                            <td>Modifica il comportamento di una chiamata di sistema interrotta da un segnale, abilitando o disabilitando la riattivazione della chiamata.</td>
+                            <td>int siginterrupt(int, int);</td>
+                        </tr>
+                        <tr>
+                            <td>sigismember</td>
+                            <td>Controlla se il segnale sig è membro del set di segnali set.</td>
+                            <td>int sigismember(const sigset_t *, int);</td>
+                        </tr>
+                        <tr>
+                            <td>signal</td>
+                            <td>Imposta una funzione di gestione dei segnali per il segnale specificato sig.</td>
+                            <td>void (*signal(int, void (*)(int)))(int);</td>
+                        </tr>
+                        <tr>
+                            <td>sigpause</td>
+                            <td>Sospende il processo fino a quando non viene ricevuto un segnale non bloccato. Il segnale specificato viene rimosso dal set di segnali bloccati.</td>
+                            <td>int sigpause(int);</td>
+                        </tr>
+                        <tr>
+                            <td>sigpending</td>
+                            <td>Recupera l'insieme dei segnali bloccati che sono attualmente pendenti (cioè non ancora gestiti).</td>
+                            <td>int sigpending(sigset_t *);</td>
+                        </tr>
+                        <tr>
+                            <td>sigprocmask</td>
+                            <td>Modifica il set di segnali bloccati del processo chiamante secondo l'operazione specificata da how.</td>
+                            <td>int sigprocmask(int, const sigset_t *, sigset_t *);</td>
+                        </tr>
+                        <tr>
+                            <td>sigqueue</td>
+                            <td>Invia il segnale sig al processo identificato da pid, passando anche un valore aggiuntivo value.</td>
+                            <td>int sigqueue(pid_t, int, const union sigval);</td>
+                        </tr>
+                        <tr>
+                            <td>sigrelse</td>
+                            <td>Sblocca il segnale sig per il processo chiamante (funzione specifica di alcune implementazioni, non portabile).</td>
+                            <td>int sigrelse(int);</td>
+                        </tr>
+                        <tr>
+                            <td>sigset</td>
+                            <td>Imposta una funzione di gestione per il segnale specificato sig e blocca il segnale mentre il gestore è in esecuzione.</td>
+                            <td>void (*sigset(int, void (*)(int)))(int);</td>
+                        </tr>
+                        <tr>
+                            <td>sigstack</td>
+                            <td>Imposta o recupera lo stack di segnale usato dal processo. È una funzione obsoleta e non più raccomandata.</td>
+                            <td>int sigstack(struct sigstack *ss, struct sigstack *oss)</td>
+                        </tr>
+                        <tr>
+                            <td>sigsuspend</td>
+                            <td>Sospende il processo fino a quando non viene ricevuto un segnale, temporaneamente modificando il set di segnali bloccati con mask.</td>
+                            <td>int sigsuspend(const sigset_t *);</td>
+                        </tr>
+                        <tr>
+                            <td>sigtimedwait</td>
+                            <td>Attende un segnale specifico tra quelli in set, con un tempo massimo di attesa specificato da timeout.</td>
+                            <td>int sigtimedwait(const sigset_t *, siginfo_t *, const struct timespec *);</td>
+                        </tr>
+                        <tr>
+                            <td>sigwait</td>
+                            <td>Attende che un segnale specifico in set venga ricevuto e lo memorizza in *sig.</td>
+                            <td>int sigwait(const sigset_t *set, int *sig);</td>
+                        </tr>
+                        <tr>
+                            <td>sigwaitinfo</td>
+                            <td>Simile a sigtimedwait, ma senza un limite di tempo, attende un segnale e memorizza le informazioni del segnale in info.</td>
+                            <td>int sigwaitinfo(const sigset_t *, siginfo_t *);</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Macro / costanti</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th class="descrizione">Motivo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ILL_ILLOPC</td>
+                            <td>Si è verificato un errore a causa di un opcode illegale, cioè un'istruzione non riconosciuta dal processore.</td>
+                        </tr>
+                        <tr>
+                            <td>ILL_ILLOPN</td>
+                            <td>Si è verificato un errore a causa di un operando illegale, non valido per l'istruzione eseguita.</td>
+                        </tr>
+                        <tr>
+                            <td>ILL_ILLADR</td>
+                            <td>Un errore è stato causato da un modo di indirizzamento illegale, che non è valido nel contesto corrente.</td>
+                        </tr>
+                        <tr>
+                            <td>ILL_ILLTRP</td>
+                            <td>Si è verificata una trappola illegale, un'interruzione non valida per il sistema.</td>
+                        </tr>
+                        <tr>
+                            <td>ILL_PRVOPC</td>
+                            <td>Un errore è stato causato dall'esecuzione di un opcode riservato esclusivamente ai processi privilegiati.</td>
+                        </tr>
+                        <tr>
+                            <td>ILL_PRVREG</td>
+                            <td>Si è verificato un errore per l'accesso a un registro privilegiato da un processo non autorizzato.</td>
+                        </tr>
+                        <tr>
+                            <td>ILL_COPROC</td>
+                            <td>Un errore del coprocessore ha causato il fallimento dell'operazione.</td>
+                        </tr>
+                        <tr>
+                            <td>ILL_BADSTK</td>
+                            <td>Si è verificato un errore interno dello stack, compromettendo la stabilità del processo.</td>
+                        </tr>
+                        <tr>
+                            <td>FPE_INTDIV</td>
+                            <td>Un errore si è verificato a causa di una divisione intera per zero, che non è permessa.</td>
+                        </tr>
+                        <tr>
+                            <td>FPE_INTOVF</td>
+                            <td>Si è verificato un overflow durante un'operazione aritmetica intera, superando il limite di rappresentazione.</td>
+                        </tr>
+                        <tr>
+                            <td>FPE_FLTDIV</td>
+                            <td>Un errore è stato causato da una divisione in virgola mobile per zero, generando un risultato indefinito.</td>
+                        </tr>
+                        <tr>
+                            <td>FPE_FLTOVF</td>
+                            <td>Si è verificato un overflow in un'operazione in virgola mobile, indicando un risultato troppo grande per essere rappresentato.</td>
+                        </tr>
+                        <tr>
+                            <td>FPE_FLTUND</td>
+                            <td>Un errore di sottorappresentazione è stato causato da un'operazione in virgola mobile con un risultato troppo piccolo per essere rappresentato.</td>
+                        </tr>
+                        <tr>
+                            <td>FPE_FLTRES</td>
+                            <td>Si è verificato un errore a causa di un risultato in virgola mobile non esatto, dove il calcolo ha perso precisione.</td>
+                        </tr>
+                        <tr>
+                            <td>FPE_FLTINV</td>
+                            <td>Un'operazione in virgola mobile non valida è stata tentata, risultando in un errore.</td>
+                        </tr>
+                        <tr>
+                            <td>FPE_FLTSUB</td>
+                            <td>Si è verificato un errore a causa di un accesso a un elemento di un array con un indice fuori intervallo.</td>
+                        </tr>
+                        <tr>
+                            <td>SEGV_MAPERR</td>
+                            <td>Un errore di segmentazione si è verificato perché l'indirizzo specificato non è mappato a nessun oggetto in memoria.</td>
+                        </tr>
+                        <tr>
+                            <td>SEGV_ACCERR</td>
+                            <td>Si è verificato un errore di segmentazione a causa di permessi non validi per l'accesso a un oggetto mappato in memoria.</td>
+                        </tr>
+                        <tr>
+                            <td>BUS_ADRALN</td>
+                            <td>Un errore di bus si è verificato a causa di un allineamento dell'indirizzo non valido per l'accesso alla memoria.</td>
+                        </tr>
+                        <tr>
+                            <td>BUS_ADRERR</td>
+                            <td>Un errore di bus è stato causato dall'accesso a un indirizzo fisico inesistente.</td>
+                        </tr>
+                        <tr>
+                            <td>BUS_OBJERR</td>
+                            <td>Si è verificato un errore hardware specifico dell'oggetto durante l'operazione.</td>
+                        </tr>
+                        <tr>
+                            <td>TRAP_BRKPT</td>
+                            <td>Un punto di interruzione del processo è stato raggiunto, interrompendo temporaneamente l'esecuzione.</td>
+                        </tr>
+                        <tr>
+                            <td>TRAP_TRACE</td>
+                            <td>Una trappola di traccia del processo è stata attivata per monitorare l'esecuzione del programma.</td>
+                        </tr>
+                        <tr>
+                            <td>CLD_EXITED</td>
+                            <td>Il processo figlio è terminato normalmente e ha rilasciato le sue risorse.</td>
+                        </tr>
+                        <tr>
+                            <td>CLD_KILLED</td>
+                            <td>Il processo figlio è stato terminato in modo anomalo e non ha creato un file core per la diagnosi.</td>
+                        </tr>
+                        <tr>
+                            <td>CLD_DUMPED</td>
+                            <td>Il processo figlio è stato terminato in modo anomalo e ha creato un file core per l'analisi post-mortem.</td>
+                        </tr>
+                        <tr>
+                            <td>CLD_TRAPPED</td>
+                            <td>Il processo figlio tracciato è stato intrappolato in un punto di controllo per il debugging.</td>
+                        </tr>
+                        <tr>
+                            <td>CLD_STOPPED</td>
+                            <td>Il processo figlio è stato fermato, probabilmente a causa di un segnale di stop o per il debugging.</td>
+                        </tr>
+                        <tr>
+                            <td>CLD_CONTINUED</td>
+                            <td>Il processo figlio, precedentemente fermato, ha ripreso l'esecuzione.</td>
+                        </tr>
+                        <tr>
+                            <td>POLL_IN</td>
+                            <td>Ci sono dati di input disponibili per la lettura dall'input del dispositivo o del file.</td>
+                        </tr>
+                        <tr>
+                            <td>POLL_OUT</td>
+                            <td>I buffer di output sono disponibili e pronti per l'invio di dati.</td>
+                        </tr>
+                        <tr>
+                            <td>POLL_MSG</td>
+                            <td>Un nuovo messaggio di input è disponibile e può essere letto dal processo.</td>
+                        </tr>
+                        <tr>
+                            <td>POLL_ERR</td>
+                            <td>Un errore di I/O si è verificato durante l'operazione, impedendo la corretta esecuzione.</td>
+                        </tr>
+                        <tr>
+                            <td>POLL_PRI</td>
+                            <td>È disponibile un input di alta priorità che richiede attenzione immediata.</td>
+                        </tr>
+                        <tr>
+                            <td>POLL_HUP</td>
+                            <td>Il dispositivo è stato disconnesso, interrompendo la comunicazione.</td>
+                        </tr>
+                        <tr>
+                            <td>SI_USER</td>
+                            <td>Un segnale è stato inviato manualmente tramite la funzione kill() dall'utente o dal programma.</td>
+                        </tr>
+                        <tr>
+                            <td>SI_QUEUE</td>
+                            <td>Un segnale è stato inviato utilizzando la funzione sigqueue(), che permette l'invio di segnali con informazioni aggiuntive.</td>
+                        </tr>
+                        <tr>
+                            <td>SI_TIMER</td>
+                            <td>Un segnale è stato generato dalla scadenza di un timer impostato dal processo tramite la funzione timer_settime().</td>
+                        </tr>
+                        <tr>
+                            <td>SI_ASYNCIO</td>
+                            <td>Un segnale è stato generato al completamento di una richiesta di I/O asincrono.</td>
+                        </tr>
+                        <tr>
+                            <td>SI_MESGQ</td>
+                            <td>Un segnale è stato generato dall'arrivo di un messaggio su una coda di messaggi precedentemente vuota.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>  
+
+            <h3>Tipi di dato</h3>                
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>sig_atomic_t</td>
+                            <td>È un tipo di dato intero che è garantito per essere accessibile in modo atomico, cioè senza interruzioni da parte di altri processi o thread.</td>
+                        </tr>
+                        <tr>
+                            <td>sigset_t</td>
+                            <td>È un tipo di dato usato per rappresentare un insieme di segnali. È usato per definire e manipolare insiemi di segnali, ad esempio quando si blocca o si sblocca un segnale.</td>
+                        </tr>
+                        <tr>
+                            <td>siginfo_t</td>
+                            <td>È una struttura usata per fornire informazioni dettagliate su un segnale ricevuto. Contiene informazioni specifiche sul segnale, come il codice del segnale e, a seconda del segnale, dati addizionali.</td>
+                        </tr>
+                        <tr>
+                            <td>sigaction</td>
+                            <td>È una struttura usata per specificare come un segnale dovrebbe essere gestito. Contiene informazioni sul gestore del segnale, come la funzione da chiamare e i segnali da bloccare durante l'esecuzione del gestore.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("signal", "../../c/lezione/lez13");
+    </script>
+</html>

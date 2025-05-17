@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../static/css/style.css">
+
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            table .d_lan{
+                transition:all .7s;
+            }
+            table .d_lan:hover{
+                background-color:#0E2C40;
+                color:#EFBC75;
+            }
+
+            .portale_linguaggio img{
+                transition:all .8s;
+            }.portale_linguaggio img:hover{
+                width:100%;
+                height:auto;
+                margin-bottom:-10%
+            }
+            header .topbar h2{
+                width:30%;
+            } 
+            .elenco {
+                margin: 0 auto;
+                text-align: center;
+                width: 80%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                transition: all .8s;
+            }
+
+            .elenco:hover{
+                box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+            @media (max-width: 768px) {
+                main {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .portale_linguaggio {
+                    flex: 1 1 100%;
+                    margin-bottom: 20px;
+                }
+
+                header .topbar h2 {
+                    width: 100%;
+                    text-align: center;
+                }
+                .elenco th:nth-child(n+5),  .elenco td:nth-child(n+5) {
+                    /* Nasconde tutte le colonne a partire dalla quinta */
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <div style="margin:0 auto">
+                <div><h2>scegli il tuo linguaggio!</h2></div>
+                <br>
+                
+                
+                <!--
+                <div style="display: flex; flex-direction: column; justify-content: center;">
+                    
+                    <div style="display: flex; flex-direction: row; justify-content: center;"> 
+                        
+                        <a href="./nasm/intro" class="portale_linguaggio">
+                            <img src="{% static 'img/nasm_logo.png'%}" alt="nasm.png"  width="80%" height="auto">
+                        </a>
+    
+                        <a href="./c/intro/" class="portale_linguaggio">
+                            <img src="{% static 'img/c_logo.png'%}" alt="c.png"  width="80%" height="auto">
+                        </a>
+    
+                        <a href="./cpp/intro/" class="portale_linguaggio">
+                            <img src="{% static 'img/cpp_logo.png'%}" alt="cpp.png"  width="80%" height="auto">
+                        </a>
+                    </div>
+                    <br><br>
+                    <div style="display: flex; flex-direction: row; justify-content: center;"> 
+                        <a href="./py/intro/" class="portale_linguaggio">
+                            <img src="{% static 'img/python_logo.png'%}" alt="python.png" width="80%" height="auto">
+                        </a>
+    
+                        <a href="./html5/intro/" class="portale_linguaggio">
+                            <img src="{% static 'img/html5_logo.png'%}" alt="html5.png"  width="80%" height="auto">
+                        </a>
+    
+                        <a href="./js/intro/" class="portale_linguaggio">
+                            <img src="{% static 'img/JS_logo.png'%}" alt="js.png"  width="80%" height="auto">
+                        </a>
+                    </div>
+                </div>
+                -->
+
+                <!--
+                <br><br><br><br><br><br>
+                -->
+                <div style="display: flex; flex-direction: row; justify-content: center;">
+
+                    <!--
+                    <a href="./nasm/intro" class="portale_linguaggio">
+                        <img src="{% static 'img/nasm_logo.png'%}" alt="nasm.png"  width="80%" height="auto">
+                    </a>
+                    -->
+
+                    <a href="./c/intro/" class="portale_linguaggio">
+                        <img src="{% static 'img/c_logo.png'%}" alt="c.png"  width="80%" height="auto">
+                    </a>
+
+                    <a href="./cpp/intro/" class="portale_linguaggio">
+                        <img src="{% static 'img/cpp_logo.png'%}" alt="cpp.png"  width="80%" height="auto">
+                    </a>
+
+                    <a href="./py/intro/" class="portale_linguaggio">
+                        <img src="{% static 'img/python_logo.png'%}" alt="python.png" width="80%" height="auto">
+                    </a>
+
+                    <!--
+                    <a href="./html5/intro/" class="portale_linguaggio">
+                        <img src="{% static 'img/html5_logo.png'%}" alt="html5.png"  width="80%" height="auto">
+                    </a>
+                    -->
+
+                    <!--
+                    <a href="./js/intro/" class="portale_linguaggio">
+                        <img src="{% static 'img/JS_logo.png'%}" alt="js.png"  width="80%" height="auto">
+                    </a>
+                    -->
+                </div>
+                <!---->
+            </div>
+
+            <div style="margin:0 auto">
+                <h2 style="margin-top: 5%;">
+                    The most popular languages (by <a href="{{ tiobe }}" style="color: #0E2C40">tiobe</a>)
+                </h2>
+                <br>
+            </div>
+            
+            {% if head|length > 0 and body|length > 0 and tiobe|length > 0 %}
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                        {% for element in head%}
+                            <th>{{ element }}</th>
+                        {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in body%}
+                            <tr>
+                                {% for contenuto in element %}
+                                    <td>{{ contenuto }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </main>
+    </body>
+    <script>
+        init_page("Library");
+        $(".topbar > h2").css("width", "20%");
+    </script>
+</html>

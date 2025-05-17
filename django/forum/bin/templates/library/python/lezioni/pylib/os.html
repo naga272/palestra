@@ -1,0 +1,665 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+            .script {
+                padding: 1%;
+                background-color: black;
+                color: green;
+            }
+            .elenco {
+                margin: 0 auto;
+                text-align: center;
+                width: 80%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>os</h1>
+            <br><br>
+            <p>
+                All'interno di questa libreria sono state inserite delle funzioni che consentono di gestire da programma python il sistema operativo
+            </p>
+            <br>
+
+            <h3>Funzioni</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>os.fsync(fd: int) -> None</td>
+                            <td>Forza il sistema operativo a scrivere fisicamente i dati associati al file descriptor sul disco.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.get_blocking(fd: int) -> bool</td>
+                            <td>Restituisce se il file descriptor è in modalità bloccante.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.get_exec_path() -> List[str]</td>
+                            <td>Restituisce un elenco di directory in cui il sistema cerca i programmi eseguibili con nome.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.get_handle_inheritable(fd: int) -> bool</td>
+                            <td>Restituisce se l'handle del file descriptor è ereditabile dai processi figli.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.get_inheritable(fd: int) -> bool</td>
+                            <td>Restituisce se il file descriptor è ereditabile dai processi figli.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.get_terminal_size(fd: Optional[int]) -> os.terminal_size</td>
+                            <td>Restituisce la dimensione del terminale come una coppia di colonne e righe.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getcwd() -> str</td>
+                            <td>Restituisce la directory di lavoro corrente come stringa.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getcwdb() -> bytes</td>
+                            <td>Restituisce la directory di lavoro corrente come byte string.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getegid() -> int</td>
+                            <td>Restituisce l'ID del gruppo effettivo del processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getenv(key: str, default: Optional[str] = None) -> Optional[str]</td>
+                            <td>Restituisce il valore di una variabile d'ambiente, o un valore predefinito se non esiste.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getenvb(key: bytes, default: Optional[bytes] = None) -> Optional[bytes]</td>
+                            <td>Restituisce il valore di una variabile d'ambiente in byte, o un valore predefinito se non esiste.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.geteuid() -> int</td>
+                            <td>Restituisce l'ID dell'utente effettivo del processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getgid() -> int</td>
+                            <td>Restituisce l'ID del gruppo reale del processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getgrouplist(user: str, group: int) -> List[int]</td>
+                            <td>Restituisce un elenco di ID di gruppi per uno specifico utente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getgroups() -> List[int]</td>
+                            <td>Restituisce un elenco di ID di gruppi supplementari associati al processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getloadavg() -> Tuple[float, float, float]</td>
+                            <td>Restituisce la media di carico del sistema negli ultimi 1, 5 e 15 minuti.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getlogin() -> str</td>
+                            <td>Restituisce il nome dell'utente attualmente collegato al terminale.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getpgid(pid: int) -> int</td>
+                            <td>Restituisce l'ID del gruppo di processi di un determinato processo.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getpgrp() -> int</td>
+                            <td>Restituisce l'ID del gruppo di processi del processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getpid() -> int</td>
+                            <td>Restituisce l'ID del processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getppid() -> int</td>
+                            <td>Restituisce l'ID del processo genitore del processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getpriority(which: int, who: int) -> int</td>
+                            <td>Restituisce la priorità di scheduling di un processo, gruppo di processi o utente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getresgid() -> Tuple[int, int, int]</td>
+                            <td>Restituisce gli ID del gruppo reale, effettivo e salvato del processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getresuid() -> Tuple[int, int, int]</td>
+                            <td>Restituisce gli ID dell'utente reale, effettivo e salvato del processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getsid(pid: int) -> int</td>
+                            <td>Restituisce l'ID di sessione di un processo.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.getuid() -> int</td>
+                            <td>Restituisce l'ID utente reale del processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.initgroups(user: str, gid: int) -> None</td>
+                            <td>Inizializza un elenco di accesso ai gruppi, aggiungendo il gruppo primario di un utente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.isatty(fd: int) -> bool</td>
+                            <td>Restituisce `True` se il file descriptor è collegato a un dispositivo tty.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.kill(pid: int, sig: int) -> None</td>
+                            <td>Invia un segnale a un processo identificato dall'ID `pid`.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.killpg(pgid: int, sig: int) -> None</td>
+                            <td>Invia un segnale a tutti i processi in un gruppo identificato dall'ID `pgid`.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.link(src: str, dst: str) -> None</td>
+                            <td>Crea un collegamento fisico dal file sorgente a quello di destinazione.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.listdir(path: Optional[str] = None) -> List[str]</td>
+                            <td>Restituisce un elenco dei nomi dei file in una directory.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.lockf(fd: int, cmd: int, len: int) -> None</td>
+                            <td>Applica, testa o rimuove un blocco POSIX su un file aperto.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.lseek(fd: int, pos: int, how: int) -> int</td>
+                            <td>Imposta la posizione corrente di lettura/scrittura per il file descriptor.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.lstat(path: str) -> os.stat_result</td>
+                            <td>Restituisce informazioni sul file o file descriptor, senza seguire i collegamenti simbolici.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.major(device: int) -> int</td>
+                            <td>Restituisce il numero di dispositivo principale dal numero di dispositivo grezzo.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.makedev(major: int, minor: int) -> int</td>
+                            <td>Restituisce un numero di dispositivo grezzo dai numeri di dispositivo principale e secondario specificati.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.makedirs(name: str, mode: int = 0o777, exist_ok: bool = False) -> None</td>
+                            <td>Crea directory ricorsivamente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.minor(device: int) -> int</td>
+                            <td>Restituisce il numero di dispositivo secondario dal numero di dispositivo grezzo.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.mkdir(path: str, mode: int = 0o777) -> None</td>
+                            <td>Crea una nuova directory con un determinato modo.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.mkfifo(path: str, mode: int = 0o666) -> None</td>
+                            <td>Crea un FIFO nominato (file pipe) con un determinato modo.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.nice(inc: int) -> int</td>
+                            <td>Aumenta o diminuisce la priorità del processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.open(path: str, flags: int, mode: int = 0o777) -> int</td>
+                            <td>Apre il file specificato e restituisce il file descriptor.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.openpty() -> Tuple[int, int]</td>
+                            <td>Apre una coppia di pseudo-terminali (pty) e restituisce i file descriptor di master e slave.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.pathconf(path: str, name: str) -> int</td>
+                            <td>Restituisce il valore di un limite del sistema per un determinato file o file system.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.pipe() -> Tuple[int, int]</td>
+                            <td>Crea una pipe interprocessuale e restituisce i file descriptor di lettura e scrittura.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.popen(cmd: str, mode: str = 'r', buffering: int = -1) -> IO</td>
+                            <td>Apre un nuovo processo e restituisce un file object per comunicare con esso.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.read(fd: int, n: int) -> bytes</td>
+                            <td>Legge fino a `n` byte dal file descriptor specificato.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.readlink(path: str) -> str</td>
+                            <td>Restituisce il percorso a cui punta un collegamento simbolico.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.remove(path: str) -> None</td>
+                            <td>Elimina il file o collegamento simbolico specificato.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.rename(src: str, dst: str) -> None</td>
+                            <td>Rinomina un file o directory.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.rmdir(path: str) -> None</td>
+                            <td>Rimuove la directory specificata.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.scandir(path: Optional[str] = None) -> Iterator[os.DirEntry]</td>
+                            <td>Restituisce un iteratore sugli oggetti `DirEntry` di una directory.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.set_blocking(fd: int, blocking: bool) -> None</td>
+                            <td>Imposta se un file descriptor è in modalità bloccante o non bloccante.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.setegid(gid: int) -> None</td>
+                            <td>Imposta l'ID di gruppo effettivo del processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.seteuid(uid: int) -> None</td>
+                            <td>Imposta l'ID utente effettivo del processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.setgid(gid: int) -> None</td>
+                            <td>Imposta l'ID di gruppo reale del processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.setgroups(groups: List[int]) -> None</td>
+                            <td>Imposta i gruppi supplementari del processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.setpgid(pid: int, pgid: int) -> None</td>
+                            <td>Imposta l'ID del gruppo di processi di un determinato processo.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.setpriority(which: int, who: int, priority: int) -> None</td>
+                            <td>Imposta la priorità di scheduling di un processo, gruppo di processi o utente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.setsid() -> int</td>
+                            <td>Crea una nuova sessione e un nuovo gruppo di processi, rendendo il processo corrente il leader della sessione.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.setuid(uid: int) -> None</td>
+                            <td>Imposta l'ID utente reale del processo corrente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.spawnl(mode: int, path: str, *args) -> int</td>
+                            <td>Crea un nuovo processo eseguendo il percorso specificato, con l'elenco di argomenti fornito.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.stat(path: str) -> os.stat_result</td>
+                            <td>Restituisce lo stato del file specificato come oggetto `stat_result`.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.sync() -> None</td>
+                            <td>Forza il sistema operativo a scrivere fisicamente su disco tutti i dati della memoria.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.system(command: str) -> int</td>
+                            <td>Esegue il comando di sistema specificato in una shell.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.tcgetpgrp(fd: int) -> int</td>
+                            <td>Restituisce l'ID del gruppo di processi in primo piano del terminale associato al file descriptor.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.tcsetpgrp(fd: int, pgid: int) -> None</td>
+                            <td>Imposta l'ID del gruppo di processi in primo piano del terminale associato al file descriptor.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.times() -> os.times_result</td>
+                            <td>Restituisce le statistiche temporali del processo come oggetto `times_result`.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.truncate(path: str, length: int) -> None</td>
+                            <td>Tronca un file alla lunghezza specificata.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.umask(mask: int) -> int</td>
+                            <td>Imposta la maschera di creazione del file e restituisce il valore precedente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.uname() -> os.uname_result</td>
+                            <td>Restituisce informazioni sul sistema operativo come oggetto `uname_result`.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.unlink(path: str) -> None</td>
+                            <td>Rimuove un file specificato.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.unsetenv(key: str) -> None</td>
+                            <td>Rimuove una variabile d'ambiente.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.urandom(size: int) -> bytes</td>
+                            <td>Restituisce una stringa di byte casuali adatta per essere utilizzata nella generazione di chiavi crittografiche.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.utime(path: str, times: Optional[Tuple[float, float]] = None) -> None</td>
+                            <td>Imposta i tempi di accesso e modifica per il file specificato.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.wait() -> Tuple[int, int]</td>
+                            <td>Attende che un processo figlio termini e restituisce una tupla con il PID e lo stato di uscita.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.waitpid(pid: int, options: int) -> Tuple[int, int]</td>
+                            <td>Attende il completamento di un processo specificato e restituisce una tupla con il PID e lo stato di uscita.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.walk(top: str, topdown: bool = True, onerror: Optional[Callable[[OSError], None]] = None, followlinks: bool = False) -> Iterator[Tuple[str, List[str], List[str]]]</td>
+                            <td>Genera i nomi dei file in una directory ad albero, camminando dalla radice alle foglie.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>os.write(fd: int, data: bytes) -> int</td>
+                            <td>Scrive i dati specificati nel file descriptor.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Objects</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>os.CLD_CONTINUED</td>
+                            <td>Indica che un processo è stato ripreso dopo essere stato fermato.</td>
+                        </tr>
+                        <tr>
+                            <td>os.CLD_DUMPED</td>
+                            <td>Indica che un processo ha generato un core dump.</td>
+                        </tr>
+                        <tr>
+                            <td>os.CLD_EXITED</td>
+                            <td>Indica che un processo è terminato normalmente.</td>
+                        </tr>
+                        <tr>
+                            <td>os.CLD_TRAPPED</td>
+                            <td>Indica che un processo è stato fermato da un segnale.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_CANTCREAT</td>
+                            <td>Codice di uscita che indica che il file di output specificato non può essere creato.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_CONFIG</td>
+                            <td>Codice di uscita che indica che si è verificato un errore di configurazione.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_DATAERR</td>
+                            <td>Codice di uscita che indica che i dati di input erano errati.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_IOERR</td>
+                            <td>Codice di uscita che indica un errore durante l'input/output su un file.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_NOHOST</td>
+                            <td>Codice di uscita che indica che l'host non esisteva.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_NOINPUT</td>
+                            <td>Codice di uscita che indica che il file di input non esisteva o non era leggibile.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_NOPERM</td>
+                            <td>Codice di uscita che indica permessi insufficienti per eseguire l'operazione.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_NOTFOUND</td>
+                            <td>Codice di uscita che indica che l'entrata non è stata trovata.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_NOUSER</td>
+                            <td>Codice di uscita che indica che l'utente non esiste.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_OK</td>
+                            <td>Codice di uscita che indica che non si sono verificati errori.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_OSERR</td>
+                            <td>Codice di uscita che indica che è stato rilevato un errore del sistema operativo.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_OSFILE</td>
+                            <td>Codice di uscita che indica un errore in un file di sistema.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_PROTOCOL</td>
+                            <td>Codice di uscita che indica che lo scambio di protocollo era illegale o non compreso.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_SOFTWARE</td>
+                            <td>Codice di uscita che indica che un errore interno del software si è verificato.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_TEMPFAIL</td>
+                            <td>Codice di uscita che indica che si è verificato un errore temporaneo.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_UNAVAILABLE</td>
+                            <td>Codice di uscita che indica che un servizio richiesto non è disponibile.</td>
+                        </tr>
+                        <tr>
+                            <td>os.EX_USAGE</td>
+                            <td>Codice di uscita che indica che il comando è stato usato in modo errato.</td>
+                        </tr>
+                        <tr>
+                            <td>os.F_OK</td>
+                            <td>Testa l'esistenza del percorso.</td>
+                        </tr>
+                        <tr>
+                            <td>os.R_OK</td>
+                            <td>Testa la leggibilità del percorso.</td>
+                        </tr>
+                        <tr>
+                            <td>os.WCONTINUED</td>
+                            <td>Indica che un processo è stato ripreso.</td>
+                        </tr>
+                        <tr>
+                            <td>os.WEXITED</td>
+                            <td>Indica che un processo è terminato.</td>
+                        </tr>
+                        <tr>
+                            <td>os.WEXITSTATUS(status)</td>
+                            <td>Restituisce il codice di uscita di un processo terminato.</td>
+                        </tr>
+                        <tr>
+                            <td>os.WIFCONTINUED(status)</td>
+                            <td>Restituisce True se il processo è stato ripreso.</td>
+                        </tr>
+                        <tr>
+                            <td>os.WIFEXITED(status)</td>
+                            <td>Restituisce True se il processo è terminato normalmente.</td>
+                        </tr>
+                        <tr>
+                            <td>os.WIFSIGNALED(status)</td>
+                            <td>Restituisce True se il processo è stato terminato da un segnale.</td>
+                        </tr>
+                        <tr>
+                            <td>os.WIFSTOPPED(status)</td>
+                            <td>Restituisce True se il processo è stato fermato.</td>
+                        </tr>
+                        <tr>
+                            <td>os.WNOHANG</td>
+                            <td>Restituisce immediatamente se non ci sono processi figli terminati.</td>
+                        </tr>
+                        <tr>
+                            <td>os.W_OK</td>
+                            <td>Testa la scrivibilità del percorso.</td>
+                        </tr>
+                        <tr>
+                            <td>os.X_OK</td>
+                            <td>Testa l'eseguibilità del percorso.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Classi</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>class os.DirEntry</td>
+                            <td>Rappresenta un'entrata in una directory, fornendo informazioni su file e cartelle in modo efficiente.</td>
+                        </tr>
+                        <tr>
+                            <td>class os.PathLike</td>
+                            <td>Interfaccia per oggetti che possono essere convertiti in un percorso di file, consentendo una maggiore flessibilità nel passaggio di percorsi.</td>
+                        </tr>
+                        <tr>
+                            <td>class os.sched_param(sched_priority)</td>
+                            <td>Classe per rappresentare i parametri di pianificazione, inclusa la priorità di un processo.</td>
+                        </tr>
+                        <tr>
+                            <td>class os.stat_result</td>
+                            <td>Classe per rappresentare il risultato di una chiamata a os.stat(), contenente informazioni sui file come dimensione, data di modifica e permessi.</td>
+                        </tr>
+                        <tr>
+                            <td>class os.terminal_size</td>
+                            <td>Classe per rappresentare le dimensioni del terminale (larghezza e altezza) in colonne e righe.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("datetime", "/library/py/lezione/lez6");
+    </script>
+</html>

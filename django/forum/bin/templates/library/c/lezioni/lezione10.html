@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+            table{
+                width:33%;
+            }
+            table th{
+                margin-left:2%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Puntatori</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+                <p>
+                    E' un tipo di dato che consente di rapprersentare gli indirizzi delle variabili allocate in memoria.<br>
+                    In C il puntatore si crea tramite il costruttore "*":<br>
+                    <div class="shell">
+                        <span class="type">tipo_del_puntatore</span> *nome_puntatore;
+                    </div>
+                    Vediamo insieme cosa vuol dire:<br>
+                    <ul style="margin-left:20px">
+                        <li>
+                            <strong>tipo_del_puntatore</strong>: è il costruttore del tipo puntatore
+                        </li>
+                        <li>
+                            <strong>*</strong>: è il costruttore del tipo puntatore 
+                        </li>
+                        <li>
+                            <strong>nome_puntatore</strong>: è il nome del puntatore
+                        </li>
+                    </ul><br>
+                    Ecco un esempio pratico di come usarlo:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span>
+                        <br><br>
+                        <span class="type">int</span> main(){<br>
+                        <span class="type" style="margin-left:20px">int</span> <br>
+                        <span style="margin-left:40px">a = 18,</span><br>
+                        <span style="margin-left:40px">*ptr = &a;</span><br><br>
+                        <span style="margin-left:20px">printf(<span class="strings">"variabile a: %i, indirizzo di a: %ld\n"</span>, *ptr, ptr);</span><br>
+                        <span style="margin-left:20px" class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+                    In questo esempio, possiamo vedere un puntatore che gli viene assegnato l'indirizzo della variabile a tramite l'operatore &.<br>
+                    Quando usiamo & davanti a una variabile, diciamo che non vogliamo il valore della variabile ma il suo indirizzo,<br>
+                    nel nostro caso quindi, assegnamo al puntatore ptr l'indirizzo di a.<br>
+                    Quando noi proviamo a stampare a schermo l'indirizzo puntato da ptr, ci darà l'indirizzo di a, invece se ci mettiamo davanti al nome del ptr il "*" accederemo al contenuto dell'indirizzo puntato.<br>
+                    <h3>Output del programma</h3>
+                    <div class="shell">
+                        <span class="strings">$ "variabile a: 18, indirizzo puntato: 140725604528204"</span>
+                    </div>
+                    <h3>Puntatore ad array</h3>
+                    I puntatori sono un grande aiuto per la gestione degli array.<br>
+                    Infatti permettono di scorrere con grande libertà gli elementi di un array puntato.<br>
+                    A differenza delle variabili normali, posso assegnare a un puntatore un array senza usare l'operatore "&":<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+
+                            <span class="type">int</span> main(){<br>
+
+                                <span style="margin-left:20px"></span><span class="type">int</span><br>
+                                <span style="margin-left:40px"></span>a[] = {4, 14, 32, 1},<br>
+                                <span style="margin-left:40px"></span>*ptr = a;<br><br>
+
+                                <span style="margin-left:20px"></span>printf(<span class="strings">"valore primo elemento di a: %i, indirizzo del primo elemento di a: %ld\n"</span>, *ptr, ptr);<br>
+                                <span style="margin-left:20px"></span><span class="instruction">return</span> 0;<br>
+                            }
+                    </div>
+                    <h3>Output programma</h3>
+                    <div class="shell strings">
+                        $ valore primo elemento di a: 4, indirizzo del primo elemento di a: 140727937455856
+                    </div>
+                    Per puntare ad un'altro elemento dell'array possiamo semplicemente incrementare il ptr usando gli operatori aritmetici + - * / ecc...<br>
+                    Se volessimo per esempio puntare al secondo elemento dell'array (mentre puntiamo al primo elemento), possiamo semplicemente fare: ptr++<br>
+                    <br>
+                    <h3>Puntatore a funzione</h3>
+                    I puntatori a funzione non sono altro che puntatori che puntano all'indirizzo di una funzione, la loro dichiarazione è la seguente:<br>
+
+                    <strong>tipo_di_ritorno (*nome_ptr) (int param1, int param2, ...);</strong>
+                    <br>
+                    <ul style="margin-left:20px">
+                        <li><strong>tipo_di_ritorno</strong>: non è altro che il tipo di dato restituito dalla funzione che sta puntando</li>
+                        <li><strong>(*nome_ptr)</strong>: nome del puntatore a funzione</li> 
+                        <li><strong>(int param1, int param2, ...)</strong>: sono il numero di parametri richiesti dalla funzione puntata</li>
+                    </ul>
+                    Ecco un pratico esempio:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                        <br>
+                        <span class="type">int</span> sum(<span class="type">int</span> a, <span class="type">int</span> b){<br>
+                            <span style="margin-left:20px;"></span><span class="instruction">return</span> a + b;<br>
+                        }<br>
+                        <br>
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin-left:20px;"></span><span class="type">int</span> (*ptr) (<span class="type">int</span>, <span class="type">int</span>);<br>
+                            
+                            <span style="margin-left:20px;"></span>ptr = sum;<br><br>
+                            
+                            <span style="margin-left:20px;"></span>printf(<span class="strings">"%i\n"</span>, ptr(2, 5));<br>
+                            <span style="margin-left:20px;"></span><span class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+                    Dichiaro quindi un puntatore di nome ptr che dovrà puntare a una funzione che restituisce un intero e che accetta due parametri di tipo intero.<br>
+                    Poi assegno l'indirizzo della funzione sum al ptr. Da questo punto in poi io posso fare riferimento alla funzione usando il ptr, quindi le chiamate posso farle tramite lui.<br>
+                    L'output del programma sarà:<br>
+                    <div class="shell strings">
+                        7
+                    </div>
+                </p>
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 10", "../../c/intro/");
+    </script>
+</html>

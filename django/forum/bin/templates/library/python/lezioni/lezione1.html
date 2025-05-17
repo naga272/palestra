@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        <style>
+            .topbar h2{
+                width:30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Introduzione</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%;">
+                Creiamo il nostro primo programma in Python. <br>
+                Apriamo un editor di testo e scriviamo il seguente codice:<br>
+                <div class="shell">
+                    print(<span class="strings">"Hello World!"</span>)
+                </div>
+                Salviamo il file con estensione <strong>.py</strong> e lo eseguiamo da terminale<br>
+                Su OS <strong>Linux</strong>:
+                <div class="shell">
+                    <div style="color: green; width: 50%">$ python3 nomefile.py</div>
+                </div>
+                oppure su OS <strong>Windows</strong>:
+                <div class="shell">
+                    <div style="color: green; width: 50%">$ python nomefile.py</div>
+                </div>
+                Se tutto è andato a buon fine, dovremmo vedere la scritta <strong>Hello World!</strong> stampata a schermo. <br>
+                Congratulazioni! Hai appena scritto il tuo primo programma in Python!
+                <br></br>
+                <h2>Python Shell</h2>
+                Python Shell è un ambiente interattivo che permette di scrivere codice Python e vederne l'output immediatamente. <br>
+                Per avviare Python Shell, apri il terminale e scrivi <br>
+                Su OS <strong>Linux</strong>:
+                <div class="shell">
+                    <div style="color: green; width: 50%">$ python3</div>
+                </div>
+                oppure su OS <strong>Windows</strong>:
+                <div class="shell">
+                    <div style="color: green; width: 50%">$ python</div>
+                </div>
+                Una volta avviato Python Shell, puoi scrivere il codice Python direttamente nel terminale e premere <strong>Invio</strong> per eseguirlo.
+                <div class="shell">
+                    <div style="color: green; width: 100%">Python 3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)] on win32 <br>
+                        Type "help", "copyright", "credits" or "license" for more information.<br>
+                        >>>print("Hello World!")
+                    </div>
+                </div>
+                Questo codice stamperà <strong>Hello World!</strong> a schermo.
+                <div class="shell">
+                    <div style="color: green; width: 100%">Python 3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)] on win32 <br>
+                        Type "help", "copyright", "credits" or "license" for more information.<br>
+                        >>>print("Hello World!") <br>
+                        Hello World!
+                    </div>
+                </div>
+                Per uscire da Python Shell, scrivi <strong>exit()</strong> e premi <strong>Invio</strong>.
+                
+                <br></br>
+                <h2>Python Syntax</h2>
+                In Python, l'indentazione è molto importante. <br>
+                Mentre in altri linguaggi di programmazione l'indentazione è solo una questione di stile, in Python è obbligatoria. <br>
+                Ad esempio, il seguente codice genererà un errore:
+                <div class="shell">
+                    <div style="width: 100%"><span class="instruction">if</span> 5 > 2:<br>
+                        print(<span class="strings">"Ciao a tutti!"</span>)
+                    </div>
+                </div>
+                Per risolvere il problema, basta indentare la seconda riga:
+                <div class="shell">
+                    <div style="width: 100%"><span class="instruction">if</span> 5 > 2:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="strings">"Ciao a tutti!"</span>)
+                    </div>
+                </div>
+                Ora il codice funzionerà correttamente.
+
+                <br></br>
+                <h2>Commenti</h2>
+                I commenti sono utili per rendere il codice più leggibile. <br>
+                In Python, i commenti iniziano con il simbolo <strong>#</strong> e terminano alla fine della riga. <br>
+                Ad esempio:
+                <div class="shell">
+                    <span class="strings"># Questo è un commento</span> <br>
+                    print(<span class="strings">"Hello World!"</span>)
+                </div>
+                <br>
+			</div>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 1", "../../py/intro");
+    </script>
+</html>

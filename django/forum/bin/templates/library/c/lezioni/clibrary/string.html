@@ -1,0 +1,225 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+        .script {
+            padding: 1%;
+            background-color: black;
+            color: green;
+        }
+        .elenco {
+            margin: 0 auto;
+            text-align: center;
+            width: 80%;
+            border-collapse: collapse;
+            text-align: left; /* Allinea il testo delle celle a sinistra */
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .elenco th, .elenco td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        .elenco thead {
+            background-color: #f2f2f2;
+        }
+        .elenco tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .elenco tbody tr:hover {
+            background-color: #0E2C40;
+            color:#EFBC75;
+        }
+        .elenco th {
+            background-color: #0E2C40;
+            color: white;
+        }
+        .table-container {
+            display: flex;
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .elenco .prototype {
+            width: 50%;
+        }
+        .elenco .descrizione {
+            width: 30%;
+        }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>string</h1>
+            <br><br>
+            <p>
+                fornisce una raccolta di funzioni per la manipolazione delle stringhe e della memoria. <br>
+                Le stringhe in C sono array di caratteri terminati dal carattere nullo ('\0'). <br>
+                Questa libreria è essenziale per operazioni comuni sulle stringhe, come la copia, il confronto, la ricerca, e la concatenazione.
+            </p>
+            <br>
+
+            <h3>Funzioni</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                            <th class="prototype">prototype</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>memcpy</td>
+                            <td>Copia n bytes tra due aree di memoria che non devono sovrapporsi.</td>
+                            <td>void *memcpy(void *dest, const void *src, size_t n);</td>
+                        </tr>
+                        <tr>
+                            <td>memmove</td>
+                            <td>Copia n bytes tra due aree di memoria; a differenza di memcpy le aree di memoria possono sovrapporsi.</td>
+                            <td>void *memmove(void *dest, const void *src, size_t n);</td>
+                        </tr>
+                        <tr>
+                            <td>memchr</td>
+                            <td>Ritorna un puntatore alla prima occorrenza di c in s, o NULL se c non compare tra i primi n caratteri di s.</td>
+                            <td>void *memchr(const void *s, int c, size_t n);</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>memcmp</td>
+                            <td>Confronta i primi n caratteri di s1 con s2.</td>
+                            <td>int memcmp(const void *s1, const void *s2, size_t n);</td>
+                        </tr>
+
+                        <tr>
+                            <td>memset</td>
+                            <td>Colloca c nei primi n caratteri di s.</td>
+                            <td>void *memset(void *s, int c, size_t n);</td>
+                        </tr>
+
+                        <tr>
+                            <td>strcat</td>
+                            <td>Concatena src alla stringa dest.</td>
+                            <td>char *strcat(char *dest, const char *src);</td>
+                        </tr>
+                        <tr>
+                            <td>strncat</td>
+                            <td>Concatena al massimo n caratteri src alla stringa dest.</td>
+                            <td>char *strncat(char *dest, const char *src, size_t n);</td>
+                        </tr>
+                        <tr>
+                            <td>strchr</td>
+                            <td>Restituisce un puntatore alla prima occorrenza di c in s.</td>
+                            <td>char *strchr(const char *s, int c);</td>
+                        </tr>                        
+                        <tr>
+                            <td>strrchr</td>
+                            <td>Restituisce un puntatore all'ultima occorrenza di c in s.</td>
+                            <td>char *strrchr(const char *s, int c);</td>
+                        </tr>
+                        <tr>
+                            <td>strcmp</td>
+                            <td>Confronta la stringa s1 con s2.</td>
+                            <td>int strcmp(const char *s1, const char *s2);	</td>
+                        </tr>                        
+                        <tr>
+                            <td>strncmp</td>
+                            <td>Confronta al massimo n caratteri della stringa s1 con s2.</td>
+                            <td>int strncmp(const char *, const char *, size_t);</td>
+                        </tr>                        
+                        <tr>
+                            <td>strcoll</td>
+                            <td>Confronta due stringhe utilizzando l'ordine lessicografico stabilito dalla localizzazione utilizzata</td>
+                            <td>int strcoll(const char *, const char *);</td>
+                        </tr>                     
+                        <tr>
+                            <td>strcpy</td>
+                            <td>Copia la stringa s2 nella stringa s1, incluso il carattere di terminazione \0.</td>
+                            <td>char *strcpy(char *s1, const char *s2);	</td>
+                        </tr>                     
+                        <tr>
+                            <td>strncpy</td>
+                            <td>Copia al massimo n caratteri della stringa s2 in s1.</td>
+                            <td>char *strncpy(char *s1, const char *s2, size_t n);</td>
+                        </tr>                     
+                        <tr>
+                            <td>strerror</td>
+                            <td>Restituisce un puntatore alla stringa che corrisponde all'errore n.</td>
+                            <td>char *strerror(int n);</td>
+                        </tr>                     
+                        <tr>
+                            <td>strlen</td>
+                            <td>Restituisce la lunghezza della stringa s.</td>
+                            <td>size_t strlen(const char *s);</td>
+                        </tr>                 
+                        <tr>
+                            <td>strspn</td>
+                            <td>Restituisce la lunghezza della prima istanza della stringa s di lunghezza massima composta esattamente dai caratteri definiti della stringa accept</td>
+                            <td>size_t strspn(const char *s, const char *accept);</td>
+                        </tr>                 
+                        <tr>
+                            <td>strcspn</td>
+                            <td>Restituisce la lunghezza della porzione iniziale della stringa s di lunghezza massima composta esattamente da caratteri diversi da quelli della stringa reject</td>
+                            <td>size_t strcspn(const char *s, const char *reject);</td>
+                        </tr>                 
+                        <tr>
+                            <td>strpbrk</td>
+                            <td>Restituisce la prima occorrenza di un carattere presente nella stringa s che sia uguale ad un qualsiasi carattere presente nella stringa accept</td>
+                            <td>char *strpbrk(const char *s, const char *accept);</td>
+                        </tr>
+                        <tr>
+                            <td>strstr</td>
+                            <td>Trova la prima occorrenza della stringa needle all'interno della stringa haystack</td>
+                            <td>char *strstr(const char *haystack, const char *needle);</td>
+                        </tr>                 
+                        <tr>
+                            <td>strtok</td>
+                            <td>Spezza la stringa s in una serie di stringhe chiamate [token] in corrispondenza dei carattere delimitatore delimiters</td>
+                            <td>char *strtok(char *s, const char *delimiters);</td>
+                        </tr>
+                        <tr>
+                            <td>strxfrm</td>
+                            <td>Trasforma la stringa puntata da src secondo la localizzazione in uso e copia i primi n caratteri di src nella stringa dest</td>
+                            <td>size_t strxfrm(char *dest, const char *src, size_t n);</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Macro / Costanti</h3>
+            <div class="table-container">
+                <table class="elenco" s>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NULL</td>
+                            <td>Una macro che espande nella costante puntatore nullo; in altre parole, una costante che rappresenta un valore che è garantito essere l'indirizzo di una posizione non valida nella memoria.</td>
+                        </tr>
+                        <tr>
+                            <td>size_t</td>
+                            <td>Un intero senza segno restituito dell'operatore sizeof. </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("string", "../../c/lezione/lez13");
+    </script>
+</html>

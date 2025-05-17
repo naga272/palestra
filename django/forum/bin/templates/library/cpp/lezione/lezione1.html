@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        <style>
+            .topbar h2{
+                width:30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Introduzione</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%;">
+                Creiamo il nostro primo programma in C++. <br>
+                Apriamo un editor di testo e scriviamo il seguente codice:<br>
+                <div class="shell">
+                    <span class="instruction">#include <iostream></span>
+                    <span class="instruction">using namespace std</span>;
+                    <span class="instruction">int main</span>(){
+                        <span class="instruction">cout</span> &lt;&lt; <span class="strings">"Hello World!"</span>;
+                        <span class="instruction">return</span> 0;
+                    }
+                </div>
+                Salviamo il file con estensione .cpp (es. hello.cpp) e apriamo il terminale.<br>
+                C++ e' un linguaggio compilato, quindi dobbiamo compilare il nostro codice.<br>
+                Per farlo, scriviamo il seguente comando:<br>
+                <div class="shell">
+                    <span class="instruction">g++ hello.cpp -o hello</span>
+                </div>
+                Questo comando compila il nostro codice e crea un file eseguibile chiamato hello.exe<br>
+                Per eseguire il programma, scriviamo il seguente comando:<br>
+                <div class="shell">
+                    <span class="instruction">./hello</span>
+                </div>
+                Il programma stampera' "Hello World!" a schermo.<br>
+                Complimenti! Avete appena scritto il vostro primo programma in C++!<br>
+
+                <h2>Sintassi</h2>
+                Come molti linguaggi di programmazione, C++ ha bisogno del punto e virgola (;) alla fine di ogni istruzione.<br>
+                Inoltre, il codice C++ e' case-sensitive, quindi <span class="instruction">Cout</span> e <span class="instruction">cout</span> sono due cose diverse.<br>
+                Infine, il codice C++ deve essere racchiuso tra parentesi graffe {}.<br>
+                Analizziamo il codice del nostro programma:<br>
+                <div class="shell">
+                    <span class="instruction">#include <iostream></span>
+                    Questa riga include la libreria <span class="instruction">iostream</span>, che ci permette di utilizzare le funzioni di input/output.<br>
+                    <span class="instruction">using namespace std</span>;
+                    Questa riga ci permette di utilizzare le funzioni della libreria <span class="instruction">iostream</span> senza doverle precedere con <span class="instruction">std::</span>.<br>
+                    <span class="instruction">int main</span>(){
+                    Questa riga definisce la funzione principale del programma.<br>
+                    <span class="instruction">cout</span> << <span class="strings">"Hello World!"</span>;
+                    Questa riga stampa la stringa <span class="strings">"Hello World!"</span> a schermo.<br>
+                    <span class="instruction">return</span> 0;
+                    Questa riga termina la funzione <span class="instruction">main</span> e restituisce il valore 0 al sistema operativo.<br>
+                </div>
+                <br>
+                <h3>Commenti</h3>
+                I commenti sono utili per rendere il codice piu' leggibile.<br>
+                In C++, i commenti possono essere di due tipi:<br>
+                <ul>
+                    <li>I commenti a una riga iniziano con <span class="instruction">//</span> e terminano alla fine della riga.</li>
+                    <li>I commenti multi-riga iniziano con <span class="instruction">/*</span> e terminano con <span class="instruction">*/</span>.</li>
+                </ul>
+			</div>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 1", "../../cpp/intro");
+    </script>
+</html>

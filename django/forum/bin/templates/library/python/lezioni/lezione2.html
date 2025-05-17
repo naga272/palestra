@@ -1,0 +1,233 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        <style>
+            .topbar h2{
+                width:30%
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+			<h1>Fondamenti di programmazione</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%;">
+                Sommario:
+				<ul style="margin-left:20px">
+                    <li>Input e output</li>
+                    <li>Decisioni e flusso di controllo</li>
+                    <li>Cicli</li>
+                    <li>Funzioni</li>
+                </ul>
+
+                <h2>Input e output</h2>
+                In Python, le operazioni di input e output sono gestite dalle funzioni <strong>input()</strong> e <strong>print()</strong>.<br>
+
+                La funzione <strong>input()</strong> permette di acquisire dati da tastiera e restituisce una stringa.<br>
+                Esempio:<br>
+                <div class="shell">
+                    nome = input(<span class="strings">"Inserisci il tuo nome: "</span>)
+                </div>
+                Quando eseguiamo il codice, il programma si ferma e attende che l'utente inserisca, in questo caso, il proprio nome.<br>
+                La variabile <strong>nome</strong> conterrà il valore inserito dall'utente.<br>
+
+                La funzione <strong>print()</strong> permette di stampare a schermo il valore di una variabile o una stringa.<br>
+                Esempio:<br>
+                <div class="shell">
+                    print(<span class="strings">"Ciao, "</span> + nome)
+                </div>
+                Questo codice stamperà a schermo il messaggio "Ciao, " seguito dal nome inserito dall'utente.<br>
+
+                Esempio completo:<br>
+                <div class="shell">
+                    nome = input(<span class="strings">"Inserisci il tuo nome: "</span>)<br>
+                    print(<span class="strings">"Ciao, "</span> + nome)
+                </div>
+
+                <h2>Decisioni e flusso di controllo</h2>
+                Le decisioni in Python sono gestite dalle istruzioni <strong>if</strong>, <strong>elif</strong> e <strong>else</strong>, Python non ha l'istruzione <strong>switch</strong>.<br>
+                Esempio:<br>
+                <div class="shell">
+                    <span class="instruction">if</span> condizione:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="strings"># blocco di codice</span><br>
+                    <span class="instruction">elif</span> condizione:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="strings"># blocco di codice</span><br>
+                    <span class="instruction">else</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="strings"># blocco di codice</span>
+                </div>
+                Se la condizione dell'istruzione <strong>if</strong> è vera, viene eseguito il blocco di codice corrispondente.<br>
+                Se la condizione dell'istruzione <strong>elif</strong> è vera, viene eseguito il blocco di codice corrispondente.<br>
+                Se nessuna delle condizioni precedenti è vera, viene eseguito il blocco di codice dell'istruzione <strong>else</strong>.<br>
+
+                Esempio completo:<br>
+                <div class="shell">
+                    x = 10<br>
+                    <span class="instruction">if</span> x &gt; 0:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="strings">"x è positivo"</span>)<br>
+                    <span class="instruction">elif</span> x &lt; 0:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="strings">"x è negativo"</span>)<br>
+                    <span class="instruction">else</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="strings">"x è zero"</span>)
+                </div>
+
+                <h2>Cicli</h2>
+                I cicli in Python sono gestiti dalle istruzioni <strong>for</strong> e <strong>while</strong>.<br>
+
+                Il ciclo <strong>for</strong> viene utilizzato per iterare su una sequenza di elementi.<br>
+
+                Esempio ciclo <strong>for</strong> con <strong>range</strong>:<br>
+                <div class="shell">
+                    <span class="instruction">for</span> i <span class="instruction">in</span> range(5):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print(i)
+                </div>
+                Il ciclo <strong>for</strong> itera su una sequenza di numeri da 0 a 4 e stampa ciascun numero.<br>
+                
+                Esempio ciclo <strong>for</strong> con <strong>list</strong>:<br>
+                <div class="shell">
+                    frutta = [<span class="strings">"mela"</span>, <span class="strings">"banana"</span>, <span class="strings">"pera"</span>]<br>
+                    <span class="instruction">for</span> f <span class="instruction">in</span> frutta:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print(f)
+                </div>
+                In questo caso, il ciclo <strong>for</strong> itera su una lista di frutta e stampa ciascun elemento.<br>
+
+                Sia con <strong>range</strong> che con <strong>list</strong>, il ciclo <strong>for</strong> itera su tutti gli elementi della sequenza,<br>
+                con la differenza che con <strong>range</strong> si itera sugli indici della sequenza, mentre con <strong>list</strong> si itera sugli elementi stessi.<br>
+                
+
+                Il ciclo <strong>while</strong> viene utilizzato per eseguire un blocco di codice finché una condizione è vera.<br>
+                Esempio:<br>
+                <div class="shell">
+                    i = 0<br>
+                    <span class="instruction">while</span> i &lt; 5:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;print(i)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;i += 1
+                </div>
+                Il cliclo itera finché la variabile <strong>i</strong> è minore di 5,<br>
+                ad ogni iterazione viene stampato il valore di <strong>i</strong> e incrementato di 1.<br>
+
+                Esistono delle istruzioni di controllo che permettono di modificare il flusso di un ciclo:<br>
+                <ul>
+                    <li><strong>break</strong>: interrompe il ciclo e esce dal blocco di codice</li>
+                    <li><strong>continue</strong>: salta il resto del blocco di codice e passa alla successiva iterazione</li>
+                </ul>
+
+                Esempi:<br>
+                <div class="shell">
+                    <span class="instruction">for</span> i <span class="instruction">in</span> range(10):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="instruction">if</span> i == 5:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="instruction">break</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print(i)
+                </div>
+                Questo ciclo <strong>for</strong> stampa i numeri da 0 a 4 e si interrompe quando <strong>i</strong> è uguale a 5.<br>
+
+                <div class="shell">
+                    <span class="instruction">for</span> i <span class="instruction">in</span> range(10):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="instruction">if</span> i == 5:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="instruction">continue</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print(i)
+                </div>
+                Questo ciclo <strong>for</strong> stampa tutti i numeri da 0 a 9, tranne il numero 5.<br>
+
+                <h2>Funzioni</h2>
+                Le funzioni sono blocchi di codice che possono essere riutilizzati in diversi punti del programma.<br>
+                Puoi passare parametri a una funzione e restituire un valore o più valori.<br>
+
+                In Python, le funzioni, sono definite con la parola chiave <strong>def</strong>.<br>
+                <div class="shell">
+                    <span class="instruction">def</span> saluta():<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="strings">"Ciao"</span>)
+                </div>
+
+                Per chiamare una funzione, basta scrivere il suo nome seguito da parentesi tonde.<br>
+                <div class="shell">
+                    <span class="instruction">def</span> saluta():<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="strings">"Ciao"</span>)<br><br>
+                    <strong>saluta()</strong>
+                </div>
+
+                Per passare parametri a una funzione, basta inserirli tra le parentesi tonde della definizione.<br>
+                <div class="shell">
+                    <span class="instruction">def</span> saluta(nome):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="strings">"Ciao, "</span> + nome)<br><br>
+                    <strong>saluta(<span class="strings">"Mario"</span>)</strong>
+                </div>
+
+                Puoi passare più parametri separandoli con una virgola.<br>
+                <div class="shell">
+                    <span class="instruction">def</span> saluta(nome, cognome):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="strings">"Ciao, "</span> + nome + <span class="strings">" "</span> + cognome)
+                </div>
+
+                Oppure puoi passare i parametri con il loro nome.<br>
+                <div class="shell">
+                    saluta(cognome=<span class="strings">"Rossi"</span>, nome=<span class="strings">"Mario"</span>)
+                </div>
+                Così facendo, l'ordine dei parametri non è importante.<br>
+                
+                E' anche possibile stabilire un valore di default per i parametri di una funzione.<br>
+                <div class="shell">
+                    <span class="instruction">def</span> saluta(nome=<span class="strings">"Anonimo"</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="strings">"Ciao, "</span> + nome)<br><br>
+                    saluta()
+                </div>
+                Così facendo, se non viene passato alcun parametro alla funzione, verrà utilizzato il valore di default.<br>
+
+                Le funzioni possono restituire un valore con la parola chiave <strong>return</strong>.<br>
+                <div class="shell">
+                    <span class="instruction">def</span> somma(a, b):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="instruction">return</span> a + b<br><br>
+                    risultato = somma(2, 3)
+                </div>
+                La funzione <strong>somma</strong> restituirà la somma dei due parametri passati.<br>
+
+                E' possibile restituire più valori separandoli con una virgola.<br>
+                <div class="shell">
+                    <span class="instruction">def</span> operazioni(a, b):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;somma = a + b<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;differenza = a - b<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="instruction">return</span> somma, differenza<br><br>
+                    
+                    s, d = operazioni(5, 3)
+                </div>
+
+                <h3>Funzioni lambda</h3>
+                Le funzioni lambda sono funzioni anonime definite con la parola chiave <strong>lambda</strong>.<br>
+                Sono utili per definire funzioni semplici in una sola riga.<br>
+                Esempio:<br>
+                <div class="shell">
+                    doppio = <span class="instruction">lambda</span> x: x * 2
+                    print(doppio(5))
+                </div>
+                Questo codice definisce una funzione lambda che raddoppia il valore passato come parametro.<br>
+
+                <h3>Funzioni ricorsive</h3>
+                Le funzioni ricorsive sono funzioni che si richiamano da sole.<br>
+                E' importante definire un caso base per evitare che la funzione vada in loop infinito.<br>
+                Esempio:<br>
+                <div class="shell">
+                    <span class="instruction">def</span> fattoriale(n):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="instruction">if</span> n == 0:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="instruction">return</span> 1<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="instruction">else</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="instruction">return</span> n * fattoriale(n - 1)<br><br>
+                    
+                        print(fattoriale(5))
+                </div>
+                Questo codice calcola il fattoriale di un numero utilizzando una funzione ricorsiva.<br>
+
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 600){
+            name_sections_topbar.push("go back");
+            $(".topbar > h2").css("width", "40%");
+        }
+
+        init_page("capitolo 2", "../../py/intro");
+    </script>
+</html>

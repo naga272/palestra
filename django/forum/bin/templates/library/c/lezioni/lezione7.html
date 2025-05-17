@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <div style="text-align:center">
+                <h1>Array</h1>
+                <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+                    Gli array vengono usati per memorizzare una sequenza ordinata di elementi dello stesso tipo.<br>
+                    Vengono usati specialmente per:<br>
+                    <ul style="margin-left:15px">
+                        <li>
+                            <strong>Organizzare dati:</strong> permettono di organizzare dati simili in un unico blocco di memoria, rendendo più facile l'accesso ai suoi dati.
+                        </li>
+                        <li>
+                            <strong>Accesso efficiente agli elementi:</strong> Gli elementi sono facilmente accessibili tramite un indice numerico.<br>
+                        </li>
+                        <li>
+                            <strong>Iterazione:</strong> facilitano il processo di iterare attraverso una serie di dati, rendendo possibile l'elaborazione di ogni elemento
+                        </li>
+                    </ul>
+                    <br>
+                    Esempio di dichiarazione di un array:<br>
+                    <div class="shell">
+                        <span class="type">int</span> main(){<br>
+                            <span class="type" style="margin-left: 20px;">int</span> array[10];<br>
+                            <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                        }<br>
+                    </div><br>
+                    Analisi della dichiarazione dell'array appena visto:
+                    <ul style="margin-left:15px">
+                        <li>
+                            <span>int</span>: rappresenta il tipo di ogni elemento dell'array
+                        </li>
+                        
+                        <li>
+                            <span>array</span>: è il nome che diamo all'array.
+                        </li>
+                                            
+                        <li>
+                            <span>[10]</span>: Indica la gandezza dell'array, quindi in questo caso stiamo dicendo che l'array conterrà 10 elementi di tipo intero.<br>
+                        </li>
+                    </ul>
+                    <br>
+                    
+                    <h4>Operare sui suoi elementi</h4>
+                    Al momento della dichiarazione, possiamo subito inizializzare i valore come più preferiamo:<br>
+                    
+                    <div class="shell">
+                        <span class="type">int</span> main(){<br>
+                            <span class="type" style="margin-left: 20px;">int</span> array[4] = { 100, 55, 34, 22 };<br>
+                            <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                        }<br>
+                    </div>
+                    <br>
+                    Oppure, se vogliamo inizializzare tutti gli elementi con lo stesso identico valore, possiamo fare anche così:<br>
+                    <div class="shell">
+                        <span class="type">int</span> main(){<br>
+                            <span class="type" style="margin-left: 20px;">int</span> array[10] = { 0 };<br>
+                            <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                        }<br>
+                    </div>
+                    In questo modo, inizializziamo tutti gli elementi di un vettore a 0 ottenendo quindi il seguente risultato:<br>
+                    array[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}<br>
+                    <br>
+                    Ora, per accedere al valore di un solo elemento basta usare un indice:<br>
+                    array[2] = 10;<br>
+                    Stiamo accedendo al terzo elemento dell'array (perchè si parte a contare da 0) e gli assegnamo come valore 10.<br>
+                    Quindi ci ritroveremo col seguente array:<br>
+                    array[10] = {0, 0, 10, 0, 0, 0, 0, 0, 0, 0}<br>
+                    <br>
+                    <h3>Iterare sui suoi elementi</h3>
+                    Tramite un ciclo, è possibile elaborare ogni elemento dell'array come più ci piace.<br>
+                    Proviamo ora a creare un programma che mostra a schermo il valore di tutti gli elementi di un'array<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                        <br>
+                        <span class="type">int</span> main(){<br>
+                        <span class="type" style="margin-left:20px;">int</span> array[] = {10, 13, 14, 15};<br>
+                        <br>
+                        <span class="instruction" style="margin-left:20px;">for</span> (<span class="type">int</span> i = 0; i != 4; i++)<br>
+                        <span style="margin-left:40px;"></span>printf(<span class="strings">"elemento dell'array: %d\n"</span>, array[i]);
+                        <br>}
+                    </div>
+                    Output del programma:
+                    <div class="shell strings">
+                        elemento dell'array: 10<br>
+                        elemento dell'array: 13<br>
+                        elemento dell'array: 14<br>
+                        elemento dell'array: 15
+                    </div>
+                    <br>
+                    <h3>Array bidimensionali</h3>
+                    <div>
+                        In C, c'è la possibilità di creare dei vettori con all'interno altri vettori:<br>
+                        <div class="shell">
+                            <span class="type">int</span> bidimensionale[4][2] = {<br>
+                                <span style="margin-left:20px;"></span>{2, 3},<br>
+                                <span style="margin-left:20px;"></span>{10, 6},<br>
+                                <span style="margin-left:20px;"></span>{0, 14},<br>
+                                <span style="margin-left:20px;"></span>{12, 24}<br>
+                            };
+                        </div>
+                        In questo esempio, abbiamo dichiarato un vettore che contiene 4 vettori con una dimensione di 2 elementi.<br>
+                        Questo tipo di vettori vengono chiamati vettori a 2 dimensioni o bidimensionali.<br>
+                        Per accedere a un suo elemento, possiamo usare la seguente sintassi:<br>
+                        <div class="shell">
+                            <span class="type">int</span> a = bidimensionale[0][1];
+                        </div>
+                        In questo modo stiamo assegnando alla variabile a lo stesso valore del secondo elemento del primo array all'interno dell'array "bidimensionale".<br>
+                        Quindi alla variabile a verrà assegnato il valore 3.<br>
+                        Ovviamente, è possibile ciclare su ogni elemento di un'array bidimensionale.<br>
+                        Ecco un esempio:
+
+
+                        <div class="shell">
+                            <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                            <br>
+                            <span class="type">int</span> bidimensionale[4][2] = {<br>
+                                <span style="margin-left:20px;"></span>{2, 3},<br>
+                                <span style="margin-left:20px;"></span>{10, 6},<br>
+                                <span style="margin-left:20px;"></span>{0, 14},<br>
+                                <span style="margin-left:20px;"></span>{12, 24}<br>
+                            };<br><br>
+
+
+
+                            <span class="type">int</span> main(){<br>
+                            <span class="instruction" style="margin-left:20px;">for</span> (<span class="type">int</span> i = 0; i != 4; i++)<br>
+                            <span class="instruction" style="margin-left:40px;">for</span> (<span class="type">int</span> j = 0; j != 2; j++)<br>
+                            <span style="margin-left:60px;"></span>printf(<span class="strings">"%i"</span>, bidimensionale[i][j]);
+                            <br>}
+                        </div>
+
+
+                    </div>
+                </div>
+                <br>
+            </div>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 7", "../../c/intro/");
+    </script>
+</html>

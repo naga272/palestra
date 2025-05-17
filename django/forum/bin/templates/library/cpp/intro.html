@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css'%}">
+        <style>
+            .script{
+                padding:1%;
+                background-color:black;
+                color:green;
+            }
+            ul li{
+                margin-top:0.5%;
+                margin-left:3.5%;
+            }
+            ul li a{
+                color:blue;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Cpp</h1>
+            <div style="text-align: left; padding:2%;">
+                
+                <h2>Storia e Origini</h2>
+                Il C++ è un linguaggio di programmazione general-purpose sviluppato da Bjarne Stroustrup nei primi anni '80 presso i laboratori Bell di AT&T. <br>
+                La sua prima versione è stata rilasciata nel 1983 come un'estensione del linguaggio C, da cui deriva il suo nome ("C with Classes").<br>
+                Stroustrup ha progettato il C++ per combinare le caratteristiche del C con nuove funzionalità di programmazione orientata agli oggetti, <br>
+                facilitando la gestione di grandi progetti software.
+                
+                <br><br><h2>Caratteristiche principali</h2>
+                <strong>Programmazione Orientata agli Oggetti (OOP):</strong> Il C++ supporta pienamente l'OOP, che consente agli sviluppatori di creare oggetti che rappresentano entità del mondo reale
+                <br><strong>Tipizzazione Statica:</strong> Le variabili devono essere dichiarate con un tipo specifico prima di essere utilizzate.
+                <br><strong>Compilato:</strong> Il codice sorgente scritto in Cpp viene tradotto in codice macchina tramite un compilatore, migliorando <br>le prestazioni rispetto ai linguaggi interpretati.
+                <br><strong>Gestione della Memoria:</strong>  Il C++ fornisce strumenti per la gestione manuale della memoria attraverso l'uso di operatori come new e delete. Questo offre grande controllo e efficienza, ma richiede attenzione per evitare memory leak e altri problemi.
+                <br><strong>Compatibilità con il C:</strong> Il C++ è compatibile con il C, permettendo di utilizzare codice C all'interno di programmi C++ senza modifiche sostanziali.
+                
+                <br><br><h2>Utilizzi e applicazioni</h2>
+                <strong>Sistemi Operativi:</strong>  come Windows e parti di Unix/Linux, sono scritti in C++ a causa della necessità di efficienza e controllo a basso livello.
+                <br><strong>Software di Sistema:</strong> Questo include compilatori, interpreti e altri strumenti di sviluppo che richiedono un controllo preciso delle risorse di sistema.
+                <br><strong>Applicazioni Desktop:</strong> Numerosi software desktop, come Adobe Photoshop e Microsoft Office, sono scritti in C++ per sfruttare le sue prestazioni elevate.
+                <br><strong>Videogiochi:</strong> Le industrie dei videogiochi utilizzano ampiamente il C++ per sviluppare giochi complessi e ad alte prestazioni. Molti motori di gioco, come Unreal Engine, sono scritti in questo linguaggio.
+                <br><strong>Applicazioni Scientifiche e di Ingegneria:</strong> Le simulazioni scientifiche, i calcoli numerici intensivi e il software di ingegneria spesso utilizzano il C++ per la sua capacità di eseguire calcoli complessi rapidamente.
+                <br><strong>Sviluppo Embedded:</strong> Il C++ è ampiamente utilizzato nello sviluppo di software per dispositivi embedded, dove le risorse di sistema sono limitate e l'efficienza è cruciale.
+                <br><strong>Software di Rete:</strong> Molti protocolli di rete e server di alto livello sono implementati in C++ per garantire efficienza e robustezza.
+                
+                <br><br><h2>Vantaggi</h2>
+                <strong>Prestazioni:</strong> Essendo compilato, C offre prestazioni eccellenti.
+                <br><strong>Flessibilità:</strong> Il C++ permette sia la programmazione di alto livello (astrazione) che quella di basso livello (manipolazione diretta della memoria). <br>
+                Questo lo rende versatile e adatto a una vasta gamma di applicazioni.
+                <br><strong>Portabilità:</strong> Il codice C è altamente portabile tra diverse piattaforme hardware.
+                
+                <br><br><h2>Svantaggi</h2>
+                <strong>Complessità:</strong> La gestione manuale della memoria e l'assenza di funzionalità di alto livello possono rendere Cpp complesso e incline agli errori.
+                <br><strong>Tempo di Compilazione:</strong> Il processo di compilazione del C++ può essere lento, specialmente per grandi progetti. Inoltre, l'inclusione di molti header può aumentare significativamente i tempi di compilazione.
+                <br><strong>Compatibilità tra Versioni:</strong> Le nuove versioni del C++ introducono spesso nuove funzionalità e miglioramenti, ma possono anche creare problemi di compatibilità con il codice scritto in versioni precedenti.
+            </div><br><br>
+            <h1>Installazione</h1><br>
+            <div style="text-align: left; padding:2%;">
+                Su OS <strong>Linux</strong> è possibile installare il compilatore gcc scrivendo da linea di comando il seguente comando:<br>
+                <div class="script">
+                    <div style="color:green; width:50%">$ sudo apt install gcc</div> 
+                </div>
+            </div>
+            <div style="text-align: left; padding:2%;">
+                Su OS <strong>Windows</strong> è possibile installare il compilatore tramite <a style="color:blue" href="https://gcc.gnu.org/">sito ufficiale</a> sezione Download (situata a destra) > binari<br>
+                oppure scaricare il programma dal seguente link:
+                <a href="https://sourceforge.net/projects/mingw/" style="color:blue">https://sourceforge.net/projects/mingw/</a>
+            </div>
+            <h2>Capitoli</h2>
+            <div>
+
+                Coming soon...
+                <!--
+                <ul style="text-align: left;">
+                    <li><a href="../lezione/lez1">Capitolo 1 -&gt; First program: Hello World!</a></li>
+                    <li><a href="../lezione/lez2">Capitolo 2 -&gt; Output</a></li>
+                    <li><a href="../lezione/lez3">Capitolo 3 -&gt; Variabili</a></li>
+                    <li><a href="../lezione/lez4">Capitolo 4 -&gt; Input</a></li>
+                    <li><a href="../lezione/lez5">Capitolo 5 -&gt; Operatori</a></li>
+                </ul>
+                -->
+            </div>
+            <br>
+            <br><br><br>
+        </main>
+    </body>
+    <script>init_page("C++");</script>
+</html>

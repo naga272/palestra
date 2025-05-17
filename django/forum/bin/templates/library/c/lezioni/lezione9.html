@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Vettori di caratteri</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+                <p>
+                    I vettori di caratteri, non sono altro che una sequenza di caratteri inseriti in sequenza.<br>
+                    La caratteristica fondamentale di un vettore è che hanno una dimensione statica, cioè che non può cambiare durante il programma. <br>
+                    Esiste la possibilità comunque di inizializzare un vettore senza specificarne le dimensioni, il compilatore lo capirà in automatico quando conterà il numero di elementi presenti:<br> 
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                        <span class="type">int</span> main(){<br>
+                        <span style="margin-left:20px" class="type">char</span> vettore[] = <span class="strings">"ciao, come stai"</span>;<br>    
+                        <span style="margin-left:20px">printf(<span class="strings">"%s"</span>, vettore);</span><br>
+                        <span class="instruction" style="margin-left:20px">return</span> 0;
+                        <br>}
+                    </div>
+                    Anche se non glie lo abbiamo detto, il vettore che abbiamo dichiarato è di grandezza 15 (caratteri) + 1(segna la fine stringa).<br>
+                    Infatti, tutti i vettori di caratteri che usiamo hanno sempre un carattere terminatore. <br>
+                    In C viene rappresentato con '\0', in python con ",0" e così via...
+                    <br>
+                    <h3>Output del programma</h3>
+                    <div class="shell strings">
+                        ciao, come stai
+                    </div>
+                    <br>
+                    Quindi bisogna prestare attenzione alla grandezza che diamo ai vettori, perchè dobbiamo tenere conto anche del carattere di fine vettore<br>
+                    Se si prova a sovrascrivere, durante l'esecuzione il programma potrebbe dare errori o generare imprevisti, come i segmentation fault.<br>
+                    Possiamo anche semplicemente dichiarare un vettore con più spazio rispetto a quanti caratteri stiamo effettivamente usando:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                        <span class="type">int</span> main(){<br>
+                        <span style="margin-left:20px" class="type">char</span> vettore[200] = <span class="strings">"ciao, come stai"</span>;<br>    
+                        <span style="margin-left:20px">printf(<span class="strings">"%s"</span>, vettore);</span><br>
+                        <span class="instruction" style="margin-left:20px">return</span> 0;
+                        <br>}
+                    </div>
+                    Il nostro nuovo array può tenere al suo interno fino a 199 caratteri, anche se effettivamente ne stiamo usando molti di meno.
+                    <br><br>
+                    <h3>Output del programma</h3>
+                    <div class="shell strings">
+                        ciao, come stai
+                    </div><br>
+                </p>
+                <p>
+                    <h3>Accedere agli elementi</h3>
+                    Per accedere a un singolo carattere del vettore possiamo usare gli indici.<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                        <span class="type">int</span> main(){<br>
+                        <span style="margin-left:20px" class="type">char</span> vettore[] = <span class="strings">"ciao, come stai"</span>;<br>    
+                        <span style="margin-left:20px">printf(<span class="strings">"singolo carattere: %c\n"</span>, vettore[1]);</span><br>
+                        <span class="instruction" style="margin-left:20px">return</span> 0;
+                        <br>}
+                    </div>
+                    In questo modo stiamo dicendo che vogliamo accedere al secondo elemento del nostro vettore di caratteri.<br> 
+                    Da notare che nella printf viene usato %c al posto di %s, questo perchè %s si usa per stampare tutto il vettore di caratteri,<br>
+                    mentre %c si usa solo per il singolo di carattere.<br>
+                </p>
+                <p><br>
+                    <h3>Operare sui suoi elementi</h3>
+                    Per assegnare nuovi valori agli elementi possiamo farlo assegnando direttamente all'elemento il nuovo carattere:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                        <span class="type">int</span> main(){<br>
+                        <span style="margin-left:20px" class="type">char</span> vettore[] = <span class="strings">"ciao, come stai"</span>;<br>
+                        <span style="margin-left:20px"></span>vettore[0] = <span class="strings">'s'</span>;<br>    
+                        <span style="margin-left:20px">printf(<span class="strings">"%s\n"</span>, vettore);</span><br>
+                        <span class="instruction" style="margin-left:20px">return</span> 0;
+                        <br>}
+                    </div>
+                    <br><br>
+                    <h3>Output del programma</h3>
+                    <div class="shell strings">
+                        siao, come stai
+                    </div><br>
+
+                    E' possibile quindi lavorare su ogni singolo carattere del vettore tramite i cicli:
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                        <span class="type">int</span> main(){<br>
+                        <span style="margin-left:20px" class="type">char</span> vettore[] = <span class="strings">"ciao, come stai"</span>;<br>
+                        <span style="margin-left:20px">printf(<span class="strings">"vettore modificato: %s\n"</span>, vettore);</span><br><br>
+                        <span class="instruction" style="margin-left:20px">for</span>(<span class="type">size_t</span> i = 0; vettore[i] != <span class="strings">'\0'</span>; i++)<br>
+                        <span style="margin-left:40px"></span>vettore[i] = <span class="strings">'s'</span>;<br><br>
+                        <span style="margin-left:20px">printf(<span class="strings">"vettore modificato: %s\n"</span>, vettore);</span><br>
+                        <span class="instruction" style="margin-left:20px">return</span> 0;
+                        <br>}
+                    </div>
+                    <br>
+                    <h3>Output del programma</h3>
+                    <div class="shell strings">
+                        vettore modificato: ciao, come stai<br>
+                        vettore modificato: sssssssssssssss 
+                    </div><br>
+                </p>
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 9", "../../c/intro/");
+    </script>
+</html>

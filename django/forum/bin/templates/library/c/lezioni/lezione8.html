@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Standard Input & Output</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+                Per standard input nella programmazione, ci si riferisce alla lettura di dati da fonti esterne, come per esempio la tastiera, file e molto altro.<br>
+                In C, le librerie standard predispongono di mezzi (già costruiti da altre persone) per poter leggere del testo in diversi modi:<br>
+                <br>
+                <h3>scanf</h3>
+                E' una funzione che si trova all'interno della libreria stdio.h e che consente di prendere una sola parola in ingresso (appena incontra lo spazio tronca la frase), interi, float, double ecc...<br>
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                    <span class="type">int</span> main(){<br>
+                    <span style="margin-left:20px"><span class="type">char</span> vettore[20];</span> <span class="strings">// accetta un massimo di 20 caratteri il vettore</span><br>
+                    <span style="margin-left:20px"><span class="type">int</span> a;</span> <span class="strings"></span><br>
+                    <span style="margin-left:20px">scanf(<span class="strings">"%i"</span>, &a);</span><span class="strings"> // per tutti i tipi la scanf vuole l'indirizzo di memoria, non il contenuto</span><br>
+                    <span style="margin-left:20px">scanf(<span class="strings">"%s"</span>, vettore);</span><span class="strings"> // si devono passare così, gli passiamo l'indirizzo della prima cella del vettore</span><br>
+                    <span style="margin-left:20px" class="instruction">return</span> 0;<br>
+                    }
+                </div>
+                <br>
+                <h3>gets (obsoleto)</h3>
+                Funzione che ti consente di prendere del testo in ingresso e inserirlo all'interno di un vettore.<br>
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                    <span class="type">int</span> main(){<br>
+                    <span style="margin-left:20px"><span class="type">char</span> vettore[20];</span> <br>
+                    <span style="margin-left:20px">gets(vettore);</span> <span class="strings">// accetta n caratteri e li inserisce nel vettore</span><br>
+                    <span style="margin-left:20px" class="instruction">return</span> 0;<br>
+                    }
+                </div>
+                <strong>
+                    Ci tengo a precisare che questa funzione è molto rischiosa, perchè potrebbero avvenire dei problemi durante l'esecuzione del codice come segmentation-fault. <br>
+                    Questo perchè non si ha controllo di quanto testo viene inserito all'interno del vettore (al contrario di fgets).
+                </strong><br>
+                <br>
+                <h3>fgets</h3>
+                Funzione che ti consente di leggere del testo in ingresso sia da file che da tastiera e memorizzarla all'interno di un vettore di caratteri.<br>
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                    <span class="type">int</span> main(){<br>
+                    <span style="margin-left:20px"><span class="type">char</span> vettore[20];</span><br>
+                    <span style="margin-left:20px">fgets(vettore, 20, stdin);</span> <span class="strings">// memorizza nel vettore i primi 19 caratteri scritti dall'utente</span><br>
+                    <span style="margin-left:20px" class="instruction">return</span> 0;<br>
+                    }
+                </div>
+                Il primo parametro che passiamo alla funzione fgets è il nome del vettore, il secondo invece indica quanti caratteri vogliamo prendere in input<br>
+                e il terzo indica che li voglio prendere da tastiera (stdin - stadard input), dobbiamo indicarglielo perchè ci consente appunto anche di prendere da file (lo vedremo anche più avanti)<br>
+                <br>
+                <h3>printf</h3>
+                Per standard output si intende la visualizzazione a chermo di un dato<br> 
+                Come abbiamo già visto precedentemente, questa funzione ci consente di stampare a schermo una stringa formattata.<br>
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                    <span class="type">int</span> main(){<br>
+                    <span style="margin-left:20px">printf(<span class="strings">"Questa è una stringa\n"</span>);</span><br>
+                    <span style="margin-left:20px">printf(<span class="strings">"stampa numeri interi %i\n"</span>, 15);</span><br>
+                    <span style="margin-left:20px">printf(<span class="strings">"stampa caratteri: %c\n"</span>, <span class="strings">'c'</span>); </span><br>
+                    <span style="margin-left:20px">printf(<span class="strings">"stampa numeri float: %.2\n"</span>, 2.786);</span><br>
+                    <span style="margin-left:20px">printf(<span class="strings">"stampa interi lunghi: %ld\n"</span>, 4);</span><br>
+                    <span style="margin-left:20px" class="instruction">return</span> 0;<br>
+                    }
+                </div><br>
+
+                <h3>puts</h3>
+                Stampa una stringa seguita da un newline.
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                    <span class="type">int</span> main(){<br>
+                    <span style="margin-left:20px">puts(<span class="strings">"Questa è una stringa\n"</span>);</span><br>
+                    <span style="margin-left:20px" class="instruction">return</span> 0;<br>
+                    }
+                </div>
+                <br>
+                <h3>putchar</h3> 
+                Stampa un singolo carattere.<br>
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                    <span class="type">int</span> main(){<br>
+                    <span style="margin-left:20px">putchar(<span class="strings">'c'</span>);</span><br>
+                    <span style="margin-left:20px" class="instruction">return</span> 0;<br>
+                    }
+                </div>
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 8", "../../c/intro/");
+    </script>
+</html>

@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css'%}" />
+        <style>
+        .script {
+            padding: 1%;
+            background-color: black;
+            color: green;
+        }
+        ul li {
+            margin-top: 0.5%;
+            margin-left: 3.5%;
+        }
+        ul li a {
+            color: blue;
+        }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%">
+            <h1>Python</h1>
+            <div style="text-align:left; padding:2%;">
+                <h2>Storia e Origini</h2>
+                Python è stato creato da <a href='https://it.wikipedia.org/wiki/Guido_van_Rossum' style='color:blue'>Guido van Rossum</a> e il suo sviluppo è iniziato alla fine degli anni '80. <br>La prima versione ufficiale, Python 1.0, è stata rilasciata nel 1991. 
+                <br>Il nome "Python" deriva dalla troupe comica britannica "Monty Python", di cui van Rossum era un grande fan.
+            
+                <br><br><h2>Caratteristiche principali</h2>
+                <strong>Leggibilità del codice:</strong> Python enfatizza una sintassi chiara e leggibile. 
+                <br>È spesso utilizzato come linguaggio di insegnamento grazie alla sua semplicità.
+                <br><strong>Tipizzazione Dinamica:</strong> Le variabili non richiedono una dichiarazione esplicita del tipo,<br> poiché il tipo viene determinato a runtime.
+                <br><strong>Interprete</strong>: è un linguaggio interpretato, il che significa che il codice viene eseguito linea per linea, facilitando il debug.
+                <br><strong>Multiparadigma</strong>: Supporta programmazione procedurale, orientata agli oggetti e funzionale.
+                
+                <br><br><h2>Utilizzi e applicazioni</h2>
+                <strong>Sviluppo Web:</strong>Con framework come Django e Flask.
+                <br><strong>Data Science e Machine Learning:</strong>Utilizzando librerie come Pandas, NumPy, Scikit-Learn, TensorFlow e PyTorch.
+                <br><strong>Automazione e Script:</strong>Per automazione di compiti ripetitivi e scripting.
+                <br><strong>Applicazioni Desktop:</strong>Con librerie come Tkinter, PyQt e Kivy.
+                <br><strong>Elaborazione del Testo e Web Scraping:</strong>Utilizzando librerie come BeautifulSoup e Scrapy.
+                <br><strong>Giochi:</strong>Viene usato anche per la creazione di videogiochi tramite l'uso di librerie come Pygame.
+
+                <br><br><h2>Comunità</h2>
+                Python ha una delle comunità di sviluppo più grandi e attive. Ciò si traduce in:
+                <br><strong>Documentazione Abbondante:</strong>Guida ufficiale, tutorial, e numerosi libri.
+                <br><strong>Librerie e Framework:</strong>Un vasto repository di librerie open-source disponibili tramite il Python Package Index (PyPI)
+
+                <br><br><h2>Svantaggi</h2>
+                <strong>Prestazioni:</strong>Essendo interpretato, Python può essere più lento rispetto ai linguaggi compilati come C o Java
+                <br><strong>Consumo di Memoria:</strong>Può essere più pesante in termini di utilizzo della memoria.
+            </div>
+
+            <h1>Installazione</h1>
+            <div style="text-align: left; padding: 2%">
+                <p> Molti PC e sistemi operativi hanno già installato Python. <br>
+                Per verificarlo, aprire il terminale e scrivere il comando <br>
+                <div class="script">
+                    <div style="color: green; width: 50%">$ python3 --version</div>
+                </div>
+                Se il comando restituisce la versione di Python installata, allora è già presente sul sistema. <br>
+                Se non è installato, è possibile scaricarlo.
+                </p>
+            </div>
+            <div style="text-align: left; padding: 2%">
+                Su OS <strong>Linux</strong> è possibile installare l'interprete
+                'python' scrivendo da CLI il seguente comando:<br />
+                <div class="script">
+                <div style="color: green; width: 50%">$ sudo apt install python3</div>
+                </div>
+            </div>
+            <div style="text-align: left; padding: 2%">
+                Su OS <strong>Windows</strong> è possibile installare l'interprete
+                tramite il seguente link:
+                <a style="color: blue" href="https://www.python.org/downloads/">
+                https://www.python.org/downloads/
+                </a>
+            </div>
+            <h2>Dispensa</h2>
+            <ul style="text-align: left">
+                <li><a href="../lezione/lez1">Capitolo 1 -&gt; Introduzione</a></li>
+                <li><a href="../lezione/lez2">Capitolo 2 -&gt; Fondamenti di programmazione</a></li>
+                <li><a href="../lezione/lez3">Capitolo 3 -&gt; Strutture dati</a></li>
+                <li><a href="../lezione/lez4">Capitolo 4 -&gt; Programmazione orientata agli oggetti</a></li>
+                <li><a href="../lezione/lez5">Capitolo 5 -&gt; Programmazione avanzata</a></li>
+                <li><a href="../lezione/lez6">Capitolo 6 -&gt; Librerie e strumenti</a></li>
+                <li><a href="../lezione/lez7">Capitolo 7 -&gt; Applicazioni di Python</a></li>
+            </ul><br><br><br><br><br>
+        </main>
+    </body>
+    <script>
+        init_page("Python");
+    </script>
+</html>

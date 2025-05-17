@@ -1,0 +1,292 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>costrutti</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+                <p>
+                    <h3>Costrutti selettivi</h3>
+                    I costrutti selettivi servono per eseguire del codice solo se all'interno del programma vengono rispettate determinate condizioni.<br>
+                    In C, basta usare la parola speciale "if" ed "else" nel seguente modo:<br>
+
+                    <div class="shell">
+                        <span class="type">int</span> main(){<br>
+                            <span class="instruction" style="margin-left: 20px;">if</span>(condizione){<br>
+                            <span style="margin-left: 40px;"><span class="strings">// esegui questo codice</span></span><br>
+                            <span style="margin-left: 20px;">}<span class="instruction">else</span>{</span><br>
+                            <span style="margin-left: 40px;"> <span class="strings">// fai altro</span></span><br>
+                            <span style="margin-left: 20px;">}</span><br>
+                            <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                        }<br>
+                    </div>
+                    
+                    Se la condizione risulta vera (cioè il risultato è diverso da 0), allora verrà eseguito il codice all'interno dell'if, altrimenti eseguirà il codice all'interno dall'else.<br>
+                    Programma pratico:
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                        <span class="type">int</span> main(){<br>
+                            <span class="type" style="margin-left: 20px;">int</span> a;<br>
+                            <span class="instruction" style="margin-left: 20px;">if</span>(4 > 2){<br>
+                            <span style="margin-left: 40px;">a = 4;</span><br>
+                            <span style="margin-left: 20px;">}<span class="instruction">else</span>{</span><br>
+                            <span style="margin-left: 40px;">a = 8;</span><br>
+                            <span style="margin-left: 20px;">}</span><br>
+                            <span style="margin-left: 20px; color:#fff">printf(<span class="strings">"%d"</span>, a);</span><br>
+                            <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                        }<br>
+                    </div><br>
+                    <h4>Output del programma</h4>
+                    <div class="shell" style="color:green">
+                        $ valore di a: 4
+                    </div><br>
+ 
+                    <h3>Analisi del programma sorgente.c</h3>
+                    Nel programma dichiariamo una variabile di tipo intero chiamata a. <br>
+                    Dopodichè usiamo il costrutto condizionale, che determinerà il valore di a in base al risultato della condizione. <br>
+                    Se la condizione risulta vera allora la variabile avrà come valore 4, altrimenti avrà come valore 8.<br>
+                    E' possibile estendere le possibilità di condizioni, usando parola chiave "else if":<br>
+                    
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                        <span class="type">int</span> main(){<br>
+                            <span class="type" style="margin-left: 20px;">int</span> a;<br>
+                            <span class="instruction" style="margin-left: 20px;">if</span>(4 == 2){<br>
+                            <span style="margin-left: 40px;">a = 4;</span><br>
+                            <span style="margin-left: 20px;">}<span class="instruction">else if</span>(10 &gt; 3){</span><br>
+                            <span style="margin-left: 40px;">a = 8;</span><br>
+                            <span style="margin-left: 20px;">}</span><span class="instruction">else</span>{<br>
+                            <span style="margin-left: 40px;">a = 0;</span><br>  
+                            <span style="margin-left: 20px;">}</span><br>
+                            <span style="margin-left: 20px; color:#fff">printf(<span class="strings">"valore di a: %d"</span>, a);</span><br>
+                            <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                        }<br>
+                    </div>
+
+                    In questo programma, se la condizione del primo if non è vera, passerà alla condizione dell'else if che se anche questa non è verà, andrà a eseguire l'else.<br> 
+                    Nel nostro caso, l'else if è vera perchè la sua condizione restituisce il valore 1 (al contrario della condizione dell'if), quindi l'output sarà:
+                    <br>
+                    <div class="shell" style="color:green">
+                        $ valore di a: 8
+                    </div>
+                    <br>
+                    <h3>metodi alternativi per scrivere condizioni</h3>
+                    Il linguaggio C ci consente di strutturare in modi diversi le nostre condizioni.<br>
+                    Come abbiamo visto prima, affianco all'if era presente la condizione e le graffe che racchiudevano tutto il codice che si sarebbe eseguito solo se la condizione venisse soddisfatta.<br>
+                    Esistono altri modi per scrivere questo, guardiamone alcuni:<br>
+
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                        <span class="type">int</span> main(){<br>
+                            <span class="type" style="margin-left: 20px;">int</span> a;<br>
+                            <span class="instruction" style="margin-left: 20px;">if</span>(4 == 2)<br>
+                            <span style="margin-left: 40px;">a = 4;</span><br>
+                            <span style="margin-left: 20px;"><span class="instruction">else if</span>(10 &gt; 3)</span><br>
+                            <span style="margin-left: 40px;">a = 8;</span><br>
+                            <span style="margin-left: 20px;"></span><span class="instruction">else</span><br>
+                            <span style="margin-left: 40px;">a = 0;</span><br>  
+                            <span style="margin-left: 20px; color:#fff">printf(<span class="strings">"valore di a: %d"</span>, a);</span><br>
+                            <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                        }<br>
+                    </div>
+                    E' lo stesso codice di prima, con l'unica differenza che non ci sono le graffe. <br>
+                    Quando l'if, l'else e l'else if contengono una sola riga di codice, è possibili usare la sintassi sopra citata.<br>
+                    Un'altro metodo per scrivere una condizione è la seguente:
+
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                        <span class="type">int</span> main(){<br>
+
+                            <span class="type" style="margin-left: 20px;">int</span> a = (10 > 3)? 4 : 5;<br>
+
+                            <span style="margin-left: 20px; color:#fff">printf(<span class="strings">"valore di a: %d"</span>, a);</span><br>
+                            <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                        }<br>
+                    </div>
+                    In questo programma assegnamo un valore alla variabile "a" a seconda del risultato della condizione.<br>
+                    "E' 10 maggiore di 3? se sì, assegno alla variabile a il numero 4, altrimenti assegno il 5".<br>
+                    ricapitolando, la sintassi per usare questa condizione è:<br>
+                    <strong>(condizione)? espressione1 : espressione2;</strong><br>
+                    E anche possibile introdurre questo tipo di if all'interno delle funzioni:
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin-left: 20px; color:#fff">printf(<span class="strings">"valore: %d"</span>, (10 > 3)? 4 : 5);</span><br>
+                            <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                        }<br>
+                    </div><br>
+                    <h3>Costrutto switch case</h3>
+                    <p>
+                        Lo switch è una struttura di controllo che permette di selezionare una delle diverse possibili esecuzioni del codice in base al valore di una variabile.<br>
+                        E' utile per confrontare molte condizioni e per rendere il codice molto più leggibile e elegante rispetto a una serie di else if.<br>
+                        <div class="shell">
+                            <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                            <span class="type">int</span> main(){<br>
+                                <span style="margin-left: 20px;" class="type">int</span> a = 5;<br>
+                                <span style="margin-left: 20px;" class="instruction">switch</span>(a){<br>
+                                <span style="margin-left: 40px;" class="instruction">case</span> 1:<br>
+                                <span style="margin-left: 60px;">printf(<span class="strings">"la variabile a vale 1\n"</span>)</span>;<br>
+                                <span style="margin-left: 60px;" class="instruction">break</span>;<br>
+
+                                <span style="margin-left: 40px;" class="instruction">case</span> 10:<br>
+                                <span style="margin-left: 60px;">printf(<span class="strings">"la variabile a vale 10\n"</span>)</span>;<br>
+                                <span style="margin-left: 60px;" class="instruction">break</span>;<br>
+
+                                <span style="margin-left: 40px;" class="instruction">case</span> 5:<br>
+                                <span style="margin-left: 60px;">printf(<span class="strings">"la variabile a vale 5\n"</span>)</span>;<br>
+                                <span style="margin-left: 60px;" class="instruction">break</span>;<br>
+
+                                <span style="margin-left: 40px;" class="instruction">default</span>:<br>
+                                <span style="margin-left: 60px;">printf(<span class="strings">"la variabile a ha un valore diverso rispetto ai casi descritti\n"</span>)</span>;<br>
+                                <span style="margin-left: 60px;" class="instruction">break</span>;<br>
+
+                                <span style="margin-left: 20px;">}</span><br>
+                                <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                            }<br>
+                        </div>
+                        In questo programma, vediamo l'uso dello switch, in pratica in base al valore della variabile a, eseguirà un determinato flusso di codice, che nel nostro caso, eseguirà il flusso all'interno di "case 5" perchè la nostra variabile a ha come valore 5.<br>
+                        L'istruzione break consente di forzare l'interruzione dell'esecuzione dello switch, in modo tale che non vada a eseguire altre condizioni.<br>
+                        Se il valore di a non corrisponde a nessuno dei casi specificati, verrà eseguito il blocco default, che stampa "la variabile a ha un valore diverso rispetto ai casi descritti". <br>
+                        Anche qui si usa break per interrompere l'esecuzione dello switch.
+
+                        <h3>Output</h3>
+                        <div class="shell strings">
+                            la variabile a vale 5
+                        </div>
+                    </p>
+                    <br>
+                    <h3>Costrutto iteratore while</h3>
+                    <p>
+                        In un qualunque linguaggio di programmazione <a href="https://it.wikipedia.org/wiki/Turing_equivalenza">Turing completo</a>, <strong>è presente</strong> almeno un ciclo while. <br>
+                        I cicli servono per ripetere un set di istruzioni fintanto che una condizione non viene soddisfatta.<br>
+                        Esempio:<br>
+                        <div class="shell">
+                            <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                            <span class="type">int</span> main(){<br>
+                                <span style="margin-left: 20px;" class="type">int</span> a = 5;<br>
+                                <span style="margin-left: 20px;" class="instruction">while</span>(a &lt; 10){<br>
+                                <span style="margin-left: 40px; color:#fff">printf(<span class="strings">"Hello World\n"</span>);<br>
+                                <span style="margin-left: 20px;">}</span><br>
+                                <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                            }<br>
+                        </div>
+                    </p><br>
+                    In questo esempio, viene mostrato un programma dove viene usato un ciclo while. <br>
+                    Fin tanto che la variabile "a" è minore di 10, stampa a schermo la scritta "Hello World", altrimenti vai avanti col programma.<br>
+                    Come avrete notato, questo programma non terminerà mai, questo perchè la variabile "a" non cambia mai il suo valore, rimane sempre minore di 10. <br>
+                    Quindi come possiamo fare?<br>
+                    Ci basta semplicemente cambiare il valore di "a" all'interno del ciclo:
+                    <br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin-left: 20px;" class="type">int</span> a = 5;<br>
+                            <span style="margin-left: 20px;" class="instruction">while</span>(a &lt; 10){<br>
+                            <span style="margin-left: 40px; color:#fff">printf(<span class="strings">"Hello World\n"</span>);<br>
+                            <span style="margin-left: 40px; color:#fff">a++;<br>
+                            <span style="margin-left: 20px;">}</span><br>
+                            <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                        }<br>
+                    </div>
+                    Seguiamo la logica del programma passo passo:<br>
+                    dichiariamo una variabile intera chiamata a e gli assegnamo il valore 5.<br>
+                    dopodichè, abbiamo il while con la sua condizione, "è il valore di a minore di 10?" sì perchè ha valore 5, quindi stampiamo a schermo la scritta "Hello World" e incrementiamo di 1 la variabile a.<br>
+                    Ora il programma ritorna alla condizione, è il valore di a minore di 10? sì, perchè adesso la variabile a ha come valore 6 e quindi ristampa a schermo "Hello World".<br>
+                    Quindi riesegue le istruzioni all'interno del ciclo, finchè la variabile a non diventa uguale o maggiore di 10<br>
+                    <strong>Output del programma:</strong>
+                    <div class="shell strings">
+                        Hello World<br>
+                        Hello World<br>
+                        Hello World<br>
+                        Hello World<br>
+                        Hello World<br>
+                    </div>
+                    <br>
+                    Quindi ricapitolando la sintassi:<br>
+                    <div class="shell">
+                            <span style="margin-left: 0px;" class="instruction">while</span>(condizione){<br>
+                            <span style="margin-left: 20px;" class="strings">// istruzioni interne al ciclo</span><br>
+                            <span style="margin-left: 0px;">}</span><br>
+                            <br>
+                    </div>
+                    <br>
+                    <h3>Costrutto iteratore for</h3>
+                    Un ciclo for in C è usato per ripetere un blocco di codice un numero specifico di volte. <br>
+                    La sua struttura è composta da tre parti principali: inizializzazione, condizione, e aggiornamento. <br>
+                    Sintassi base:<br>
+                    <div class="shell">
+                        <span style="margin-left: 0px;" class="instruction">for</span>(inizializzazione; condizione; aggiornamento){<br>
+                        <span style="margin-left: 20px;" class="strings">// istruzioni interne al ciclo</span><br>
+                        <span style="margin-left: 0px;">}</span><br>
+                        <br>
+                    </div>
+                    <br>
+                    <ul style="margin-left:20px;">
+                        <li>
+                            <strong>inizializzazione:</strong> Questa parte viene eseguita solo una volta all'inizio del ciclo. 
+                        </li>
+                        <li>
+                            <strong>Condizione:</strong> Prima di ogni iterazione del ciclo, viene verificata questa condizione. <br>
+                            Se la condizione è vera, il ciclo continua; se è falsa, il ciclo termina.
+                        </li>
+                        <li>
+                            <strong>aggiornamento:</strong> Dopo ogni iterazione del ciclo, viene eseguito l'aggiornamento
+                        </li>
+                    </ul><br>
+                    Ecco un esempio per capire meglio come usare il ciclo for:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                        <span class="type">int</span> main(){<br>
+                        <span class="instruction" style="margin-left: 20px;">for</span>(<span class="type">int</span> i = 0; i &lt 5; i++){<br>
+                        <span style="margin-left: 40px; color:#fff">printf(<span class="strings">"valore di i: %d\n"</span>, i);</span><br>
+                        <span style="margin-left: 20px;">}</span><br>
+                        <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                        }<br>
+                    </div><br>
+                    <h4>Output del programma</h4>
+                    <div class="shell strings">
+                        Valore di i: 0<br>
+                        Valore di i: 1<br>
+                        Valore di i: 2<br>
+                        Valore di i: 3<br>
+                        Valore di i: 4
+                    </div>
+                    <br>
+                    <h3>Costrutto do-while</h3>
+                    Il costrutto do-while consente di ripetere un blocco di codice fino a quando una condizione specificata è vera.<br>
+                    La caratteristica principale del ciclo do-while è che il blocco di codice viene eseguito almeno una volta, indipendentemente dal fatto che la condizione sia vera o falsa all'inizio.<br>
+                    Sintassi:<br>
+                    <div class="shell">
+                        <span class="instruction">do</span>{<br>
+                            <span style="margin-left:20px;"></span><span class="strings">// istruzioni</span><br>
+                        }<span class="instruction">while</span>(condizione);<br>
+                    </div>
+                    <br>
+                </p>
+                <h3>Curiosità</h3>
+                Secondo un nostro <a href="https://github.com/naga272/analisi/tree/main/confronto_cicli">programma di analisi</a> del codice sorgente, il costrutto iterativo che viene usato di più all'interno del <a href="https://www.github.com/torvalds/linux">kernel di linux</a> è il ciclo for<br>
+                (compare 108751 volte), in seconda posizione il ciclo while (compare 29598 volte) e infine il ciclo do-while(compare 11172 volte):<br>
+                <img src="../../../../static/img/analisi/number_of_cicle.png" style="width: 45%; height: auto;"><br>
+                studio eseguito il: 16 / 07 / 2024
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+        
+        init_page("capitolo 5", "../../c/intro/");
+    </script>
+</html>

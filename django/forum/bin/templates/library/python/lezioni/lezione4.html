@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+			<h1>Programmazione orientata agli oggetti</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%;">
+                Sommario:
+				<ul style="margin-left:20px">
+                    <li>Classi e oggetti</li>
+                    <li>Metodi</li>
+                    <li>Ereditarietà</li>
+                    <li>Polimorfismo</li>
+                    <li>Incapsulamento</li>
+                </ul>
+
+                <h2>Classi e oggetti</h2>
+                Python è un linguaggio di programmazione orientato agli oggetti.
+                Una classe è un modello/progetto per creare oggetti.
+
+                <h2>Creare una classe</h2>
+                Per creare una classe, si utilizza la parola chiave <strong>class</strong> seguita dal nome della classe.
+                <div class="shell">
+                    <span class="instruction">class</span> Myclass:<br>    
+                    <span style="margin-left:15px;"></span>x = 5
+                </div>
+
+                <h2>Creare un oggetto</h2>
+                Una volta creata una classe, è possibile creare un oggetto.
+                <div class="shell">
+                    obj1 = Myclass()<br>
+                    print(obj1.x)
+                </div>
+
+                <h2>Metodi</h2>
+                I metodi sono funzioni definite all'interno di una classe. <br>
+                Ogni classe ha un metodo __init__ che viene eseguito automaticamente quando l'oggetto viene creato. <br>
+                Il metodo __init__ è comunemente usato per inizializzare gli attributi dell'oggetto, o altre operazioni necessarie per creare l'oggetto. <br>
+                <div class="shell">
+                    <span class="instruction">class</span> Myclass:<br>    
+                    <span style="margin-left:15px"></span><span class="instruction">def</span> __init__(self, name, age):<br>        
+                    <span style="margin-left:30px"></span>self.name = name<br>        
+                    <span style="margin-left:30px"></span>self.age = age<br>
+                    <br>
+                    obj1 = Myclass(<span class="strings">"John"</span>, 36)<br>
+                    print(obj1.name)<br>
+                    print(obj1.age)
+                </div>
+                Il metodo __init__ è chiamato il costruttore della classe. <br>
+                La parola chiave self è un riferimento all'istanza corrente della classe e viene utilizzata per accedere alle variabili dell'istanza, e si riferisce all'oggetto stesso. <br>
+
+                Ci sono anche altri metodi speciali, come __str__, __len__, __del__, __repr__, etc. <br>
+                Ad esempio, il metodo __str__ restituisce una rappresentazione della classe come stringa. <br>
+                Senza il metodo __str__, stampando l'oggetto si otterrebbe un output non molto utile, precisamente la posizione in memoria dell'oggetto. <br>
+                <div class="shell">
+                    <span class="instruction">class</span> Myclass:<br>
+                    <span style="margin-left:15px"></span><span class="instruction">def</span> __str__(self):<br>
+                    <span style="margin-left:30px"></span><span class="instruction">return</span> <span class="strings">"Hello, my name is "</span> + self.name<br>
+                    <br>
+                    obj1 = Myclass()<br>
+                    obj1.name = <span class="strings">"John"</span><br>
+                    print(obj1)
+                </div>
+                Ciò può essere utile per stampare informazioni sull'oggetto, senza dover stampare ogni attributo singolarmente.
+
+                Ogni oggetto può avere metodi. <br>
+                I metodi sono funzioni definite all'interno della classe. <br>
+                Essi possono essere chiamati su un oggetto e possono anche avere parametri. <br>
+                <div class="shell">
+                    <span class="instruction">class</span> Myclass:<br>    
+                    <span style="margin-left:15px"></span><span class="instruction">def</span> __init__(self, name, age):<br>        
+                    <span style="margin-left:30px"></span>self.name = name<br>        
+                    <span style="margin-left:30px"></span>self.age = age<br>
+                    <br>
+                    <span style="margin-left:15px"></span><span class="instruction">def</span> myfunc(self):<br>        
+                    <span style="margin-left:30px"></span>print(<span class="strings">"Hello, my name is "</span> + self.name)<br>
+                    <br>
+                        obj1 = Myclass(<span class="strings">"John"</span>, 36)<br>
+                        obj1.myfunc()
+                </div>
+                La funzione myfunc stampa un messaggio con il nome dell'oggetto, se proviamo a chiamare la funzione senza creare l'oggetto, otterremo un errore.
+
+                <h2>Ereditarietà</h2>
+                La ereditarietà è un concetto importante in programmazione orientata agli oggetti. <br>
+                Le classi possono ereditare attributi e metodi da altre classi. <br>
+
+                Per creare una classe che eredita da un'altra classe, si definisce la classe figlia con la classe padre tra parentesi. <br>
+                <div class="shell">
+                    <span class="instruction">class</span> Person:<br>
+                    <span class="instruction" style="margin-left:15px">def</span> __init__(self, name, age):<br>
+                            <span style="margin-left:30px"></span>self.name = name<br>
+                            <span style="margin-left:30px"></span>self.age = age<br><br>
+                    
+                            <span class="instruction" style="margin-left:15px">def</span> myfunc(self):<br>        
+                            <span style="margin-left:30px"></span>print(<span class="strings">"Hello, my name is "</span> + self.name)<br>
+                        <br>
+                        <span class="instruction">class</span> Student(Person):<br>
+                        <span class="instruction" style="margin-left:15px">pass</span><br>
+                    <br>
+                    obj1 = Student(<span class="strings">"John"</span>, 36)<br>
+                    obj1.myfunc()
+                </div>
+                La classe Student eredita dalla classe Person. <br>
+                Questo significa che la classe Student avrà gli stessi attributi e metodi della classe Person. <br>
+                La funzione pass indica che la classe Student non ha alcun attributo o metodo proprio. <br>
+
+                <h2>Polimorfismo</h2>
+                Il polimorfismo è un concetto che permette di utilizzare un'interfaccia comune per oggetti di diverse classi. <br>
+                In Python, il polimorfismo è ottenuto tramite metodi con lo stesso nome in classi diverse. <br>
+                <div class="shell">
+                    <span class="instruction">class</span> Dog:<br>    
+                    <span class="instruction" style="margin-left:15px">def</span> speak(self):<br>        
+                        <span class="instruction" style="margin-left:30px">return</span> <span class="strings">"Woof!"</span><br><br><br>
+                    
+                        <span class="instruction">class</span> Cat:<br>    
+                        <span class="instruction" style="margin-left:15px">def</span> speak(self):<br>        
+                        <span class="instruction" style="margin-left:30px">return</span> <span class="strings">"Meow!"</span><br><br>
+                        <span class="instruction" style="margin-left:15px">def</span> get_sound(animal):<br>    
+                        <span class="instruction" style="margin-left:30px">return</span> animal.speak()<br><br><br>
+                        
+                    dog = Dog()<br>
+                    cat = Cat()<br>
+                    print(get_sound(dog))<br>
+                    print(get_sound(cat))
+                </div>
+                In questo esempio, le classi Dog e Cat hanno un metodo speak. <br>
+                Il metodo get_sound prende un oggetto come argomento e chiama il metodo speak su di esso. <br>
+                Questo permette di chiamare il metodo speak su oggetti di classi diverse, ottenendo risultati diversi.
+
+                <h2>Incapsulamento</h2>
+                L'incapsulamento è un concetto che permette di nascondere i dettagli di implementazione di un oggetto. <br>
+                In Python, l'incapsulamento è ottenuto tramite l'uso di attributi privati. <br>
+                Gli attributi privati sono definiti con due trattini bassi davanti al nome dell'attributo. <br>
+                <div class="shell">
+                    <span class="instruction">class</span> Person:<br>
+                        <span class="instruction" style="margin-left:15px">def</span> __init__(self, name, age):<br>
+                            <span style="margin-left:30px"></span>self.__name = name<br>
+                            <span style="margin-left:30px"></span>self.__age = age<br><br>
+                    
+                        <span class="instruction" style="margin-left:15px">def</span> get_name(self):<br>        
+                            <span class="instruction" style="margin-left:30px">return</span> self.__name<br><br>
+                        
+                        <span class="instruction" style="margin-left:15px">def</span> get_age(self):<br>        
+                            <span class="instruction" style="margin-left:30px">return</span> self.__age<br><br><br>
+                    
+                    obj1 = Person(<span class="strings">"John"</span>, 36)<br>
+                    print(obj1.get_name())<br>
+                    print(obj1.get_age())
+                </div>
+                In questo esempio, gli attributi __name e __age sono privati e non possono essere acceduti direttamente dall'esterno della classe. <br>
+                Per accedere agli attributi privati, vengono definiti metodi get_name e get_age che restituiscono i valori degli attributi. <br>
+                Questo permette di nascondere i dettagli di implementazione della classe e di proteggere gli attributi da modifiche accidentali.
+
+                <h2>Conclusione</h2>
+                In questo capitolo abbiamo visto come creare classi e oggetti in Python, come definire metodi all'interno di una classe, come utilizzare l'ereditarietà per creare classi figlie che ereditano attributi e metodi da una classe padre, come utilizzare il polimorfismo per utilizzare un'interfaccia comune per oggetti di diverse classi, e come utilizzare l'incapsulamento per nascondere i dettagli di implementazione di un oggetto. <br>
+                Questi concetti sono fondamentali per la programmazione orientata agli oggetti e sono ampiamente utilizzati in Python e in altri linguaggi di programmazione orientati agli oggetti. <br>
+                Spero che questo capitolo ti abbia aiutato a capire meglio la programmazione orientata agli oggetti in Python e ti abbia dato una base solida per approfondire ulteriormente questo argomento. <br>
+                Grazie per aver seguito questa lezione e buona programmazione! <br>
+
+
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+        init_page("capitolo 4", "../../py/intro");
+    </script>
+</html>

@@ -1,0 +1,226 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+            .script {
+                padding: 1%;
+                background-color: black;
+                color: green;
+            }
+            .elenco {
+                margin: 0 auto;
+                text-align: center;
+                width: 80%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>time</h1>
+            <br><br>
+            <p>
+                Questa libreria fornisce funzionalità per la manipolazione e l'ottenimento di date e orari. <br>
+                Contiene una serie di macro, tipi di dati e funzioni che permettono di lavorare con il tempo e le date in vari modi, <br>
+                come ottenere il tempo corrente, misurare il tempo trascorso e formattare date e orari.
+            </p>
+            <br>
+
+            <h3>Funzioni</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                            <th class="prototype">prototype</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>difftime</td>
+                            <td>Calcola la differenza in secondi di due valori time_t</td>
+                            <td>double difftime(time_t end, time_t beginning);</td>
+                        </tr>
+                        <tr>
+                            <td>time</td>
+                            <td>
+                                Restituisce l'ora del sistema sotto forma di time_tin secondi (che corrispondono solitamente ai secondi dall'epoca, tipicamente dall'epoca unix).<br>
+                                Il valore dell'epoca dipende dal sistema operativo. Vengono spesso usati il 1970 e il 1900 come epoca
+                            </td>
+                            <td>time_t time(time_t *seconds);</td>
+                        </tr>
+                        <tr>
+                            <td>clock</td>
+                            <td>Restituisce il numero di tick passati a partire dal lancio del programma</td>
+                            <td>clock_t clock(void);</td>
+                        </tr>
+                        <tr>
+                            <td>timespec_get</td>
+                            <td>Restituisce la data in secondi e millisecondi da una base</td>
+                            <td>int timespec_get(struct timespec *ts, int base);</td>
+                        </tr>
+                        <tr>
+                            <td>asctime</td>
+                            <td>Converte una struct tm in una rappresentazione testuale (obsoleta)</td>
+                            <td>char *asctime(const struct tm *timeptr);</td>
+                        </tr>
+                        <tr>
+                            <td>ctime</td>
+                            <td>Converte un valore time_t in una rappresentazione testuale</td>
+                            <td>char *ctime(const time_t *timer);</td>
+                        </tr>
+                        <tr>
+                            <td>strftime</td>
+                            <td>Converte una struct tm in una rappresentazione testuale personalizzata</td>
+                            <td>size_t strftime(char *str, size_t maxsize, const char *format, const struct tm *timeptr);</td>
+                        </tr>
+                        <tr>
+                            <td>strptime</td>
+                            <td>Converte una stringa contenente l'ora in una struct tm</td>
+                            <td>char *strptime(const char *restrict buf, const char *restrict format, struct tm *restrict tm);</td>
+                        </tr>
+                        <tr>
+                            <td>wcsftime</td>
+                            <td>Converte una struct tm in una rappresentazione testuale personalizzata usando wide string</td>
+                            <td>size_t wcsftime(wchar_t *restrict wcs, size_t maxsize, const wchar_t *restrict format, const struct tm *restrict timeptr);</td>
+                        </tr>
+                        <tr>
+                            <td>gmtime</td>
+                            <td>Converte un valore time_t in ora basata sul calendario espressa come ora UTC</td>
+                            <td>struct tm *gmtime(const time_t *timer);</td>
+                        </tr>
+                        <tr>
+                            <td>localtime</td>
+                            <td>Converte un valore time_t in ora basata sul calendario espressa come ora locale</td>
+                            <td>struct tm *localtime(const time_t *timer);</td>
+                        </tr>
+                        <tr>
+                            <td>mktime</td>
+                            <td>Converte l'ora basato sul calendario in time_t</td>
+                            <td>time_t mktime(struct tm *timeptr);</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Macro / Costanti</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CLOCKS_PER_SEC</td>
+                            <td>Definisce il numero di "tick" della CPU che trascorrono in un secondo. clock()/CLOCKS_PER_SEC risulta quindi essere un tempo espresso in secondi.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Tipi di dato</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>clock_t</td>
+                            <td>Tipo di dato restituito da clock(). Generalmente definito come un long int.</td>
+                        </tr>
+                        <tr>
+                            <td>time_t</td>
+                            <td>Tipo di dato restituito da time(), rappresenta un tempo di calendario. Generalmente definito come un long int.</td>
+                        </tr>
+                        <tr>
+                            <td>struct tm</td>
+                            <td>Struttura usata e restituita da asctime(), gmtime(), localtime() e mktime().</td>
+                        </tr>
+                        <tr>
+                            <td>struct timespec</td>
+                            <td>Struttura usata da timespec_get(). Contiene una data composta dal numero di secondi e nanosecondi.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+
+            <h3>programma esempio per ottenere l'orario locale</h3>
+            <div style="float:left; text-align:left; padding-left:10%; width:80%">
+                Il programma che andremo a fare dovrà stampare a schermo l'orario attuale<br>
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                    <span class="direttive">#include &lt;stdlib.h&gt;</span><br>
+                    <span class="direttive">#include &lt;time.h&gt;</span><br><br>
+                        
+                    <span class="type">int</span> main() {<br>
+                        <span style="margin-left:20px"></span><span class="type">time_t</span> current_time;<br><br>
+                        
+                        <span style="margin-left:20px"  class="strings">// Ottieni l'orario corrente</span><br>
+                        <span style="margin-left:20px"></span>time(&amp;current_time);<br><br>
+                    
+                        <span style="margin-left:20px"></span><span class="strings">// Converti l'orario in una stringa leggibile</span></span><br>
+                        <span style="margin-left:20px"></span>printf(<span class="strings">"%s"</span>, ctime(&amp;current_time));<br><br>
+                    
+                        <span style="margin-left:20px"></span><span class="instruction">return</span> EXIT_SUCCESS;<br>
+                    }
+                </div>
+                <strong>Output del programma:</strong><br>
+                <div class="shell strings" style="margin-bottom:20px;">
+                    $ Sat Jul 20 11:39:11 2024
+                </div>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("time", "../../c/lezione/lez13");
+    </script>
+</html>

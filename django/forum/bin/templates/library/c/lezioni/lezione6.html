@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Etichette</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+                Le etichette in C sono come delle piccole bandierine che aiutano il computer a trovare certi punti nel programma. <br>
+                Immagina che il tuo libro preferito abbia delle bandierine colorate che ti aiutano a trovare velocemente le pagine importanti. <br>
+                Le etichette sono un po' come quelle bandierine nel libro: <br>
+                aiutano il computer a sapere dove guardare quando deve fare certe cose nel programma che stai scrivendo.<br>
+                Esempio:<br>
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                    <br>
+                    <span class="type">int</span> main(){<br>
+                        <span style="margin-left: 20px; color:yellow">etichetta</span>:<br>
+                        <span style="margin-left: 40px; color:#fff">printf(<span class="strings">"Hello World!\n"</span>);</span><br>
+                        <span style="margin-left: 40px;" class="instruction">goto</span> <span color="#fff">etichetta;</span><br>
+                        <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                    }<br>
+                </div>
+                La parola in giallo, è la nostra bandierina, che ci consente di trovare un certo punto del nostro programma.<br>
+                La seconda invece, è quella che dice al nostro computer di ritornare al punto della nostra bandierina gialla.<br>
+                Quindi quando incontra "goto etichetta", ritorna a eseguire il codice dall'etichetta. <br>
+                Questo programma, quindi esegue il codice in loop senza mai terminare.
+                <br><br>
+                <h3>Curiosità (Programmazione avanzata)</h3>
+                L'etichetta in c, è un'idea che arriva dall'assembly. In fatti, l'assembly non usa cicli for, while o do-while, ma consente l'uso di solo etichette:<br>
+                <div style="display:flex">
+                    <img src="../../../../static/img/screen_gdb/etichette_nasm.png" alt="etichette_nasm">
+                </div>
+                Come possiamo vedere da questo piccolo programma, si possono usare le etichette per spostarsi da una parte all'altra del codice.<br>
+                Il goto sarebbe l'equivalente dell'istruzione "jmp", che sta per "jump".<br>
+                quindi se dovessimo interpretare "goto etichetta" del C in assembly, sarebbe:<br>
+                "jmp etichetta"<br><br>
+                <h2>Traduzione cicli while, do-while e for in linguaggio macchina</h2>
+                <h3>ciclo while e ciclo for</h3>
+                Scriviamo un semplice programma:<br>
+                <div class="shell">
+                    <span class="type">int</span> main(){<br>
+                        <span style="margin-left:20px;"><span class="type">int</span> i = 0;</span><br>
+                        <span style="margin-left:20px;"></span><span class="instruction">while</span>(i &lt; 3)<br>
+                        <span style="margin-left:40px;"></span>i++;<br>
+                        <span style="margin-left:20px;"></span><span class="instruction">return</span> 0;<br>
+                    }
+                </div><br>
+                Dopo aver compilato, tramite gdb (spiego le basi di come usarlo al <a href="./lez1">capitolo 1</a> nella parte "programmazione avanzata") guardiamo il contenuto del main:<br>
+                <img src="../../../../static/img/screen_gdb/low_level_while.png"><br>
+                Sorprendentemente, il ciclo while e il ciclo for a basso livello hanno una struttura quasi identica!<br>
+
+                Iniziamo spiegando l'istruzione <strong>mov DWORD PTR [rbp-0x4], 0x0.</strong><br>
+                Questa istruzione crea una variabile locale nella funzione main (la nostra variabile i), e la inizializza con il valore 0.<br>
+                Le variabili locali all'interno delle funzioni sono memorizzate nello stack, che è un'area di memoria dedicata.<br>
+
+                Successivamente, abbiamo <strong>jmp 0x113e</strong>, che significa saltare direttamente all'istruzione situata all'indirizzo 0x113e, arrivando quindi all'istruzione <strong>cmp DWORD PTR [rbp-0x4], 0x2.</strong><br>
+                Questa istruzione confronta il valore della variabile i con il numero 2 (dato che nella condizione in C abbiamo scritto &lt; 3).<br>
+                
+                <br>
+                <ul style="margin-left:20px">
+                    <li>Se il valore di i è uguale a 2, il bit zero flag (ZF) del registro della cpu viene impostato a 1.</li>
+                    <li>Se il valore di i è diverso da 2, lo zero flag viene impostato a 0.</li>
+                    <li>Inoltre, il confronto aggiorna anche altri flag, come il sign flag (SF) e l'overflow flag (OF), che sono rilevanti per il controllo dei numeri negativi.</li>
+                </ul>
+                <br>
+                L'istruzione <strong>jle 0x113a</strong> (Jump if Less or Equal) determina se il ciclo verrà ripetuto o meno. Questa istruzione salta all'indirizzo 0x113a se:<br>
+                <ul style="margin-left:20px">
+                    <li>Lo zero flag (ZF) è 1, ossia se i è uguale a 2</li>
+                    <li>Lo sign flag (SF) e l'overflow flag (OF) sono diversi, ossia se i è minore di 2.</li>
+                </ul>
+                Se nessuna di queste condizioni è soddisfatta (cioè, se i è maggiore di 2), il ciclo si interrompe.<br>
+                
+                <br>
+                <h3>ciclo do-while</h3>
+                Programma sorgente scritto in C:<br>
+                <div class="shell">
+                    <span class="type">int</span> main(){<br>
+                        <span style="margin-left:20px;"><span class="type">int</span> i = 0;</span><br>
+                        <span style="margin-left:20px;"></span><span class="instruction">do</span>{<br>
+                        <span style="margin-left:40px;"></span>i++;<br>
+                        <span style="margin-left:20px;">}</span><br>
+                        <span style="margin-left:20px;"></span><span class="instruction">while</span>(i &lt; 3);<br>
+                        
+                        <span style="margin-left:20px;"></span><span class="instruction">return</span> 0;<br>
+                    }
+                </div><br>
+                Che tradotto in Assembly diventa:<br>
+                <img src="../../../../static/img/screen_gdb/low_level_do_while.png"><br>
+                Iniziamo dall'istruzione 0x131, cioè da <strong>mov DWORD PTR [rbp-0x4],0x0</strong>.<br>
+                Come prima, si tratta della variabile di tipo intero che abbiamo dichiarato all'interno della funzione main.<br>
+                La prossima istruzione che viene eseguita è <strong>add DWORD PTR [rbp-0x4],0x1</strong>, cioè sarebbe l'equivalente di "i++" quindi aggiungi 1 alla variabile i.<br>
+                La prossima istruzione da eseguire è il confronto tra il valore della variabile i e il numero 2<br>
+                A seconda del risultato di questo confronto, grazie all'istruzione jle 0x1138, potrebbe uscire dal ciclo oppure ripetere il set di istruzioni partendo dall'indirizzo 0x1138
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 6", "../../c/intro/");
+    </script>
+</html>

@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../static/js/main.js"></script>
+        <link rel="stylesheet" href="../static/css/style.css">
+
+        <style>
+            main div div img{
+                width:45px;
+                cursor:pointer;
+                transition:all .7s;
+                height:auto;
+            }main div div img:hover{
+                width:50px;
+                height:auto;
+            }
+            .question {
+                display: block; /* Assicurati che tutte le domande siano visibili di default */
+            }
+            #filtro{
+                outline:none;
+                width:20%;
+                padding:0.5%;
+                border:0px;
+                border-bottom: 1px solid #fff;
+                border-right: 1px solid #fff;
+                transition:all .7s;
+            }#filtro:hover{
+                border-bottom: 1px solid #0E2C40;
+                border-right: 1px solid #0E2C40;
+                color:#0E2C40;
+            }
+            #filtro:focus{
+                border-bottom: 1px solid #0E2C40;
+                border-right: 1px solid #0E2C40;
+                color:#0E2C40;
+            }
+            .pagination .step-links .link_n_page{
+                padding-left:1%;
+                padding-right:1%;
+                padding-top:0.5%;
+                padding-bottom:0.5%;
+                margin-right:1%;
+                margin-left:1%;
+                background-color: #0E2C40;
+                color:#EFBC75;
+                border-radius:10px;
+                transition:all .7s;
+            }.pagination .step-links .link_n_page:hover{
+                background-color:#EFBC75;
+                color:#0E2C40;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <div style="width:100%; height:30px;">
+                <div style="text-align: center;width:100%;">
+                    <div>
+                        <h1>Fai una domanda!</h1>
+                    </div>
+                    <a href="/forum/form_forum">
+                        <img src="{% static 'img/add.png'%}" alt="add_domanda">
+                    </a>
+                </div>
+            </div>
+            <br>
+            <div style="text-align: left; margin-top: 50px; padding-left: 2%; padding-right: 2%;">
+                <div>
+                    <input type="text" id="filtro" placeholder="Clicca qui per cercare una domanda!">
+                </div>
+
+                <div id="container">
+
+                </div>
+            </div>
+            <br>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1" class="link_n_page">&laquo; prima</a>
+                        <a href="?page={{ page_obj.previous_page_number }}"  class="link_n_page">precedente</a>
+                    {% endif %}
+        
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+        
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}" class="link_n_page">successiva</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}" class="link_n_page">ultima &raquo;</a>
+                    {% endif %}
+                </span>
+                
+            </div>
+            <br>
+        </main>
+    </body>
+    <script>init_page("Forum");</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const filtroInput = document.getElementById("filtro");
+            let pageQuestions = [];
+            let allQuestions = [];
+
+            if(window.innerWidth <= 970)    // non c'è abbastanza spazio per mostrare le date su dispositivi con < 970 px
+                filtroInput.style.width = "50%";
+
+            {% for question in page_obj %}
+                pageQuestions.push({
+                    id: `{{ question.id }}`, 
+                    titolo: `{{ question.titolo|escapejs }}`, 
+                    content: `{{ question.content|escapejs }}`, 
+                    datetime: `{{ question.datetime }}`
+                });
+            {% endfor %}
+
+            // Funzione per gestire l'input e filtrare le domande
+            filtroInput.addEventListener("input", function(){
+                const filterValue = filtroInput.value.toLowerCase();
+
+                if(filterValue === ""){
+                    displayQuestions(pageQuestions);
+                }else{
+                    $.ajax({
+                        url: "/forum/filter/",
+                        success: function(data){
+                            allQuestions = data.questions;
+
+                            const regex = new RegExp(filterValue, 'i'); // regex per il filtro ('i' sta per case insensitive)
+
+                            // Filtra le domande
+                            const filteredQuestions = allQuestions.filter(question => 
+                                regex.test(question.titolo.toLowerCase()) || 
+                                regex.test(question.content.toLowerCase()) ||
+                                regex.test(question.id)
+                            );
+                            displayQuestions(filteredQuestions);
+                        }
+                    });
+                }
+            });
+
+            function displayQuestions(listaQuestions) {
+                const questionsContainer = document.getElementById("container");
+                questionsContainer.innerHTML = '';
+
+                listaQuestions.forEach(question => {
+                    if(window.innerWidth >= 970){
+                        const questionElement = `
+                            <div id="${question.id}" class="question">
+                                <br>
+                                <a href="/forum/question/${question.id}">
+                                    <span style='width:60%; font-size:120%;'>${question.titolo} - token: ${question.id}</span>
+                                </a>
+                                <span style='float:right;'>${question.datetime}</span>
+                                <p>${question.content} ...</p>
+                                <br>
+                                <hr>
+                            </div>
+                        `;
+                        questionsContainer.innerHTML += questionElement;
+                    }else{
+                        const questionElement = `
+                            <div id="${question.id}" class="question">
+                                <br>
+                                <a href="/forum/question/${question.id}">
+                                    <span style='width:60%; font-size:120%;'>${question.titolo} - token: ${question.id}</span>
+                                </a>
+                                <p>${question.content} ...</p>
+                                <br>
+                                <hr>
+                            </div>
+                        `;
+                        questionsContainer.innerHTML += questionElement;
+                    }
+                });
+            }
+
+            // Mostra inizialmente le domande della pagina corrente
+            displayQuestions(pageQuestions);
+        });
+    </script>
+</html>
