@@ -220,7 +220,8 @@ def widget(request):
             }
         }
     except Negozio.DoesNotExist:
-        # Se non è negozio, verifica se è cliente
+        
+        # verifica cliente
         try:
             cliente = user.cliente
             context = {
@@ -236,7 +237,7 @@ def widget(request):
                 }
             }
         except Cliente.DoesNotExist:
-            # Se non è né negozio né cliente
+            # Caso in cui non e' negozio e nemmeno cliente
             return redirect('login')
 
     return render(request, "widget.html", context)
