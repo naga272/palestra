@@ -1,0 +1,8 @@
+# changelog
+
+## added
+
+- README.md
+- CHANGELOG.txt
+- /bin/main.c
+- /flussi/input.txt
