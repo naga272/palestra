@@ -1,0 +1,1 @@
+creare programma c che dato un intero in input un numero n, stampa a schermo tutti i numeri precedenti a n pari (si presuppone che il numero inserito dall'utente sia positivo)

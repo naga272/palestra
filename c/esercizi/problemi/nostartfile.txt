@@ -1,0 +1,1 @@
+creare programma start.c che stampa un messaggio a schermo dalla procedura _start. Dopodichè chiama 2 volte la funzione main() e passa a result il suo risultato.

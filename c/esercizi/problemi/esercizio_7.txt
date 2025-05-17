@@ -1,0 +1,1 @@
+dato in input un numero n, si stampi a schermo tutti i numeri dispari precedenti

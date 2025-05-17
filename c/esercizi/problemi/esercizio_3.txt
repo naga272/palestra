@@ -1,0 +1,3 @@
+creare un programma c che chiede all'utente in input un numero che va da 1 a 10.
+Se il numero non è compreso tra questi stampa a schermo il messaggio "Invalid numebr", altrimenti
+stampa il numero a schermo

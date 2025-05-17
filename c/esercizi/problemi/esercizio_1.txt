@@ -1,0 +1,1 @@
+Creare programma saluto.c che mostra in output la scritta "Ciao a tutti".

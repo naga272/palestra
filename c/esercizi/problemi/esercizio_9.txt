@@ -1,0 +1,1 @@
+creare un array e usare un suo elemento per chiedere all'utente un numero, poi stamparlo a schermo
