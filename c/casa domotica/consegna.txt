@@ -1,0 +1,519 @@
+Viene richiesta la realizzazione di un programma OOP per la rappresentazione di un appartamento e 
+degli elettrodomestici in esso presenti. 
+Il programma calcola la potenza elettrica totale assorbita nell'appartamento.
+
+La classe Appartamento: permette di mantenere e gestire gli elettrodomestici 
+Si ipotizza che abbia potenza elettrica illimitata
+Prevede tra  i suoi metodi 
+1-	add ( Elettrodomestico e ); permette di aggiungere un elettrodomestico all'appartamento
+2-	double potenza() calcola e ritorna la potenza totale attualmente assorbita dagli elettrodomestici dell'appartamento.
+3-	void accendiTutti(); 
+4-	void spegniTutti();
+5-	String toString(); che restituisce le caratteristiche di tutti gli elettrodomestici presenti nell'appartamento
+
+La classe Elettrodomestico:
+rappresenta la classe base per la descrizione degli elettrodomestici da cui gli elettrodomestici “concreti” 
+dovranno ereditare. E’ descritto da un nome, uno stato (boolean), da una potenzaInWatt(double). 
+
+- Il metodo puramente virtuale potenza() sarà implementato nelle sottoclassi specifiche permetterà di ottenere 
+    la potenza dissipata dall'elettrodomestico “concreto”. 
+- Il metodo stato() permette di sapere se l'elettrodomestico è acceso o spento. 
+- Il metodo accendi() permette di accendere o spegnere l'elettrodomestico. 
+- Il metodo puramente virtuale toString() sarà implementato in ogni elettrodomestico concreto e 
+    ritornerà una stringa di caratteri descrittiva dell'elettrodomestico.
+
+Nella classe AppartamentoTest dovranno essere implementate tre elettrodomestici concreti Forno, Aspirapolvere e Frigorifero ognuno con una propria caratteristica di consumo di potenza.
+Nel main: // in C sarebbe l'equivalente del main
+1.	Istanziare 3 elettrodomestici concreti. 2 accesi ed uno spento. 
+2.	Istanziare un appartamento 
+3.	aggiungere gli elettrodomestici all'appartamento 
+4.	mediante il metodo toString stampare a schermo gli elettrodomestici dell'appartamento 
+5.	calcolare e stampare la potenza totale assorbita 
+6.	accendere tutti gli elettrodomestici
+7.	calcolare e stampare la potenza totale assorbita 
+8.	spegnere tutti gli elettrodomestici 
+9.	calcolare e stampare la potenza totale assorbita 
+
+
+Ecco un esempio di output del programma è:
+Appartamento: 
+Forno stato: 1 potenza: 1 
+Aspirapolvere stato: 0 potenza: 3 
+Frigorifero stato: 1 potenza: 2 
+Potenza totale = 3 
+Tutto acceso 
+Potenza totale = 6 
+Tutto spento 
+Potenza totale = 0
+
+
+RICHIESTE:
+SCHEMA UML DELLE CLASSI DEL PROGETTO
+SVILUPPO CLASSE APPARTAMENTOTEST SECONDO LE RICHIESTE SPECIFICATE DI SEGUITO
+Nella classe AppartamentoTest dovranno essere implementate tre elettrodomestici concreti Forno, 
+Aspirapolvere e Frigorifero ognuno con una propria caratteristica di consumo di potenza.
+Nel main:
+• Istanziare 3 elettrodomestici concreti. 2 accesi ed uno spento. 
+• Istanziare un appartamento 
+• aggiungere gli elettrodomestici all'appartamento 
+• mediante il metodo dump stampare a schermo gli elettrodomestici dell'appartamento 
+• calcolare e stampare la potenza totale assorbita 
+• accendere tutti gli elettrodomestici
+• calcolare e stampare la potenza totale assorbita 
+• spegnere tutti gli elettrodomestici 
+• calcolare e stampare la potenza totale assorbita 
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package appartamento;
+
+/**
+ *
+ * @author Solidea
+ */
+
+
+public class Appartamento{
+	private Elettrodomestico[] lista;
+	private int numE;
+	public Appartamento(){
+		lista=new Elettrodomestico[100];
+		numE=0;
+	}
+	public Appartamento(Elettrodomestico[] l){
+                lista=new Elettrodomestico[100];
+                numE=0;
+		if(l!=null)		
+			for(Elettrodomestico e: l){
+				add(e);
+				numE++;
+			} 
+	}
+	public void add(Elettrodomestico e){
+                Elettrodomestico[] temp;
+		if(numE==lista.length){
+			temp=new Elettrodomestico[numE*2];
+			for(int i=0; i<numE; i++){
+				temp[i]=lista[i];
+                        }
+                        lista=temp;
+		}
+		
+		lista[numE]=e;
+                numE++;
+               
+	}
+        public double potenzaTotAssorbita(){
+		double tot=0.0;
+		for(int i=0; i<numE; i++){
+                    tot+=lista[i].getEnergiaDissipata();
+		}
+		return tot;
+	}
+        public void accendiTutti(){
+            for(int i=0; i<numE; i++){
+                    lista[i].accendi();
+		}
+        }
+              
+        
+	public String toString(){
+		String out="\nL'appartemento è cosi costituito: ";
+		for(int i=0; i<numE; i++){
+                    out+=lista[i].toString()+"\n";
+		}
+		out+="\n<L'attualmente la dissipazione totale di energia dell'appartamento è: " +potenzaTotAssorbita();
+		return out;
+	}
+	
+
+}
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package appartamento;
+
+/**
+ *
+ * @author Solidea
+ */
+// Interfaccia pura astratta
+public abstract class Elettrodomestico {
+	protected String tipo;
+	protected static int numE=1;
+	protected int codiceE;
+	protected String stato;
+	protected double consumoEnergiaWatt;
+	protected double energiaDissipata;
+
+	protected Elettrodomestico(){
+		setTipo();
+		codiceE=numE++;
+		stato="spento";
+		consumoEnergiaWatt=0;
+		energiaDissipata=0;
+	}
+	protected Elettrodomestico(double consumo){
+		
+		codiceE=numE++;
+		stato="spento";
+		consumoEnergiaWatt=consumo;
+                energiaDissipata=0;
+	}
+        //metodi astratti
+	abstract String getTipo();
+	abstract double getDissipata();
+	abstract void setTipo();
+        abstract void accendi();        
+	abstract String getStato();
+	abstract void spegni();
+        
+        protected double getConsumoWatt() {return consumoEnergiaWatt;}
+	protected double getEnergiaDissipata(){
+            double dissipata=0.0;
+            if(stato.equals("acceso")){
+                dissipata=energiaDissipata;
+                
+            }
+            return dissipata;
+        } 
+        @Override
+	public String toString(){
+            String out="";
+            out+="\n\tElettrodomestico di tipo: "+ tipo;
+            out+="\n\tElettrodomestico codice: "+ codiceE;
+            out+="\n\tElettrodomestico - attuale energia attualmente dissipata: " + getDissipata();
+            return out;
+        }
+}
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package appartamento;
+
+/**
+ *
+ * @author Solidea
+ */
+// Classe concreta di implementazione.
+public class Lavatrice extends Elettrodomestico {
+	private int caricoMax;
+	private int numProgrammi;	
+	public Lavatrice() {
+		setTipo();
+                caricoMax=0;
+		numProgrammi=0;
+	}
+	public Lavatrice(double cons, int cM, int p) {
+		super(cons);
+                setTipo();
+		caricoMax=cM;
+		numProgrammi=p;
+	}
+        @Override
+	public void setTipo(){
+		tipo= "lavatrice";
+	}
+        @Override
+        public String getStato(){
+            return stato;
+        }
+        @Override
+        public double getDissipata(){
+            double out = 0.0;
+            if(stato.equals("acceso")) out=energiaDissipata;
+            return out;
+        }
+        @Override
+	public void accendi(){
+		super.stato="acceso";
+                energiaDissipata=consumoEnergiaWatt;
+	}
+	public void spegni(){
+		super.stato="spento";
+                energiaDissipata=0.0;
+	}
+	
+        @Override
+	public String toString(){
+            String out="";
+            out+=super.toString();
+            out+= "\n\tLavatrice - carico massimo: "+ caricoMax + " kg";
+            out+= "\n\tLavatrice - numero programmi lavaggio: "+ numProgrammi;
+            out+= "\n\tLavatrice - stato: "+getStato();
+            out+= "\n\tLavatrice - attuale energia dissipata: "+ getDissipata();
+            return out;
+        }
+        @Override
+        protected String getTipo() {
+            return super.tipo;
+    }
+   
+}
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package appartamento;
+
+/**
+ *
+ * @author Solidea
+ */
+public class FerroDaStiro extends Elettrodomestico {
+	private int capacitaCaldaia;
+		
+	public FerroDaStiro() {
+                super();
+		setTipo();
+		capacitaCaldaia=0;
+		
+	}
+	public FerroDaStiro(double cons, int cC) {
+		super(cons);
+                setTipo();
+		capacitaCaldaia=cC;
+		
+	}
+        @Override
+	public void setTipo(){
+		tipo= "ferro da stiro";
+	}
+        @Override
+        public String getStato(){
+            return stato;
+        }
+        @Override
+        public double getDissipata(){
+            double out = 0.0;
+            if(stato.equals("acceso")) out=energiaDissipata;
+            return out;
+        }
+        @Override
+	public void accendi(){
+		super.stato="acceso";
+                energiaDissipata=consumoEnergiaWatt;
+	}
+	public void spegni(){
+		super.stato="spento";
+                energiaDissipata=0.0;
+	}
+	
+        @Override
+	public String toString(){
+            String out="";
+            out+=super.toString();
+            out+= "\n\tFerro da stiro - carico massimo: "+ capacitaCaldaia + " lt";
+            out+= "\n\tFerro da stiro - stato: "+getStato();
+            out+= "\n\tFerro da stiro - attuale energia dissipata: "+ getDissipata();
+            return out;
+        }
+        @Override
+        protected String getTipo() {
+            return super.tipo;
+    }
+   
+}
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package appartamento;
+
+/**
+ *
+ * @author Solidea
+ */
+public class Frigorifero extends Elettrodomestico {
+	private int capienzaFrigo;
+	private int capienzaFrizer;	
+	public Frigorifero() {
+            super();
+            setTipo();
+            capienzaFrigo=0;
+            capienzaFrizer=0;
+	}
+	public Frigorifero(double cons, int cF, int cFriz) {
+            super(cons);
+            setTipo();
+            capienzaFrigo=cF;
+            capienzaFrizer=cFriz;
+	}
+        @Override
+	public void setTipo(){
+		tipo= "frigorifero";
+	}
+        @Override
+        public String getStato(){
+            return stato;
+        }
+        @Override
+        public double getDissipata(){
+            double out = 0.0;
+            if(stato.equals("acceso")) out=energiaDissipata;
+            return out;
+        }
+        @Override
+	public void accendi(){
+		super.stato="acceso";
+                energiaDissipata=consumoEnergiaWatt;
+	}
+	public void spegni(){
+		super.stato="spento";
+                energiaDissipata=0.0;
+	}
+	
+        @Override
+	public String toString(){
+            String out="";
+            out+=super.toString();
+            out+= "\n\tFrigorifero - capienza frigo: "+ capienzaFrigo + " lt";
+            out+= "\n\tFrigorifero - capienza frizer: "+ capienzaFrizer +" lt";
+            out+= "\n\tFrigorifero - stato: "+getStato();
+            out+= "\n\tFrigorifero - attuale tenergia dissipata: "+ getDissipata();
+            return out;
+        }
+        @Override
+        protected String getTipo() {
+            return super.tipo;
+    }
+   
+}
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package appartamento;
+
+/**
+* Istanziare 3 elettrodomestici concreti. 2 accesi ed uno spento. 
+• Istanziare un appartamento 
+• aggiungere gli elettrodomestici all'appartamento 
+• mediante il metodo dump stampare a schermo gli elettrodomestici dell'appartamento 
+• calcolare e stampare la potenza totale assorbita 
+• accendere tutti gli elettrodomestici
+• calcolare e stampare la potenza totale assorbita 
+• spegnere tutti gli elettrodomestici 
+• calcolare e stampare la potenza totale assorbita 
+
+ * @author Solidea
+ */
+import java.util.*;
+
+public class AppartamentoTest {
+    public static void main(String args[]){
+        Lavatrice lav1=new Lavatrice(1000, 8, 4);
+        Frigorifero fr1=new Frigorifero(220, 99, 99);
+        FerroDaStiro ferro1=new FerroDaStiro(1400, 2);
+        Appartamento app=new Appartamento();
+        app.add(lav1);
+        app.add(fr1);
+        app.add(ferro1);
+        Scanner s=new Scanner(System.in);
+        System.out.println(app.toString());
+        app.accendiTutti();
+        System.out.println(app.toString());
+        }
+    }
+        
+
+OUTPUT:	
+	
+compile:
+run:
+
+L'appartemento è cosi costituito: 
+	Elettrodomestico di tipo: lavatrice
+	Elettrodomestico codice: 1
+	Elettrodomestico - attuale energia attualmente dissipata: 0.0
+	Lavatrice - carico massimo: 8 kg
+	Lavatrice - numero programmi lavaggio: 4
+	Lavatrice - stato: spento
+	Lavatrice - attuale energia dissipata: 0.0
+
+	Elettrodomestico di tipo: frigorifero
+	Elettrodomestico codice: 2
+	Elettrodomestico - attuale energia attualmente dissipata: 0.0
+	Frigorifero - capienza frigo: 99 lt
+	Frigorifero - capienza frizer: 99 lt
+	Frigorifero - stato: spento
+	Frigorifero - attuale tenergia dissipata: 0.0
+
+	Elettrodomestico di tipo: ferro da stiro
+	Elettrodomestico codice: 3
+	Elettrodomestico - attuale energia attualmente dissipata: 0.0
+	Ferro da stiro - carico massimo: 2 lt
+	Ferro da stiro - stato: spento
+	Ferro da stiro - attuale energia dissipata: 0.0
+
+<L'attualmente la dissipazione totale di energia dell'appartamento è: 0.0
+
+L'appartemento è cosi costituito: 
+	Elettrodomestico di tipo: lavatrice
+	Elettrodomestico codice: 1
+	Elettrodomestico - attuale energia attualmente dissipata: 1000.0
+	Lavatrice - carico massimo: 8 kg
+	Lavatrice - numero programmi lavaggio: 4
+	Lavatrice - stato: acceso
+	Lavatrice - attuale energia dissipata: 1000.0
+
+	Elettrodomestico di tipo: frigorifero
+	Elettrodomestico codice: 2
+	Elettrodomestico - attuale energia attualmente dissipata: 220.0
+	Frigorifero - capienza frigo: 99 lt
+	Frigorifero - capienza frizer: 99 lt
+	Frigorifero - stato: acceso
+	Frigorifero - attuale tenergia dissipata: 220.0
+
+	Elettrodomestico di tipo: ferro da stiro
+	Elettrodomestico codice: 3
+	Elettrodomestico - attuale energia attualmente dissipata: 1400.0
+	Ferro da stiro - carico massimo: 2 lt
+	Ferro da stiro - stato: acceso
+	Ferro da stiro - attuale energia dissipata: 1400.0
+
+<L'attualmente la dissipazione totale di energia dell'appartamento è: 2620.0
+
+L'appartemento è cosi costituito: 
+	Elettrodomestico di tipo: lavatrice
+	Elettrodomestico codice: 1
+	Elettrodomestico - attuale energia attualmente dissipata: 0.0
+	Lavatrice - carico massimo: 8 kg
+	Lavatrice - numero programmi lavaggio: 4
+	Lavatrice - stato: spento
+	Lavatrice - attuale energia dissipata: 0.0
+
+	Elettrodomestico di tipo: frigorifero
+	Elettrodomestico codice: 2
+	Elettrodomestico - attuale energia attualmente dissipata: 0.0
+	Frigorifero - capienza frigo: 99 lt
+	Frigorifero - capienza frizer: 99 lt
+	Frigorifero - stato: spento
+	Frigorifero - attuale tenergia dissipata: 0.0
+
+	Elettrodomestico di tipo: ferro da stiro
+	Elettrodomestico codice: 3
+	Elettrodomestico - attuale energia attualmente dissipata: 0.0
+	Ferro da stiro - carico massimo: 2 lt
+	Ferro da stiro - stato: spento
+	Ferro da stiro - attuale energia dissipata: 0.0
+
+<L'attualmente la dissipazione totale di energia dell'appartamento è: 0.0
+BUILD SUCCESSFUL (total time: 1 second)

@@ -20,7 +20,7 @@
 #ifndef checker
     #define checker(x)  \
         if (x) {\
-            printf("errore %d: %s", errno, strerror(errno));\
+            printf("errore %d: %s\n", errno, strerror(errno));\
             exit(errno);\
         }
 #else
