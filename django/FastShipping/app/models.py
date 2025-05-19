@@ -15,7 +15,7 @@ class Cliente(models.Model):
     indirizzo = models.CharField(max_length=256)
     cap = models.CharField(max_length=8)
     citta = models.CharField(max_length=64)
-    indirizzo_consegna = models.CharField(max_length=256, blank=True, null=True)
+    # indirizzo_consegna = models.CharField(max_length=256, blank=True, null=True)
  
     def __str__(self):
         return f"{self.user.username}"
