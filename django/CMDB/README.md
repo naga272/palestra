@@ -14,6 +14,8 @@ Questo progetto è un'applicazione web realizzata con Django che fornisce inform
 
 ### Avviare il server Django
 ```bash
+python manage.py makemigrations
+python manage.py migrate
 python manage.py runserver
 ```
 Ora il sito è disponibile all'indirizzo: **http://127.0.0.1:8000/**
