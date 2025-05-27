@@ -1,0 +1,259 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+        .script {
+            padding: 1%;
+            background-color: black;
+            color: green;
+        }
+        .elenco {
+            margin: 0 auto;
+            text-align: center;
+            width: 80%;
+            border-collapse: collapse;
+            text-align: left; /* Allinea il testo delle celle a sinistra */
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .elenco th, .elenco td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        .elenco thead {
+            background-color: #f2f2f2;
+        }
+        .elenco tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .elenco tbody tr:hover {
+            background-color: #0E2C40;
+            color:#EFBC75;
+        }
+        .elenco th {
+            background-color: #0E2C40;
+            color: white;
+        }
+        .table-container {
+            display: flex;
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .elenco .prototype {
+            width: 50%;
+        }
+        .elenco .descrizione {
+            width: 30%;
+        }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>stdlib</h1>
+            <br><br>
+            <p>
+                La libreria stdlib sta per standard library e ha al suo interno un set di macro, procedure e funzioni di utilità generale.
+            </p>
+            <br>
+
+            <h3>Funzioni</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                            <th class="prototype">prototype</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>rand</td>
+                            <td>Restituisce un numero intero pseudocasuale compreso tra 0 e RAND_MAX.</td>
+                            <td>int rand(void);</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                malloc, <br>
+                                calloc, <br>
+                                realloc
+                            </td>
+                            <td>funzioni che si occupano dell'allocazione dinamica della memoria</td>
+                            <td>
+                                void *malloc(size_t size);<br>
+                                void *calloc(size_t num,size_t size);<br>
+                                void *realloc(void* ptr, size_t size);
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>free</td>
+                            <td>Libera la memoria allocata dinamicamente dalla famiglia di funzioni malloc</td>
+                            <td>void free(void *ptr);</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>exit</td>
+                            <td>Causa la normale terminazione del programma. Tutte le funzioni registrate con atexit() vengono eseguite con ordine inverso rispetto alla loro registrazione, gli stream associati al programma vengono liberati, i file vengono scritti su disco (vedere flush()) ed il controllo viene restituito all'ambiente chiamante, assieme ad un valore numerico, che generalmente indica lo stato del programma o la causa della sua terminazione, che deve essere fornito alla funzione stessa.</td>
+                            <td>void exit(int status);</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>getenv</td>
+                            <td>Restituisce la stringa che nell'ambiente di lavoro del programma è associata al nome fornito, oppure NULL se non esiste alcuna stringa. I dettagli della funzione sono strettamente dipendenti dal sistema operativo. Bisogna guardare le variabili d'ambiente del os.</td>
+                            <td>char *getenv(const char *name);</td>
+                        </tr>
+
+                        <tr>
+                            <td>system</td>
+                            <td>Passa la stringa fornitale all'ambiente di lavoro per l'esecuzione e restituisce il codice d'uscita del comando invocato. Se si fornisce NULL, informa sulla eventuale presenza nel sistema di un processore di comandi.</td>
+                            <td>int system(const char *command);</td>
+                        </tr>
+                        <tr>
+                            <td>qsort</td>
+                            <td>Implementa in maniera generica l'algoritmo di ordinamento quicksort.</td>
+                            <td>void qsort(void *base, size_t nitems, size_t size, int (*compar)(const void *, const void*))</td>
+                        </tr>
+                        <tr>
+                            <td>bsearch</td>
+                            <td>
+                                Implementa in maniera generica l'algoritmo di ricerca dicotomica.
+                            </td>
+                            <td>void *bsearch(const void *key, const void *base, size_t num, size_t size, int (*compar)(const void *, const void *));</td>
+                        </tr>                        
+                        <tr>
+                            <td>abort</td>
+                            <td>Causa la terminazione immediata ed anormale del programma</td>
+                            <td>void abort(void);</td>
+                        </tr>
+                        <tr>
+                            <td>atexit</td>
+                            <td>Registra una funzione, della quale le viene passato il puntatore, affinché venga eseguita appena prima della normale terminazione del programma.</td>
+                            <td>int atexit(void (*func)(void));</td>
+                        </tr>                        
+                        <tr>
+                            <td>atof</td>
+                            <td>Converte una stringa in un numero in virgola mobile. Equivalente a strtod(s, (char**)NULL).</td>
+                            <td>double atof(const char *str);</td>
+                        </tr>                        
+                        <tr>
+                            <td>atoi</td>
+                            <td>Converte una stringa in un numero intero.</td>
+                            <td>int atoi(const char *str);</td>
+                        </tr>                     
+                        <tr>
+                            <td>atol</td>
+                            <td>Converte una stringa in un numero intero lungo (long int)</td>
+                            <td>long atol(const char *str);</td>
+                        </tr>                     
+                        <tr>
+                            <td>strtod</td>
+                            <td>Converte una stringa in un double (numero a virgola mobile), effettuando dei controlli sull'overflow e restituendo anche l'eventuale parte non convertita della stringa.</td>
+                            <td>double strtod(const char *str, char **endptr);</td>
+                        </tr>                     
+                        <tr>
+                            <td>strtol</td>
+                            <td>La funzione strtol (string to long) converte una stringa che rappresenta un numero in formato intero lungo (long) e fornisce un puntatore alla parte non convertita della stringa.</td>
+                            <td>long strtol(const char *str, char **endptr, int base);</td>
+                        </tr>                     
+                        <tr>
+                            <td>strtoul</td>
+                            <td>La funzione strtoul (string to unsigned long) converte una stringa che rappresenta un numero in formato intero senza segno (unsigned long) e fornisce un puntatore alla parte non convertita della stringa.</td>
+                            <td>unsigned long strtoul(const char *str, char **endptr, int base);</td>
+                        </tr>                 
+                        <tr>
+                            <td>
+                                div<br>
+                                ldiv	
+                            </td>
+                            <td>
+                                div viene usata per dividere un numeratore con il denominatore, mentre ldiv fa la stessa cosa ma con interi lunghi
+                            </td>
+                            <td>
+                                div_t div(int numer, int denom);<br>
+                                ldiv_t ldiv(long numer, long denom);
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                abs<br>
+                                labs
+                            </td>
+                            <td>Calcola il valore assoluto dell'argomento.</td>
+                            <td>
+                                int abs(int n);<br>
+                                long labs(long n);
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Macro / Costanti</h3>
+            <div class="table-container">
+                <table class="elenco" s>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NULL</td>
+                            <td>Una macro che espande nella costante puntatore nullo; in altre parole, una costante che rappresenta un valore che è garantito essere l'indirizzo di una posizione non valida nella memoria.</td>
+                        </tr>
+                        <tr>
+                            <td>EXIT_FAILURE</td>
+                            <td>Indica una terminazione non corretta del programma: viene generalmente utilizzata assieme alla funzione exit() (ha valore 1). </td>
+                        </tr>
+                        <tr>
+                            <td>EXIT_SUCCESS</td>
+                            <td>Indica una terminazione corretta del programma: viene generalmente utilizzata assieme alla funzione exit() (ha valore 0).</td>
+                        </tr>
+                        <tr>
+                            <td>RAND_MAX</td>
+                            <td>Massimo valore restituibile dalla funzione rand() (>= 32767)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Tipi di dato</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>size_t</td>
+                            <td>
+                                Un tipo intero che è il tipo del valore restituito dall'operatore sizeof.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>div_t e ldiv_t</td>
+                            <td>Una struttura contenente le informazioni restituite dalle funzioni div e ldiv.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("stdlib", "../../c/lezione/lez13");
+    </script>
+</html>

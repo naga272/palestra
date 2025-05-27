@@ -1,0 +1,1 @@
+creare un programma c che ha un array di 4 elementi. Per ogni elemento dell'array sostituire il valore con un valore deciso dall'utente. visualizzare tutti gli elementi a schermo.

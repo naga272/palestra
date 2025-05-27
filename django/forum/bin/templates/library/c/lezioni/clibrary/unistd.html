@@ -1,0 +1,1158 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+        .script {
+            padding: 1%;
+            background-color: black;
+            color: green;
+        }
+        .elenco {
+            margin: 0 auto;
+            text-align: center;
+            width: 80%;
+            border-collapse: collapse;
+            text-align: left; /* Allinea il testo delle celle a sinistra */
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .elenco th, .elenco td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        .elenco thead {
+            background-color: #f2f2f2;
+        }
+        .elenco tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .elenco tbody tr:hover {
+            background-color: #0E2C40;
+            color:#EFBC75;
+        }
+        .elenco th {
+            background-color: #0E2C40;
+            color: white;
+        }
+        .table-container {
+            display: flex;
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .elenco .prototype {
+            width: 50%;
+        }
+        .elenco .descrizione {
+            width: 30%;
+        }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>unistd</h1>
+            <br><br>
+            <p>
+                Libreria che fornisce accesso a varie chiamate di sistema e funzionalità del sistema operativo<br> 
+                che non sono disponibili nella libreria standard C (come stdio e stdlib). <br>
+                Ampiamente usata nei sistemi operativi Unix e Unix-Like (Linux)
+            </p>
+            <br>
+
+            <h3>Funzioni</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                            <th class="prototype">prototype</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>access</td>
+                            <td>Controlla se puoi leggere o scrivere in un file.</td>
+                            <td>int access(const char *, int);</td>
+                        </tr>
+                        <tr>
+                            <td>alarm</td>
+                            <td>Suona un allarme dopo un po' di tempo.</td>
+                            <td>unsigned int alarm(unsigned int);</td>
+                        </tr>
+                        <tr>
+                            <td>chdir</td>
+                            <td>Cambia la cartella in cui stai lavorando.</td>
+                            <td>int chdir(const char *);</td>
+                        </tr>
+                        <tr>
+                            <td>chown</td>
+                            <td>Cambia il proprietario di un file.</td>
+                            <td>int chown(const char *, uid_t, gid_t);</td>
+                        </tr>
+                        <tr>
+                            <td>close</td>
+                            <td>Chiude un file che hai aperto.</td>
+                            <td>int close(int);</td>
+                        </tr>
+                        <tr>
+                            <td>confstr</td>
+                            <td>Ottiene alcune informazioni di configurazione.</td>
+                            <td>size_t confstr(int, char *, size_t);</td>
+                        </tr>
+                        <tr>
+                            <td>crypt</td>
+                            <td>Cifra una parola.</td>
+                            <td>char* crypt(const char *, const char *);</td>
+                        </tr>
+                        <tr>
+                            <td>dup</td>
+                            <td>Duplica un file.</td>
+                            <td>int dup(int);</td>
+                        </tr>
+                        <tr>
+                            <td>dup2</td>
+                            <td>Duplica un file in un altro file.</td>
+                            <td>int dup2(int, int);</td>
+                        </tr>
+                        <tr>
+                            <td>_exit</td>
+                            <td>Esce subito dal programma.</td>
+                            <td>void _exit(int);</td>
+                        </tr>
+                        <tr>
+                            <td>encrypt</td>
+                            <td>Cifra alcuni dati.</td>
+                            <td>void encrypt(char [64], int);</td>
+                        </tr>
+                        <tr>
+                            <td>execl</td>
+                            <td>Esegue un altro programma.</td>
+                            <td>int execl(const char *, const char *, ...);</td>
+                        </tr>
+                        <tr>
+                            <td>execle</td>
+                            <td>Esegue un altro programma con delle variabili.</td>
+                            <td>int execle(const char *, const char *, ...);</td>
+                        </tr>
+                        <tr>
+                            <td>execlp</td>
+                            <td>Esegue un altro programma cercandolo nel percorso.</td>
+                            <td>int execlp(const char *, const char *, ...);</td>
+                        </tr>
+                        <tr>
+                            <td>execv</td>
+                            <td>Esegue un altro programma con una lista di argomenti.</td>
+                            <td>int execv(const char *, char *const []);</td>
+                        </tr>
+                        <tr>
+                            <td>execve</td>
+                            <td>Esegue un altro programma con una lista di argomenti e variabili.</td>
+                            <td>int execve(const char *, char *const [], char *const []);</td>
+                        </tr>
+                        <tr>
+                            <td>execvp</td>
+                            <td>Esegue un altro programma cercandolo nel percorso con una lista di argomenti.</td>
+                            <td>int execvp(const char *, char *const []);</td>
+                        </tr>
+                        <tr>
+                            <td>faccessat</td>
+                            <td>Controlla se puoi leggere o scrivere in un file specifico.</td>
+                            <td>int faccessat(int, const char *, int, int);</td>
+                        </tr>
+                        <tr>
+                            <td>fchdir</td>
+                            <td>Cambia la cartella usando un file.</td>
+                            <td>int fchdir(int);</td>
+                        </tr>
+                        <tr>
+                            <td>fchown</td>
+                            <td>Cambia il proprietario di un file specifico.</td>
+                            <td>int fchown(int, uid_t, gid_t);</td>
+                        </tr>
+                        <tr>
+                            <td>fchownat</td>
+                            <td>Cambia il proprietario di un file specifico in una cartella.</td>
+                            <td>int fchownat(int, const char *, uid_t, gid_t, int);</td>
+                        </tr>
+                        <tr>
+                            <td>fdatasync</td>
+                            <td>Salva i dati di un file su disco.</td>
+                            <td>int fdatasync(int);</td>
+                        </tr>
+                        <tr>
+                            <td>fexecve</td>
+                            <td>Esegue un programma specifico da un file.</td>
+                            <td>int fexecve(int, char *const [], char *const []);</td>
+                        </tr>
+                        <tr>
+                            <td>fork</td>
+                            <td>Crea una copia del programma che sta girando.</td>
+                            <td>pid_t fork(void);</td>
+                        </tr>
+                        <tr>
+                            <td>fpathconf</td>
+                            <td>Ottiene alcune informazioni sul sistema.</td>
+                            <td>long fpathconf(int, int);</td>
+                        </tr>
+                        <tr>
+                            <td>fsync</td>
+                            <td>Salva tutti i dati di un file su disco.</td>
+                            <td>int fsync(int);</td>
+                        </tr>
+                        <tr>
+                            <td>ftruncate</td>
+                            <td>Taglia un file a una certa lunghezza.</td>
+                            <td>int ftruncate(int, off_t);</td>
+                        </tr>
+                        <tr>
+                            <td>getcwd</td>
+                            <td>Ottiene la cartella in cui stai lavorando.</td>
+                            <td>char *getcwd(char *, size_t);</td>
+                        </tr>
+                        <tr>
+                            <td>getegid</td>
+                            <td>Ottiene l'ID del gruppo di un file.</td>
+                            <td>gid_t getegid(void);</td>
+                        </tr>
+                        <tr>
+                            <td>geteuid</td>
+                            <td>Ottiene l'ID dell'utente di un file.</td>
+                            <td>uid_t geteuid(void);</td>
+                        </tr>
+                        <tr>
+                            <td>getgid</td>
+                            <td>Ottiene l'ID del gruppo.</td>
+                            <td>gid_t getgid(void);</td>
+                        </tr>
+                        <tr>
+                            <td>getgroups</td>
+                            <td>Ottiene una lista di gruppi a cui appartieni.</td>
+                            <td>int getgroups(int, gid_t []);</td>
+                        </tr>
+                        <tr>
+                            <td>gethostid</td>
+                            <td>Ottiene l'ID del computer.</td>
+                            <td>long gethostid(void);</td>
+                        </tr>
+                        <tr>
+                            <td>gethostname</td>
+                            <td>Ottiene il nome del computer.</td>
+                            <td>int gethostname(char *, size_t);</td>
+                        </tr>
+                        <tr>
+                            <td>getlogin</td>
+                            <td>Ottiene il nome dell'utente.</td>
+                            <td>char *getlogin(void);</td>
+                        </tr>
+                        <tr>
+                            <td>getlogin_r</td>
+                            <td>Ottiene il nome dell'utente in modo sicuro.</td>
+                            <td>int getlogin_r(char *, size_t);</td>
+                        </tr>
+                        <tr>
+                            <td>getopt</td>
+                            <td>Ottiene le opzioni dalla riga di comando.</td>
+                            <td>int getopt(int, char *const [], const char *);</td>
+                        </tr>
+                        <tr>
+                            <td>getpgid</td>
+                            <td>Ottiene l'ID del gruppo di processi.</td>
+                            <td>pid_t getpgid(pid_t);</td>
+                        </tr>
+                        <tr>
+                            <td>getpgrp</td>
+                            <td>Ottiene l'ID del gruppo di processi attuale.</td>
+                            <td>pid_t getpgrp(void);</td>
+                        </tr>
+                        <tr>
+                            <td>getpid</td>
+                            <td>Ottiene l'ID del processo attuale.</td>
+                            <td>pid_t getpid(void);</td>
+                        </tr>
+                        <tr>
+                            <td>getppid</td>
+                            <td>Ottiene l'ID del processo genitore.</td>
+                            <td>pid_t getppid(void);</td>
+                        </tr>
+                        <tr>
+                            <td>getsid</td>
+                            <td>Ottiene l'ID della sessione.</td>
+                            <td>pid_t getsid(pid_t);</td>
+                        </tr>
+                        <tr>
+                            <td>getuid</td>
+                            <td>Ottiene l'ID dell'utente attuale.</td>
+                            <td>uid_t getuid(void);</td>
+                        </tr>
+                        <tr>
+                            <td>isatty</td>
+                            <td>Controlla se un file è un terminale.</td>
+                            <td>int isatty(int);</td>
+                        </tr>
+                        <tr>
+                            <td>lchown</td>
+                            <td>Cambia il proprietario di un link simbolico.</td>
+                            <td>int lchown(const char *, uid_t, gid_t);</td>
+                        </tr>
+                        <tr>
+                            <td>link</td>
+                            <td>Crea un nuovo link a un file.</td>
+                            <td>int link(const char *, const char *);</td>
+                        </tr>
+                        <tr>
+                            <td>linkat</td>
+                            <td>Crea un nuovo link a un file in una cartella specifica.</td>
+                            <td>int linkat(int, const char *, int, const char *, int);</td>
+                        </tr>
+                        <tr>
+                            <td>lockf</td>
+                            <td>Blocca un file per evitare che altri lo modifichino.</td>
+                            <td>int lockf(int, int, off_t);</td>
+                        </tr>
+                        <tr>
+                            <td>lseek</td>
+                            <td>Si sposta in una posizione specifica di un file.</td>
+                            <td>off_t lseek(int, off_t, int);</td>
+                        </tr>
+                        <tr>
+                            <td>nice</td>
+                            <td>Cambia la priorità di un processo.</td>
+                            <td>int nice(int);</td>
+                        </tr>
+                        <tr>
+                            <td>pathconf</td>
+                            <td>Ottiene informazioni sulla configurazione di un percorso.</td>
+                            <td>long pathconf(const char *, int);</td>
+                        </tr>
+                        <tr>
+                            <td>pause</td>
+                            <td>Ferma il programma finché non succede qualcosa.</td>
+                            <td>int pause(void);</td>
+                        </tr>
+                        <tr>
+                            <td>pipe</td>
+                            <td>Crea una comunicazione tra processi.</td>
+                            <td>int pipe(int [2]);</td>
+                        </tr>
+                        <tr>
+                            <td>pread</td>
+                            <td>Legge da un file a una posizione specifica.</td>
+                            <td>ssize_t pread(int, void *, size_t, off_t);</td>
+                        </tr>
+                        <tr>
+                            <td>pwrite</td>
+                            <td>Scrive su un file a una posizione specifica.</td>
+                            <td>ssize_t pwrite(int, const void *, size_t, off_t);</td>
+                        </tr>
+                        <tr>
+                            <td>read</td>
+                            <td>Legge dati da un file.</td>
+                            <td>ssize_t read(int, void *, size_t);</td>
+                        </tr>
+                        <tr>
+                            <td>readlink</td>
+                            <td>Legge il percorso di un link simbolico.</td>
+                            <td>ssize_t readlink(const char *, char *, size_t);</td>
+                        </tr>
+                        <tr>
+                            <td>readlinkat</td>
+                            <td>Legge il percorso di un link simbolico in una cartella specifica.</td>
+                            <td>ssize_t readlinkat(int, const char *, char *, size_t);</td>
+                        </tr>
+                        <tr>
+                            <td>rmdir</td>
+                            <td>Cancella una cartella vuota.</td>
+                            <td>int rmdir(const char *);</td>
+                        </tr>
+                        <tr>
+                            <td>setgid</td>
+                            <td>Cambia l'ID del gruppo.</td>
+                            <td>int setgid(gid_t);</td>
+                        </tr>
+                        <tr>
+                            <td>setpgid</td>
+                            <td>Cambia l'ID del gruppo di processi.</td>
+                            <td>int setpgid(pid_t, pid_t);</td>
+                        </tr>
+                        <tr>
+                            <td>setpgrp</td>
+                            <td>Cambia l'ID del gruppo di processi per il processo attuale.</td>
+                            <td>int setpgrp(void);</td>
+                        </tr>
+                        <tr>
+                            <td>setregid</td>
+                            <td>Cambia l'ID reale ed effettivo del gruppo.</td>
+                            <td>int setregid(gid_t, gid_t);</td>
+                        </tr>
+                        <tr>
+                            <td>setresgid</td>
+                            <td>Cambia gli ID reale, effettivo e salvato del gruppo.</td>
+                            <td>int setresgid(gid_t, gid_t, gid_t);</td>
+                        </tr>
+                        <tr>
+                            <td>setresuid</td>
+                            <td>Cambia gli ID reale, effettivo e salvato dell'utente.</td>
+                            <td>int setresuid(uid_t, uid_t, uid_t);</td>
+                        </tr>
+                        <tr>
+                            <td>setreuid</td>
+                            <td>Cambia l'ID reale ed effettivo dell'utente.</td>
+                            <td>int setreuid(uid_t, uid_t);</td>
+                        </tr>
+                        <tr>
+                            <td>setsid</td>
+                            <td>Crea una nuova sessione.</td>
+                            <td>pid_t setsid(void);</td>
+                        </tr>
+                        <tr>
+                            <td>setuid</td>
+                            <td>Cambia l'ID dell'utente.</td>
+                            <td>int setuid(uid_t);</td>
+                        </tr>
+                        <tr>
+                            <td>sleep</td>
+                            <td>Ferma il programma per un po' di tempo.</td>
+                            <td>unsigned int sleep(unsigned int);</td>
+                        </tr>
+                        <tr>
+                            <td>swab</td>
+                            <td>Scambia i byte di dati.</td>
+                            <td>void swab(const void *, void *, ssize_t);</td>
+                        </tr>
+                        <tr>
+                            <td>symlink</td>
+                            <td>Crea un link simbolico.</td>
+                            <td>int symlink(const char *, const char *);</td>
+                        </tr>
+                        <tr>
+                            <td>symlinkat</td>
+                            <td>Crea un link simbolico in una cartella specifica.</td>
+                            <td>int symlinkat(const char *, int, const char *);</td>
+                        </tr>
+                        <tr>
+                            <td>sync</td>
+                            <td>Scrive tutti i dati non ancora scritti sul disco.</td>
+                            <td>void sync(void);</td>
+                        </tr>
+                        <tr>
+                            <td>sysconf</td>
+                            <td>Ottiene informazioni sulla configurazione del sistema.</td>
+                            <td>long sysconf(int);</td>
+                        </tr>
+                        <tr>
+                            <td>tcgetpgrp</td>
+                            <td>Ottiene l'ID del gruppo di processi del terminale.</td>
+                            <td>pid_t tcgetpgrp(int);</td>
+                        </tr>
+                        <tr>
+                            <td>tcsetpgrp</td>
+                            <td>Cambia l'ID del gruppo di processi del terminale.</td>
+                            <td>int tcsetpgrp(int, pid_t);</td>
+                        </tr>
+                        <tr>
+                            <td>ttyname</td>
+                            <td>Ottiene il nome del terminale.</td>
+                            <td>char *ttyname(int);</td>
+                        </tr>
+                        <tr>
+                            <td>ttyname_r</td>
+                            <td>Ottiene il nome del terminale in modo sicuro.</td>
+                            <td>int ttyname_r(int, char *, size_t);</td>
+                        </tr>
+                        <tr>
+                            <td>unlink</td>
+                            <td>Cancella un file.</td>
+                            <td>int unlink(const char *);</td>
+                        </tr>
+                        <tr>
+                            <td>unlinkat</td>
+                            <td>Cancella un file in una cartella specifica.</td>
+                            <td>int unlinkat(int, const char *, int);</td>
+                        </tr>
+                        <tr>
+                            <td>write</td>
+                            <td>Scrive dati su un file.</td>
+                            <td>ssize_t write(int, const void *, size_t);</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Macro</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th class="prototype">Macro</th>
+                            <th class="descrizione">Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>_PC_2_SYMLINKS</td>
+                            <td>Numero massimo di link simbolici che un file può avere (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_ALLOC_SIZE_MIN</td>
+                            <td>La dimensione minima per allocare spazio su disco (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_ASYNC_IO</td>
+                            <td>Supporto per l'input/output asincrono (senza bloccare l'esecuzione) (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_CHOWN_RESTRICTED</td>
+                            <td>Restrizioni sul cambiare il proprietario di un file (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_FILESIZEBITS</td>
+                            <td>Numero di bit usati per le dimensioni dei file (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_LINK_MAX</td>
+                            <td>Numero massimo di link che un file può avere (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_MAX_CANON</td>
+                            <td>Dimensione massima per la memoria di input del terminale (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_MAX_INPUT</td>
+                            <td>Dimensione massima per i dati di input dal terminale (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_NAME_MAX</td>
+                            <td>Lunghezza massima del nome di un file (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_NO_TRUNC</td>
+                            <td>Se i nomi dei file troppo lunghi vengono troncati (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_PATH_MAX</td>
+                            <td>Lunghezza massima di un percorso di file (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_PIPE_BUF</td>
+                            <td>Dimensione del buffer per le pipe (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_PRIO_IO</td>
+                            <td>Se il sistema supporta operazioni di input/output prioritarie (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_REC_INCR_XFER_SIZE</td>
+                            <td>Dimensione di trasferimento incrementale per operazioni di I/O (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_REC_MAX_XFER_SIZE</td>
+                            <td>Dimensione massima di trasferimento per operazioni di I/O (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_REC_MIN_XFER_SIZE</td>
+                            <td>Dimensione minima di trasferimento per operazioni di I/O (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_REC_XFER_ALIGN</td>
+                            <td>Allineamento richiesto per operazioni di I/O (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_SYMLINK_MAX</td>
+                            <td>Numero massimo di link simbolici che il sistema può gestire (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_SYNC_IO</td>
+                            <td>Se il sistema supporta operazioni di I/O sincrone (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_TIMESTAMP_RESOLUTION</td>
+                            <td>Precisione dei timestamp del file (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_PC_VDISABLE</td>
+                            <td>Carattere usato per disabilitare i tasti speciali nel terminale (da passare alla funzione pathconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_2_C_BIND</td>
+                            <td>Supporto per le librerie di binding C (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_2_C_DEV</td>
+                            <td>Supporto per dispositivi speciali (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_2_CHAR_TERM</td>
+                            <td>Supporto per i terminali di caratteri (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_2_FORT_DEV</td>
+                            <td>Supporto per i dispositivi Fortran (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_2_FORT_RUN</td>
+                            <td>Supporto per l'esecuzione dei programmi Fortran (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_2_LOCALEDEF</td>
+                            <td>Supporto per la definizione delle impostazioni locali (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_2_PBS</td>
+                            <td>Supporto per il sistema di gestione dei lavori Portable Batch System (PBS) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_2_PBS_ACCOUNTING</td>
+                            <td>Supporto per l'accounting dei lavori PBS (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_2_PBS_CHECKPOINT</td>
+                            <td>Supporto per il checkpoint dei lavori PBS (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_2_PBS_LOCATE</td>
+                            <td>Supporto per la localizzazione dei lavori PBS (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_2_PBS_MESSAGE</td>
+                            <td>Supporto per i messaggi dei lavori PBS (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_2_PBS_TRACK</td>
+                            <td>Supporto per il tracciamento dei lavori PBS (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_2_SW_DEV</td>
+                            <td>Supporto per i dispositivi software (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_2_UPE</td>
+                            <td>Supporto per l'uso della preemptive multitasking (gestione dei processi) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_2_VERSION</td>
+                            <td>Supporto per la versione del sistema (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_ADVISORY_INFO</td>
+                            <td>Informazioni sui consigli e suggerimenti del sistema (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_AIO_LISTIO_MAX</td>
+                            <td>Numero massimo di operazioni di input/output asincrono che possono essere effettuate (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_AIO_MAX</td>
+                            <td>Numero massimo di operazioni di input/output asincrono che possono essere gestite contemporaneamente (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_AIO_PRIO_DELTA_MAX</td>
+                            <td>Massima priorità per le operazioni di input/output asincrono (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_ARG_MAX</td>
+                            <td>Numero massimo di argomenti che possono essere passati a un comando (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_ASYNCHRONOUS_IO</td>
+                            <td>Supporto per l'input/output asincrono (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_ATEXIT_MAX</td>
+                            <td>Numero massimo di funzioni di pulizia che possono essere registrate (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_BARRIERS</td>
+                            <td>Supporto per le barriere di sincronizzazione (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_BC_BASE_MAX</td>
+                            <td>Massimo valore base per le operazioni aritmetiche (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_BC_DIM_MAX</td>
+                            <td>Dimensione massima per le variabili in espressioni aritmetiche (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_BC_SCALE_MAX</td>
+                            <td>Massimo valore per la scala aritmetica (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_BC_STRING_MAX</td>
+                            <td>Lunghezza massima delle stringhe in operazioni aritmetiche (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_CHILD_MAX</td>
+                            <td>Numero massimo di processi figli che un processo può avere (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_CLK_TCK</td>
+                            <td>Numero di "tic" per secondo del timer di sistema (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_CLOCK_SELECTION</td>
+                            <td>Supporto per la selezione del tipo di orologio del sistema (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_COLL_WEIGHTS_MAX</td>
+                            <td>Numero massimo di pesi di collazione per ordinare i caratteri (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_CPUTIME</td>
+                            <td>Supporto per il tempo di CPU (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_DELAYTIMER_MAX</td>
+                            <td>Massimo valore per i timer di ritardo (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_EXPR_NEST_MAX</td>
+                            <td>Massimo numero di livelli di annidamento per espressioni (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_FSYNC</td>
+                            <td>Supporto per la sincronizzazione dei dati su disco (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_GETGR_R_SIZE_MAX</td>
+                            <td>Dimensione massima per la lettura dei dati dei gruppi (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_GETPW_R_SIZE_MAX</td>
+                            <td>Dimensione massima per la lettura dei dati degli utenti (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_HOST_NAME_MAX</td>
+                            <td>Lunghezza massima per i nomi host (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_IOV_MAX</td>
+                            <td>Numero massimo di buffer per le operazioni di input/output (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_IPV6</td>
+                            <td>Supporto per IPv6 (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_JOB_CONTROL</td>
+                            <td>Supporto per il controllo dei lavori (gestione dei processi) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_LINE_MAX</td>
+                            <td>Lunghezza massima per una riga di input (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_LOGIN_NAME_MAX</td>
+                            <td>Lunghezza massima per i nomi di login (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_MAPPED_FILES</td>
+                            <td>Supporto per i file mappati in memoria (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_MEMLOCK</td>
+                            <td>Supporto per il blocco in memoria dei file (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_MEMLOCK_RANGE</td>
+                            <td>Range di memoria che può essere bloccato (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_MEMORY_PROTECTION</td>
+                            <td>Supporto per la protezione della memoria (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_MESSAGE_PASSING</td>
+                            <td>Supporto per la comunicazione tra processi (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_MONOTONIC_CLOCK</td>
+                            <td>Supporto per un orologio monotono (che non va indietro) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_MQ_OPEN_MAX</td>
+                            <td>Numero massimo di code di messaggi che possono essere aperte (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_MQ_PRIO_MAX</td>
+                            <td>Priorità massima per i messaggi nelle code (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_NGROUPS_MAX</td>
+                            <td>Numero massimo di gruppi a cui un utente può appartenere (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_OPEN_MAX</td>
+                            <td>Numero massimo di file che possono essere aperti contemporaneamente (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_PAGE_SIZE</td>
+                            <td>Dimensione della pagina di memoria (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_PAGESIZE</td>
+                            <td>Dimensione della pagina di memoria (altro nome per _SC_PAGE_SIZE) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_PRIORITIZED_IO</td>
+                            <td>Supporto per le operazioni di I/O con priorità (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_PRIORITY_SCHEDULING</td>
+                            <td>Supporto per la pianificazione basata sulla priorità (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_RAW_SOCKETS</td>
+                            <td>Supporto per i socket raw (non elaborati) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_RE_DUP_MAX</td>
+                            <td>Numero massimo di ripetizioni per le espressioni regolari (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_READER_WRITER_LOCKS</td>
+                            <td>Supporto per i lock per lettori e scrittori (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_REALTIME_SIGNALS</td>
+                            <td>Supporto per i segnali in tempo reale (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_REGEXP</td>
+                            <td>Supporto per le espressioni regolari (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_RTSIG_MAX</td>
+                            <td>Numero massimo di segnali real-time (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_SAVED_IDS</td>
+                            <td>Supporto per l'uso degli ID salvati (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_SEM_NSEMS_MAX</td>
+                            <td>Numero massimo di semafori che possono essere usati (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_SEM_VALUE_MAX</td>
+                            <td>Valore massimo che un semaforo può avere (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_SEMAPHORES</td>
+                            <td>Supporto per l'uso dei semafori (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_SHARED_MEMORY_OBJECTS</td>
+                            <td>Supporto per gli oggetti di memoria condivisa (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_SHELL</td>
+                            <td>Supporto per la shell (comandi del sistema) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_SIGQUEUE_MAX</td>
+                            <td>Numero massimo di segnali che possono essere inviati tramite una coda (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_SPAWN</td>
+                            <td>Supporto per la creazione di nuovi processi (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_SPIN_LOCKS</td>
+                            <td>Supporto per i lock a spin (senza blocco) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_SPORADIC_SERVER</td>
+                            <td>Supporto per i server sporadici (che non funzionano tutto il tempo) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_SS_REPL_MAX</td>
+                            <td>Numero massimo di sostituzioni di caratteri per le espressioni regolari (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_STREAM_MAX</td>
+                            <td>Numero massimo di stream di I/O che possono essere usati (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_SYMLOOP_MAX</td>
+                            <td>Numero massimo di loop nei link simbolici (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_SYNCHRONIZED_IO</td>
+                            <td>Supporto per l'input/output sincronizzato (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREAD_ATTR_STACKADDR</td>
+                            <td>Supporto per la specifica dell'indirizzo dello stack per i thread (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREAD_ATTR_STACKSIZE</td>
+                            <td>Supporto per la specifica della dimensione dello stack per i thread (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREAD_CPUTIME</td>
+                            <td>Supporto per il tempo di CPU per i thread (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREAD_DESTRUCTOR_ITERATIONS</td>
+                            <td>Numero di iterazioni per i distruttori dei thread (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREAD_KEYS_MAX</td>
+                            <td>Numero massimo di chiavi per i dati specifici del thread (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREAD_PRIO_INHERIT</td>
+                            <td>Supporto per l'ereditarietà della priorità tra thread (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREAD_PRIO_PROTECT</td>
+                            <td>Supporto per la protezione della priorità dei thread (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREAD_PRIORITY_SCHEDULING</td>
+                            <td>Supporto per la pianificazione basata sulla priorità dei thread (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREAD_PROCESS_SHARED</td>
+                            <td>Supporto per la condivisione di thread tra processi (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREAD_ROBUST_PRIO_INHERIT</td>
+                            <td>Supporto per la robustezza nella priorità ereditaria dei thread (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREAD_ROBUST_PRIO_PROTECT</td>
+                            <td>Supporto per la protezione robusta della priorità dei thread (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREAD_SAFE_FUNCTIONS</td>
+                            <td>Supporto per le funzioni sicure per i thread (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREAD_SPORADIC_SERVER</td>
+                            <td>Supporto per server sporadici con i thread (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREAD_STACK_MIN</td>
+                            <td>Dimensione minima dello stack per i thread (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREAD_THREADS_MAX</td>
+                            <td>Numero massimo di thread che possono essere creati (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_THREADS</td>
+                            <td>Supporto per i thread (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_TIMEOUTS</td>
+                            <td>Supporto per i timeout (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_TIMER_MAX</td>
+                            <td>Numero massimo di timer che possono essere creati (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_TIMERS</td>
+                            <td>Supporto per i timer (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_TRACE</td>
+                            <td>Supporto per il tracciamento delle chiamate di sistema (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_TRACE_EVENT_FILTER</td>
+                            <td>Supporto per il filtraggio degli eventi di tracciamento (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_TRACE_EVENT_NAME_MAX</td>
+                            <td>Lunghezza massima dei nomi degli eventi di tracciamento (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_TRACE_INHERIT</td>
+                            <td>Supporto per l'ereditarietà del tracciamento (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_TRACE_LOG</td>
+                            <td>Supporto per la registrazione dei log di tracciamento (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_TRACE_NAME_MAX</td>
+                            <td>Lunghezza massima dei nomi per il tracciamento (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_TRACE_SYS_MAX</td>
+                            <td>Numero massimo di chiamate di sistema che possono essere tracciate (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_TRACE_USER_EVENT_MAX</td>
+                            <td>Numero massimo di eventi utente che possono essere tracciati (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_TTY_NAME_MAX</td>
+                            <td>Lunghezza massima del nome del terminale (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_TYPED_MEMORY_OBJECTS</td>
+                            <td>Supporto per gli oggetti di memoria tipizzati (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_TZNAME_MAX</td>
+                            <td>Lunghezza massima dei nomi dei fusi orari (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_V7_ILP32_OFF32</td>
+                            <td>Supporto per i dati a 32 bit e offset a 32 bit (Standard V7) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_V7_ILP32_OFFBIG</td>
+                            <td>Supporto per i dati a 32 bit e offset grandi (Standard V7) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_V7_LP64_OFF64</td>
+                            <td>Supporto per i dati a 64 bit e offset a 64 bit (Standard V7) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_V7_LPBIG_OFFBIG</td>
+                            <td>Supporto per i dati grandi e offset grandi (Standard V7) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_V6_ILP32_OFF32</td>
+                            <td>Supporto per i dati a 32 bit e offset a 32 bit (Standard V6) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_V6_ILP32_OFFBIG</td>
+                            <td>Supporto per i dati a 32 bit e offset grandi (Standard V6) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_V6_LP64_OFF64</td>
+                            <td>Supporto per i dati a 64 bit e offset a 64 bit (Standard V6) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_V6_LPBIG_OFFBIG</td>
+                            <td>Supporto per i dati grandi e offset grandi (Standard V6) (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_VERSION</td>
+                            <td>Supporto per la versione del sistema operativo (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_CRYPT</td>
+                            <td>Supporto per la crittografia X/Open (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_ENH_I18N</td>
+                            <td>Supporto per le migliorie internazionali X/Open (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_REALTIME</td>
+                            <td>Supporto per il tempo reale X/Open (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_REALTIME_THREADS</td>
+                            <td>Supporto per i thread in tempo reale X/Open (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_SHM</td>
+                            <td>Supporto per la memoria condivisa X/Open (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_UNIX</td>
+                            <td>Supporto per l'API UNIX X/Open (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_VERSION</td>
+                            <td>Versione dell'API X/Open supportata (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_XCU_VERSION</td>
+                            <td>Versione dell'API X/Open Command and Utilities supportata (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_XPG</td>
+                            <td>Supporto per il Porting Guide (XPG) X/Open (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_XPG2</td>
+                            <td>Supporto per XPG2 (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_XPG3</td>
+                            <td>Supporto per XPG3 (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_XPG4</td>
+                            <td>Supporto per XPG4 (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_XPG5</td>
+                            <td>Supporto per XPG5 (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_XPG6</td>
+                            <td>Supporto per XPG6 (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_XPG7</td>
+                            <td>Supporto per XPG7 (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                        <tr>
+                            <td>_SC_XOPEN_XPG8</td>
+                            <td>Supporto per XPG8 (parametro da passare alla funzione sysconf()).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Tipi di dato</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th class="prototype">Tipo</th>
+                            <th class="descrizione">Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>size_t</code></td>
+                            <td>Questo tipo è un altro modo di chiamare unsigned int. Lo usiamo per contare oggetti o misurare lunghezze</td>
+                        </tr>
+                        <tr>
+                            <td><code>ssize_t</code></td>
+                            <td>Questo tipo è simile a <code>size_t</code>, ma può essere positivo o negativo. È utile quando vogliamo sapere se qualcosa è andato male</td>
+                        </tr>
+                        <tr>
+                            <td><code>uid_t</code></td>
+                            <td>Questo è come un'etichetta speciale per ogni persona su un computer, proprio come un nome utente. Aiuta il computer a sapere chi sta facendo cosa</td>
+                        </tr>
+                        <tr>
+                            <td><code>gid_t</code></td>
+                            <td>Questo tipo è come un'etichetta per un gruppo di persone. Aiuta a sapere a quale gruppo appartieni</td>
+                        </tr>
+                        <tr>
+                            <td><code>off_t</code></td>
+                            <td>Questo tipo serve per tenere traccia di posizioni all'interno di file</td>
+                        </tr>
+                        <tr>
+                            <td><code>pid_t</code></td>
+                            <td>Questo tipo è come un numero di identificazione per i programmi in esecuzione. Ogni programma ha il suo numero unico</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("unistd", "../../c/lezione/lez13");
+    </script>
+</html>

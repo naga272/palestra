@@ -1,0 +1,182 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../static/css/style.css">
+        <style>
+            .topbar h2{
+                width:30%;
+            }
+
+            .contenitore_main, .contenitore_submain, textarea, 
+            .content_domanda, #id_username, #id_password, input[type='submit']{
+                margin: 0 auto;
+            }
+            .contenitore_main{
+                width:70%; 
+                background-color:rgb(253, 252, 252);     
+                padding-top:1%;
+                padding-bottom:1%;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                border:1px solid black;
+                transition: box-shadow 0.3s ease;
+            }.contenitore_main:hover {
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            }
+            .contenitore_submain{
+                width:90%; 
+                margin-bottom: 20px;
+            }
+            .contenitore_submain .content_domanda{
+                background-color: #e9ddcc;
+                text-align: left;
+                overflow-x: auto;
+                padding:1%;
+                border:1px solid #e9ddcc;
+                transition:all .7s;
+                    
+            }.contenitore_submain .content_domanda:hover{
+                border:1px solid black;
+            }
+
+            .form_dati{
+                display:flex;
+                flex-direction: column;
+            }
+
+            textarea, .content_domanda{
+                width: 90%;
+                padding: 0.5%;
+                display: block;
+            }
+
+            #id_username, #id_password, textarea{
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            }
+            #id_username:focus, #id_password:focus, textarea:focus{
+                border-color: #0E2C40;
+                box-shadow: 0 4px 10px rgba(14, 44, 64, 0.2);
+                outline: none;
+            }
+            #id_username, #id_password, input[type='submit']{
+                width: 50%;
+            }
+
+            input[type='submit']{
+                padding: 10px;
+                border-radius: 10px;
+                background-color: #0E2C40;
+                color: #EFBC75;
+                cursor: pointer;
+                border: 1px solid #EFBC75;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                transition: all 0.5s ease;
+            }input[type='submit']:hover{
+                background-color: #EFBC75;
+                color: #0E2C40;
+                border-color: #0E2C40;
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            input[type='submit'], #id_username, #id_password, textarea{
+                font-size: 1.1em;
+            }
+
+            .all_risposte{
+                margin-left:3%;
+                margin-right: 3%;
+                white-space: pre-wrap;
+            }
+
+            .all_risposte h1 {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .form_dati a{
+                color:#0E2C40;
+                text-decoration:none;
+            }
+            .form_dati a:hover {
+                text-decoration: underline;
+            }
+
+        </style>
+    </head>
+    <body>
+        <main style="text-align: left; width:100%; color:black; padding-top: 15%;">
+            <div style="width:100%; display:flex; flex-direction: column; text-align: center;">
+                <div class="contenitore_main"> 
+                    <div class="contenitore_submain">
+                        <div> <!-- domanda-->
+                            <div>
+                                <h3>Titolo: {{ caso.titolo }}</h3>
+                                <br>
+                                <p class="content_domanda">
+                                    {{ caso.content }}
+                                </p>
+                            </div>
+                        </div>
+                        <br>
+                        <div> <!-- caso risposta form-->
+                            <div>
+                                <form action="" method="post" class="form_dati">
+                                    {% csrf_token %}
+                                    {{ form_answer.contenuto }}<br>
+                                    {{ form_answer.username }}<br>
+                                    {{ form_answer.password }}
+                                    <div style="margin-top:5px">
+                                        <a href="https://campus.marconivr.it/login/forgot_password.php">Non ricordi la password?</a>
+                                    </div><br>
+                                
+                                    <input type="submit">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="all_risposte">
+                <h1>Sezione commenti</h1>
+                {% if answer %}
+                    {% for risposta in answer %}
+                        <div style="margin-bottom:-1.5%">commento pubblicato il: {{ risposta.data }}</div>
+                        <p class="answer_display">{{ risposta.content| linebreaksbr }}</p>
+                        <hr>
+                    {% endfor %}
+                {% else %}
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%;">
+                        <div style="font-size: 1.1em; margin-bottom: 20px;">Ancora nessuna risposta</div>
+                        <div><img src="../../../static/img/tristezza.png" alt="tristezza" style="width: 150px; height: auto;"></div>
+                    </div>
+                {% endif %}
+            </div>
+        </main>
+    </body>
+    <script>
+        init_page("caso {{ caso.id }}");
+        $("#id_username").attr("placeholder", "Inserisci il tuo username di campus!");
+        $("#id_password").attr("type", "password");
+        $("#id_password").attr("placeholder", "Inserisci la tua password di campus!");
+    </script>
+    <script>
+        $(".answer_display").css({
+            "margin-top" : "0%",
+            "padding" : "0%",
+            "background-color" : "#e9ddcc",
+            "padding-left" : "1%",
+            "padding-right" : "1%",
+            "padding-bottom" : "0.5%",
+            "width" : window.innerWidth - 200 + [] + "px",  // width dipende dal max innerwidth del dispositivo
+            "overflow-x" : "auto",
+            "border" : "1px solid black"
+        });
+    </script>
+</html>

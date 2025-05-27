@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+        .script {
+            padding: 1%;
+            background-color: black;
+            color: green;
+        }
+        .elenco {
+            margin: 0 auto;
+            text-align: center;
+            width: 80%;
+            border-collapse: collapse;
+            text-align: left; /* Allinea il testo delle celle a sinistra */
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .elenco th, .elenco td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        .elenco thead {
+            background-color: #f2f2f2;
+        }
+        .elenco tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .elenco tbody tr:hover {
+            background-color: #0E2C40;
+            color:#EFBC75;
+        }
+        .elenco th {
+            background-color: #0E2C40;
+            color: white;
+        }
+        .table-container {
+            display: flex;
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .elenco .prototype {
+            width: 50%;
+        }
+        .elenco .descrizione {
+            width: 30%;
+        }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>stdarg</h1>
+            <br><br>
+            <p>
+                Per usare questa libreria, bisogna prima conoscere il concetto di "Variadic functions".<br>
+                In pratica, le funzioni variadiche accettano un numero variabile di argomenti, grazie al token "...":<br>
+                <div class="shell" style="margin: 0 auto; width:60%; text-align:left">
+                    <span class="type">int</span> somma(<span class="type">int</span>, ...);
+                </div>
+                In questo modo stiamo dicendo che la funzione somma accetta obbligatoriamento un parametro intero seguito da altri n parametri<br>
+                Per queste funzione è obbligatorio avere passato almeno un parametro nominato (nel nostro caso di tipo int).<br>
+                Il corpo della funzione quindi sarà:<br>
+                <div class="shell" style="margin: 0 auto; width:60%; text-align:left">
+                    <span class="type">int</span> somma(<span class="type">int</span> a, ...){<br>
+                    <span class="strings" style="margin-left:20px">// contenuto della funzione</span><br>
+                    }
+                </div>
+            </p>
+            <br>
+            </div>
+            <h3>Macro / Costanti</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>va_start</td>
+                            <td>usata per iniziare l'iterazione sugli argomenti variadici di una funzione.</td>
+                        </tr>
+                        <tr>
+                            <td>va_arg</td>
+                            <td>utilizzata per recuperare un argomento dalla lista degli argomenti variadici.</td>
+                        </tr>
+                        <tr>
+                            <td>va_end</td>
+                            <td>utilizzata per terminare l'uso di un oggetto va_list.</td>
+                        </tr>
+                        <tr>
+                            <td>va_copy</td>
+                            <td>copia il contenuto di una variabile va_list in un'altra.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>Tipi di dato</h3>                
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>va_list</td>
+                            <td>tipo usato per iterare sugli argomenti</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>programma esempio che somma tutti gli argomenti passati alla chiamata fino a che non incontra il numero 0</h3>
+            <div style="float:left; text-align:left; padding-left:10%; width:90%;">
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                    <span class="direttive">#include &lt;stdarg.h&gt;</span><br><br>
+
+                    <span class="type">int</span> somma(<span class="type">int</span>, ...);<br><br>
+
+                    <span class="type">int</span> main() {<br>
+                        <span style="margin-left:20px"></span>printf(<span class="strings">"%i\n"</span>, somma(1, 2, 3, 4, 0));<br>
+                        <span style="margin-left:20px"></span>printf(<span class="strings">"%i\n"</span>, somma(124, 33, 14, 0));<br>
+                        <span style="margin-left:20px"></span><span class="instruction">return</span> 0;<br>
+                    }<br><br>
+
+                    <span class="type">int</span> somma(<span class="type">int</span> arg1, ...){<br>
+                        <span class="type" style="margin-left:20px">va_list</span> argv;<br>
+                        <span class="type" style="margin-left:20px">int</span>
+                        <span>index</span>,<br> 
+                        <span style="margin-left:40px">counter = 0;</span><br><br>
+                        <span style="margin-left:20px">va_start(argv, arg1);<br>
+                        <span class="instruction" style="margin-left:20px">for</span>(index = arg1; index != 0; index = va_arg(argv, int))<br>
+                        <span style="margin-left:40px"></span>counter += index;<br>
+                        <span style="margin-left:20px">va_end(argv);</span><br>
+                        <span class="instruction" style="margin-left:20px">return</span> counter;<br>
+                    }
+                </div><br>
+
+                <strong>Output del programma:</strong><br>
+                <div class="shell strings">
+                    10<br>
+                    171
+                </div> 
+                <br>               
+            </div>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("stdarg", "../../c/lezione/lez13");
+    </script>
+</html>

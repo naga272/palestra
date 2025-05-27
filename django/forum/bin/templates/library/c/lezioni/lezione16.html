@@ -1,0 +1,302 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+            .elenco {
+                width: 80%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Struct, union e enum</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+                <p>
+                    Nel linguaggio di programmazione C, le strutture (struct), le unioni (union) e gli enumeratori (enum) sono costrutti fondamentali che consentono di definire nuovi tipi di dati. <br>
+                    Ognuno di questi costrutti ha caratteristiche e utilizzi specifici.
+                    
+                </p>
+                <h3>Struct</h3>
+                <p>
+                    Le strutture in C vengono utilizzate per raggruppare variabili correlate sotto un unico nome. <br>
+                    Ogni variabile all'interno della struttura viene chiamata "membro" della struttura. <br>
+                    Le strutture sono particolarmente utili per rappresentare un oggetto complesso con più proprietà.<br>
+                    Esempio:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+
+                        <span class="type">struct</span> Persona{<br>
+                            <span style="margin-left: 20px;"></span><span class="type">char</span> *nome;<br>
+                            <span style="margin-left: 20px;"></span><span class="type">unsigned int</span> eta;<br>
+                        };<br>
+                        <br>
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin-left: 20px;"></span><span class="type">struct</span> Persona p1 = {<br>
+                            <span style="margin-left: 40px;"></span>.nome = <span class="strings">"Mario"</span>,<br>
+                            <span style="margin-left: 40px;"></span>.eta = 17<br>
+                            <span style="margin-left: 20px;"></span>};<br>
+
+                            <span style="margin-left: 20px;"></span>printf(<span class="strings">"Nome: %s, eta: %u\n"</span>, p1.nome, p1.eta);<br>
+                            <span style="margin-left: 20px;"></span><span class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+                    <br>
+                    Nell'esempio che abbiamo appena visto, abbiamo creato una struct di nome Persona, che contiene due membri<br>
+                    Il primo membro è un puntatore di tipo char, mentre il secondo membro è un unsigned int chiamato eta.<br>
+                    <br>
+                    <h3>Output del programma</h3>
+                    <div class="shell strings">
+                        Nome: Mario, eta: 17
+                    </div>
+                </p>
+                <br>
+                <p>
+                    <p>
+                        Inoltre, è possibile inserire all'interno delle struct anche puntatori a funzione:
+                        <div class="shell">
+                            <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+
+                            <span class="type">struct</span> Persona{<br>
+                                <span style="margin-left: 20px;"></span><span class="type">char</span> *nome;<br>
+                                <span style="margin-left: 20px;"></span><span class="type">unsigned int</span> eta;<br>
+                                <span style="margin-left: 20px;"></span><span class="type">unsigned int</span> (*set_eta) (<span class="type">unsigned int</span>);<br>
+                            };<br><br>
+
+                            <span class="type">unsigned int</span> new_eta(<span class="type">unsigned int</span> new_eta){<br>
+                                <span style="margin-left: 20px;"></span><span class="instruction">return </span>new_eta;<br> 
+                            }
+
+                            <br><br>
+                            <span class="type">int</span> main(){<br>
+                                <span style="margin-left: 20px;"></span><span class="type">struct</span> Persona p1 = {<br>
+                                <span style="margin-left: 40px;"></span>.nome = <span class="strings">"Mario"</span>,<br>
+                                <span style="margin-left: 40px;"></span>.eta = 17,<br>
+                                <span style="margin-left: 40px;"></span>.set_eta = new_eta<br>
+                                <span style="margin-left: 20px;"></span>};<br>
+
+                                <span style="margin-left: 20px;"></span>printf(<span class="strings">"Nome: %s, eta: %u\n"</span>, p1.nome, p1.eta);<br>
+                                <span style="margin-left: 20px;"></span>p1.eta = p1.set_eta(19);<br>
+                                <span style="margin-left: 20px;"></span>printf(<span class="strings">"Nome: %s, eta: %u\n"</span>, p1.nome, p1.eta);<br>
+                                <span style="margin-left: 20px;"></span><span class="instruction">return</span> 0;<br>
+                            }
+                        </div>
+                        <br>
+                        <strong>Perché usare puntatori a funzione in una struct?</strong><br>
+                        Essenzialmente per tre motivi:<br>
+                        <ol style="margin-left:15px;">
+                            <li>
+                                <strong>Modularità e flessibilità</strong>: Possiamo cambiare il comportamento della struttura assegnando diverse funzioni ai puntatori a funzione senza dover modificare il resto del codice.
+                            </li>
+                            <li>
+                                <strong>Ereditarietà e polimorfismo</strong>: Simile ai concetti della programmazione orientata agli oggetti, possiamo avere diverse funzioni che implementano comportamenti diversi e assegnarle dinamicamente.
+                            </li>
+                            <li>
+                                <strong>Codice più pulito</strong>: Rende il codice più organizzato e modulare, separando chiaramente i dati dalle operazioni sui dati.
+                            </li>
+                        </ol>
+                        <br>
+
+                        <h3>Output del programma</h3>
+                        <div class="shell strings">
+                            Nome: Mario, eta: 17<br>
+                            Nome: Mario, eta: 19 
+                        </div><br><br>
+                    </p>
+                    <p>
+                        <h3>Puntatori a strutture dati</h3>
+                        Esiste la possibilità in C di creare dei puntatori che puntato a strutture dati.
+                        <div class="shell">
+                            <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                            <span class="direttive">#include &lt;stdlib.h&gt;</span><br><br>
+    
+                            <span class="type">struct</span> Persona{<br>
+                                <span style="margin-left: 20px;"></span><span class="type">char</span> *nome;<br>
+                                <span style="margin-left: 20px;"></span><span class="type">unsigned int</span> eta;<br>
+                                <span style="margin-left: 20px;"></span><span class="type">void</span> (*set_eta) (<span class="type">struct</span> Persona*, <span class="type">unsigned int</span>);<br>
+                            };<br><br>
+    
+                            <span class="type">void</span> new_eta(<span class="type">struct</span> Persona* p, <span class="type">unsigned int</span> new_eta){<br>
+                                <span style="margin-left: 20px;"></span>p -&gt; eta = new_eta;<br> 
+                            }
+    
+                            <br><br>
+                            <span class="type">int</span> main(){<br>
+                                <span style="margin-left: 20px;"></span><span class="type">struct</span> Persona *p1 = (<span class="type">struct</span> Persona*) malloc(sizeof(<span class="type">struct</span> Persona));<br>
+                                <span style="margin-left: 20px;"></span><span class="instruction">if</span>(p1 == NULL)<br>
+                                <span style="margin-left: 40px;"></span>exit(1);<br>
+                                <br>
+                                <span style="margin-left: 20px;"></span>p1 -&gt; nome = <span class="strings">"Mario"</span>;<br>
+                                <span style="margin-left: 20px;"></span>p1 -&gt; eta = 17;<br>
+                                <span style="margin-left: 20px;"></span>p1 -&gt; set_eta = new_eta;<br>
+    
+                                <span style="margin-left: 20px;"></span>printf(<span class="strings">"Nome: %s, eta: %u\n"</span>, p1 -&gt; nome, p1 -&gt; eta);<br>
+                                <span style="margin-left: 20px;"></span>p1 -&gt; set_eta(p1, 19);<br>
+                                <span style="margin-left: 20px;"></span>printf(<span class="strings">"Nome: %s, eta: %u\n"</span>, p1 -&gt; nome, p1 -&gt; eta);<br>
+                                <span style="margin-left: 20px;"></span>free(p1);<br>
+                                <span style="margin-left: 20px;"></span><span class="instruction">return</span> 0;<br>
+                            }
+                        </div>
+                        <br>
+                        Partendo dal main possiamo vedere che viene allocata della memoria dinamicamente per contenere un oggetto struct Persona. Una volta creato, viene puntato dal puntatore p1.<br>
+                        Dopo aver verificato che il puntatore non sia di tipo NULL (se è null significa che l'allocazione della memoria è andata male) possiamo assegnare dei valori ai membri della struct.<br>
+                        Quando si usano dei puntatori a delle struct, per accedere ai suoi membri si usa il token "-&gt;". <br>
+                        L'istruzione <strong>p1-&gt;set_eta(p1, 19);</strong> è equivalente a chiamare direttamente <strong>new_eta(p1, 19);</strong>.
+                        <br><br>
+                        <h3>Output del programma</h3>
+                        <div class="shell strings">
+                            Nome: Mario, eta: 17<br>
+                            Nome: Mario, eta: 19 
+                        </div>
+                    </p>
+                <br>
+                </p>
+                <p>
+                    <h3>union</h3>
+                    Le unioni sono simili alle strutture, ma con una differenza fondamentale: tutti i membri di un'unione condividono lo stesso spazio di memoria. <br>
+                    Ciò significa che, in un dato momento, solo uno dei membri può contenere un valore significativo. <br>
+                    Le unioni sono utili quando si desidera risparmiare memoria e si sa che solo un membro alla volta verrà utilizzato.<br>A
+                    Esempio:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+
+                        <span class="type">union</span> Valore{<br>
+                            <span style="margin-left: 20px;"></span><span class="type">int</span> intero;<br>
+                            <span style="margin-left: 20px;"></span><span class="type">float</span> reale;<br>
+                        };<br>
+                        <br>
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin-left: 20px;"></span><span class="type">union</span> Valore val;<br>
+                            <span style="margin-left: 20px;"></span>val.intero = 114;<br>
+                            <span style="margin-left: 20px;"></span>printf(<span class="strings">"%i\n"</span>, val.intero);<br>
+                            <span style="margin-left: 20px;"></span>val.reale = 3.14;<br>
+                            <span style="margin-left: 20px;"></span>printf(<span class="strings">"%.2f\n"</span>, val.reale);<br>
+                            <span style="margin-left: 20px;"></span><span class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+                    Nell'esempio appena mostrato, Valore può contenere un int o un float, ma non entrambi contemporaneamente. <br>
+                    L'assegnazione di un valore a val.reale sovrascrive il contenuto di val.intero.
+                    <h3>Output del programma</h3>
+                    <div class="shell strings">
+                        114<br>
+                        3.14
+                    </div>
+                </p><br>
+                <p>
+                    <h3>enumeratori</h3>
+                    Gli enumeratori sono un tipo di dato che consiste in un insieme di costanti di tipo intero. <br>
+                    Vengono utilizzati per rappresentare un insieme di valori correlati in modo più leggibile e gestibile. <br>
+                    Gli enumeratori sono utili quando si ha bisogno di rappresentare una serie di stati o opzioni.<br>
+                    Esempio:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+
+                        <span class="type">enum</span> Giorno{<br>
+                            <span style="margin-left: 20px;"></span>LUNEDI,<br>
+                            <span style="margin-left: 20px;"></span>MARTEDI,<br>
+                            <span style="margin-left: 20px;"></span>MERCOLEDI,<br>
+                            <span style="margin-left: 20px;"></span>GIOVEDI,<br>
+                            <span style="margin-left: 20px;"></span>VENERDI,<br>
+                            <span style="margin-left: 20px;"></span>SABATO,<br>
+                            <span style="margin-left: 20px;"></span>DOMENICA<br>
+                        };<br>
+                        <br>
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin-left: 20px;"></span><span class="type">enum</span> Giorno oggi = SABATO;<br>
+
+                            <span style="margin-left: 20px;"></span><span class="instruction">if</span>(oggi == SABATO)<br>
+                            <span style="margin-left: 40px;"></span>printf(<span class="strings">"Oggi e' sabato\n"</span>);<br>
+                            <span style="margin-left: 20px;"></span><span class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+                    <br>
+                    <h3>Output del programma</h3>
+                    <div class="shell strings">
+                        Oggi e' sabato
+                    </div>
+                </p><br>
+                Per concludere questo capitolo, ho riassunto tutti i punti fondamentali da sapere sulle struct, union e enum:<br>
+                <table class="elenco">
+                    <tr>
+                        <th>Caratteristica</th>
+                        <th>struct</th>
+                        <th>union</th>
+                        <th>enum</th>
+                    </tr>
+                    <tr>
+                        <th>Memoria</th>
+                        <td>Ogni membro ha il proprio spazio di memoria.</td>
+                        <td>Tutti i membri condividono lo stesso spazio di memoria.</td>
+                        <td>Ogni valore è una costante intera.</td>
+                    </tr>
+                    <tr>
+                        <th>Utilizzo</th>
+                        <td>Raggruppare variabili correlate.</td>
+                        <td>Risparmiare memoria quando solo un membro verrà usato alla volta.</td>
+                        <td>Definire costanti con nomi significativi.</td>
+                    </tr>
+                    <tr>
+                        <th>Dimensione</th>
+                        <td>La somma delle dimensioni di tutti i membri.</td>
+                        <td>La dimensione del membro più grande.</td>
+                        <td>La dimensione di un int.</td>
+                    </tr>
+                    <tr>
+                        <th>Accesso ai membri</th>
+                        <td>Tutti i membri possono essere utilizzati contemporaneamente.</td>
+                        <td>Solo un membro alla volta può essere utilizzato in modo significativo.</td>
+                        <td>Utilizzare i nomi delle costanti.</td>
+                    </tr>
+                </table>
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 16", "../../c/intro/");
+    </script>
+</html>

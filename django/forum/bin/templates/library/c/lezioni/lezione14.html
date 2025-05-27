@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+            table{
+                width:33%;
+            }
+            table th{
+                margin-left:2%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Allocazione dinamica della memoria</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+                <p>
+                    <p>
+                        L'allocazione dinamica della memoria ci consente di gestire le situazioni in cui abbiamo delle variabili con lunghezza non prestabilita, cioè che possono cambiare durante l'esecuzione del programma.<br>
+                        Questo metodo quindi, ci consente di evitare il più possibile sprechi di memoria, usando così il minimo indispensabile delle risorse.<br>
+                    </p>
+                    <div>
+                        In C le principali funzioni che ci consentono di gestire la memoria sono le funzioni malloc, calloc e realloc. <br>
+                        Affrontiamo una funzione alla volta.<br><br>
+                        <h3>malloc</h3>
+                        La funzione malloc è utilizzata per allocare una quantità specificata di memoria durante l'esecuzione del programma.<br>
+                        La sua firma è:<br>
+                        <div class="shell">
+                            <span class="type">void</span> *malloc(<span class="type">size_t</span> size);
+                        </div>
+                        <ul style="margin-left:20px;">
+                            <li>
+                                <strong>void *</strong>: significa che la funzione restituisce un puntatore di tipo void che punta all'inizio della memoria allocata, oppure restituisce NULL se la memoria richiesta non è disponibile<br>
+                            </li>
+                            <li>
+                                <strong>size_t</strong>: rappresenta il numero di byte da allocare.
+                            </li>
+                        </ul>
+                        <br>Esempio pratico:<br>
+                        <div class="shell">
+                            <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                            <span class="direttive">#include &lt;stdlib.h&gt;</span><br><br>
+
+                            <span class="type">int</span> main(){<br>
+                                <span style="margin-left:20px"></span><span class="type">int</span> *array = (<span class="type">int</span>*) malloc(10 * <span class="type">sizeof</span>(<span class="type">int</span>));<br>
+                                <span style="margin-left:20px"></span><span class="instruction">if</span> (array == <span class="type">NULL</span>) {<br>
+                                <span style="margin-left:40px"></span><span class="strings">// gestione dell'errore se malloc non è riuscita ad allocare memoria</span><br>
+                                <span style="margin-left:40px"></span>fprintf(stderr, <span class="strings">"Errore: malloc non è riuscita ad allocare memoria.\n"</span>);<br>
+                                <span style="margin-left:40px"></span>exit(1);<br>
+                                <span style="margin-left:20px"></span>}<br>
+                                <span style="margin-left:20px"></span><span class="strings">// Ora possiamo utilizzare gli elementi</span><br>
+                                <span style="margin-left:20px"></span>array[0] = 1;<br>
+                                <span style="margin-left:20px"></span>array[1] = 2;<br>
+                                <span style="margin-left:20px">free(array);</span><br>
+                                <span style="margin-left:20px"></span><span class="instruction">return</span> 0;<br>
+                            }
+                        </div>
+                        <br>
+                        In questo esempio, abbiamo allocato dinamicamente 10 * sizeof(int) bytes di memoria, (sizeof indica quanto è grande una variabile, passando quindi int mi da 4 bytes) che fa 40 bytes in totale. <br>
+                        Quindi passo come argomento alla chiamata 40 e mi restituisce se tutto è andato bene un puntatore di tipo void che punta al primo byte di memoria (su 40), altrimenti restituisce NULL.<br>
+                        Dopo aver fatto questo grazie all'istruzione (int *), eseguo il cast di tipo al puntatore. <br>
+                        Quindi non sarà più un puntatore di tipo void ma di tipo intero.<br>
+                        Per verificare che non ci siano stati errori, faccio un confronto con il valore NULL, che se risulta uguale allora stampo a schermo un messaggio di errore e esco dal programma.<br>
+                        Se risulta diverso allora andrà avanti con il programma<br>
+                        <strong>N.B: prima della fine del programma bisogna sempre liberare la memoria allocata con l'istruzione free()</strong>
+                        <br><br>
+                        <h3>calloc</h3>
+                        La calloc fa esattamente la stessa cosa della malloc, con un unico particolare. <br>
+                        Tutti gli elementi allocati hanno valore 0, mentre con la malloc gli elementi possono avere di default dei valori (apparentemente casuali).<br>
+                        <br>
+                        La firma della funzione è:
+                        <div class="shell">
+                            <span class="type">void</span> *calloc(<span class="type">size_t</span> num, <span class="type">size_t</span> size);
+                        </div>
+                        Questa funzione restituisce sempre un puntatore di tipo void.<br>
+                        Accetta due argomenti, il primo è il numero di elementi che si vogliono usare per l'array, il secondo invece la grandezza di ogni elemento dell'array
+                        <br>
+                        Esempio di programma che usa calloc:
+                        <div class="shell">
+                            <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                            <span class="direttive">#include &lt;stdlib.h&gt;</span><br><br>
+
+                            <span class="type">int</span> main(){<br>
+                                <span style="margin-left:20px"></span><span class="type">int</span> *array = (<span class="type">int</span>*) calloc(10, <span class="type">sizeof</span> (<span class="type">int</span>));<br>
+                                <span style="margin-left:20px"></span><span class="instruction">if</span> (array == <span class="type">NULL</span>) {<br>
+                                <span style="margin-left:40px"></span><span class="strings">// gestione dell'errore se calloc non è riuscita ad allocare memoria</span><br>
+                                <span style="margin-left:40px"></span>fprintf(stderr, <span class="strings">"Errore: calloc non è riuscita ad allocare memoria.\n"</span>);<br>
+                                <span style="margin-left:40px"></span>exit(1);<br>
+                                <span style="margin-left:20px"></span>}<br>
+                                <span style="margin-left:20px"></span><span class="strings">// Ora possiamo utilizzare l'array</span><br>
+                                <span style="margin-left:20px"></span>array[0] = 1;<br>
+                                <span style="margin-left:20px"></span>array[1] = 2;<br>
+                                <span style="margin-left:20px"></span>free(array);<br>
+                                <span style="margin-left:20px"></span><span class="instruction">return</span> 0;<br>
+                            }
+                        </div>
+                        <br>
+                        <h3>realloc</h3>
+                        La realloc consente la riallocazione delle memoria allocata precedentemente.<br>
+                        In poche parole possiamo modificare le dimensioni di un vettore allocato come più ci serve<br>
+                        La firma della funzione è:
+                        <div class="shell">
+                            <span class="type">void</span> *realloc(<span class="type">void</span> *ptr, <span class="type">size_t</span> size);
+                        </div>
+                        Questa funzione restituisce sempre un puntatore di tipo void.<br>
+                        Accetta due argomenti, il primo è il puntatore che punta alla memoria allocata, il secondo e la nuova grandezza che vogliamo dare.<br>
+                        Gli elementi precedentemente inseriti non verranno sostituiti<br>
+                        Esempio di programma che usa la realloc:
+                        <div class="shell">
+                            <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                            <span class="direttive">#include &lt;stdlib.h&gt;</span><br><br>
+
+                            <span class="type">int</span> main(){<br>
+                                <span style="margin-left:20px"></span><span class="type">int</span> *array = (<span class="type">int</span>*) calloc(10, <span class="type">sizeof</span> (<span class="type">int</span>));<br>
+                                <span style="margin-left:20px"></span><span class="instruction">if</span> (array == <span class="type">NULL</span>) {<br>
+                                <span style="margin-left:40px"></span><span class="strings">// gestione dell'errore se calloc non è riuscita ad allocare memoria</span><br>
+                                <span style="margin-left:40px"></span>fprintf(stderr, <span class="strings">"Errore: calloc non è riuscita ad allocare memoria.\n"</span>);<br>
+                                <span style="margin-left:40px"></span>exit(1);<br>
+                                <span style="margin-left:20px"></span>}<br>
+                                <span style="margin-left:20px"></span><span class="strings">// Ora possiamo utilizzare l'array</span><br>
+                                <span style="margin-left:20px"></span>array[0] = 1;<br>
+                                <span style="margin-left:20px"></span>array[1] = 2;<br><br>
+                                <span style="margin-left:20px"></span>array = (<span class="type">int</span>*) realloc(array, 20 * sizeof(<span class="type">int</span>));<br>
+                                <span style="margin-left:20px"></span><span class="instruction">if</span> (array == <span class="type">NULL</span>) {<br>
+                                <span style="margin-left:40px"></span><span class="strings">// gestione dell'errore se realloc non è riuscita ad allocare memoria</span><br>
+                                <span style="margin-left:40px"></span><span class="strings">// la memoria originale (quella prima della realloc) rimane intatta.</span><br>
+                                <span style="margin-left:40px"></span>fprintf(stderr, <span class="strings">"Errore: realloc non è riuscita ad aumentare gli elementi dell'array.\n"</span>);<br>
+                                <span style="margin-left:40px"></span>exit(1);<br>
+                                <span style="margin-left:20px"></span>}<br>
+
+                                <span style="margin-left:20px"></span>free(array);<br>
+                                <span style="margin-left:20px"></span><span class="instruction">return</span> 0;<br>
+                            }
+                        </div>
+                        Nel caso in cui la realloc non riuscisse a ridimensionare l'array, i valori degli elementi dell'array rimangono uguali
+                    </div>
+                    <div>
+                    </div>
+                </p>
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 14", "../../c/intro/");
+    </script>
+</html>

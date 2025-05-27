@@ -1,0 +1,11 @@
+{% extends "components/base.html" %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block main %}
+    <p>Benvenuto sulla homepage!</p>
+
+    <a href="{%url 'register'%}">registrati</a><br>
+    <br>
+    <a href="/login">login</a>
+{% endblock %}

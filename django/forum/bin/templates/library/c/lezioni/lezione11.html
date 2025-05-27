@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+            table{
+                width:33%;
+            }
+            table th{
+                margin-left:2%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Procedure vs Funzioni</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+                <p>
+                    Le procedure e le funzioni sono entrambi concetti fondamentali nella programmazione, usati per organizzare il codice e renderlo più modulare e riutilizzabile. <br>
+                    Ogni funzione e procedura ha una <strong>firma</strong> (detta anche <strong>prototype</strong>) e <strong>corpo</strong>.<br>
+                    La <strong>firma</strong> non è altro che una dichiarazione di una funzione o procedura, dove si va a specificare che cosa restituisce, il nome della funzione o della procedura e il tipo dei parametri che si devono passare:<br>
+
+                    <div class="shell">
+                        <span class="type">int</span> somma(<span class="type">int</span>, <span class="type">int</span>);
+                    </div>
+                    In questo caso, abbiamo creato il prototype per la funzione somma, che accetta due parametri (i parametri sono quelli tra parentesi) di tipo intero e restituisce un valore intero (è scritto prima del nome).<br>
+                    Il <strong>corpo</strong> invece, contiene le istruzioni che deve eseguire la funzione somma:<br>
+                    <div class="shell">
+                        <span class="type">int</span> somma(<span class="type">int</span> x, <span class="type">int</span> y){<br>
+                            <span class="instruction" style="margin-left:20px;">return</span> x + y;
+                        <br>}
+                    </div>
+                    Quindi, la nostra funzione eseguirà la somma dei parametri passati e li restituisce alla chiamata.<br>
+                    Per avviare questa funzione dobbiamo fare una <strong>chiamata di funzione</strong>:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                        <span class="type">int</span> somma(<span class="type">int</span>, <span class="type">int</span>); <span class="strings">// firma della funzione, deve andare sempre prima del corpo</span>
+                        <br><br>
+                        <span class="type">int</span> main(){<br>
+                            <span class="type" style="margin-left:20px;">int</span> z;<br>
+                            <span style="margin-left:20px;">z = somma(15, 18);</span><br>
+                            <span style="margin-left:20px;">printf(<span class="strings">"%i\n"</span>, z);</span><br>
+                            <span style="margin-left:20px;">printf(<span class="strings">"%i\n"</span>, somma(32, 14));</span><br>
+                            <span class="instruction" style="margin-left:20px;">return</span> 0;
+                        <br>}
+                        <br><br>
+                        <span class="type">int</span> somma(<span class="type">int</span> x, <span class="type">int</span> y){ <span class="strings">// corpo della funzione somma</span><br>  
+                            <span class="instruction" style="margin-left:20px;">return</span> x + y;    <span class="strings">// restituisco al chiamante il risultato</span>
+                        <br>}
+                    </div>
+                    <h3>Output del programma</h3>
+                    <div class="shell strings">
+                        33<br>
+                        44
+                    </div>
+                    Quali sono le differenze tra funzione e procedura se entrambe servono per non ripetere il codice troppe volte?<br>
+                    Sebbene siano simili, ci sono alcune differenze chiave tra loro.<br>
+                    <h3>Procedura</h3>
+                    La procedura non restituisce alcun valore, in C si indicano con il tipo void:<br>
+                    <div class="shell">
+                        <span class="type">void</span> procedura(<span class="type">int</span>);
+                    </div>
+                    Solitamente, le procedure sono spesso utilizzate per eseguire compiti o azioni (ad esempio, stampare un messaggio)
+                    <h3>Funzione</h3>
+                    La funzione viene usata per calcolare valori e restituirli (ad esempio, calcolare la somma di due numeri).<br>
+                    <div class="shell">
+                        <span class="type">int</span> funzione1(<span class="type">void</span>); <span class="strings">// quando non voglio che si passano parametri posso usare void</span><br>
+                        <span class="type">char</span> funzione2(<span class="type">int</span>);<span class="strings">// prendo come parametro un intero e restituisco un carattere</span><br>
+                        <span class="type">float</span> funzione3(<span class="type">char</span>);<span class="strings">// prendo come parametro un intero e restituisco un float</span><br>
+                        <span class="type">float</span> funzione4(<span class="type">char</span>);<span class="strings">// prendo come parametro un intero e restituisco un float</span><br>
+                        <span class="strings">// ecc...</span>
+                    </div>
+                    <br>
+                    <h3>Esempio: Ricreazione della funzione strlen</h3>
+                    La funzione strlen è una funzione della libreria string.h, che passato come parametro un vettore di caratteri, calcola la sua lunghezza, restituendola alla chiamata.<br>
+                    <strong>prototype:</strong>
+                    <div class="shell">
+                        <span class="type">size_t</span> strlen(<span class="type">const char</span>*);
+                    </div>
+                    Per size_t si intende unsigned int, per farla semplice, è un altro modo di dire unsigned int. <br>
+                    Ogni volta che nel nostro programma scriviamo size_t ci riferiamo al tipo unsigned int.<br>
+                    Nel nostro caso usiamo size_t perchè così possiamo usare solo numeri positivi per rappresentare la lunghezza del vettore, dato che il vettore non può avere una lunghezza negativa.<br>
+                    <br>
+                    <strong>Il corpo della funzione:</strong>
+                    <div class="shell">
+                        <span class="type">size_t</span> strlen(<span class="type">const char</span>* vettore){<br>
+                        <span class="type" style="margin-left:20px;">size_t</span> indice = 0;<br>
+                        <span class="instruction" style="margin-left:20px;">while</span>(vettore[indice] != <span class="strings">'\0'</span>)<br>
+                        <span style="margin-left:40px;">indice++;</span><br>
+                        <span class="instruction" style="margin-left:20px;">return</span> indice;
+                        <br>};
+                    </div>
+                    In pratica, quello che fa la funzione strlen, è scorrere per tutti i caratteri del vettore finche non raggiunge il carattere di fine vettore ('\0').<br>
+                    Per ogni carattere che viene letto e che è diverso da '\0' incrementa l'indice. Una volta che ha incontrato il carattere terminatore restituisce l'indice al chiamante.<br>
+                    <br>
+                    <strong>Programma completo:</strong>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span>
+                        <br>
+                        <span class="type">size_t</span> strlen(<span class="type">const char</span>*);<br><br>
+                        <span class="type">int</span> main(){<br>
+                        <span style="margin-left:20px;">printf(<span class="strings">"Lunghezza primo vettore: %li\n"</span>, strlen(<span class="strings">"sono un vettore"</span>));</span><br>
+                        <span style="margin-left:20px;">printf(<span class="strings">"Lunghezza secondo vettore: %li\n"</span>, strlen(<span class="strings">"sono il secondo vettore"</span>));</span><br>
+                        <span style="margin-left:20px;" class="instruction">return</span> 0;<br>
+                        }<br><br>
+                        <span class="type">size_t</span> strlen(<span class="type">const char</span>* vettore){<br>
+                            <span class="type" style="margin-left:20px;">size_t</span> indice = 0;<br>
+                            <span class="instruction" style="margin-left:20px;">while</span>(vettore[indice] != <span class="strings">'\0'</span>)<br>
+                            <span style="margin-left:40px;">indice++;</span><br>
+                            <span class="instruction" style="margin-left:20px;">return</span> indice;
+                            <br>}
+                    </div>
+
+                    <h3>Output del programma</h3>
+                    <div class="shell strings">
+                        Lunghezza primo vettore: 15<br>
+                        Lunghezza secondo vettore: 23
+                    </div>
+                </p><br>
+                <p>
+                    <h3>Funzioni ricorsive</h3>
+                    Una funzione ricorsiva non è altro che una funzione che richiama se stessa per risolvere un problema.<br>
+                    Quindi all'interno del corpo della funzione troveremo una chiamata che si riferisce alla stessa funzione.<br>
+                    Ogni funzione ricorsiva ha un <strong>caso base</strong> e una <strong>chiamata ricorsiva</strong>:
+                    <ul style="margin-left:20px">
+                        <li><strong>caso base</strong>: è una condizione che interrompe la ricorsione, serve per evitare che la funzione si ripeti all'infinito</li>
+                        <li><strong>chiamata ricorsiva</strong>: è la parte in cui la funzione si chiama di nuovo</li>
+                    </ul><br>
+                    <h4>Esempio: calcolo del fattoriale</h4>
+                    Il fattoriale di un numero n è definito come il prodotto di tutti i numeri interi positivi minori o uguali a n, quindi:<br>
+                    n! = n * (n - 1) * (n - 2) * (n - 3) * ... * 1<br>
+                    Proviamo a implementare questo concetto in C:<br>
+
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span>
+                        <br>
+                        <span class="type">int</span> fattoriale(<span class="type">int</span>);<br><br>
+
+                        <span class="type">int</span> main(){<br>
+                        <span style="margin-left:20px;"></span><span class="type">int</span> n = 5;<br>
+                        <span style="margin-left:20px;">printf(<span class="strings">"Fattoriale di %d e': %d\n"</span>, n, fattoriale(n));</span><br>
+                        <span style="margin-left:20px;" class="instruction">return</span> 0;<br>
+                        }<br><br>
+                        <span class="type">int</span> fattoriale(<span class="type">int</span> n){<br>
+                            <span class="instruction" style="margin-left:20px;">return</span> (n == 0)? 1 : n * fattoriale(n - 1);
+                        <br>}
+                    </div>
+                    <h3>Output del programma</h3>
+                    <div class="shell strings">
+                        Fattoriale di 5 e' 120
+                    </div>
+                    <br>
+                </p>
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 11", "../../c/intro/");
+    </script>
+</html>

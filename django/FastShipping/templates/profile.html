@@ -1,0 +1,114 @@
+{% extends "components/base.html" %}
+
+{% block title %}Profilo {{ user.username }}{% endblock %}
+
+{% block main %}
+<div class="profile-container">
+    <h2>Ciao {{ user.username }}</h2>
+    <p>Email: {{ user.email }}</p>
+    
+    <!-- Debug: mostra tutti i dati ricevuti -->
+    <div style="display:none">
+        <pre>{{ user|pprint }}</pre>
+    </div>
+    
+    {% if user.tipo_utente == "azienda" %}
+        <div class="azienda-info">
+            <h3>Informazioni Azienda</h3>
+            <p><strong>Nome Azienda:</strong> {{ user.nome_azienda }}</p>
+            <p><strong>Partita IVA:</strong> {{ user.p_iva }}</p>
+            <p><strong>Indirizzo:</strong> {{ user.indirizzo }}, {{ user.cap }} {{ user.citta }}</p>
+            <a href="{% url 'widget' %}" class="btn btn-primary">Aggiungi Widget</a>
+        </div>
+
+        <br>
+
+        {% for p in all_products %}
+
+            <div style="margin-bottom: 20px;">
+                <h3>{{ p.nome_prod }}</h3>
+                <p>{{ p.bio_prod }}</p>
+                <p>Quantità: {{ p.quantita }}</p>
+                <p>Prezzo: €{{ p.importo }}</p>
+            </div>
+        
+        {% endfor %}
+    
+    {% elif user.tipo_utente == "cliente" %}
+
+        <div class="cliente-info">
+            <h3>Informazioni Personali</h3>
+            <p><strong>Età:</strong> {{ user.eta }}</p>
+            <p><strong>Indirizzo:</strong> {{ user.indirizzo }}, {{ user.cap }} {{ user.citta }}</p>
+        </div>
+
+        <br>
+
+        <button onclick="sellProduct()">in commercio</button>
+        <button onclick="ordinati()">comprati</button>
+
+        <div id="da-vendere">
+            <br>
+            <h1>elenco prodotti in commercio</h1>
+            <br>
+            {% for element in buy_product %}
+            <a href="/widget/{{ element.id }}">
+                nome_prod: {{ element.nome_prod }}<br>
+                bio_prod: {{ element.bio_prod }}<br>
+                quantita: {{ element.quantita }}<br>
+                datetime: {{ element.datetime }}<br>
+                importo: {{ element.importo }}<br>
+            </a>
+            {% endfor %}
+
+        </div>
+
+        <div id="comprato">
+            <br>
+            <h1>elenco prodotti comprati</h1>
+            <br>
+
+            {% for element in ordini_cliente %}
+                data acquisto: {{ element.data_ordine }}<br>
+                quantità: {{ element.quantita }}<br>
+                importo: {{ element.importo }}<br>
+                modalita: {{ element.modalita }}<br>
+                via selezionata: {{ element.via }}<br>
+                <a href="/widget/{{ element.prodotto_id }}">info prodotto</a>
+            {% endfor %}
+        </div>
+
+        <script>
+            const section_prod_sell = document.getElementById("da-vendere");
+            const section_prod_comprato = document.getElementById("comprato");
+
+            function sellProduct()
+            {
+                section_prod_sell.style.display = "block";
+                section_prod_comprato.style.display = "none";
+            }
+
+            function ordinati()
+            {
+                section_prod_sell.style.display = "none";
+                section_prod_comprato.style.display = "block";
+            }
+
+            sellProduct();
+
+        </script>
+    {% else %}
+
+        <div class="alert alert-warning">Tipo utente non riconosciuto</div>
+    
+    {% endif %}
+
+    <br>
+    <div class="logout-section">
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

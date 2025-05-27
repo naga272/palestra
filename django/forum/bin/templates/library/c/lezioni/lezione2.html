@@ -1,0 +1,400 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+            .elenco {
+                text-align: center;
+                width: 80%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+			<h1>Variabili</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right: 3%;">
+
+                <p>
+                    Una variabile non è altro che uno spazio di memoria che contiene un valore. Il C è un linguaggio fortemente tipato, questo significa che il programmatore è tenuto a specificare il tipo di ogni variabile che creiamo.
+                </p>
+                
+                <h2>Esempio di Dichiarazione di Variabili</h2>
+                <div class="shell">
+                    <span class="type">int</span> a = 18;<br>
+                    <span class="type">int</span> main() {<br>
+                    <span style="margin-left: 20px; color:#fff"><span class="type">int</span> b = 5;</span><br>
+                    <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                    }<br>
+                </div>
+                
+                <h2>Analisi del Programma</h2>
+                <p>
+                    Nei programmi esistono due tipologie di variabili: <strong>locali</strong> e <strong>globali</strong>.
+                </p>
+                <ul style="margin-left:35px">
+                    <li><strong>Variabili Globali:</strong> Possono essere viste da tutto il programma e sono esterne alle funzioni.</li>
+                    <li><strong>Variabili Locali:</strong> Sono visibili solo all'interno delle funzioni.</li>
+                </ul>
+                <p>
+                    Nel programma sopra, la variabile <strong>a</strong> è globale, mentre la variabile <strong>b</strong> è locale (quindi non visibile fuori dal main). Le variabili dichiarate sono di tipo <strong>int</strong>, che significa che contengono solo numeri interi.
+                </p>
+                
+                <h2>Tipi di Dato</h2>
+                <p>È possibile usare vari tipi di dato in C. Ecco una tabella con alcuni dei tipi di variabile più comuni:</p>
+                <div class="table-container">
+                    <table class="elenco">
+                        <thead>
+                            <tr>
+                                <th>type</th>
+                                <th>range value (regole ANSI C)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>int</td>
+                                <td>intero con segno (4 bytes)</td>
+                            </tr>
+                            <tr>
+                                <td>unsigned int</td>
+                                <td>intero senza segno (4 bytes)</td>
+                            </tr>
+                            <tr>
+                                <td>short int</td>
+                                <td>intero corto con segno (2 bytes)</td>
+                            </tr>
+                            <tr>
+                                <td>unsigned short int</td>
+                                <td>intero corto senza segno (2 bytes)</td>
+                            </tr>
+                            <tr>
+                                <td>long int</td>
+                                <td>intero lungo con segno (8 bytes)</td>
+                            </tr>
+                            <tr>
+                                <td>unsigned long int</td>
+                                <td>intero lungo senza segno (8 bytes)</td>
+                            </tr>
+                            <tr>
+                                <td>char</td>
+                                <td>tipo carattere con segno (1 byte)</td>
+                            </tr>
+                            <tr>
+                                <td>unsigned char</td>
+                                <td>tipo carattere senza segno (1 byte)</td>
+                            </tr>
+                            <tr>
+                                <td>float</td>
+                                <td>numeri con la virgola mobile a singola precisione (4 byte)</td>
+                            </tr>
+                            <tr>
+                                <td>double</td>
+                                <td>numeri con la virgola mobile a doppia precisione (8 byte)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2>Tipi di Variabili Avanzati</h2>
+                <p>Includendo l'header <a href="/library/c/lezione/stdint.h"><code>stdint.h</code></a>, possiamo accedere a molti altri tipi di variabili:</p>
+                <div class="table-container">
+                    <table class="elenco">
+                        <thead>
+                            <tr>
+                                <th>type</th>
+                                <th>range value (regole ANSI C)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>int8_t</td>
+                                <td>intero a 8 bit con segno</td>
+                            </tr>
+                            <tr>
+                                <td>int16_t</td>
+                                <td>intero a 16 bit con segno</td>
+                            </tr>
+                            <tr>
+                                <td>int32_t</td>
+                                <td>intero a 32 bit con segno</td>
+                            </tr>
+                            <tr>
+                                <td>int64_t</td>
+                                <td>intero a 64 bit con segno</td>
+                            </tr>
+                            <tr>
+                                <td>uint8_t</td>
+                                <td>intero a 8 bit senza segno</td>
+                            </tr>
+                            <tr>
+                                <td>uint16_t</td>
+                                <td>intero a 16 bit senza segno</td>
+                            </tr>
+                            <tr>
+                                <td>uint32_t</td>
+                                <td>intero a 32 bit senza segno</td>
+                            </tr>
+                            <tr>
+                                <td>uint64_t</td>
+                                <td>intero a 64 bit senza segno</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2>Esempi di Codice</h2>
+                <h3>Uso della Libreria stdint.h</h3>
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdint.h&gt;</span><br><br>
+                    <span class="type">uint8_t</span> a = 18;<br><br>
+                    <span class="type">int</span> main() {<br>
+                    <span style="margin-left: 20px; color:#fff"><span class="type">int32_t</span> b = 5;</span><br>
+                    <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                    }<br>
+                </div>
+                
+                <h3>Variabili di Tipo Char</h3>
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                    <span class="type">int</span> main() {<br>
+                    <span style="margin-left: 20px; color:#fff"><span class="type">char </span>a = <span class="strings">'b'</span>;</span><br>
+                    <span style="margin-left: 20px; color:#fff"><span>printf(<span class="strings">"%c"</span>, a);</span></span><br>
+                    <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                    }<br>
+                </div>
+                <p>
+                    In questo programma viene dichiarata una variabile di tipo <strong>char</strong> (carattere) e gli viene assegnato il carattere 'b'. È importante notare che sono stati usati i singoli apici per assegnare il carattere e non i doppi apici.
+                </p>
+                
+                <h3>Stampa di Più Tipi di Variabili</h3>
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                    <span class="type">int</span> main() {<br>
+                    <span style="margin-left: 20px; color:#fff"><span>printf(<span class="strings">"carattere: %c; intero: %i"</span>, <span class="strings">'b'</span>, 58);</span></span><br>
+                    <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                    }<br>
+                </div>
+                <p>
+                    L'output che otteniamo dal programma è il seguente:
+                </p>
+                <div class="shell strings">
+                    carattere: b; intero: 58
+                </div>
+                
+                <h3>Cast di Tipo</h3>
+                <p>
+                    Durante l'esecuzione del programma è possibile cambiare il tipo della variabile. Questo metodo viene detto "cast di tipo" e si sviluppa con la seguente sintassi:
+                </p>
+                <div class="shell">
+                    <span class="type">(new_type)</span> nome_variabile;<br>
+                </div>
+                <p>Esempio pratico di cast di tipo:</p>
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                    <span class="type">int</span> main() {<br>
+                    <span style="margin-left: 20px; color:#fff"><span class="type">int</span> a = 97;</span><br>
+                    <span style="margin-left: 20px; color:#fff"><span>printf(<span class="strings">"%c\n"</span>, (<span class="type">char</span>) a);</span></span><br>
+                    <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                    }<br>
+                </div>
+                <p>
+                    L'output che otteniamo dal programma è il seguente:
+                </p>
+                <div class="shell strings">
+                    a
+                </div>
+                <p>
+                    Perché otteniamo questo risultato? Per la macchina, i caratteri non sono altro che numeri interi, quindi quando noi scriviamo un carattere la macchina lo interpreta come un numero intero univoco che identifica un certo carattere. La macchina segue uno standard di conversione chiamato ASCII, che non è altro che una tabella contenente 128 caratteri con il loro numero identificativo.
+                </p>
+                    <div class="table-container" style="width:30%">
+                        <table class="elenco">
+                            <thead>
+                                <tr>
+                                    <th>Decimale</th>
+                                    <th>Carattere</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>0</td><td>NUL</td></tr>
+                                <tr><td>1</td><td>SOH</td></tr>
+                                <tr><td>2</td><td>STX</td></tr>
+                                <tr><td>3</td><td>ETX</td></tr>
+                                <tr><td>4</td><td>EOT</td></tr>
+                                <tr><td>5</td><td>ENQ</td></tr>
+                                <tr><td>6</td><td>ACK</td></tr>
+                                <tr><td>7</td><td>BEL</td></tr>
+                                <tr><td>8</td><td>BS</td></tr>
+                                <tr><td>9</td><td>TAB</td></tr>
+                                <tr><td>10</td><td>LF</td></tr>
+                                <tr><td>11</td><td>VT</td></tr>
+                                <tr><td>12</td><td>FF</td></tr>
+                                <tr><td>13</td><td>CR</td></tr>
+                                <tr><td>14</td><td>SO</td></tr>
+                                <tr><td>15</td><td>SI</td></tr>
+                                <tr><td>16</td><td>DLE</td></tr>
+                                <tr><td>17</td><td>DC1</td></tr>
+                                <tr><td>18</td><td>DC2</td></tr>
+                                <tr><td>19</td><td>DC3</td></tr>
+                                <tr><td>20</td><td>DC4</td></tr>
+                                <tr><td>21</td><td>NAK</td></tr>
+                                <tr><td>22</td><td>SYN</td></tr>
+                                <tr><td>23</td><td>ETB</td></tr>
+                                <tr><td>24</td><td>CAN</td></tr>
+                                <tr><td>25</td><td>EM</td></tr>
+                                <tr><td>26</td><td>SUB</td></tr>
+                                <tr><td>27</td><td>ESC</td></tr>
+                                <tr><td>28</td><td>FS</td></tr>
+                                <tr><td>29</td><td>GS</td></tr>
+                                <tr><td>30</td><td>RS</td></tr>
+                                <tr><td>31</td><td>US</td></tr>
+                                <tr><td>32</td><td>(spazio)</td></tr>
+                                <tr><td>33</td><td>!</td></tr>
+                                <tr><td>34</td><td>"</td></tr>
+                                <tr><td>35</td><td>#</td></tr>
+                                <tr><td>36</td><td>$</td></tr>
+                                <tr><td>37</td><td>%</td></tr>
+                                <tr><td>38</td><td>&</td></tr>
+                                <tr><td>39</td><td>'</td></tr>
+                                <tr><td>40</td><td>(</td></tr>
+                                <tr><td>41</td><td>)</td></tr>
+                                <tr><td>42</td><td>*</td></tr>
+                                <tr><td>43</td><td>+</td></tr>
+                                <tr><td>44</td><td>,</td></tr>
+                                <tr><td>45</td><td>-</td></tr>
+                                <tr><td>46</td><td>.</td></tr>
+                                <tr><td>47</td><td>/</td></tr>
+                                <tr><td>48</td><td>0</td></tr>
+                                <tr><td>49</td><td>1</td></tr>
+                                <tr><td>50</td><td>2</td></tr>
+                                <tr><td>51</td><td>3</td></tr>
+                                <tr><td>52</td><td>4</td></tr>
+                                <tr><td>53</td><td>5</td></tr>
+                                <tr><td>54</td><td>6</td></tr>
+                                <tr><td>55</td><td>7</td></tr>
+                                <tr><td>56</td><td>8</td></tr>
+                                <tr><td>57</td><td>9</td></tr>
+                                <tr><td>58</td><td>:</td></tr>
+                                <tr><td>59</td><td>;</td></tr>
+                                <tr><td>60</td><td>&lt;</td></tr>
+                                <tr><td>61</td><td>=</td></tr>
+                                <tr><td>62</td><td>&gt;</td></tr>
+                                <tr><td>63</td><td>?</td></tr>
+                                <tr><td>64</td><td>@</td></tr>
+                                <tr><td>65</td><td>A</td></tr>
+                                <tr><td>66</td><td>B</td></tr>
+                                <tr><td>67</td><td>C</td></tr>
+                                <tr><td>68</td><td>D</td></tr>
+                                <tr><td>69</td><td>E</td></tr>
+                                <tr><td>70</td><td>F</td></tr>
+                                <tr><td>71</td><td>G</td></tr>
+                                <tr><td>72</td><td>H</td></tr>
+                                <tr><td>73</td><td>I</td></tr>
+                                <tr><td>74</td><td>J</td></tr>
+                                <tr><td>75</td><td>K</td></tr>
+                                <tr><td>76</td><td>L</td></tr>
+                                <tr><td>77</td><td>M</td></tr>
+                                <tr><td>78</td><td>N</td></tr>
+                                <tr><td>79</td><td>O</td></tr>
+                                <tr><td>80</td><td>P</td></tr>
+                                <tr><td>81</td><td>Q</td></tr>
+                                <tr><td>82</td><td>R</td></tr>
+                                <tr><td>83</td><td>S</td></tr>
+                                <tr><td>84</td><td>T</td></tr>
+                                <tr><td>85</td><td>U</td></tr>
+                                <tr><td>86</td><td>V</td></tr>
+                                <tr><td>87</td><td>W</td></tr>
+                                <tr><td>88</td><td>X</td></tr>
+                                <tr><td>89</td><td>Y</td></tr>
+                                <tr><td>90</td><td>Z</td></tr>
+                                <tr><td>91</td><td>[</td></tr>
+                                <tr><td>92</td><td>\</td></tr>
+                                <tr><td>93</td><td>]</td></tr>
+                                <tr><td>94</td><td>^</td></tr>
+                                <tr><td>95</td><td>_</td></tr>
+                                <tr><td>96</td><td>`</td></tr>
+                                <tr><td>97</td><td>a</td></tr>
+                                <tr><td>98</td><td>b</td></tr>
+                                <tr><td>99</td><td>c</td></tr>
+                                <tr><td>100</td><td>d</td></tr>
+                                <tr><td>101</td><td>e</td></tr>
+                                <tr><td>102</td><td>f</td></tr>
+                                <tr><td>103</td><td>g</td></tr>
+                                <tr><td>104</td><td>h</td></tr>
+                                <tr><td>105</td><td>i</td></tr>
+                                <tr><td>106</td><td>j</td></tr>
+                                <tr><td>107</td><td>k</td></tr>
+                                <tr><td>108</td><td>l</td></tr>
+                                <tr><td>109</td><td>m</td></tr>
+                                <tr><td>110</td><td>n</td></tr>
+                                <tr><td>111</td><td>o</td></tr>
+                                <tr><td>112</td><td>p</td></tr>
+                                <tr><td>113</td><td>q</td></tr>
+                                <tr><td>114</td><td>r</td></tr>
+                                <tr><td>115</td><td>s</td></tr>
+                                <tr><td>116</td><td>t</td></tr>
+                                <tr><td>117</td><td>u</td></tr>
+                                <tr><td>118</td><td>v</td></tr>
+                                <tr><td>119</td><td>w</td></tr>
+                                <tr><td>120</td><td>x</td></tr>
+                                <tr><td>121</td><td>y</td></tr>
+                                <tr><td>122</td><td>z</td></tr>
+                                <tr><td>123</td><td>{</td></tr>
+                                <tr><td>124</td><td>|</td></tr>
+                                <tr><td>125</td><td>}</td></tr>
+                                <tr><td>126</td><td>~</td></tr>
+                                <tr><td>127</td><td>DEL</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </p>
+            </div><br>
+        </main><br>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 2", "../../c/intro/");
+    </script>
+</html>

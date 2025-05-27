@@ -1,0 +1,1 @@
+creare programma c che dato un numero intero in input chiamato n genera tutti i numeri precedenti partendo da 0 (si presuppone che l'utente inserisca un numero intero positivo)

@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        <style>
+            .topbar h2{
+                width:30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Variabili</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%;">
+                Le variabili sono contenitori di dati.<br>
+                In C++, dobbiamo dichiarare il tipo di variabile prima di utilizzarla.<br>
+
+                <h2>Tipi</h2>
+                In C++, i tipi di variabili piu' comuni sono:<br>
+                <ul>
+                    <li><span class="instruction">int</span>: numeri interi</li>
+                    <li><span class="instruction">float</span>: numeri decimali</li>
+                    <li><span class="instruction">double</span>: numeri decimali con maggiore precisione</li>
+                    <li><span class="instruction">char</span>: caratteri</li>
+                    <li><span class="instruction">string</span>: stringhe di caratteri</li>
+                    <li><span class="instruction">bool</span>: valori booleani (vero o falso)</li>
+                </ul>
+
+                <h2>Dichiarazione</h2>
+                Per dichiarare una variabile, scriviamo il tipo seguito dal nome della variabile:<br>
+                <div class="shell">
+                    <span class="instruction">int</span> x;
+                </div>
+                Questo codice dichiara una variabile di tipo <span class="instruction">int</span> chiamata <span class="instruction">x</span>.<br>
+                Ad essa possono essere assegnati solo numeri interi, no stringhe o caratteri o numeri decimali.<br>
+
+                NOTA: E' raccomandato assegnare un nome significativo alle variabili per renderle piu' leggibili.<br>
+                Ci sono alcune regole da seguire nella scelta dei nomi delle variabili:<br>
+                <ul>
+                    <li>Il nome deve iniziare con una lettera o un underscore (_)</li>
+                    <li>Il nome puo' contenere lettere, numeri e underscores</li>
+                    <li>Il nome e' case-sensitive (cambia tra 'Nome' e 'nome')</li>
+                    <li>Non puo' contenere spazi o caratteri speciali</li>
+                    <li>Non si possono usare caratteri riservati (es. int, float, cout)</li>
+                </ul>
+
+                <h2>Altri esempi</h2>
+                Ecco alcuni esempi di dichiarazione di variabili:<br>
+                <div class="shell">
+                    <span class="instruction">char</span> b = 'a';<br>
+                    <span class="instruction">cout << b;</span>
+                </div>
+
+                <div class="shell">
+                    <span class="instruction">float</span> y = 3.14;<br>
+                    <span class="instruction">cout << y;</span>
+                </div>
+
+                <div class="shell">
+                    <span class="instruction">string</span> s = "Hello";<br>
+                    <span class="instruction">cout << s;</span>
+                </div>
+
+                <div class="shell">
+                    <span class="instruction">bool</span> t = <span class="instruction">true</span>;<br>
+                    <span class="instruction">cout << t;</span>
+                </div>
+
+                <h2>Altri tipi</h2>
+                In C++ esistono altri tipi di variabili:
+                <ul>
+                    <li><span class="instruction">short</span>: numeri interi piu' piccoli di <span class="instruction">int</span></li>
+                    <li><span class="instruction">long</span>: numeri interi piu' grandi di <span class="instruction">int</span></li>
+                    <li><span class="instruction">long long</span>: numeri interi piu' grandi di <span class="instruction">long</span></li>
+                    <li><span class="instruction">unsigned</span>: numeri interi non negativi</li>
+                </ul>
+                Funzionano allo stesso modo degli altri tipi di variabili, ma con limiti diversi riguardo ai valori che possono contenere.<br> 
+
+                <h2>Costanti</h2>
+                Le costanti sono variabili il cui valore non puo' essere modificato.<br>
+                Per dichiarare una costante, scriviamo <span class="instruction">const</span> prima del tipo di variabile:<br>
+                <div class="shell">
+                    <span class="instruction">const int</span> z = 10;
+                    <span class="instruction">cout << z;</span>
+                    <span class="instruction">z = 5;</span>
+                    <span class="instruction">cout << z;</span>
+                </div>
+
+                Questo codice stampera' 10 a schermo, ma dara' errore alla riga <span class="instruction">z = 5;</span> perche' stiamo cercando di modificare una costante.<br>
+
+                <h2>Dichiarazione di piu' variabili</hjson>
+                Possiamo dichiarare piu' variabili dello stesso tipo in una sola riga:<br>
+                <div class="shell">
+                    <span class="instruction">int</span> a, b, c = 5;
+                    <span class="instruction">cout << a << b << c;</span>
+                </div>
+			</div>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 3", "../../cpp/intro");
+    </script>
+</html>

@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        <style>
+            .topbar h2{
+                width:30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Operatori</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%;">
+                Gli operatori sono simboli che eseguono operazioni su variabili e valori.<br>
+                In C++, i principali operatori sono:<br>
+                <ul>
+                    <li><span class="instruction">+</span>: somma</li>
+                    <li><span class="instruction">-</span>: sottrazione</li>
+                    <li><span class="instruction">*</span>: moltiplicazione</li>
+                    <li><span class="instruction">/</span>: divisione</li>
+                    <li><span class="instruction">%</span>: modulo</li>
+                    <li><span class="instruction">++</span>: incremento</li>
+                    <li><span class="instruction">--</span>: decremento</li>
+                    <li><span class="instruction">+=</span>: somma e assegna</li>
+                    <li><span class="instruction">-=</span>: sottrazione e assegna</li>
+                    <li><span class="instruction">*=</span>: moltiplicazione e assegna</li>
+                    <li><span class="instruction">/=</span>: divisione e assegna</li>
+                    <li><span class="instruction">==</span>: uguale a</li>
+                    <li><span class="instruction">!=</span>: diverso da</li>
+                    <li><span class="instruction"><</span>: minore di</li>
+                    <li><span class="instruction">></span>: maggiore di</li>
+                    <li><span class="instruction"><=</span>: minore o uguale a</li>
+                    <li><span class="instruction">>=</span>: maggiore o uguale a</li>
+                    <li><span class="instruction">&&</span>: e logico</li>
+                    <li><span class="instruction">||</span>: o logico</li>
+                    <li><span class="instruction">!</span>: negazione logica</li>
+                </ul>
+
+                <h2>Somma</h2>
+                Per sommare due numeri, utilizziamo l'operatore <span class="instruction">+</span>:<br>
+                <div class="shell">
+                    <span class="instruction">int</span> x = 5;<br>
+                    <span class="instruction">int</span> y = 3;<br>
+                    <span class="instruction">int</span> z = x + y;<br>
+                    <span class="instruction">cout</span> << z;
+                </div>
+
+                <h2>Modulo</h2>
+                Per ottenere il resto della divisione tra due numeri, utilizziamo l'operatore <span class="instruction">%</span>:<br>
+                <div class="shell">
+                    <span class="instruction">int</span> x = 5;<br>
+                    <span class="instruction">int</span> y = 2;<br>
+                    <span class="instruction">int</span> z = x % y;<br>
+                    <span class="instruction">cout</span> << z;
+                </div>
+			</div>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 5", "../../cpp/intro");
+    </script>
+</html>

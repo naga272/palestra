@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+            .elenco {
+                text-align: center;
+                width: 80%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>Standard Library</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+                <p>
+                    Le librerie standard si possono inlcudere all'interno del codice grazie alla direttiva "#include".<br>
+                    Queste librerie forniscono un set di funzioni e macro per supportare nella programmazione i programmatori.<br>
+                    <div class="table-container">
+
+                        <table class="elenco">
+                            <thead>
+                                <tr>
+                                    <th>Libreria</th>
+                                    <th>Descrizione</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="../../c/lezione/stdio.h">stdio.h</a></td>
+                                    <td>LIbreria pusata per l'input/output</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="../../c/lezione/stdlib.h">stdlib.h</a></td>
+                                    <td>Utile per la gestione della memoria</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="../../c/lezione/stdint.h">stdint.h</a></td>
+                                    <td>Usato per la gestione di interi</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="../../c/lezione/string.h">string.h</a></td>
+                                    <td>Usato per la gestione stringhe</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="../../c/lezione/time.h">time.h</a></td>
+                                    <td>Usato per la gestione del tempo</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="../../c/lezione/locale.h">locale.h</a></td>
+                                    <td>Usato per l'encoding</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="../../c/lezione/unistd.h">unistd.h</a></td>
+                                    <td>Libreria Unix-like usata principalemente per gestire processi</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="../../c/lezione/errno.h">errno.h</a></td>
+                                    <td>Libreria usata per la gestione errori</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="../../c/lezione/stdbool.h">stdbool.h</a></td>
+                                    <td>Libreria usata per la gestione booleani</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="../../c/lezione/stddef.h">stddef.h</a></td>
+                                    <td>definisce alcuni tipi di variabili e macro</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="../../c/lezione/stdarg.h">stdarg.h</a></td>
+                                    <td>consente alle funzioni il passaggio di n argomenti come parametro</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="../../c/lezione/search.h">search.h</a></td>
+                                    <td>permette l'uso delle tabelle hash</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="../../c/lezione/types.h">sys/types.h</a></td>
+                                    <td>consense la definizione di tipi di variabile</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="../../c/lezione/ctype.h">ctype.h</a></td>
+                                    <td>set di comandi per la classificazione dei caratteri</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="../../c/lezione/signal.h">signal.h</a></td>
+                                    <td>Usata per la gestione dei segnali a basso livello</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </p>
+
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 13", "../../c/intro/");
+    </script>
+</html>

@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+            .script {
+                padding: 1%;
+                background-color: black;
+                color: green;
+            }
+            .elenco {
+                margin: 0 auto;
+                text-align: center;
+                width: 80%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>ctype</h1>
+            <br><br>
+            <p>
+                All'interno di questo header sono state dichiarate funzioni che vengono utilizzate per la classificazione dei caratteri.
+            </p>
+            <br>
+
+            <h3>Funzioni</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                            <th class="prototype">prototype</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>isalnum</td>
+                            <td>Controlla che il carattere passato come parametro sia alfanumerico (si può passare anche un char come parametro).</td>
+                            <td>int isalnum(int c);</td>
+                        </tr>
+                        <tr>
+                            <td>isalpha</td>
+                            <td>Controlla che il carattere passato come parametro sia alfabetico (si può passare anche un char come parametro).</td>
+                            <td>int isalpha(int c);</td>
+                        </tr>
+                        <tr>
+                            <td>isblank</td>
+                            <td>Controlla che il carattere passato come parametro sia bianco, cioè non visibile a schermo (spazio o tabulazione) (si può passare anche un char come parametro). (introdotto dal C99)</td>
+                            <td>int isblank(int c);</td>
+                        </tr>
+                        <tr>
+                            <td>iscntrl</td>
+                            <td>Controlla che il carattere passato come parametro sia di controllo (si può passare anche un char come parametro).</td>
+                            <td>int iscntrl(int c);</td>
+                        </tr>
+                        <tr>
+                            <td>isdigit</td>
+                            <td>Controlla che il carattere passato come parametro sia numerico (si può passare anche un char come parametro).</td>
+                            <td>int isdigit(int c);</td>
+                        </tr>
+                        <tr>
+                            <td>isgraph</td>
+                            <td>Controlla che il carattere passato come parametro sia grafico, cioè abbia un glifo ad esso associato. I caratteri di spaziatura, ad esempio, non sono considerati grafici (si può passare anche un char come parametro).</td>
+                            <td>int isgraph(int c);</td>
+                        </tr>
+                        <tr>
+                            <td>islower</td>
+                            <td>Controlla che il carattere passato come parametro sia minuscolo (si può passare anche un char come parametro).</td>
+                            <td>int islower(int c);</td>
+                        </tr>
+                        <tr>
+                            <td>isprint</td>
+                            <td>Controlla che il carattere passato come parametro sia stampabile (si può passare anche un char come parametro).</td>
+                            <td>int isprint(int c);</td>
+                        </tr>
+                        <tr>
+                            <td>ispunct</td>
+                            <td>Controlla che il carattere passato come parametro sia di punteggiatura (si può passare anche un char come parametro).</td>
+                            <td>int ispunct(int c);</td>
+                        </tr>
+                        <tr>
+                            <td>isspace</td>
+                            <td>Controlla che il carattere passato come parametro sia di spaziatura (si può passare anche un char come parametro).</td>
+                            <td>int isspace(int c);</td>
+                        </tr>
+                        <tr>
+                            <td>isupper</td>
+                            <td>Controlla che il carattere passato come parametro sia maiuscolo (si può passare anche un char come parametro).</td>
+                            <td>int isupper(int c);</td>
+                        </tr>
+                        <tr>
+                            <td>isxdigit</td>
+                            <td>Controlla che il carattere passato come parametro sia esadecimale, cioè sia compreso in 0-9, oppure a-f, oppure A-F (si può passare anche un char come parametro).</td>
+                            <td>int isxdigit(int c);</td>
+                        </tr>
+                        <tr>
+                            <td>tolower</td>
+                            <td>Converte il carattere passato come parametro nel suo corrispondente minuscolo, se applicabile (si può passare anche un char come parametro).</td>
+                            <td>int tolower(int c);</td>
+                        </tr>
+                        <tr>
+                            <td>toupper</td>
+                            <td>Converte il carattere passato come parametro nel suo corrispondente maiuscolo, se applicabile (si può passare anche un char come parametro).</td>
+                            <td>int toupper(int c);</td>
+                        </tr>
+                        <tr>
+                            <td>isascii</td>
+                            <td>Controlla che il carattere passato come parametro sia compatibile con il set di caratteri ASCII (si può passare anche un char come parametro).</td>
+                            <td>int isascii(int c);</td>
+                        </tr>
+                        <tr>
+                            <td>toascii</td>
+                            <td>Converte il carattere passato come parametro affinché sia compatibile con il set di caratteri ASCII (si può passare anche un char come parametro).</td>
+                            <td>int toascii(int c);</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("ctype", "../../c/lezione/lez13");
+    </script>
+</html>

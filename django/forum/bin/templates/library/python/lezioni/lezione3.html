@@ -1,0 +1,321 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+
+            .elenco {
+                text-align: center;
+                width: 80%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+			<h1>Strutture dati</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%;">
+                Sommario:
+				<ul style="margin-left:20px">
+                    <li>Liste</li>
+                    <li>Tuple</li>
+                    <li>Dizionari</li>
+                    <li>Set</li>
+                </ul>
+
+                <h2>Liste</h2>
+                Le liste sono una delle strutture dati più utilizzate in Python. Sono sequenze ordinate di elementi, che possono essere di qualsiasi tipo.<br>
+                Per creare una lista, si utilizzano le parentesi quadre <strong>[]</strong>.<br>
+                Esempio:<br>
+                <div class="shell">
+                    lista = [1, 2, 3, 4, 5]
+                </div>
+                In questo caso, la variabile <strong>lista</strong> conterrà una lista di numeri interi.<br>
+                Come scritto prima, le liste possono contenere elementi di qualsiasi tipo, anche altre liste.<br>
+                Esempio:<br>
+                <div class="shell">
+                    lista = [1, <span class="strings">"due"</span>, [3, 4], 5]
+                </div>
+                Qui la lista contiene un intero, una stringa, un'altra lista e un altro intero.<br>
+                Per accedere agli elementi di una lista, si utilizza l'indice dell'elemento desiderato, gli indici partono da 0.<br>
+                Esempio:<br>
+                <div class="shell">
+                    print(lista[0])
+                </div>
+                L'output sarà <strong>1</strong>, poiché l'elemento con indice 0 è il primo elemento della lista.<br>
+
+                Per modificare un elemento di una lista, si utilizza l'indice dell'elemento da modificare.<br>
+                Esempio:<br>
+                <div class="shell">
+                    lista[0] = 10
+                </div>
+                In questo caso, l'elemento con indice 0 (che era 1) verrà modificato in 10.<br>
+
+                <h3>Operazioni sulle liste più utilizzate</h3>
+                <div class="table-container">
+                    <table class="elenco">
+                        <thead>
+                            <tr>
+                                <th>Operazione</th>
+                                <th>Descrizione</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>append()</td>
+                                <td>Aggiunge un elemento in coda alla lista</td>
+                            </tr>
+                            <tr>
+                                <td>insert()</td>
+                                <td>Aggiunge un elemento in una posizione specifica</td>
+                            </tr>
+                            <tr>
+                                <td>remove()</td>
+                                <td>Rimuove un elemento dalla lista</td>
+                            </tr>
+                            <tr>
+                                <td>pop()</td>
+                                <td>Rimuove e restituisce l'elemento in una posizione specifica</td>
+                            </tr>
+                            <tr>
+                                <td>clear()</td>
+                                <td>Rimuove tutti gli elementi dalla lista</td>
+                            </tr>
+                            <tr>
+                                <td>sort()</td>
+                                <td>Ordina gli elementi della lista</td>
+                            </tr>
+                            <tr>
+                                <td>reverse()</td>
+                                <td>Inverte l'ordine degli elementi della lista</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Tuple</h2>
+                Le tuple sono simili alle liste, ma sono immutabili, cioè non possono essere modificate dopo la creazione.<br>
+                Per creare una tupla, si utilizzano le parentesi tonde <strong>()</strong>.<br>
+                Esempio:<br>
+                <div class="shell">
+                    tupla = (1, 2, 3, 4, 5)
+                </div>
+                In questo caso, la variabile <strong>tupla</strong> conterrà una tupla di numeri interi.<br>
+                Per accedere agli elementi di una tupla, si utilizza l'indice dell'elemento desiderato, gli indici partono da 0.<br>
+                Esempio:<br>
+                <div class="shell">
+                    print(tupla[0])
+                </div>
+                L'output sarà <strong>1</strong>, poiché l'elemento con indice 0 è il primo elemento della tupla.<br>
+
+                Anche le tuple possono contenere elementi di qualsiasi tipo, anche altre tuple.<br>
+                Esempio:<br>
+                <div class="shell">
+                    tupla = (1, <span class="strings">"due"</span>, (3, 4), 5)
+                </div>
+                Qui la tupla contiene un intero, una stringa, un'altra tupla e un altro intero.<br>
+
+                Le tuple sono immutabili, quindi non è possibile modificare i loro elementi.<br>
+
+                <h3>Operazioni sulle tuple più utilizzate</h3>
+                <div class="table-container">
+                    <table class="elenco">
+                        <thead>
+                            <tr>
+                                <th>Operazione</th>
+                                <th>Descrizione</th>
+                            </tr>        
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>count()</td>
+                                <td>Conta quante volte un elemento è presente nella tupla</td>
+                            </tr>
+                            <tr>
+                                <td>index()</td>
+                                <td>Restituisce l'indice di un elemento specifico</td>
+                            </tr>      
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Dizionari</h2>
+                I dizionari sono collezioni non ordinate di coppie chiave-valore.<br>
+                Per creare un dizionario, si utilizzano le parentesi graffe <strong>{}</strong>.<br>
+                Esempio:<br>
+                <div class="shell">
+                    dizionario = {<span class="strings">"chiave1"</span>: <span class="strings">"valore1"</span>, <span class="strings">"chiave2"</span>: <span class="strings">"valore2"</span>}
+                </div>
+                In questo caso, la variabile <strong>dizionario</strong> conterrà un dizionario con due coppie chiave-valore.<br>
+                Per accedere ai valori di un dizionario, si utilizza la chiave corrispondente.<br>
+                Esempio:<br>
+                <div class="shell">
+                    print(dizionario[<span class="strings">"chiave1"</span>])
+                </div>
+                L'output sarà <strong>valore1</strong>, poiché la chiave <strong>chiave1</strong> corrisponde al valore <strong>valore1</strong>.<br>
+
+                I dizionari possono contenere valori di qualsiasi tipo, anche altri dizionari.<br>
+                Esempio:<br>
+                <div class="shell">
+                    dizionario = {<span class="strings">"chiave1"</span>: <span class="strings">"valore1"</span>, <span class="strings">"chiave2"</span>: {<span class="strings">"chiave3"</span>: <span class="strings">"valore3"</span>}}
+                </div>
+                Qui il dizionario contiene una stringa e un altro dizionario, basti pensare ad un file json.<br>
+
+                Per modificare un valore di un dizionario, si utilizza la chiave corrispondente.<br>
+                Esempio:<br>
+                <div class="shell">
+                    dizionario[<span class="strings">"chiave1"</span>] = <span class="strings">"nuovo valore"</span>
+                </div>
+
+                <h3>Operazioni sui dizionari più utilizzate</h3>
+                <div class="table-container">
+                    <table class="elenco">
+                        <thead>
+                            <tr>
+                                <th>Operazione</th>
+                                <th>Descrizione</th>
+                            </tr>        
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>get()</td>
+                                <td>Restituisce il valore corrispondente a una chiave specifica</td>
+                            </tr>
+                            <tr>
+                                <td>items()</td>
+                                <td>Restituisce una lista di tuple contenenti tutte le coppie chiave-valore</td>
+                            </tr>
+                            <tr>
+                                <td>keys()</td>
+                                <td>Restituisce una lista con tutte le chiavi del dizionario</td>
+                            </tr>
+                            <tr>
+                                <td>values()</td>
+                                <td>Restituisce una lista con tutti i valori del dizionario</td>
+                            </tr>
+                            <tr>
+                                <td>pop()</td>
+                                <td>Rimuove e restituisce il valore corrispondente a una chiave specifica</td>
+                            </tr>
+                            <tr>
+                                <td>popitem()</td>
+                                <td>Rimuove e restituisce l'ultima coppia chiave-valore inserita</td>
+                            </tr>
+                            <tr>
+                                <td>clear()</td>
+                                <td>Rimuove tutte le coppie chiave-valore dal dizionario</td>
+                            </tr>      
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Set</h2>
+                I set sono collezioni non ordinate di elementi unici.<br>
+                Per creare un set, si utilizzano le parentesi graffe <strong>{}</strong>.<br>
+                Attenzione, qui stiamo usando le parentesi graffer per un set, non un dizionario, quindi non ci saranno coppie chiave-valore.<br>
+
+                Esempio:<br>
+                <div class="shell">
+                    insieme = {1, 2, 3, 4, 5}
+                </div>
+                In questo caso, la variabile <strong>insieme</strong> conterrà un set di numeri interi.<br>
+                I set non possono contenere elementi duplicati, quindi se si cerca di aggiungere un elemento già presente, non verrà aggiunto.<br>
+                Esempio:<br>
+                <div class="shell">
+                    insieme = {1, 2, 3, 4, 5, 1}
+                </div>
+
+                <h3>Operazioni sui set più utilizzate</h3>
+                <div class="table-container">
+                    <table class="elenco">
+                        <thead>
+                            <tr>
+                                <th>Operazione</th>
+                                <th>Descrizione</th>
+                            </tr>        
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>add()</td>
+                                <td>Aggiunge un elemento al set</td>
+                            </tr>
+                            <tr>
+                                <td>remove()</td>
+                                <td>Rimuove un elemento dal set</td>
+                            </tr>
+                            <tr>
+                                <td>discard()</td>
+                                <td>Rimuove un elemento dal set, se presente</td>
+                            </tr>
+                            <tr>
+                                <td>pop()</td>
+                                <td>Rimuove e restituisce un elemento casuale dal set</td>
+                            </tr>
+                            <tr>
+                                <td>clear()</td>
+                                <td>Rimuove tutti gli elementi dal set</td>
+                            </tr>
+                            <tr>
+                                <td>union()</td>
+                                <td>Restituisce un set contenente l'unione di due set</td>
+                            </tr>
+                            <tr>
+                                <td>intersection()</td>
+                                <td>Restituisce un set contenente l'intersezione di due set</td>
+                            </tr>
+                            <tr>
+                                <td>difference()</td>
+                                <td>Restituisce un set contenente la differenza tra due set</td>
+                            </tr>    
+                        </tbody>
+                    </table>
+                </div>
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 3", "../../py/intro");
+    </script>
+</html>

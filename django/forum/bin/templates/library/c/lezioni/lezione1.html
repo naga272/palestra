@@ -1,0 +1,301 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+            .elenco {
+                text-align: center;
+                width: 50%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center;">
+            <h1>Primo Programma: Hello World!</h1>
+            <div style="text-align: left; margin: 3%;">
+                <p>
+                    Il nostro obiettivo è stampare la scritta "Hello World!" sullo schermo.<br>
+                    Per farlo, usiamo un header chiamato <code>stdio.h</code> (dove "stdio" sta per "standard input/output").<br>
+                    Un header è un file che contiene una serie di definizioni utili per il nostro codice, evitandoci di riscriverle da zero.
+                </p>
+                <p>
+                    Prima di cominciare, è importante sapere che ogni programma C comincierà ad eserguire il codice dalla funzione main(), che non è altro che il punto di ingresso del nostro programma.<br>
+                    <div class="shell">
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin-left:15px"></span><span class="strings">// .. il codice cominciera' ad essere eseguito da qui</span><br>
+                            <span style="margin-left:15px"></span><span class="instruction">return</span> 0; <span class="strings">// .. il main deve avere sempre questa istruzione finale, rappresenta la fine del programma</span>
+                        <br>}
+                    </div>
+                    Verrà eseguito tutto quello che si trova all'interno del main() e ogni main, <strong>deve</strong> finire con l'istruzione return 0 (per il momento)<br>
+                    Inoltre, molto spesso vedrete all'interno dei programmi questo simbolo: "//"; In C significa che tutto quello che viene a destra di questo simbolo è un commento, cioè degli appunti del programmatore che non verranno eseguiti dalla macchina.<br>
+                    Fatte queste premesse passiamo pure al programma che stampa a schermo la scritta "Hello World!":
+                </p>
+        
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                    <span class="type">int</span> main(){<br>
+                        <span style="margin-left: 20px;">printf(<span class="strings">"Hello World!"</span>);</span><br>
+                        <span style="margin-left: 20px;"><span class="instruction">return</span> 0;</span><br>
+                    }
+                </div>
+        
+                <h3>Compilazione del Programma</h3>
+                <p>Da command line, naviga nella directory corrente e digita il seguente comando:</p>
+        
+                <div class="shell" style="color: green;">
+                    $ gcc ./sorgente.c -o ./sorgente
+                </div>
+        
+                <p>Analizziamo il comando:</p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>gcc:</strong> Sta per "GNU Compiler Collection". È una suite di compilatori che supporta vari linguaggi. Trasforma il codice sorgente in <a href="https://it.wikipedia.org/wiki/Linguaggio_macchina">codice macchina.</a></li>
+                    <li><strong>./sorgente.c:</strong> Il file sorgente C che abbiamo scritto.</li>
+                    <li><strong>-o:</strong> Indica che il prossimo argomento sarà il nome dell'eseguibile.</li>
+                    <li><strong>./sorgente:</strong> Il nome dell'eseguibile generato dal codice sorgente.</li>
+                </ul>
+        
+                <p>Oltre a questi parametri, puoi aggiungerne altri per fornire più informazioni al compilatore, come:</p>
+
+                <ul style="margin-left: 20px;">
+                    <li><strong>-W:</strong> Abilita alcuni avvisi base del compilatore.</li>
+                    <li><strong>-Wall:</strong> Sta per "Warn All" e attiva molti avvertimenti utili.</li>
+                    <li><strong>-Wextra:</strong> Aggiunge avvisi extra rispetto a <code>-Wall</code>.</li>
+                    <li><strong>-std=c99:</strong> Indica di utilizzare lo standard C del 1999.</li>
+                    <li><strong>-O0:</strong> "O" sta per "ottimizzazione", e il numero indica il livello (arriva fino a 3).</li>
+                </ul>
+                I flag di compilazione sono utili e, in alcuni casi, essenziali per migliorare il controllo e il comportamento del compilatore durante la compilazione del codice.<br>
+                Quelli che vi ho mostrato erano solo alcuni dei flag, per avere un quadro più completo puoi andare alla <a href="https://www.spec.org/cpu2017/flags/gcc.2018-02-16.html">seguente pagina</a><br><br>
+                <p>Un altro esempio di compilazione potrebbe essere:</p>
+        
+                <div class="shell" style="color: green;">
+                    $ gcc -W -Wall -Wextra -std=c99 -O0 ./sorgente.c -o ./sorgente
+                </div>
+        
+                <h3>Analisi del Codice Sorgente del programma sorgente.c</h3>
+                <p>
+                    Nel codice sorgente, la prima riga include l'header <code>#include &lt;stdio.h&gt;</code>, che ci consente di usare la funzione <code>printf()</code>.<br>
+                    La funzione <code>printf()</code> stampa una stringa sullo schermo. È una funzione di "formattazione della stampa", che ci consente di inserire variabili all'interno della stringa usando dei segnaposto.
+                </p>
+                
+                <h4>Esempio di <code>printf()</code> con i segnaposto</h4>
+        
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+                    <span class="type">int</span> main(){<br>
+                        <span style="margin-left: 20px;">printf(<span class="strings">"valore: %i"</span>, 15); <span class="strings">// Stampa un intero</span></span><br>
+                        <span style="margin-left: 20px;">printf(<span class="strings">"valore: %c"</span>, <span class="strings">'b'</span>); <span class="strings">// Stampa un carattere</span></span><br>
+                        <span style="margin-left: 20px;">printf(<span class="strings">"valore: %s"</span>, <span class="strings">"Ciao mondo"</span>); <span class="strings">// Stampa una stringa</span></span><br>
+                        <span style="margin-left: 20px;"><span class="instruction">return</span> 0;</span><br>
+                    }
+                </div>
+                <strong>N.B.</strong>: per il linguaggio C c'è molta differenza tra i singoli apici e i doppi apici. I singoli apici vanno usati solo per riferirsi a un solo carattere,<br>
+                i doppi apici invece vanno usati per i vettori di caratteri.<br><br>
+                <p>
+                    Ogni segnaposto corrisponde a un tipo di dato specifico.
+                </p>
+        
+                <div class="table-container">
+                    <table class="elenco">
+                        <thead>
+                            <tr>
+                                <th>Segnaposto</th>
+                                <th>Descrizione</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>%d o %i</td>
+                                <td>Intero in formato decimale.</td>
+                            </tr>
+                            <tr>
+                                <td>%u</td>
+                                <td>Intero senza segno in formato decimale.</td>
+                            </tr>
+                            <tr>
+                                <td>%f</td>
+                                <td>Numero a virgola mobile in formato decimale.</td>
+                            </tr>
+                            <tr>
+                                <td>%c</td>
+                                <td>Singolo carattere.</td>
+                            </tr>
+                            <tr>
+                                <td>%s</td>
+                                <td>Stringa di caratteri.</td>
+                            </tr>
+                            <tr>
+                                <td>%p</td>
+                                <td>Indirizzo di memoria (puntatore).</td>
+                            </tr>
+                            <tr>
+                                <td>%ld, %lld</td>
+                                <td>Stampa un intero lungo (long) o lungo lungo (long long).</td>
+                            </tr>
+                            <tr>
+                                <td>%x o %X	</td>
+                                <td>Stampa un intero in formato esadecimale (rispettivamente minuscolo o maiuscolo).</td>
+                            </tr>
+                            <tr>
+                                <td>%o</td>
+                                <td>Stampa un intero in formato ottale.</td>
+                            </tr>
+                            <tr>
+                                <td>%lf</td>
+                                <td>Stampa un numero a virgola mobile di doppia precisione (double).</td>
+                            </tr>
+                            <tr>
+                                <td>%lu, %llu</td>
+                                <td>Stampa un intero lungo (long) o lungo lungo (long long) senza segno.</td>
+                            </tr>
+                            <tr>
+                                <td>%e o %E	</td>
+                                <td>Stampa un numero a virgola mobile in notazione esponenziale (rispettivamente con 'e' minuscola o 'E' maiuscola).</td>
+                            </tr>
+                            <tr>
+                                <td>%g o %G	</td>
+                                <td>Stampa un numero a virgola mobile in formato più compatto, utilizzando %f o %e/%E a seconda di quale sia più breve.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    <br>
+                    <h2>Curiosità (programmazione avanzata)</h2>
+                    Tornando al programma sorgente.c, abbiamo l'istruzione "int main(){//qualcosa}".<br>
+                    Questa funzione è la seconda funzione da dove il programma eseguibile comincerà ad eseguire il codice.<br>
+                    Come fa l'eseguibile ad entrare nella funzione main()? Il compilatore in automatico aggiunge una procedura chiamata _start,<br>
+                    che avrà il compito di fare una chiamata alla funzione main(). <br>
+                    Questo comportamento, possiamo replicarlo manualmente in C, nel seguente modo:<br>
+                    <div class="shell">
+                        <span class="direttive">
+                            #include &lt;stdio.h&gt;
+                        </span><br><br>
+                        <span class="type">extern void</span> _exit(<span class="type">register int</span>);<br>
+                        <span class="type">extern void</span> print(<span class="type">const char</span>*);<br>
+                        <span class="type">int</span> main(<span class="type">void</span>);<br>
+                        <br><br>
+                        <span class="type">void</span> _start(){<br>
+                            <span style="margin-left: 20px; color:#fff"><span class="type">int</span> result = main();</span><br>
+                            <span style="margin-left: 20px; color:#fff">main();</span><br>
+                            <span style="margin-left: 20px; color:#fff">_exit(result);</span><br>
+                        }<br>
+                        <br><br>
+                        <span class="type">int</span> main(){<br>
+                            <span style="margin-left: 20px; color:#fff">print(<span class="strings">"Hello World"</span>);</span><br>
+                            <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                        }<br>
+                        <br>
+                    </div>
+                    Purtroppo personalizzare la procedura _start significa anche non poter usufruire di molte funzioni dello standard C, questo perchè dipendono dalla funzione _start creata dal compilatore. <br>
+                    Dobbiamo costruirci quindi per conto nostro le funzioni che scrivono in standard output in assembly.<br>
+                    Quindi dobbiamo creare un'altro file chiamato "print.asm" e al suo interno ci scriviamo le seguenti righe di codice:<br>
+                    <div class="shell" style="color:rgb(64, 64, 219);">
+                        <span style="color:orange">section</span> .text<br>
+                        <span style="margin:20px">global print</span><br><br>
+                        <span class="strings">; void print(const char*)</span><br>
+                        <span style="color:orange">print</span>: push rbp <span class="strings">; il parametro passato alla print si trova dentro al registro rdi</span><br>
+                        <span style="margin:20px">mov rbp, rsp</span><br>
+                        <span style="margin:20px">mov rsi, rdi</span><span class="strings">; assegno l'indirizzo che punta al vettore di rdi a rsi</span><br> 
+                        <span style="margin:20px"><span style="color:orange">.put</span>: cmp byte[rsi], 0</span><span class="strings">; stampa a schermo finchè non raggiunge il carattere '\0'</span><br> 
+                        <span style="margin:60px">je <span style="color:orange">.done</span></span><br>
+                        <span style="margin:60px">mov rax, 1</span><span class="strings">; codice chiamata di sistema per la sys-write</span><br>
+                        <span style="margin:60px">mov rdx, 1</span><span class="strings">; quanti caratteri stampare alla volta</span><br>
+                        <span style="margin:60px">mov rdi, 1</span><span class="strings">; file descriptor per stdio (e' 1)</span><br>
+                        <span style="margin:60px">syscall</span><span class="strings">; stampo a schermo il singolo carattere</span><br><br>
+                        <span style="margin:60px">inc rsi</span><span class="strings">; passo al prossimo carattere</span><br>
+                        <span style="margin:60px">jmp <span style="color:orange">.put</span></span><br>
+                        <span style="margin:20px"><span style="color:orange">.done</span>: leave</span><span class="strings">; libero lo stack</span><br>
+                        <span style="margin:60px">ret</span><span class="strings">; esco dalla funzione print (equivale alla return;)</span><br>
+                    </div>
+                    Compilazione:
+                    <br>
+                    Questo programma può essere compilato solo da un os Linux-Like (i compilatori dipendono dal os che si usa), quindi su ambienti come windows questo programma potrebbe dare errore.<br>
+                    Da Cli scriviamo i seguenti comandi:
+                    <div class="shell" style="color:green">
+                        $ nasm -f elf64 -g print.asm -o print.o<br>
+                        $ gcc main.c print.o -o main -nostartfiles
+                    </div>
+                    il flag -nostartfiles dice al compilatore che abbiamo creato manualmente la procedura _start.<br>
+                    Quando siamo all'interno della funzione main() bisogna restituire alla chiamata un valore <br>
+                    intero per comunicare l'andamento del programma (0 tutto bene, diverso da 0 se è andato male).<br>
+                    Una volta restituito il valore alla variabile che abbiamo chiamato result, si deve passare quel valore alla<br>
+                    procedura _exit, che viene restituito al <a href="lez18">processo</a> padre.
+                    <br>
+                    L'output di questo programma sarà:<br>
+                    <div class="shell" style="color:green">
+                        $ ./sorgente<br>
+                        Hello WorldHello World
+                    </div>
+                    Questo perchè all'interno della procedura _start() eseguiamo la funzione main() 2 volte, quindi stampiamo a schermo due volte "Hello World".<br>
+                    Inoltre, è possibile visualizzare il contenuto della procedura _start() prodotto dal compilatore usando il debugger gdb, che per installarlo da linux basta usare il gestore dei pacchetti apt:<br>
+                    <div class="shell" style="color:green">
+                        $ sudo apt-install gdb<br>
+                    </div>
+                    Dopo averlo installato basta passare come argomento a gdb il nostro eseguibile:<br>
+                    <div class="shell" style="color:green">
+                        $ gdb ./main<br>
+                    </div>
+                    La schermata che ci troveremo dopo aver scritto il comando sarà una CLI:<br>
+                    <img src="../../../../static/img/screen_gdb/screen_0.png"><br>
+                    Per visualizzare il contenuto di funzioni, procedure o di etichette all'interno dell'eseguibile, ci basta usare il comando "disassemble" + il nome.<br>
+                    Il nostro obiettivo è di visualizzare la procedura _start, quindi nel debugger ci basterà scrivere "disassemble _start":<br>
+                    <img src="../../../../static/img/screen_gdb/screen_1.png"><br>
+                    Di default, il debugger gdb mostra la sintassi dell'assembly AT&T e per cambiarla basta scrivere:<br>
+                    "set disassembly-flavor intel"<br>
+                    In questo modo ci verrà consentito di leggere il codice con la sintassi del native assembly (nasm):<br>
+                    <img src="../../../../static/img/screen_gdb/screen_2.png"><br>
+                    Come possiamo vedere all'interno di questa procedura abbiamo 2 chiamate alla funzione main (all'indirizzo 0x1043).<br>
+                    Per avere un ulteriore conferma che effettivamente è la nostra funzione main ci basterà scrivere nella cli "disassemble main":<br>
+                    <img src="../../../../static/img/screen_gdb/screen_3.png"><br>
+                    Questa è una dimostrazione pratica che in realtà il main è la seconda funzione che viene eseguita. <br>
+                    Ci tengo a precisare che normalmente non si deve mai personalizzare la procedura _start, tranne in alcuni casi come lo sviluppo dei kernel.<br>
+                </p>
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+        init_page("capitolo 1", "../../c/intro/");
+    </script>
+</html>

@@ -1,0 +1,233 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+            .script {
+                padding: 1%;
+                background-color: black;
+                color: green;
+            }
+            .elenco {
+                margin: 0 auto;
+                text-align: center;
+                width: 80%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>search</h1>
+            <br>
+            <p>
+                Questa libreria fornisce funzionalità per la manipolazione e l'ottenimento di tabelle hash. <br>
+                La tabella hash non è altro che una struttura dati che memorizza i dati in coppie in stile "chiave-valore"
+            </p>
+            <br>
+
+            <h3>Funzioni</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th class="descrizione">Descrizione</th>
+                            <th class="prototype">prototype</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>hcreate</td>
+                            <td>Crea una tabella hash con una capacità di nel elementi. Se la creazione ha successo, restituisce 1; altrimenti, restituisce 0.</td>
+                            <td>int hcreate(size_t);</td>
+                        </tr>
+                        <tr>
+                            <td>hdestroy</td>
+                            <td>Distrugge la tabella hash creata da hcreate, liberando la memoria associata.</td>
+                            <td>void hdestroy(void)</td>
+                        </tr>
+                        <tr>
+                            <td>hsearch</td>
+                            <td>Cerca un elemento nella tabella hash o inserisce un nuovo elemento. Se action è FIND, cerca l'elemento, altrimenti, se action è ENTER, inserisce l'elemento.</td>
+                            <td>ENTRY *hsearch(ENTRY, ACTION);</td>
+                        </tr>
+                        <tr>
+                            <td>insque</td>
+                            <td>Inserisce un nuovo elemento in una lista collegata (linked list) subito dopo l'elemento pred.</td>
+                            <td>void insque(void *, void *);</td>
+                        </tr>
+                        <tr>
+                            <td>lsearch</td>
+                            <td>Simile a lfind, ma se l'elemento non viene trovato, lo inserisce nell'array e restituisce un puntatore all'elemento trovato o appena inserito.</td>
+                            <td>void  *lsearch(const void *, void *, size_t *, size_t, int (*)(const void *, const void *));</td>
+                        </tr>
+                        <tr>
+                            <td>lfind</td>
+                            <td>Cerca un elemento in un array ordinato o non ordinato utilizzando una ricerca lineare. Restituisce un puntatore all'elemento trovato, o NULL se non trovato.</td>
+                            <td>void *lfind(const void *, const void *, size_t *, size_t, int (*)(const void *, const void *));</td>
+                        </tr>
+                        <tr>
+                            <td>remque</td>
+                            <td>Rimuove un elemento da una lista collegata (linked list).</td>
+                            <td>void remque(void *);</td>
+                        </tr>
+                        <tr>
+                            <td>tdelete</td>
+                            <td>Rimuove un elemento da un albero binario di ricerca. Restituisce un puntatore all'elemento rimosso o NULL se l'elemento non esiste.</td>
+                            <td>void *tdelete(const void *, void **, int(*)(const void *, const void *));</td>
+                        </tr>
+                        <tr>
+                            <td>tfind</td>
+                            <td>Cerca un elemento in un albero binario di ricerca. Restituisce un puntatore all'elemento trovato o NULL se l'elemento non esiste.</td>
+                            <td>void *tfind(const void *, void *const *, int(*)(const void *, const void *));</td>
+                        </tr>
+                        <tr>
+                            <td>tsearch</td>
+                            <td>Cerca un elemento in un albero binario di ricerca. Se l'elemento non esiste, lo inserisce. Restituisce un puntatore all'elemento trovato o appena inserito.</td>
+                            <td>void  *tsearch(const void *, void **, int(*)(const void *, const void *));</td>
+                        </tr>
+                        <tr>
+                            <td>twalk</td>
+                            <td>Percorre un albero binario in un ordine specificato ("preorder", "postorder", ecc.) e applica la funzione "action" a ciascun nodo durante la visita.</td>
+                            <td>void twalk(const void *, void (*)(const void *, VISIT, int ));</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Tipi di dato</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ENTRY</td>
+                            <td>
+                                Struttura che rappresenta una singola coppia chiave-valore per una tabella hash.<br>
+                                La chiave è una stringa (char *), mentre il valore associato (data) è un puntatore generico (void *).
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ACTION</td>
+                            <td>È un tipo enumerato utilizzato per specificare l'azione da intraprendere con la funzione hsearch(contiene due valori, FIND e ENTER)</td>
+                        </tr>
+                        <tr>
+                            <td>VISIT</td>
+                            <td>Tipo enumerato utilizzato con la funzione twalk per specificare in quale fase del percorso dell'albero si trova il nodo corrente</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            
+            <h3>programma esempio che usa hash table</h3>
+            <div style="float:left; text-align:left; padding-left:10%; width:80%">
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span><br>
+                    <span class="direttive">#include &lt;search.h&gt;</span><br>
+                    <span class="direttive">#include &lt;stdlib.h&gt;</span><br>
+                    <br><br>
+                    <span class="type">int</span> main() {<br>
+                        <span style="margin-left:20px;"></span><span class="strings">// Creazione della tabella hash</span><br>
+                        <span style="margin-left:20px;"></span><span class="instruction">if</span> (hcreate(100) == 0) {<br>
+                            <span style="margin-left:40px;"></span>fprintf(stderr, <span class="strings">"Errore nella creazione della tabella hash\n"</span>);<br>
+                            <span style="margin-left:40px;"></span>exit(EXIT_FAILURE);<br>
+                        <span style="margin-left:20px;"></span>}<br>
+                        <br>
+                        <span style="margin-left:20px;"></span><span class="strings">// Inserimento di dati di alcune persone nella tabella hash</span><br>
+                        <span style="margin-left:20px;"></span>ENTRY item;<br>
+                        <span style="margin-left:20px;"></span>ENTRY *result;<br><br>
+                        
+                        <span style="margin-left:20px;"></span><span class="strings">// Inserimento della prima persona</span><br>
+                        <span style="margin-left:20px;"></span>item.key = <span class="strings">"Mario"</span>;<br>
+                        <span style="margin-left:20px;"></span><span class="type">int</span> mario_age = 30;<br>
+                        <span style="margin-left:20px;"></span>item.data = &mario_age;<br>
+                        <span style="margin-left:20px;"></span>result = hsearch(item, ENTER);<br>
+                        <span style="margin-left:20px;"></span><span class="instruction">if</span> (result == NULL) {<br>
+                            <span style="margin-left:40px;"></span>fprintf(stderr, <span class="strings">"Errore nell'inserimento di Mario nella tabella hash\n"</span>);<br>
+                            <span style="margin-left:40px;"></span>exit(EXIT_FAILURE);<br>
+                        <span style="margin-left:20px;"></span>}<br><br>
+                        
+                        <span style="margin-left:20px;"></span><span class="strings">// Inserimento della seconda persona</span><br>
+                        <span style="margin-left:20px;"></span>item.key = <span class="strings">"Luigi"</span>;<br>
+                        <span style="margin-left:20px;"></span><span class="type">int</span> luigi_age = 25;<br>
+                        <span style="margin-left:20px;"></span>item.data = &luigi_age;<br>
+                        <span style="margin-left:20px;"></span>result = hsearch(item, ENTER);<br>
+                        <span style="margin-left:20px;"></span><span class="instruction">if</span> (result == NULL) {<br>
+                            <span style="margin-left:40px;"></span>fprintf(stderr, <span class="strings">"Errore nell'inserimento di Luigi nella tabella hash\n"</span>);<br>
+                            <span style="margin-left:40px;"></span>exit(EXIT_FAILURE);<br>
+                        <span style="margin-left:20px;"></span>}<br><br>
+                        
+                        <span style="margin-left:20px;"></span><span class="strings">// caso in cui si cerca una persona che non è all'interno della table</span><br>
+                        <span style="margin-left:20px;"></span>item.key = <span class="strings">"Lorenzo"</span>;<br>
+                        <span style="margin-left:20px;"></span>result = hsearch(item, FIND);<br>
+                        <span style="margin-left:20px;"></span>(result != NULL)? printf(<span class="strings">"Età di %s: %d\n"</span>, item.key, *(<span class="type">int</span> *)result->data) : printf(<span class="strings">"Chiave '%s' non trovata nella tabella hash.\n"</span>, item.key);<br><br>
+
+                        <span style="margin-left:20px;"></span><span class="strings">// caso in cui si cerca una persona che e' all'interno della tabella</span><br>
+                        <span style="margin-left:20px;"></span>item.key = <span class="strings">"Luigi"</span>;<br>
+                        <span style="margin-left:20px;"></span>result = hsearch(item, FIND);<br>
+                        <span style="margin-left:20px;"></span>(result != NULL)? printf(<span class="strings">"Età di %s: %d\n"</span>, item.key, *(<span class="type">int</span> *)result->data) : printf(<span class="strings">"Chiave '%s' non trovata nella tabella hash.\n"</span>, item.key);<br><br>
+
+
+                        <span style="margin-left:20px;"></span>hdestroy();<span style="margin-left:20px;"></span><span class="strings"> // le tabelle vanno distrutte prima della fine del programma</span><br>
+                        
+                        <span style="margin-left:20px;"></span><span class="instruction">return</span> EXIT_SUCCESS;<br>
+                    }<br>                
+                </div>
+                <strong>Output del programma:</strong><br>
+                <div class="shell strings" style="margin-bottom:20px;">
+                    Chiave 'Lorenzo' non trovata nella tabella hash.<br>
+                    Età di Luigi: 25
+                </div>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("search", "../../c/lezione/lez13");
+    </script>
+</html>

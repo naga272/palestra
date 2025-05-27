@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+            table{
+                width:33%;
+            }
+            table th{
+                margin-left:2%;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+            <h1>C con assembly</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%;">
+                <div>
+                    <strong>Per questo capitolo è consigliata la conoscenza base per le cpu con architettura a 64 bit</strong><br><br>
+
+                    <h4>Perché unire C con Assembly?</h4>
+                    <p>
+                        L'unione tra C e Assembly permette di ottenere il meglio di entrambi i mondi: l'efficienza del linguaggio Assembly e la flessibilità e semplicità del linguaggio C.<br>
+                        <strong>Controllo preciso sull'hardware:</strong> L'Assembly consente un controllo diretto e preciso sulle operazioni a livello di CPU, permettendo di eseguire ottimizzazioni avanzate che sarebbero difficili o impossibili da realizzare con il solo C.<br>
+                        <strong>Ottimizzazione critica delle prestazioni:</strong> Per le parti di codice che richiedono massime prestazioni, come gli algoritmi di elaborazione dati o le routine di gestione dell'hardware, l'Assembly permette di ridurre al minimo l'uso delle risorse e di aumentare la velocità di esecuzione.<br>
+                        <strong>Accesso a funzionalità specifiche del processore:</strong> L'Assembly può essere utilizzato per sfruttare le istruzioni speciali della CPU che non sono accessibili direttamente dal linguaggio C, rendendolo indispensabile in contesti dove l'efficienza è cruciale.<br>
+                    </p>
+                    
+                    <br>
+                    <h4>Modi di integrare codice assembly</h4>
+                    Esistono vari modi per incorporare codice assembly:<br>
+                    <ul style="margin-left:15px">
+                        <li><strong>Incorporazione inline da file C</strong>: Esiste la possibilità di scrivere codice direttamente da programma c tramite l'istruzioni __asm__()</li>
+                        <li><strong>Chiamata di funzione Assembly da C</strong>: Si possono collegare file .c con file .asm per poter usare le funzioni sia di uno che dell'altro file tramite chiamate di funzione</li>
+                    </ul>
+                    
+                    <br>
+                    <h3>codice inline</h3>
+                    Possiamo integrare del codice inline all'interno del nostro programma c usando semplicemente il comando "__asm__()":<br>
+                    <div class="shell">
+                        __asm__(<br>
+                        <span style="margin-left:15px"></span><span class="strings">"assembly code"</span><br>
+                        <span style="margin-left:15px"></span>: output operands<br>
+                        <span style="margin-left:15px"></span>: input operands<br>
+                        <span style="margin-left:15px"></span>: clobbered_register<br>
+                        );
+                    </div>
+                    Possiamo notare che ci sono quattro sezioni:<br>
+                    <ul style="margin-left:15px">
+                        <li>
+                            "assembly code": è la parte dove verrà scritto il nostro codice assembly
+                        </li>
+                        <li>
+                            ": output operands": prima sezione dopo il codice assembly. Tutti gli operandi elencati in questa sezione sono considerati di output.<br>
+                            Ogni operando di output è identificato da un simbolo '=' oppure da '=r' (r indica che la variabile deve essere memorizzata in un registro della CPU.)
+                        </li>
+                        <li>
+                            ": input operands": Questa sezione è dedicata agli operandi di input. Le variabili elencate qui sono di sola lettura (non verranno quindi modificate dal codice assembly)
+                        </li>
+                        <li>
+                            ": clobbered_register": è opzionale, serve a indicare quali registri andiamo a modificare nel codice assembly
+                        </li>
+                    </ul>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+
+                        <span class="type">int</span> main(){<br>
+                        <span style="margin-left:15px"></span><span class="type">int</span><br>
+                        <span style="margin-left:25px"></span>a = 5,<br>
+                        <span style="margin-left:25px"></span>b = 15,<br>
+                        <span style="margin-left:25px"></span>result;<br>
+                        <br>
+                        <span style="margin-left:15px"></span>__asm__(<br>
+                        <span style="margin-left:35px"></span><span class="strings">"movl %1, %%eax;" </span><br>
+                        <span style="margin-left:35px"></span><span class="strings">"addl %2, %%eax;" </span><br>
+                        <span style="margin-left:35px"></span><span class="strings">"movl %%eax, %0;" </span><br>
+                        <span style="margin-left:35px"></span>: <span class="strings">"=r"</span> (result)<br>
+                        <span style="margin-left:35px"></span>: <span class="strings">"r"</span> (a), <span class="strings">"r"</span> (b) <br>
+                        <span style="margin-left:35px"></span>: <span class="strings">"%eax" </span><br>
+                        <span style="margin-left:15px"></span>);<br>
+                        <span style="margin-left:15px"></span>printf(<span class="strings">"Il risultato è %d"</span>, result);<br>
+                        <span style="margin-left:15px"></span><span class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+
+                    <p>
+                        Tutti gli operandi della sezione input e output operands, vengono elencati numericamente in base a quando sono state dichiarate.<br>
+                        Nel nostro caso abbiamo prima result, poi a e infine b. di conseguenza result viene chiamata in %0, a come %1 e b come %2.<br>
+                        Quindi partendo dalla prima istruzione, "movl %1, %%eax;", spostiamo il contenuto di %1 (cioè di a) nel registro della cpu eax.<br>
+                        Tramite l'istruzione "addl %2, %%eax;" diciamo che dobbiamo sommare al valore contenuto nel registro eax %2 (cioè il valore di b).<br>
+                        Fatto questo assegnamo a %0 (quindi a result) il valore di eax (che è quindi a + b).
+                    </p>
+
+                    <h3>Assembly call da file C</h3>
+                    In questo caso, dobbiamo creare due file sorgenti: uno file assembly e l'altro un file c.<br>
+                    Partiamo con il codice del file assembly:<br>
+                    <div class="shell">
+                        <span style="color:orange">section .text</span><br>
+                        <span style="color:blue">Global somma</span><br><br>
+
+                        <span style="color:green">; int somma(int, int);</span><br>
+                        <span style="color:blue">somma</span>: push rbp<br>
+                        <span style="margin-left:20px"></span>mov rbp, rsp<br>
+                        <span style="margin-left:20px"></span>mov rax, [rbp + 24] <span style="color:green">; in [rbp + 24] è contenuto il secondo parametro</span><br>
+                        <span style="margin-left:20px"></span>add rax, [rbp + 32] <span style="color:green">; in [rbp + 32] è contenuto il primo parametro</span><br>
+                        <span style="margin-left:20px"></span>mov rsp, rbp<br>
+                        <span style="margin-left:20px"></span>leave<br>
+                        <span style="margin-left:20px"></span>ret<br>
+                    </div>
+
+                    In questo programma stiamo creando una funzione chiamata somma, che accetta due parametri da 8 byte e restituisce la loro somma (nel registro rax)<br>
+                    Ora che abbiamo creato la funzione somma, dobbiamo creare il nostro file c che chiamerà questa funzione:<br>
+                    <div class="shell">
+                        <span class="direttive">#include &lt;stdio.h&gt;</span><br><br>
+
+                        <span class="type">extern int</span> somma(<span class="type">int</span>, <span class="type">int</span>);<br><br>
+                        <span class="type">int</span> main(){<br>
+                        <span style="margin-left:15px"></span><span class="type">int</span><br>
+                        <span style="margin-left:25px"></span>a = 5,<br>
+                        <span style="margin-left:25px"></span>b = 15,<br>
+                        <span style="margin-left:25px"></span>result;<br>
+                        <br>
+                        <span style="margin-left:15px"></span>result = somma(a, b);<br>
+                        <span style="margin-left:15px"></span>printf(<span class="strings">"Il risultato è %d"</span>, result);<br>
+                        <span style="margin-left:15px"></span><span class="instruction">return</span> 0;<br>
+                        }
+                    </div>
+                    <h3>Compilazione</h3>
+                    Dobbiamo compilare prima il file assembly come file oggetto, poi dobbiamo passare il file oggetto insieme al file c al compilatore gcc, che darà in output l'eseguibile.<br>
+                    <div class="shell strings">
+                        nasm -f elf64 -g main.asm -o asm.o<br>
+                        gcc asm.o main.c -o main
+                    </div>
+                    <h3>Output</h3>
+                    <div class="shell strings">
+                        Il risultato è 20
+                    </div>
+                </div>
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+        init_page("capitolo 19", "../../c/intro/");
+    </script>
+</html>

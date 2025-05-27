@@ -1,0 +1,608 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+            .type_table tr td, th{
+				width:40%;
+                border:1px solid black;
+				padding:1%;
+				transition:all .7s;
+			}
+			.type_table tr td:hover{
+				background-color:#0E2C40;
+				color:#EFBC75;
+			}
+            .conversioni{
+                width:50%;
+            }.conversioni td{
+                text-align: center;
+                border:1px solid black;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            .elenco {
+                text-align: center;
+                width: 50%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td, .elenco caption {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead, .elenco caption {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th, .elenco caption {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+			<h1>Operatori</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%; margin-right:3%">
+				I programmi C sono composti da una sequenza di espressioni, pertanto gli operatori vengono largamente utilizzati.<br>
+                Ecco i tipi che si possono scrivere all'interno di un programma:<br>
+                <div class="table-container">
+                    <table class="elenco">
+                        <caption>
+                            Operatori aritmetici
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td>+</td>
+                                <td>Effettua l'operazione di somma tra due numeri</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>Effettua l'operazione di sottrazione tra due numeri</td>
+                            </tr>
+                            <tr>
+                                <td>*</td>
+                                <td>Effettua l'operazione di moltiplicazione tra due numeri</td>
+                            </tr>
+                            <tr>
+                                <td>/</td>
+                                <td>Effettua l'operazione di divisione tra due numeri</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>Effettua calcola il resto della divisione tra due numeri</td>
+                            </tr>
+                            <tr>
+                                <td>++</td>
+                                <td>Operatore di incremento che consente di incrementare di uno un numero</td>
+                            </tr>
+                            <tr>
+                                <td>--</td>
+                                <td>Operatore di decremento che consente di decrementare di uno un numero</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                Ecco un esempio di programma:
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span>
+                    <br><br>
+                    <span class="type">int</span> main(){<br>
+                        <span style="margin-left: 20px; color:#fff"><span class="type">int</span> a = 18;</span></span><br>
+                        <span style="margin-left: 20px; color:#fff">a++;</span><br>
+                        <span style="margin-left: 20px; color:#fff">printf(<span class="strings">"valore di a: %i\n"</span>, a);</span><br>
+                        <span style="margin-left: 20px; color:#fff"><span class="type">int</span> b = 13 * 10 - 24;</span><br>
+                        <span style="margin-left: 20px; color:#fff">printf(<span class="strings">"valore di b: %i"</span>, b);</span><br>
+                        <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                    }<br>
+                </div>
+                <br>
+                <h3>Spiegazione del programma</h3>
+                Creiamo una variabili di tipo intero e gli assegnamo il valore 18. Dopodichè, tramite l'operatore di incremento "++", aumentiamo il valore della variabile a di 1 (18 + 1 = 19) e ne stampiamo il risultato a schermo.<br>
+                Creo un'altra variabile di tipo intero e gli assegno il risultato dell'espressione "13 * 10 - 24" e lo stampo a schermo.<br>
+                Vorrei far notare che all'interno della printf è stato scritto un carattere speciale: "\n". <br>
+                Questo carattere si chiama new line e serve sostanzialmente per tornare a capo (è il decimo carattere della tabella ASCII)<br>
+                Quindi, l'output del programma sarà:<br>
+                <div class="shell">
+                    <span class="strings">valore di a: 19</span><br>
+                    <span class="strings">valore di b: 106</span>
+                </div>
+                <br>
+                <div class="table-container">
+                    <table class="elenco" width="50%">
+                        <caption>
+                            Operatori relazionali
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td>==</td>
+                                <td>Operatore di uguaglianza, <br>restituisce 1 se x è uguale a y, altrimenti 0</td>
+                            </tr>
+                            <tr>
+                                <td>!=</td>
+                                <td>Operatore di disuguaglianza, <br>restituisce 1 se x è diverso da y, altrimenti 0</td>
+                            </tr>
+                            <tr>
+                                <td>&lt;</td>
+                                <td>Operatore di minoranza, restituisce 1 <br>se x è minore di y, altrimenti 0</td>
+                            </tr>
+                            <tr>
+                                <td>&lt;=</td>
+                                <td>Operatore di minoranza o uguaglianza,<br>resituisce 1 se x è minore o uguale a y, altrimenti 0</td>
+                            </tr>
+                            <tr>
+                                <td>&gt;</td>
+                                <td>Operatore di maggioranza, restituisce 1 <br>se x è maggiore di y, altrimenti 0</td>
+                            </tr>
+                            <tr>
+                                <td>&gt;=</td>
+                                <td>Operatore di maggioranza o uguaglianza, restituisce 1 <br>se x è maggiore o uguale di y, altrimenti 0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                Ecco un esempio di programma:
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span>
+                    <br><br>
+                    <span class="type">int</span> main(){<br>
+                        <span style="margin-left: 20px; color:#fff"><span class="type">int</span> b = 15 == 0;</span><br>
+                        <span style="margin-left: 20px; color:#fff">printf(<span class="strings">"valore di b: %i\n"</span>, b);</span><br>
+                        <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                    }<br>
+                </div>
+                <br>
+                <p>
+                    <h3>Spiegazione del programma</h3>
+                    In questo caso, dato che siamo agli inizi, consiglio di cominciare a leggere da destra la riga 5:<br>
+                    Quel che viene fatto all'interno del programma è un confronto di uguaglianza tra due numeri.<br>
+                    è 15 uguale a 0? no, quindi questa operazione restituisce il valore 0. Quindi, dichiarando<br>
+                    la variabile di tipo intero e assegnandoli questo confronto avremo un valore che rappresenta il suo esito.<br>
+
+                    Quindi, l'output del programma sarà:<br>
+                    <div class="shell">
+                        <span class="strings">valore di b: 0</span><br>
+                    </div>
+                </p>
+                <br><br>
+                <div class="table-container">
+                    <table class="elenco" width="50%">
+                        <caption>
+                            operatori logici
+                        </caption>
+                        <tbody>
+                            <tr>
+                                <td>!</td>
+                                <td>
+                                    Operatore di negazione, <br>
+                                    restituisce 0 se l'espressione restituisce un valore diverso da 0, <br>
+                                    altrimenti se il valore è 1 restituisce 1
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&&</td>
+                                <td>
+                                    Operatore and, <br>
+                                    esegue l'and logico fra 2 espressioni.<br> 
+                                    Valuta la prima espressione e se questa e' falsa,
+                                    ritorna 0 senza valutare la seconda;<br> 
+                                    altrimenti valuta la seconda espressione. <br>
+                                    Se quest'ultima e' falsa ritorna 0 altrimenti ritorna 1.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>||</td>
+                                <td>
+                                    Operatore not,<br>
+                                    se almeno una delle due espressioni che si
+                                    stanno valutando è diversa da 0, 
+                                    allora restituisce 1, altrimenti 0
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                Ecco un esempio di programma:
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span>
+                    <br><br>
+                    <span class="type">int</span> main(){<br>
+                        <span style="margin-left: 20px; color:#fff"><span class="type">int</span> b = (15 == 0) && (22 == 22);</span><br>
+                        <span style="margin-left: 20px; color:#fff">printf(<span class="strings">"valore di b: %i\n"</span>, b);</span><br>
+                        <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                    }<br>
+                </div>
+                <br>
+                <p>
+                    <h3>Spiegazione del programma</h3>
+                    In questo programma viene usato l'operatore logico && (and) su due operazioni di uguaglianza.<br>
+                    Le operazioni di uguaglianza hanno la precedenza sull'operatore and, quindi prima vengono calcolate le<br>
+                    espressioni di destra e sinistra, poi viene eseguito l'and.<br>
+                    Una volta calcolato le due espressioni, il programma non farà altro che chiedersi:<br>
+                    è l'espressione di sinistra diversa da 0? è l'espressione di destra diversa da 0?<br>
+                    Nel nostro caso, abbiamo a destra dell'and il valore 1, mentre a sinistra 0. Di conseguenza, possiamo<br>
+                    dedurre che il risultato dato dall'operatore and è uguale a 0.<br>
+
+                    Quindi, l'output del programma sarà:<br>
+                    <div class="shell">
+                        <span class="strings">valore di b: 0</span><br>
+                    </div>
+                </p>
+
+                <div class="table-container">
+                    <table class="elenco" width="50%">
+                        <caption>
+                            operatori bit a bit
+                        </caption>
+                        <tbody>
+
+                            <tr>
+                                <td>~</td>
+                                <td>
+                                    Operatore completamento ad 1, ritorna il complemento
+                                    ad 1 del valore tornato dall'espressione.<br>
+                                    Il complemento ad 1 consiste nel cambio di ciascun bit con
+                                    il suo complemento, ovvero ogni bit posto ad 1 viene cambiato
+                                    a 0 ed ogni bit posto a 0 viene cambiato ad 1.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&</td>
+                                <td>
+                                    Operatore and bit a bit.<br>
+                                    Ritorna il valore dell'and effettuato bit a bit
+                                    sui valori ritornati dalle 2 espressioni.<br> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>|</td>
+                                <td>
+                                    Operatore or (inclusivo) bit a bit.<br>
+                                    Ritorna il valore dell'or effettuato
+                                    bit a bit sui valori ritornati dalle 2 espressioni.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>^</td>
+                                <td>
+                                    Operatore or esclusivo (ex-or) bit a bit.<br>
+                                    Ritorna il valore dell'ex-or effettuato
+                                    bit a bit sui valori ritornati dalle 2 espressioni.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&lt;&lt;</td>
+                                <td>
+                                    Operatore shift a sinistra,
+                                    ritorna il valore della traslazione
+                                    a sinistra di x bit sui bit del valore ritornato da y.<br>
+                                    I nuovi bit che entrano a destra sono posti a 0.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&gt;&gt;</td>
+                                <td>
+                                    Operatore shift a destra,<br>
+                                    Ritorna il valore della traslazione 
+                                    a destra di y bit sui bit del valore ritornato da x.<br>
+                                    I nuovi bit che entrano a sinistra possono dipendere
+                                    dall'architettura dell'elaboratore e/o dalla implementazione del compilatore.<br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                Prima di passare al programma, ritengo sia meglio spiegare per chi non ha esperienza come funziona la matematica binaria.<br>
+                Nel binario esistono solo 2 valore, 0 e 1. Ma allora come possiamo rappresentare numeri come 8, 20 ecc...?<br>
+                E' possibile rappresentarli nel seguente modo:<br>
+                
+                <table class="type_table">
+                    <tr>
+                        <th>binario</th>
+                        <th>decimale</th>
+                    </tr>
+                    <tr>
+                        <td>0000</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>0001</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>0010</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>0011</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>...</td>
+                        <td>...</td>
+                    </tr>
+                    <tr>
+                        <td>1110</td>
+                        <td>14</td>
+                    </tr>
+                    <tr>
+                        <td>1111</td>
+                        <td>15</td>
+                    </tr>
+                </table>
+                Ok, ma come possiamo calcolarli rapidamente?<br>
+                la base binaria si basa sulla potenza del 2, mi spiego meglio:<br>
+                Ogni bit di un numero binario rappresenta una potenza di 2, partendo da 2**0 per il bit meno significativo (quello più a destra),<br>
+                fino a 2**n per il bit più significativo (il bit più a sinistra), dove n rappresenta la posizione del bit.<br>
+                Ecco i passaggi per la conversione:<br>
+                <ul>
+                    <ol>
+                        <strong>- Assegna le potenze di 2 a ciascun bit:</strong> Inizia con 2**0 partendo da destra, poi 2**1 per il bit successivo e così via
+                    </ol>
+                    
+                    <ol>
+                        <strong>- Moltiplica ogni bit per la corrispondente potenza di 2:</strong> se il bit è 1, moltiplica per la potenza di 2<<br>
+                        altrimenti il risultato è 0
+                    </ol>
+                    <ol>
+                        <strong>- Somma i risultati:</strong> aggiungi tutti i risultati ottenuti nella moltiplicazione
+                    </ol>
+                </ul>
+                <br>
+                Esempio pratico:
+                <br><br>
+                <table width="50%">
+                    <tr style="text-align:center">
+                        <th style="padding-left: 20px; padding-right: 20px;">pot. del 2</th>
+                        <th style="padding-left: 20px; padding-right: 20px;">2**7</th>
+                        <th style="padding-left: 20px; padding-right: 20px;">2**6</th>
+                        <th style="padding-left: 20px; padding-right: 20px;">2**5</th>
+                        <th style="padding-left: 20px; padding-right: 20px;">2**4</th>
+                        <th style="padding-left: 20px; padding-right: 20px;">2**3</th>
+                        <th style="padding-left: 20px; padding-right: 20px;">2**2</th>
+                        <th style="padding-left: 20px; padding-right: 20px;">2**1</th>
+                        <th style="padding-left: 20px; padding-right: 20px;">2**0</th>
+                    </tr>
+                    <tr style="text-align:center">
+                        <td>base binaria</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                    </tr>
+                </table>
+                <br>
+                Abbiamo il numero binario 00001101 e vogliamo convertirlo in un numero decimale.<br>
+                Dobbiamo analizzare bit per bit partendo sempre da destra:<br>
+                Prendiamo il bit che vale di meno: è uguale a 1?<br>
+                Se sì, allora è un bit da contare, altrimenti se vale 0 passiamo al successivo.<br>
+                Quindi, nel nostro caso, al risultato finale dobbiamo sommare 2**0 (quindi 1).<br>
+                passiamo al secondo bit(partendo da destra) e dobbiamo chiederci la stessa cosa di prima:<br>
+                è uguale a 1? no, quindi andiamo al bit successivo.<br>
+                Il terzo bit partendo da destra è 1 o 0? è 1, quindi dobbiamo sommare il valore che abbiamo trovato prima (cioè 2**0) con 2**2<br>
+                Il quarto bit partendo da destra è 1 o 0? è 1, quindi dobbiamo sommare 2**3 con il valore che abbiamo calcolato precedentemente<br>
+                Il resto dei bit sono tutti 0, quindi si può anche non considerarli.<br>
+                Il numero decimale che può rappresentare 00001101 è:<br>
+                2**0 + 2**2 + 2**3 = 1 + 4 + 8 = 13<br>
+                
+                Una cosa fondamentale da ricordare è che il bit più significativo rappresenta il segno del numero,<br>
+                se vale 0 allora il numero rappresentato è positivo, altrimenti è negativo.<br>
+
+                <br>
+                <h3>Operatore bit a bit ~</h3>
+                Ora che conosciamo le basi, possiamo introdurre il concetto degli operato bit a bit del C. <br>
+                Abbiamo il <strong>~</strong>, in sostanza, dato un numero intero, viene convertito in binario, e esegue il complemento a 1<br>
+                (quindi inverte gli 0 con gli 1 del numero binario). Fatto questo, converte il risultato in decimale.<br><br>
+                Prendiamo come esempio questo programma:
+                <div class="shell">
+                    <span class="direttive">#include &lt;stdio.h&gt;</span>
+                    <br><br>
+                    <span class="type">int</span> main(){<br>
+                        <span style="margin-left: 20px; color:#fff">printf(<span class="strings">"%i, %i\n"</span>, 19, ~19);</span><br>
+                        <span class="instruction" style="margin-left: 20px;">return</span> 0;<br>
+                    }<br>
+                </div>
+                <br><br>
+                Abbiamo l'operazione ~19, per calcolarlo possiamo trasformare il numero 19 in binario dividendo il 19 per 2 finche non diventa 0, dopodichè,<br> 
+                i resti di ogni divisione rappresenteranno il numero 19 in binario:
+                <br><br>
+
+                <table class="conversioni">
+                    <tr>
+                        <td>19</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>4</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                </table>
+
+                Ora, per scoprire la rappresentazione del numero 19 in binario dobbiamo leggere i resti dal basso<br>
+                verso l'alto, ottenendo quindi come risultato: 010011<br>
+                Ora dobbiamo usare l'operatore bit a bit ~, che basta semplicemente invertire gli 0 con 1 e gli 1 con gli 0.<br><br>
+                010011 =<br>
+                101100<br><br>
+                Ora il risultato dobbiamo riconvertirlo in decimale:<br>
+
+                <table width="50%">
+                    <tr style="text-align:center">
+                        <th style="padding-left: 20px; padding-right: 20px;">32</th>
+                        <th style="padding-left: 20px; padding-right: 20px;">16</th>
+                        <th style="padding-left: 20px; padding-right: 20px;">8</th>
+                        <th style="padding-left: 20px; padding-right: 20px;">4</th>
+                        <th style="padding-left: 20px; padding-right: 20px;">2</th>
+                        <th style="padding-left: 20px; padding-right: 20px;">1</th>
+                    </tr>
+                    <tr style="text-align:center">
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                </table>
+                <br><br>
+                Per farlo, dobbiamo prendere il bit più significativo (che rappresenta anche il segno)<br>
+                e sommarlo a tutti i bit che valgono 1:<br>
+                -32 + 8 + 4 = -20
+                <br>
+                Il bit più significativo vale -32, questo perchè rappresenta sia il segno che il valore 32<br>
+                <br><br>
+                <p>
+                    Quindi, l'output del programma sarà:<br>
+                    <div class="shell">
+                        <span class="strings">19, -20</span><br>
+                    </div>
+                </p>
+                <br><br>
+                <h3>Operatore bit a bit &</h3>
+                <p>
+                    L'operatore & non fa altro che fare un paragone tra i bit di due valori.<br>
+                    Per esempio:<br>
+                    
+                    valore 1: 11 = 01011<br>
+                    valore 2: 22 = 10110<br>
+
+                    In quali punti i bit del numero 11 e 22 sono uguali?<br><br>
+                    01011 & <br>
+                    10110 = <br>
+                    ------- <br>
+                    00010   <br><br>
+
+                    Analisi del confronto (partendo dal bit più a sinistra):<br>
+                    il bit più significativo dei due valori sono uguali a 1? no, quindi fa 0<br>
+                    il secondo bit dei due valori sono uguali a 1? no quindi fa 0<br>
+                    il terzo bit dei due valori sono uguali a 1? no quindi fa 0<br>
+                    il quarto bit dei due valori sono uguali a 1? si quindi fa 1<br>
+                    il quinto bit dei due valori sono uguali a 1? no quindi fa 0<br><br>
+                    Il valore che viene restituito sarà 00010, che convertito in decimale equivale a 2.<br>
+                    Possiamo dunque concludere che l'espressione 11 & 22 restituisce come risultato 2
+                </p><br>
+
+                <h3>Operatore or (inclusivo) bit a bit.</h3>
+                <p>
+                    L'operatore or fa la stessa cosa dell'and, con l'unica differenza che basta<br>
+                    che uno dei due bit sia uguale a 1 per dare come valore 1.<br>
+                    Per esempio:<br><br>
+                        
+                    valore 1: 23 = 10111<br>
+                    valore 2: 10 = 01010<br>
+
+                    10111 | <br>
+                    01010 = <br>
+                    ------- <br>
+                    11111   <br><br>
+
+                    Analisi del confronto (partendo dal bit più a sinistra):<br>
+                    Il primo bit da sinistra: 0 | 1 = 1<br>
+                    Il secondo bit da sinistra: 1 | 0 = 1<br>
+                    Il terzo bit da sinistra: 0 | 1 = 1<br>
+                    Il quarto bit da sinistra: 1 | 1 = 1<br>
+                    Il quinto bit da sinistra: 1 | 0 = 1<br>
+                    <br><br>Il risultato in binario è 11111, che convertito in decimale equivale a 31.
+                </p>
+                <br><br>
+
+                <h3>Operatore ex-or (esclusivo) bit a bit.</h3>
+                <p>
+                    L'operatore OR esclusivo (XOR) bit a bit esegue un confronto tra i bit corrispondenti di due valori.<br>
+                    Restituisce 1 solo se uno dei due bit è 1 e l'altro è 0, altrimenti restituisce 0.<br>
+                    Per esempio, consideriamo i numeri 11 e 22:<br>
+                    <br>
+                    Valore 1: 11 = 01011<br>
+                    Valore 2: 22 = 10110<br><br>
+
+                    01011 ^ <br>
+                    10110 = <br>
+                    ------- <br>
+                    11101   <br>
+
+                    <br>
+                    Il risultato in binario è 11101, che convertito in decimale equivale a 29.<br>
+                    Quindi, il risultato dell'operazione 11 ^ 22 è 29.
+                    <br>
+                </p>
+                <h3>Operatore shift a sinistra e destra</h3>
+                <p>
+                    L'operatore di shift a sinistra (left shift) bit a bit, indicato con il simbolo &lt;&lt;, sposta i bit di un valore<br> 
+                    binario verso sinistra di un numero specificato di posizioni. <br>
+                    I bit più a sinistra vengono scartati, mentre a destra vengono aggiunti zeri.<br>
+                    Per esempio, consideriamo il numero 6, volendo fare uno shift dei bit verso sinistra di 2:<br>
+                    
+                    <table style="text-align: right;">
+                        <tr>
+                            <td>00110</td>
+                            <td> &lt;&lt;</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>=</td>
+                        </tr>
+                    </table>
+                    ---------<br>
+                    11000<br>
+                    L'operatore di shift verso destra fa la stessa cosa dello shift a sinistra, con l'unica differenza che lo fa verso destra
+                </p>
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("capitolo 4", "../../c/intro/");
+    </script>
+</html>

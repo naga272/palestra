@@ -1,0 +1,191 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../static/css/style.css">
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+
+            .table-container {
+                display: flex;
+                text-align: left;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            .elenco {
+                text-align: center;
+                width: 80%;
+                border-collapse: collapse;
+                text-align: left; /* Allinea il testo delle celle a sinistra */
+                font-family: Arial, sans-serif;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .elenco th, .elenco td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+            .elenco thead {
+                background-color: #f2f2f2;
+            }
+            .elenco tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .elenco tbody tr:hover {
+                background-color: #0E2C40;
+                color:#EFBC75;
+            }
+            .elenco th {
+                background-color: #0E2C40;
+                color: white;
+            }
+            .elenco .prototype {
+                width: 50%;
+            }
+            .elenco .descrizione {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+			<h1>Librerie e strumenti</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%;">
+				Sommario:
+                <ul style="margin-left:15px">
+                    <li>Libreria standard di Python</li>
+                    <li>Librerie esterne</li>
+                </ul>
+
+                <h2>Libreria standard di Python</h2>
+                Immagina la libreria standard come un gigantesco toolbox pieno di attrezzi specifici per svolgere diversi lavori.<br>
+                Ogni attrezzo è un modulo, un file che contiene una serie di funzioni, classi e variabili predefinite che puoi utilizzare direttamente nei tuoi programmi.<br>
+                Alcuni esempi includono:
+                <div class="table-container">
+                    <table class="elenco">
+                        <thead>
+                            <tr>
+                                <th>Libreria</th>
+                                <th>Descrizione</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="/library/py/lezione/os">os</a></td>
+                                <td>Interagisce con il sistema operativo, permettendo di creare directory, leggere file, eseguire comandi, ecc.</td>
+                            </tr>
+                            <tr>
+                                <td><a href="/library/py/lezione/datetime">datetime</a></td>
+                                <td>Manipolazione di date e orari</td>
+                            </tr>
+                            <tr>
+                                <td><a href="/library/py/lezione/random">random</a></td>
+                                <td>Genera numeri casuali.</td>
+                            </tr>
+                            <tr>
+                                <td>re</td>
+                                <td>Supporta espressioni regolari per la manipolazione di testo.</td>
+                            </tr>
+                            <tr>
+                                <td>math</td>
+                                <td>Fornisce funzioni matematiche di base come seno, coseno, logaritmi, ecc.</td>
+                            </tr>
+                            <tr>
+                                <td>json</td>
+                                <td>Converte dati tra formati Python e JSON.</td>
+                            </tr>
+                            <tr>
+                                <td>urllib</td>
+                                <td>Permette di scaricare dati da internet.</td>
+                            </tr>
+                            <tr>
+                                <td>csv</td>
+                                <td>Legge e scrive file CSV.</td>
+                            </tr>
+                            <tr>
+                                <td>sys</td>
+                                <td>Interagisce con l'interprete Python.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                Esempio:
+                <div class="shell">
+                    <span class="instruction">import</span> math<br>
+                    print(math.sqrt(25))<br>
+                    <span class="strings"># Output: 5.0</span><br>
+                    <br>
+                    <span class="instruction">import</span> random<br>
+                    print(random.randint(1, 10))<br>
+                    <span class="strings"># Output: un numero casuale tra 1 e 10</span>
+                </div>
+                <h2>Librerie esterne</h2>
+                Una libreria esterna è un insieme di moduli Python che non fanno parte della distribuzione standard.<br>
+                Sono create da sviluppatori indipendenti o da organizzazioni per risolvere problemi specifici o fornire funzionalità avanzate. <br>
+                Dove trovare le librerie esterne?<br>
+                Il luogo principale per trovare e installare librerie esterne è il PyPI (Python Package Index). <br>
+                Si tratta di un vasto repository online che ospita migliaia di pacchetti Python. <br>
+                Puoi accedere a PyPI tramite il comando pip, lo strumento di gestione dei pacchetti incluso in Python. <br>
+                Le librerie esterne più popolari includono:
+                <div class="table-container">
+                    <table class="elenco">
+                        <thead>
+                            <tr>
+                                <th>Libreria</th>
+                                <th>Descrizione</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Numpy</td>
+                                <td>Fondamentale per la manipolazione di array e matrici numeriche.</td>
+                            </tr>
+                            <tr>
+                                <td>Pandas</td>
+                                <td>Offre strutture dati efficienti e strumenti per l'analisi dei dati.</td>
+                            </tr>
+                            <tr>
+                                <td>Matplotlib</td>
+                                <td>Per la creazione di visualizzazioni grafiche.</td>
+                            </tr>
+                            <tr>
+                                <td>TensorFlow e PyTorch</td>
+                                <td>Framework per il deep learning, utilizzati per costruire reti neurali complesse.</td>
+                            </tr>
+                            <tr>
+                                <td>Django e Flask</td>
+                                <td>Framework web per lo sviluppo rapido di applicazioni web.</td>
+                            </tr>
+                            <tr>
+                                <td>Requests</td>
+                                <td>Semplifica la creazione di richieste HTTP.</td>
+                            </tr>
+                            <tr>
+                                <td>BeautifulSoup</td>
+                                <td>Per il parsing di HTML e XML.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                Come installare una libreria esterna?<br>
+                Utilizzare `pip` è molto semplice:
+                <div class="shell">
+                    <div style="color: green; width: 50%">pip install nome_della_libreria</div>
+                </div>
+                Esempio:
+                <div class="shell">
+                    <div style="color: green; width: 50%">pip install numpy</div>
+                </div>
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+        init_page("capitolo 6", "../../py/intro");
+    </script>
+</html>

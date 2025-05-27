@@ -1,0 +1,259 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="../../../../static/js/main.js"></script>
+        <link rel="stylesheet" href="../../../../static/css/style.css">
+        <style>
+        .script {
+            padding: 1%;
+            background-color: black;
+            color: green;
+        }
+        .elenco {
+            margin: 0 auto;
+            text-align: center;
+            width: 80%;
+            border-collapse: collapse;
+            text-align: left; /* Allinea il testo delle celle a sinistra */
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .elenco th, .elenco td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        .elenco thead {
+            background-color: #f2f2f2;
+        }
+        .elenco tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .elenco tbody tr:hover {
+            background-color: #0E2C40;
+            color:#EFBC75;
+        }
+        .elenco th {
+            background-color: #0E2C40;
+            color: white;
+        }
+        .table-container {
+            display: flex;
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .elenco .prototype {
+            width: 50%;
+        }
+        .elenco .descrizione {
+            width: 30%;
+        }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width: 100%;">
+            <h1>stdint</h1>
+            <br><br>
+            <p>
+                La libreria stdint sta per standard integer e ha al suo interno un set di macro e tipi di dato per la gestione degli interi.
+            </p>
+            <br>
+            <h3>Tipi di dato</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>int8_t</td>
+                            <td>Tipo di dato intero con segno a 8 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>uint8_t</td>
+                            <td>Tipo di dato intero senza segno a 8 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>int16_t</td>
+                            <td>Tipo di dato intero con segno a 16 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>uint16_t</td>
+                            <td>Tipo di dato intero senza segno a 16 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>int32_t</td>
+                            <td>Tipo di dato intero con segno a 32 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>uint32_t</td>
+                            <td>Tipo di dato intero senza segno a 32 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>int64_t</td>
+                            <td>Tipo di dato intero con segno a 64 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>uint64_t</td>
+                            <td>Tipo di dato intero senza segno a 64 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>intptr_t</td>
+                            <td>Tipo di dato intero con segno capace di contenere un puntatore</td>
+                        </tr>
+                        <tr>
+                            <td>uintptr_t</td>
+                            <td>Tipo di dato intero senza segno capace di contenere un puntatore.</td>
+                        </tr>
+                        <tr>
+                            <td>int_least8_t</td>
+                            <td>Tipo di dato intero con segno con almeno 8 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>uint_least8_t</td>
+                            <td>Tipo di dato intero senza segno con almeno 8 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>int_least16_t</td>
+                            <td>Tipo di dato intero con segno con almeno 16 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>uint_least16_t</td>
+                            <td>Tipo di dato intero senza segno con almeno 16 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>int_least32_t</td>
+                            <td>Tipo di dato intero con segno con almeno 32 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>uint_least32_t</td>
+                            <td>Tipo di dato intero senza segno con almeno 32 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>int_least64_t</td>
+                            <td>Tipo di dato intero con segno con almeno 64 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>uint_least64_t</td>
+                            <td>Tipo di dato intero senza segno con almeno 64 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>int_fast8_t</td>
+                            <td>Tipo di dato intero con segno, che è veloce da manipolare e almeno 8 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>uint_fast8_t</td>
+                            <td>Tipo di dato intero senza segno, che è veloce da manipolare e almeno 8 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>int_fast16_t</td>
+                            <td>Tipo di dato intero con segno, che è veloce da manipolare e almeno 16 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>uint_fast16_t</td>
+                            <td>Tipo di dato intero senza segno, che è veloce da manipolare e almeno 16 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>int_fast32_t</td>
+                            <td>Tipo di dato intero con segno, che è veloce da manipolare e almeno 32 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>uint_fast32_t</td>
+                            <td>Tipo di dato intero senza segno, che è veloce da manipolare e almeno 32 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>int_fast64_t</td>
+                            <td>Tipo di dato intero con segno, che è veloce da manipolare e almeno 64 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>uint_fast64_t</td>
+                            <td>Tipo di dato intero senza segno, che è veloce da manipolare e almeno 64 bit.</td>
+                        </tr>
+                        <tr>
+                            <td>intmax_t</td>
+                            <td>Tipo di dato intero con segno più grande disponibile.</td>
+                        </tr>
+                        <tr>
+                            <td>uintmax_t</td>
+                            <td>Tipo di dato intero senza segno più grande disponibile.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Macro / Costanti</h3>
+            <div class="table-container">
+                <table class="elenco">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>INT8_MIN</td>
+                            <td>Valore minimo rappresentabile da un int8_t</td>
+                        </tr>
+                        <tr>
+                            <td>INT8_MAX</td>
+                            <td>Valore massimo rappresentabile da un int8_t</td>
+                        </tr>
+                        <tr>
+                            <td>UINT8_MAX</td>
+                            <td>Valore massimo rappresentabile da un uint8_t</td>
+                        </tr>
+                        <tr>
+                            <td>INT16_MIN</td>
+                            <td>Valore minimo rappresentabile da un int16_t</td>
+                        </tr>
+                        <tr>
+                            <td>INT16_MAX</td>
+                            <td>Valore massimo rappresentabile da un int16_t</td>
+                        </tr>
+                        <tr>
+                            <td>UINT16_MAX</td>
+                            <td>Valore massimo rappresentabile da un uint16_t</td>
+                        </tr>
+                        <tr>
+                            <td>INT32_MIN</td>
+                            <td>Valore minimo rappresentabile da un int32_t</td>
+                        </tr>
+                        <tr>
+                            <td>INT32_MAX</td>
+                            <td>Valore massimo rappresentabile da un int32_t</td>
+                        </tr>
+                        <tr>
+                            <td>UINT32_MAX</td>
+                            <td>Valore massimo rappresentabile da un uint32_t</td>
+                        </tr>
+                        <tr>
+                            <td>INT64_MIN</td>
+                            <td>Valore minimo rappresentabile da un int64_t</td>
+                        </tr>
+                        <tr>
+                            <td>INT64_MAX</td>
+                            <td>Valore massimo rappresentabile da un int64_t</td>
+                        </tr>
+                        <tr>
+                            <td>UINT64_MAX</td>
+                            <td>Valore massimo rappresentabile da un uint64_t</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+    
+        init_page("stdint", "../../c/lezione/lez13");
+    </script>
+</html>

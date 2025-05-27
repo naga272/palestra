@@ -1,0 +1,46 @@
+Name: ITI G. Marconi
+Location: Verona, Italy
+Grades: 1 al 5 anno di superiori 
+Course Offerings: Informatica, Elettronica, Costruzione del Mezzo, Logistica, Telecomunicazioni
+
+Institute Description:
+    - La scuola è suddivisa in due cicli principali: il biennio (primi due anni con materie generali come Fisica, Chimica e introduzioni alle future specializzazioni) e il triennio (ultimi tre anni con indirizzi specifici).
+    - Durante il triennio, gli studenti scelgono tra vari indirizzi di studio: Informatica, Elettronica, Costruzione del Mezzo, Logistica o Telecomunicazioni.
+    - Le classi sono identificate da due lettere: la prima per la sezione, la seconda per l'indirizzo (es: 3BI è Informatica, 5BL è Logistica). Le classi del biennio possiedono sempre un'assegnazione d'indirizzo (es: 2FL), ma è irrilevante.
+
+School Student Council elections:
+    - Ogni anno si tengono elezioni studentesche con candidati organizzati in gruppi chiamati “liste” che propongono idee e campagne per migliorare la scuola.
+    - Nel 2024, le liste sono solo due:
+        Lista 1: “Parliamo con i fatti” – Lista da cui proviene Marconi AI e di cui Mattia Braga è un membro.
+        Lista 2: “Con voi, per voi”
+    - Anche se creato dalla lista 1, Marconi AI mantiene imparzialità verso tutte le liste.
+    
+School events:
+    - Gli studenti delle classi 5AL e 5BL hanno partecipato con successo a un progetto di educazione alla legalità, assistendo a un'udienza penale su reati di bancarotta. L'esperienza ha offerto loro l'opportunità di porre domande all'avvocato e di apprendere direttamente il funzionamento del sistema giudiziario. Il presidente del collegio giudicante, composto solo da donne, ha contribuito a rendere l'evento ancora più significativo, spiegando ai ragazzi l'importanza dell'esperienza. Il progetto ha sottolineato l'importanza di avvicinare i giovani al mondo della giustizia in modo pratico e coinvolgente.
+    - Gli studenti hanno partecipato con entusiasmo al XIV° Salone Orientamento di Illasi, impegnandosi attivamente nella costruzione del loro futuro. Hanno esplorato diverse opportunità formative e si sono confrontati con esperti, università e aziende, il che li ha aiutati a fare scelte più consapevoli e a definire i propri obiettivi professionali e accademici.
+    - L'ITI Marconi sta per ampliare la sua offerta formativa con l'attivazione di un'articolazione in "Conduzione del mezzo aereo" e di un corso serale per adulti in informatica, mirati a creare nuove opportunità professionali. In attesa dell'approvazione della Regione, prevista per dicembre, gli studenti stanno già testando le loro abilità di pilotaggio con un simulatore di volo.
+    - Il nostro istituto ha partecipato attivamente alla Settimana Europea della Mobilità Sostenibile, con iniziative svoltesi il 20 settembre 2024 per ridurre l'inquinamento e promuovere stili di vita sostenibili. Alcuni studenti, docenti e personale si sono recati a scuola senza auto, mentre alcuni insegnanti hanno partecipato all'iniziativa 
+"Io vado a scuola in bici". Inoltre, alcune classi hanno discusso temi legati alla mobilità sostenibile con l'Assessore alla Transizione Ecologica del Comune di Verona, Tommaso Ferrari, e la FIAB (Federazione Italiana Ambiente e Bicicletta).
+    -Il 13 settembre, le classi quinte hanno partecipato all'evento "Chi salva un bambino salva il mondo intero" presso la Gran Guardia, nell'ambito del progetto "La settimana della Didattica", organizzato in collaborazione con 
+il Comune di Verona e l'ITC "Squicciani Rescue".
+    -L'account G Workspace dell'Istituto ITI G. Marconi offre agli studenti vari vantaggi, tra cui l'accesso agli strumenti della piattaforma come email, spazio di archiviazione e Meet. Garantisce inoltre identità univoca nei servizi di G Workspace for Education (Email, Meet, Drive, Forms, Calendar) e assicura l'invio di email da indirizzi riconducibili agli studenti, evitando confusioni con email non identificabili.
+    - Per utilizzare i servizi G Workspace, lo studente deve accedere esclusivamente con l'account dell'Istituto. Per il primo accesso, è necessario seguire le istruzioni nel documento "Istruzioni G Workspace Accesso Studente". 
+Inoltre, lo studente è tenuto a controllare regolarmente la propria email per comunicazioni relative alle attività dell'Istituto. In caso di problemi, è possibile contattare lo staff tecnico all'indirizzo services@marconiverona.edu.it.
+    - L'email è il principale mezzo di riconoscimento per gli studenti e deve essere conosciuta dai docenti del consiglio di classe. Ogni studente ha un'email di Istituto nel formato matricola@studenti.marconiverona.edu.it e dovrà aggiornare il proprio profilo su Campus con questa email.
+    - Con la creazione delle email degli studenti nel formato matricola@studenti.marconiverona.edu.it, sono state anche istituite le mailing list delle classi per inviare comunicazioni a tutti gli studenti di una classe. Gli indirizzi delle mailing list seguono la forma classe@studenti.marconiverona.edu.it, ad esempio 1ai@studenti.marconiverona.edu.it.
+    - Ogni Consiglio di Classe è considerato un gruppo sulla piattaforma G Workspace e ha un'email nel formato cdc.XXX@marconiverona.edu.it, dove XXX rappresenta la classe (es. 1BI, 3CI, 5AT). Per motivi di sicurezza, questa email di gruppo è accessibile solo agli utenti con domini @marconiverona.edu.it e @studenti.marconiverona.edu.it, ovvero 
+interni all'Istituto.
+    - Email Docenti: L'email dei docenti \u00e8 quella istituzionale formata da nome, cognome con dominio @marconiverona.edu.it.
+    - Presenza: Si ricorda che nelle sessioni live concordate la presenza \u00e8 obbligatoria e viene segnata 
+di tipologia PX (Presenza fuori sede).
+    - Cosa trovo sul Registro Online: Sul Registro Online, che suggeriamo, rimanga, elemento fondamentale, sono memorizzate in questo periodo:\ni materiali didattici (Area Didattica) - per i docenti che ne fanno uso
+    - Le attività giornaliere e settimanali sono disponibili nell'Agenda del Registro Online, accessibile a studenti, genitori e consiglio di classe. Questo strumento assicura che le attività siano adeguate alle materie e ai tempi previsti.
+    - Richiesta autentificazione per accesso a risorse condivise: Capita che l'accesso alle risorse considerate condivise richieda invece che si invii una Richiesta di accesso. La maggior parte delle volte ci\u00f2 \u00e8 dovuto al fatto che la risorsa \u00e8 stata condivisa per gli utenti del dominio @marconiverona.edu.it, impedendone quindi l'accesso a utenti esterni.\nSpesso capita ai docenti quando senza accorgersene stanno tentando di accedere alle risorse condivise dell'Istituto con il profilo personale.
+    - Condivisione materiali: La condivisione di materiali, a seconda della scelta del docente, pu\u00f2 essere realizzata con:\n* Registro Online - Area Didattica\n* Campus (Moodle) - Nelle aree dedicate ai corsi associati alle classi\n* Google Drive (del docente)
+    - CISCO Webex: I docenti certificati CISCO, a loro discrezione, utilizzano il prodotto Webex reso disponibile gratuitamente per ora dalla CISCO: \u00e8 una piattaforma che consente di effettuare riunioni online e videoconferenze. Permette l\u2019interazione tra partecipanti mediante l\u2019utilizzo di audio, video e condivisione di contenuti.
+    - Hangouts Meet: I docenti del nostro Istituto utilizzano la G Suite di Google per la posta, i drive condivisi, i moduli, i calendari e gli altri servizi disponibili sulla piattaforma.\nDa qualche tempo in modo importante, i docenti si sono affidati a Google Hangouts Meet, per offrire in live e non in presenza le lezioni.\nLe lezioni sono programmate sul Calendario personale di ogni docente e rese disponibili agli studenti tramite link memorizzato sull'agenda del Registro Online.
+    - Il nostro istituto ha scelto Moodle come piattaforma di e-learning per il suo carattere open source, la sua affidabilità con numerose installazioni nel mondo e la sua struttura pedagogica, che supporta l’apprendimento collaborativo. Inoltre, la piattaforma è gestita internamente, garantendo corsi personalizzati e uniformità.
+    - L'Istituto offre una piattaforma e-learning basata su Moodle, accessibile tramite https://campus.marconivr.it, che consente a docenti e studenti di gestire corsi online, condividere materiali e interagire attraverso forum, chat ed esercitazioni. Questa infrastruttura open source è la soluzione adottata per la formazione a distanza. 
+
+Announcements:
+    - Controllate sempre la bacheca per eventuali comunicazioni importanti.

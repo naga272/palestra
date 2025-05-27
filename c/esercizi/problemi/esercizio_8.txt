@@ -1,0 +1,4 @@
+creare un array di lunghezza 10 di tipo intero e sommare al numero n ogni elemento dell'array.
+Si presuppone che l'array ha gli elementi con dei valori prestabili
+
+array = {12, 34, 544, 1, 23, 9, 6, 787, 67, 10}

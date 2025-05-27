@@ -1,0 +1,4 @@
+Creare programma variabili.c che:
+- dichiara una variabili di tipo intero e gli venga assegnato il valore 125
+- dichiara una variabile di tipo int8_t assegna come valore 128
+- stampa a schermo la somma delle due variabili

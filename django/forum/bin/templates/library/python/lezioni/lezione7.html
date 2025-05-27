@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css'%}">
+        <style>
+            .topbar h2{
+                width:300px;
+            }
+
+            ul{
+                margin-left:15px
+            }
+        </style>
+    </head>
+    <body>
+        <main style="text-align: center; width:100%;">
+			<h1>Applicazioni di Python</h1>
+            <div style="text-align: left; margin-left: 3%; margin-top: 3%;">
+				Sommario:
+                <ul>
+                    <li>Sviluppo web</li>
+                    <li>Data Science</li>
+                    <li>Machine Learning</li>
+                    <li>Sviluppo di script</li>
+                </ul>
+
+                <h2>Sviluppo web</h2>
+                <ul>
+                    <li><strong>Framework completi</strong>: Django e Flask sono i più popolari, offrendo strumenti per gestire routing, modelli, template e database, rendendo lo sviluppo web più rapido e organizzato.</li>
+                    <li><strong>Microservizi</strong>: Python è ottimo per creare piccoli servizi che comunicano tra loro, rendendo le applicazioni più scalabili e manutenibili. </li>
+                    <li><strong>API</strong>: Python è ampiamente utilizzato per creare API RESTful per l'integrazione con altri sistemi.
+                </ul>
+                
+                <h2>Data Science e Machine Learning</h2>
+                <ul>
+                    <li><strong>Analisi di dati</strong>: Oltre a NumPy e Pandas, librerie come SciPy offrono strumenti per l'ottimizzazione, l'integrazione numerica e l'elaborazione di segnali.</li>
+                    <li><strong>Visualizzazione</strong>: Matplotlib, Seaborn e Plotly consentono di creare grafici e visualizzazioni informative.</li>
+                    <li><strong>Deep Learning</strong>: TensorFlow e PyTorch sono le librerie di riferimento per la creazione di reti neurali profonde.</li>
+                    <li><strong>Natural Language Processing (NLP)</strong>: NLTK e spaCy sono strumenti essenziali per l'analisi del linguaggio naturale.</li>
+                </ul>
+                <h2>Sviluppo di script</h2>
+                <ul>
+                    <li><strong>Automazione</strong>: Python è perfetto per automatizzare compiti ripetitivi, come la gestione di file, l'estrazione di dati da siti web o l'invio di email.</li>
+                    <li><strong>Testing</strong>: Le librerie unittest e pytest facilitano la scrittura di test automatici per garantire la qualità del codice.
+                </ul>
+
+                <h2>Altre applicazioni</h2>
+                <ul>
+                    <li><strong>Sviluppo di giochi</strong>: Librerie come Pygame consentono di creare giochi 2D.</li>
+                    <li><strong>Finanza</strong>: Viene utilizzato per la creazione di modelli finanziari, l'analisi di dati di mercato e lo sviluppo di algoritmi di trading.
+                    <li><strong>Educazione</strong>: Python è un linguaggio ideale per l'insegnamento della programmazione grazie alla sua sintassi semplice e alla vasta comunità.</li>
+                    <li><strong>IoT (Internet of Things)</strong>: Python è utilizzato per controllare dispositivi IoT e raccogliere dati da sensori.</li>
+                    <li><strong>Bioinformatica</strong>: Python è ampiamente utilizzato per l'analisi di dati biologici.</li>
+                </ul>
+            </div><br>
+        </main>
+    </body>
+    <script>
+        if(window.innerWidth >= 400)
+            name_sections_topbar.push("go back");
+        init_page("capitolo 7", "../../py/intro");
+    </script>
+</html>

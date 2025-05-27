@@ -1,0 +1,45 @@
+{% extends "components/base.html" %}
+
+
+{% block title %} 
+    {% if user.tipo_utente == "azienda" %}
+        add widget 
+    {% else %}
+        get widget
+    {% endif %}
+{% endblock title %}
+
+
+{% block main %}    
+    {% if tipo_utente == "azienda" %}
+        <form method="post">
+            {% csrf_token %}
+
+            <table>
+                <tr>
+                    <th>nome prodotto: </th>
+                    <th>{{ form.nome_prod }}</th>
+                </tr>
+                <tr>
+                    <th>descrizione: </th>
+                    <th>{{ form.bio_prod }}</th>
+                </tr>
+                <tr>
+                    <th>quantita: </th>
+                    <th>{{ form.quantita }}</th>
+                </tr>
+                <tr>
+                    <th>importo €: </th>
+                    <th>{{ form.importo }}</th>
+                </tr>
+            </table>
+
+            <input type="submit">
+        </form>
+
+    {% else %}
+
+
+    {% endif %}
+
+{% endblock %}

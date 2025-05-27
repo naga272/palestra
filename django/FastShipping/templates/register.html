@@ -1,0 +1,131 @@
+{% extends "components/base.html" %}
+
+
+{% block title %} Registrazione {% endblock title %}
+
+
+{% block main %}
+    <style>
+        .container-form, span{
+            display:flex;
+            flex-direction: column;
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .container-form table{
+            width:30vh;
+            margin: 0 auto;
+        }
+
+        .container-form table td{
+            font-size: 1.2em;
+            margin-bottom: 5vh;
+        }
+
+        button[type="submit"]{
+            width:auto;
+            margin: 0 auto;
+        }
+    </style>
+
+    <!-- ["username", "eta", "email", "password1", "password2", "tipo_utente", "p_iva", "nome_azienda", "CAP", "citta", "indirizzo"] -->
+    <form method="post">
+        {% csrf_token %}
+        
+        <br>
+        <span class="text-large">Registrazione</span><br>
+        
+        <div class="container-form">
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label for="id_tipo_utente">Registrazione come:</label></td>
+                        <td>{{ form.tipo_utente }}</td>
+                    </tr>
+
+                    <tr id="azienda-fields" style="display: none">
+                        <td>Nome Azienda:</td>
+                        <td>{{ form.nome_azienda }}</td>
+                    </tr>
+                    <tr id="p_iva-fields" style="display: none">
+                        <td>Partita IVA:</td>
+                        <td>{{ form.p_iva }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Username:</td>
+                        <td>{{ form.username }}</td>
+                    </tr>
+                    <tr id="eta-fields" style="display: table-row">
+                        <td>Età:</td>
+                        <td>{{ form.eta }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td>{{ form.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>CAP:</td>
+                        <td>{{ form.CAP }}</td>
+                    </tr>
+                    <tr>
+                        <td>Città:</td>
+                        <td>{{ form.citta }}</td>
+                    </tr>
+                    <tr>
+                        <td>Indirizzo:</td>
+                        <td>{{ form.indirizzo }}</td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td>{{ form.password1 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Conferma Password:</td>
+                        <td>{{ form.password2 }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <button type="submit">Registrati</button>
+            <br>
+            <a href="{% url 'login' %}">Hai già un account?</a>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const tipoSelect = document.getElementById("id_tipo_utente");
+                const aziendaFields = document.getElementById("azienda-fields");
+                const p_iva = document.getElementById("p_iva-fields");
+                const eta = document.getElementById("eta-fields");
+                
+                function toggleAziendaFields() {
+                    if (tipoSelect.value === "azienda") {
+                        aziendaFields.style.display = "table-row";
+                        p_iva.style.display = "table-row";
+                        eta.style.display = "none";
+                    } else {
+                        aziendaFields.style.display = "none";
+                        p_iva.style.display = "none";
+                        eta.style.display = "table-row";
+                    }
+                }
+
+                tipoSelect.addEventListener("change", toggleAziendaFields);
+                toggleAziendaFields();
+            });
+        </script>
+    </form>
+
+{% endblock main %}
