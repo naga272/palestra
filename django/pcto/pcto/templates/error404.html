@@ -1,0 +1,91 @@
+{% extends "components/base.html" %}
+{% load static %}
+
+{% block title %}404 — Pagina non trovata{% endblock %}
+
+{% block style %}
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 80vh;
+    position: relative;
+}
+
+.error-code {
+    font-family: "Orbitron", sans-serif;
+    font-size: 10rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -6px;
+    animation: glitch 1.6s infinite alternate;
+}
+
+.error-text {
+    font-size: 1.6rem;
+    color: var(--muted);
+    margin-top: -20px;
+    letter-spacing: 2px;
+}
+
+.error-btn {
+    margin-top: 40px;
+    padding: 14px 32px;
+    border: none;
+    border-radius: var(--radius);
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    color: #02101a;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0,255,198,0.2);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.error-btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 30px rgba(0,255,198,0.4);
+}
+
+.scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03) 0px,
+        rgba(255,255,255,0.03) 1px,
+        transparent 2px,
+        transparent 3px
+    );
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    animation: flicker 4s infinite;
+}
+
+@keyframes glitch {
+    0% { text-shadow: 2px 0 var(--accent), -2px 0 var(--accent-2); }
+    20% { text-shadow: -2px 0 var(--accent-2), 2px 0 var(--accent); }
+    40% { text-shadow: 4px 0 var(--accent), -4px 0 var(--accent-2); }
+    60% { text-shadow: -1px 0 var(--accent), 1px 0 var(--accent-2); }
+    80% { text-shadow: 3px 0 var(--accent-2), -3px 0 var(--accent); }
+    100% { text-shadow: 2px 0 var(--accent), -2px 0 var(--accent-2); }
+}
+
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+    20%, 24%, 55% { opacity: 0.5; }
+}
+{% endblock %}
+
+{% block main %}
+<div class="error-container">
+    <div class="scanlines"></div>
+    <div class="error-code">404</div>
+    <div class="error-text">La pagina che cerchi non esiste.</div>
+    <a href="/"><button class="error-btn">Torna alla Home</button></a>
+</div>
+{% endblock %}

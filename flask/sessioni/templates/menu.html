@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Menu</title>
+    </head>
+    <body>
+
+        <h2>Menu</h2>
+
+        <a href="/login">Login</a><br>
+        <a href="/mostra_sessione">Mostra Sessione</a><br>
+        <a href="/logout">Logout</a>
+
+        {% if msg %}
+            <p>{{ msg }}</p>
+        {% endif %}
+
+    </body>
+</html>

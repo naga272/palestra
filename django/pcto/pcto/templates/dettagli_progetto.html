@@ -1,0 +1,154 @@
+{% extends "components/base.html" %}
+{% load static %}
+
+
+{% block title %}
+    {{ progetto.titolo }}
+{% endblock %}
+
+{% block main %}
+    <div>
+        <section class="hero">
+            <h2>{{ progetto.titolo }}</h2><br>
+            <p>
+                <strong class="mini-title">Progetto aggiunto il:</strong><br>{{ data_creazione }}
+            </p>
+            <p>
+                <strong class="mini-title">Descrizione:</strong><br>{{ progetto.descrizione }}
+            </p>
+            <p>
+                <strong class="mini-title">Requisiti:</strong><br>{{ progetto.requisiti }}
+            </p>
+            <p>
+                <strong class="mini-title">Tempo stimato per completarlo: </strong> {{ progetto.tempo_stimato }} ore
+            </p>
+        </section>
+        <br>
+
+        <section class="hero">
+            <h2>Informazioni Azienda:</h2>
+            <p>
+                <strong class="mini-title">Nome azienda</strong>: {{ progetto.supervisore.filiale.azienda.nome }}<br>
+                <strong class="mini-title">Descrizione</strong>: {{ progetto.supervisore.filiale.azienda.descrizione }}<br>
+            </p>
+        </section>        
+        <br>
+
+        <section class="hero">
+            <h2>Dove viene svolto il progetto:</h2>
+            <p>
+                <strong class="mini-title">Comune</strong>: {{ progetto.supervisore.filiale.comune }}<br>
+                <strong class="mini-title">Citta</strong>: {{ progetto.supervisore.filiale.citta }}<br>
+                <strong class="mini-title">via</strong>: {{ progetto.supervisore.filiale.via }}<br>
+                <strong class="mini-title">numero civico</strong>: {{ progetto.supervisore.filiale.n_civico }}<br>
+            </p>
+        </section>
+
+        <br>
+        {% if type_account == "studente" %}
+            <form method="POST">
+                {% csrf_token %}
+
+                <input type="submit" value="Prendi in incarico" class="btn btn-primary" id="main-cta">
+            </form>
+        {% endif %}
+
+        {% if type_account == "supervisore" %}
+                <section class="hero">
+                    <input type="submit" id="delete_project" value="Elimina il progetto" onclick="display_warning('Stai per eliminare il tuo progetto, sei sicuro di voler continuare?')" class="btn btn-primary" id="main-cta">
+                    <input type="submit" id="finish_project" value="progetto concluso" onclick="display_warning('Stai per dichiarare che il tuo progetto è concluso, sei sicuro di voler continuare?')" class="btn btn-primary" id="main-cta">
+                    <div id="display_msg_warning" style="display: none;">
+                        <p id="dialogo"></p>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="submit" value="conferma" class="btn btn-primary" id="main-cta">
+                        </form>
+                    </div>
+                </section>
+
+            <script>
+                function display_warning(msg)
+                {
+                    div_warning = document.getElementById("display_msg_warning");
+                    div_warning.style.display = "block";
+
+                    div_warning = document.getElementById("dialogo");
+                    div_warning.innerHTML = msg;
+                }
+            </script>
+
+            <h2>Studenti che lavorano al progetto</h2>
+            <p>
+                cerca studente: <input type="text" placeholder="<nome> <cognome>">
+            </p>
+            <style>
+
+                input[type="text"] {
+                    background: rgba(255,255,255,0.05);
+                    border: 1px solid rgba(255,255,255,0.08);
+                    color: var(--text);
+                    padding: 12px 14px;
+                    border-radius: 10px;
+                    font-size: 15px;
+                    transition: border 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+                    outline: none;
+                }
+
+                input::placeholder {
+                    color: rgba(230,238,248,0.4);
+                }
+
+                input:focus {
+                    background: rgba(255,255,255,0.08);
+                    border: 1px solid var(--accent);
+                    box-shadow: 0 0 12px rgba(0,255,209,0.25);
+                }
+            </style>
+
+            {% if students_and_diaries %}
+                {% for pair in students_and_diaries %}
+                    <section class="studenti hero">
+                        <p><strong>nome</strong>: {{ pair.studente.user.first_name }}</p>
+                        <p><strong>cognome</strong>: {{ pair.studente.user.last_name }}</p>
+                        <p><strong>sezione</strong>: {{ pair.studente.anno_scolastico }} {{ pair.studente.sezione }}</p>
+                        <br>
+                        <p><a href="/diario/{{ pair.diario.id }}" class="btn btn-primary">scrivi sul suo diario</a></p>
+                    </section>
+                    <br>
+                {% endfor %}
+
+                <script>
+                    const list_student = {
+                        {% for pair in students_and_diaries %}
+                        "{{ pair.studente.user.first_name }} {{ pair.studente.user.last_name }}": {
+                            "info": [
+                                "{{ pair.studente.user.first_name }}",
+                                "{{ pair.studente.user.last_name }}",
+                                "{{ pair.studente.anno_scolastico }}",
+                                "{{ pair.studente.sezione }}"
+                            ],
+                            "diario": {
+                                "id": "{{ pair.diario.id }}",
+                                "pagine": [
+                                    {% for pagina in pair.diario.pagine.all %}
+                                    {
+                                        "data": "{{ pagina.data|date:'Y-m-d H:i' }}",
+                                        "contenuto": "{{ pagina.contenuto|escapejs }}"
+                                    }{% if not forloop.last %},{% endif %}
+                                    {% endfor %}
+                                ]
+                            }
+                        }{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                    };
+                    console.log(list_student);
+                </script>
+                <script src="{% static 'js/search.js'%}"></script>
+
+            {% else %}
+                Nessun studente attualmente sta lavorando al tuo progetto
+            {% endif %}
+        {% endif %}
+
+    </div>
+{% endblock %}

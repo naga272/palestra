@@ -1,12 +1,10 @@
 from django.contrib                     import admin
-from django.urls                        import path, include, re_path
+from django.urls                        import path, re_path
 from forum_app.views                    import *
 
 
 """ NON TOCCARE ASSOLUTAMENTE """
 from django.conf                        import settings
-from django.conf.urls.static            import static
-from django.contrib.staticfiles.urls    import staticfiles_urlpatterns 
 from django.views.static                import serve
 
 
@@ -19,19 +17,18 @@ error_404 = "forum.views.errno_404"
 
 urlpatterns = [
     # NB: tutti file inseriti in media/ o static/ sono visibili dal FE
-    #re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}), 
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 
-    path('',                        homepage),
+    # path('',                        desktop),
     path('admin/',                  admin.site.urls),
-    path('desktop/',                desktop),
+    path('',                        library),
     path('presentation/',           presentation),
     path('download/ppt/',           download_ppt, name='download_ppt'),
-    #path('forum/',                  forum),
-    #path('forum/form_forum/',       form_forum),
-    #path('forum/filter/',           filter_questions),
-    #path('forum/question/<str:id>', forum_domanda, name="forum_domanda"),
-    #path('captcha/',                include('captcha.urls')),               # captcha per eseguire domande sul forum
+    path('forum/',                  forum),
+    path('forum/form_forum/',       form_forum),
+    path('forum/filter/',           filter_questions),
+    path('forum/question/<str:id>', forum_domanda, name="forum_domanda"),
+    # path('captcha/',                include('captcha.urls')),               # captcha per eseguire domande sul forum
     path('chatbot/ask/',            chatbot_ask),
     path('library/',                library),
 
@@ -67,12 +64,12 @@ urlpatterns = [
     # standard librery python
     path('library/py/lezione/os',           Py_section.os),
     path('library/py/lezione/datetime',     Py_section.datetime),
-    #path('library/py/lezione/sys',          Py_section.sys),
-    #path('library/py/lezione/re',           Py_section.re),
+    # path('library/py/lezione/sys',          Py_section.sys),
+    # path('library/py/lezione/re',           Py_section.re),
     path('library/py/lezione/random',       Py_section.random),
-    #path('library/py/lezione/urllib',       Py_section.urllib),
-    #path('library/py/lezione/csv',          Py_section.csv),
-    #path('library/py/lezione/math',         Py_section.math),
-    #path('library/py/lezione/json',         Py_section.json),
-    #path('library/js/intro/',           Js_section.intro),
+    # path('library/py/lezione/urllib',       Py_section.urllib),
+    # path('library/py/lezione/csv',          Py_section.csv),
+    # path('library/py/lezione/math',         Py_section.math),
+    # path('library/py/lezione/json',         Py_section.json),
+    # path('library/js/intro/',           Js_section.intro),
 ]

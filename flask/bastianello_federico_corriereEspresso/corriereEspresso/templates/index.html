@@ -1,0 +1,38 @@
+{% extends "component/base.html" %}
+{% load static %}
+
+{% block title %}
+Homepage
+{% endblock %}
+
+
+{% block main %}
+
+<a href="/admin">Autenticati come operatore o admin</a><br>
+
+<br>
+
+<div>
+    <h2>Traccia la tua consegna!</h2>
+    {{ form.chiaveConsegna }}
+    <input type="submit" value="invio" onclick="get_api_content()">    
+</div>
+
+<div>
+    <p>
+        chiave consegna: <span id="id_consegna"></span><br>
+        stato consegna: <span id="stato"></span><br>
+        data ritiro consegna: <span id="dataRitiro"></span><br>
+        data consegna: <span id="dataConsegna"></span><br>
+    </p>
+
+    <span id="errorMessage">Error! chiave inesistente!</span>
+</div>
+
+
+<script src="{% static 'js/index.js'%}">
+
+</script>
+
+
+{% endblock %}

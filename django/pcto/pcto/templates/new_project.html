@@ -1,0 +1,52 @@
+{% extends "components/base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block style %}
+.shell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.hero {
+    max-width: 420px;
+    width: 100%;
+}
+
+input[type="text"], input[type="password"],
+#id_descrizione, #id_requisiti, #id_tempo_stimato{
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text);
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: border 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    outline: none;
+}
+{% endblock %}
+
+{% block main %}
+
+<div class="shell">
+    <section class="hero" id="hero">
+        <div style="align-items:center; gap:12px; text-align: center; display:flex; flex-direction: row;">
+            <a href="/">
+                <button class="btn btn-primary" id="main-cta">&lt;</button>
+            </a>
+            <h2 class="eyebrow" style="margin:0; font-size:30px">Add New Project</h2>
+        </div>
+
+        <form method="post" style="margin-top:24px; text-align: center;">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" id="main-cta">Confirm</button>
+        </form>
+    </section>
+
+    <script src="{% static 'js/index.js' %}"></script>
+</div>
+
+{% endblock %}

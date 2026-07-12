@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sessione</title>
+    </head>
+    <body>
+
+    <h2>Dati Sessione</h2>
+
+    {% if dati %}
+        Nome: {{ dati.nome }} <br>
+        Cognome: {{ dati.cognome }} <br>
+        Mail: {{ dati.mail }}
+    {% else %}
+        Sessione non attiva
+    {% endif %}
+
+    <br><br>
+    <a href="/">Menu</a>
+
+    </body>
+</html>

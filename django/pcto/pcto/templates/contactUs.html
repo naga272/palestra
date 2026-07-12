@@ -1,0 +1,115 @@
+{% extends "components/base.html" %}
+{% load static %}
+
+{% block title %}Contattaci{% endblock %}
+
+{% block style %}
+.shell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.hero {
+    max-width: 420px;
+    width: 100%;
+}
+
+input[type="text"],
+input[type="password"] {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text);
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: border 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    outline: none;
+}
+
+input::placeholder {
+    color: rgba(230,238,248,0.4);
+}
+
+input:focus {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 12px rgba(0,255,209,0.25);
+}
+
+button[type="submit"] {
+    margin-top: 10px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 600;
+    border: 0;
+    cursor: pointer;
+    background: linear-gradient(90deg,var(--accent),var(--accent-2));
+    color: #031018;
+    box-shadow: 0 6px 18px rgba(124,92,255,0.15);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(124,92,255,0.25);
+}
+
+{% endblock %}
+
+{% block main %}
+
+<div class="shell">
+    <section class="hero" id="hero">
+        <div style="text-align:center; margin-bottom: 24px;">
+            <h2 class="eyebrow" style="font-size:28px;">Contattaci</h2>
+            <p class="lead">Per qualsiasi informazione o supporto tecnico puoi contattarci ai seguenti recapiti.</p>
+        </div>
+
+        <div style="
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            padding: 26px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 30px rgba(2,4,14,0.6);
+        ">
+            <div>
+                <span class="mini-title">Email</span>
+                <p style="margin-top:6px; font-size:15px; color:var(--text);">vrtf03000v@istruzione.it</p>
+            </div>
+
+            <div>
+                <span class="mini-title">Telefono</span>
+                <p style="margin-top:6px; font-size:15px; color:var(--text);">045/8101428</p>
+            </div>
+
+            <div>
+                <span class="mini-title">Indirizzo</span>
+                <p style="margin-top:6px; font-size:15px; color:var(--text);">
+                    Piazzalele R. Guardini 1, 37138 Verona (VR)
+                </p>
+            </div>
+
+            <div>
+                <span class="mini-title">Orari</span>
+                <p style="margin-top:6px; font-size:15px; color:var(--text);">
+                    Lunedì – Venerdì: 08:00 – 17:00<br>
+                    Sabato – Domenica: Chiuso
+                </p>
+            </div>
+        </div>
+
+        <a href="/" style="margin-top:32px; display:inline-block;">
+            <button class="btn btn-primary" id="main-cta">Torna alla Home</button>
+        </a>
+    </section>
+</div>
+
+    <script src="{% static 'js/index.js' %}"></script>
+</div>
+
+{% endblock %}

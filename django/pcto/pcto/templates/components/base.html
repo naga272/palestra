@@ -1,0 +1,354 @@
+{% load static %}
+<!DOCTYPE html>
+
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock%}</title>
+        <meta name="viewport" content="content=width-device, initial-scale=1.0">
+        <meta name="author" content="Bastianello Federico">
+        <meta name="KeyWord" content="PCTO">
+        <link rel="icon" href="{% static 'img/icon_marconi.png' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
+        <style>
+            :root{
+                --bg-1:#07070a;
+                --bg-2:#0e1020;
+                --accent:#00ffd1;
+                --accent-2:#7c5cff;
+                --glass: rgba(255,255,255,0.06);
+                --glass-2: rgba(255,255,255,0.03);
+                --text:#e6eef8;
+                --muted: rgba(230,238,248,0.65);
+                --radius:18px;
+                --max-width:1200px;
+            }
+            * {
+                box-sizing: border-box
+            }
+            html, body{
+                height: 100vh%
+            }
+            body {
+                margin: 0;
+                font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+                background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
+                color: var(--text);
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                overflow-x: hidden; /* mantiene orizzontale bloccato, ma permette scroll verticale */
+            }
+
+            /* Canvas background fills viewport */
+            canvas#bg{
+                position: fixed;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                display: block;
+                z-index: -1;
+            }
+
+            /* Layout container */
+            .root{
+                position: relative;
+                z-index: 2;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 48px;
+                flex-direction: column;
+            }
+            .shell{
+                width: 100%;
+                max-width: var(--max-width);
+                display: grid;
+                grid-template-columns: 1fr 420px;
+                gap: 40px;
+                align-items: center
+            }
+
+            /* Left hero */
+            .hero{
+                background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+                border-radius: var(--radius);
+                padding: 40px;
+                backdrop-filter: blur(8px) saturate(120%);
+                box-shadow: 0 10px 40px rgba(3,6,23,0.6);
+                border:1px solid rgba(255,255,255,0.04);
+            }
+            .eyebrow{
+                font-size:13px;
+                color:var(--muted);
+                letter-spacing:1px;
+                text-transform:uppercase
+            }
+            h1{
+                margin:12px 0 18px;
+                font-weight:800;
+                letter-spacing:-1px;
+                font-size:46px;
+                line-height:1.02
+            }
+            p.lead{
+                margin:0 0 26px;
+                color:var(--muted);
+                font-size:15px;
+                line-height:1.5
+            }
+
+            .cta-row{
+                display:flex;
+                gap:14px
+            }
+            .btn{
+                padding:12px 18px;
+                border-radius:12px;
+                font-weight:600;
+                border:0;
+                cursor:pointer
+            }
+            .btn-primary{
+                background:linear-gradient(90deg,var(--accent),var(--accent-2));
+                color:#031018;
+                box-shadow:0 6px 18px rgba(124,92,255,0.12);
+            }
+            .btn-ghost{
+                background:transparent;
+                border:1px solid rgba(255,255,255,0.06);
+                color:var(--text)
+            }
+
+            /* Right panel cards */
+            .panel{
+                display:flex;
+                flex-direction:column;
+                gap:16px;
+                padding:26px;
+                border-radius:18px;
+                background:linear-gradient(180deg,var(--glass),var(--glass-2));
+                border:1px solid rgba(255,255,255,0.03);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 8px 30px rgba(2,4,14,0.6);
+            }
+            .mini-title{
+                font-size:13px;
+                color:var(--muted);
+                text-transform:uppercase
+            }
+            .card{
+                background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+                padding:14px;
+                border-radius:12px;
+                border:1px solid rgba(255,255,255,0.03);
+                display:flex;
+                align-items:center;
+                gap:12px
+            }
+            .avatar{
+                width:46px;
+                height:46px;
+                border-radius:10px;
+                flex:0 0 46px;
+                background:linear-gradient(135deg,var(--accent),var(--accent-2));
+                display:grid;
+                place-items:center;
+                color:#02101a;
+                font-weight:800
+            }
+            .meta{
+                font-size:13px
+            }
+            .meta .title{
+                font-weight:700
+            }
+            .meta .sub{
+                color:var(--muted);
+                font-size:12px
+            }
+
+            /* Decorative vector strip */
+            .vector-strip{
+                position:absolute;
+                right:6%;
+                top:10%;
+                transform:translateZ(0);
+                opacity:0.12;
+                width:460px;
+                height:460px;
+                z-index:1;
+                pointer-events:none
+            }
+
+            /* Top navigation */
+            nav.topbar{
+                position:fixed;
+                left:0;
+                right:0;
+                top:18px;
+                display:flex;
+                justify-content:center;
+                z-index:3
+            }
+            nav .inner{
+                width:100%;
+                max-width:var(--max-width);
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                padding:8px 20px
+            }
+            .brand{
+                font-weight:800;
+                letter-spacing:1px
+            }
+            .nav-actions{
+                display:flex;
+                gap:12px;
+                align-items:center
+            }
+            .pill{
+                padding:8px 12px;
+                border-radius:999px;
+                border:1px solid rgba(255,255,255,0.04);
+                font-size:13px
+            }
+
+            /* Cursor */
+            .cursor{
+                position:fixed;
+                top:0;
+                left:0;
+                width:18px;
+                height:18px;
+                border-radius:50%;
+                transform:translate(-50%,-50%);
+                pointer-events:none;
+                z-index:9999;
+                border:1px solid rgba(255,255,255,0.6);
+                mix-blend-mode:screen
+            }
+
+            /* Responsive adjustments */
+            @media (max-width:980px){
+                .shell{grid-template-columns:1fr;}
+                .vector-strip{display:none}
+            }
+
+            /* small subtle animated lines */
+            .ticker{
+                display:flex;
+                gap:10px;
+                align-items:center;
+                color:var(--muted);
+                font-size:13px
+            }
+
+
+            /* CSS PER FOOTER */
+            .neofuturistic-footer {
+                position: relative;
+                background: radial-gradient(ellipse at top, var(--bg-1) 0%, var(--bg-2) 70%);
+                border-top: 1px solid rgba(0,255,198,0.15);
+                padding: 30px 0;
+                backdrop-filter: blur(12px);
+                overflow: hidden;
+                width: 100%;
+            }
+
+            .footer-overlay {
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(90deg, var(--bg-1), var(--glass), var(--bg-2));
+                animation: footerFlow 6s linear infinite;
+                opacity: 0.4;
+                width: 100%;
+            }
+
+            .footer-inner {
+                position: relative;
+                z-index: 2;
+                max-width: 1200px;
+                margin: 0 auto;
+                text-align: center;
+                color: var(--text);
+                font-family: "Orbitron", sans-serif;
+                letter-spacing: 1px;
+                width: 100%;
+            }
+
+            .footer-logo {
+                font-size: 1.4rem;
+                font-weight: 700;
+                margin-bottom: 12px;
+                color: var(--text);
+                width: 100%;
+            }
+
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 22px;
+                margin-bottom: 14px;
+            }
+
+            .footer-links a {
+                text-decoration: none;
+                color: var(--text);
+                font-size: 0.9rem;
+                transition: color 0.3s ease, text-shadow 0.3s ease;
+            }
+
+            .footer-links a:hover {
+                color: var(--accent);
+            }
+
+            .footer-copy {
+                font-size: 0.8rem;
+                color: var(--text);
+                width: 100%;
+            }
+            @keyframes footerFlow {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+        </style>
+
+        <style>
+            {% block style %}
+            {% endblock %}
+        </style>
+    </head>
+    <body style="overflow-y: auto;">
+        <canvas id="bg"></canvas>
+
+        <div class="cursor" id="cursor"></div>
+
+        <div style="display: flex; flex-direction: column;">
+            <main class="root">
+                {% block main %}
+                {% endblock %}
+            </main>
+
+        
+            <footer class="neofuturistic-footer">
+                <div class="footer-overlay"></div>
+                <div class="footer-inner">
+                    <div class="footer-logo">ITS-MARCONI</div>
+                    <div class="footer-links">
+                        <a href="#">Informazioni</a>
+                        <a href="#">Privacy</a>
+                        <a href="#">Contatti</a>
+                    </div>
+                    <div class="footer-copy">© 2025 Istituto Tecnico — PCTO Platform</div>
+                </div>
+            </footer>
+        </div>
+        <script src="{% static 'js/index.js'%}"></script>
+    </body>
+</html>

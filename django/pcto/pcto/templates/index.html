@@ -1,0 +1,53 @@
+{% extends "components/base.html" %}
+{% load static %}
+
+{% block title %}HomePage{% endblock %}
+
+{% block main %}
+    <div class="shell">
+        <section class="hero" id="hero">
+            <div class="eyebrow">Piattaforma</div>
+            <h1 id="headline">Istituto Tecnico Industriale Guglielmo Marconi</h1>
+            
+            <p class="lead"></p>
+
+            <div class="cta-row">
+                <a href="/login"><button class="btn btn-primary" id="main-cta">Login</button></a>
+                <!--
+                Da decidere se gli utenti vogliono registrarsi per conto loro
+                <a href="/register"><button class="btn btn-ghost">Sign Up</button></a>
+                -->
+            </div>
+            <div style="height:20px"></div>
+        </section>
+
+        <!-- SECTION 2: Features -->
+        <section class="hero" id="features">
+            <div class="eyebrow">Funzionalità</div>
+            <h1 class="headline">Gestione smart delle attività</h1>
+            <p class="lead">Crea, assegna e monitora le esperienze PCTO in tempo reale.</p>
+        </section>
+
+        <!-- SECTION 3: Aziende -->
+        <section class="hero" id="aziende">
+            <div class="eyebrow">Per le aziende</div>
+            <h1 class="headline">Collabora con studenti motivati</h1>
+            <p class="lead">Trova candidati ideali per progetti e stage formativi.</p>
+            <div class="cta-row">
+            </div>
+        </section>
+
+        <!-- SECTION 4: Contatti -->
+        <section class="hero" id="contatti">
+            <div class="eyebrow">Contattaci</div>
+            <h1 class="headline">Vuoi saperne di più?</h1>
+            <p class="lead">Scrivici per scoprire come integrare la piattaforma nella tua scuola o azienda.</p>
+            <div class="cta-row">
+                <a href="/contactUs">
+                    <button class="btn btn-primary">Contatta</button>
+                </a>
+            </div>
+        </section>
+
+    </div>
+{% endblock %}

@@ -53,7 +53,7 @@ def errno_404(request, exception):          # per visualizzare questa pagina set
 
 
 def homepage(request):
-    return render(request, "./index.html")
+    return render(request, "./desktop.html")
 
 
 def presentation(request):
@@ -67,7 +67,7 @@ def download_ppt(request):
             with open(file_path, 'rb') as ppt_file:
                 response = HttpResponse(
                     ppt_file.read(),
-                    content_type = "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                    content_type="application/vnd.openxmlformats-officedocument.presentationml.presentation"
                 )
                 response["Content-Disposition"] = "attachment; filename='Lista1.pptx'"
                 return response
@@ -80,7 +80,7 @@ def download_ppt(request):
 
 def desktop(request):
     context = {
-        "chcontent" : content_changelog(),
+        "chcontent": content_changelog(),
     }
     return render(request, "./desktop.html", context)
 
@@ -106,7 +106,11 @@ def chatbot_ask(request):
 
             return JsonResponse({"response": response})
         else:
-            return JsonResponse({"error": "Invalid request method"}, status=400)
+            return JsonResponse({
+                    "error": "Invalid request method"
+                },
+                status=400
+            )
     except Exception as e:
         print(e)
         Log().logMe(e)
@@ -131,12 +135,12 @@ def forum(request):
     ban_word = set(BanWord.objects.all())
 
     for domanda in domande_reverse:
-        if (paragona(domanda.titolo.upper(), ban_word) == False and 
-            paragona(domanda.content.upper(), ban_word) == False):
+        if (paragona(domanda.titolo.upper(), ban_word) is not False and
+                paragona(domanda.content.upper(), ban_word) is not False):
 
             if len(domanda.content) > 21:
                 domanda.content = domanda.content[0:20]
-            else: 
+            else:
                 domanda.content = domanda.content
 
         else:   # non faccio comparire la domanda
@@ -144,7 +148,7 @@ def forum(request):
             domanda.content = ''
 
     paginator = Paginator(domande_reverse, 20)  # Mostra 20 domande per pagina
-    
+
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
@@ -153,7 +157,7 @@ def forum(request):
         ora.datetime = re.sub(r"(\.\d*)", " ", ora.datetime) if ora.datetime != "None" else ora.datetime
 
     context = {
-        "page_obj" : page_obj
+        "page_obj": page_obj
     }
     return render(request, "./forum/forum.html", context)
 
@@ -170,13 +174,13 @@ def filter_questions(request):
     context = []
     for question in questions:
         if (paragona(question.titolo.upper(), ban_word) == False and 
-            paragona(question.titolo.upper(), ban_word) == False):
+                paragona(question.titolo.upper(), ban_word) == False):
             # uso una regex per aggiustare il formato della data
             context.append({
                 "id":       question.id,
                 "titolo":   question.titolo,
                 "content":  question.content,
-                "datetime": re.sub(r"(\.\d*)", " ", question.datetime) if question.datetime != "None" else question.datetime 
+                "datetime": re.sub(r"(\.\d*)", " ", question.datetime) if question.datetime != "None" else question.datetime
             })
 
     return JsonResponse({"questions": context})
@@ -185,7 +189,7 @@ def filter_questions(request):
 def form_forum(request):
     if request.method == "POST":
         ban_word = set(BanWord.objects.all())
-        
+
         form = FormDomanda(request.POST)
         if form.is_valid():
             db_domanda = MemoryDomande()
@@ -200,22 +204,22 @@ def form_forum(request):
 
                 # verifico se username e password sono corretti
                 response = session.post(
-                    "https://campus.marconivr.it/login/index.php", 
-                    data = {
-                        "username": db_domanda.username, 
+                    "https://campus.marconivr.it/login/index.php",
+                    data={
+                        "username": db_domanda.username,
                         "password": db_domanda.password
                     },
-                    verify = False
+                    verify=False
                 )
 
-                if "Dashboard" in response.text: # se sono corretti
+                if "Dashboard" in response.text:  # se sono corretti
                     if client_request(db_domanda.username) == "troppi tentativi per singola matricola":
                         return render(request, "./forum/error.html", {"causa" : "Errore! hai mandato troppe richieste velocemente! aspetta un pò prima di mandarne altre"})
 
                     # verifico che non ci siano parole bannabili all'interno db_domanda.titolo e db_domanda.content
                     # e va alla schermata successiva, altrimenti se sono state detectate delle parole bannabili
                     # il form non viene salvato e da un messaggio di errore sulla pagina web
-                    
+
                     ban_word = set(BanWord.objects.values_list("word", flat = True))
                     if paragona(db_domanda.titolo, ban_word) == False and paragona(db_domanda.content, ban_word) == False:                    
                         db_domanda.username, db_domanda.ukey    = Security.generate(db_domanda.username)
@@ -253,7 +257,7 @@ def form_forum(request):
 def forum_domanda(request, id):
     """*
     *   Funzione che viene attivata quando si accede alla domanda
-    *   del forum.   
+    *   del forum.
     *"""
     if int(id) >= 0 and int(id) <= len(MemoryDomande.objects.all()):
         ban_word = set(BanWord.objects.all())
@@ -282,7 +286,7 @@ def forum_domanda(request, id):
                 )
 
                 if "Dashboard" in response.text:
- 
+
                     if client_request(answ.username) == "troppi tentativi per singola matricola":
                         return render(request, "./forum/error.html", {"causa" : "Errore! hai mandato troppe richieste velocemente! aspetta un pò prima di mandarne altre"})
 
@@ -296,7 +300,7 @@ def forum_domanda(request, id):
                     else:
                         messages.error(request, "Errore! Hai usato delle parole non consentite, sei pregato di calmarti e riflettere su quello che stai scrivendo")
                         return render(request, "./forum/error.html", {"causa" : "Errore! Hai usato delle parole non consentite, sei pregato di calmarti e riflettere su quello che stai scrivendo"})
-                
+
                 elif "manteniance mode" in response.text: # caso in cui il server di campus è in manutenzione
                     messages.error(request, "Errore! impossibile validare username e password causa: campus in manutenzione")
                     return render(request, "./forum/error.html", {"causa": "Errore! impossibile validare username e password causa: campus in manutenzione"})
@@ -311,18 +315,19 @@ def forum_domanda(request, id):
 
             try:
                 # prendo tutte le risposte a una singola domanda (dalla più recente alla più vecchia)
-                answer_single_case = MemoryRisposte.objects.filter(token_id = id)[::-1] 
+                answer_single_case = MemoryRisposte.objects.filter(token_id=id)[::-1]
 
                 context = {
-                    "caso"          : single_case,
-                    "form_answer"   : form_answer,  
-                    "answer"        : answer_single_case
+                    "caso": single_case,
+                    "form_answer": form_answer,
+                    "answer": answer_single_case
                 }
 
-            except MemoryRisposte.DoesNotExist: # caso in cui non esistono risposte per quella domanda
+            # caso in cui non esistono risposte per quella domanda
+            except MemoryRisposte.DoesNotExist:
                 context = {
-                    "caso"          : single_case,
-                    "form_answer"   : form_answer
+                    "caso": single_case,
+                    "form_answer": form_answer
                 }
 
             return render(request, "forum/question/case.html", context)
@@ -339,9 +344,11 @@ def library(request):
         link_table = "https://www.tiobe.com/tiobe-index/"
         tiobe_header, tiobe_content = web_scraping(link_table, "table table-striped table-top20")
 
-        if tiobe_header == None or tiobe_content == None:           # caso in cui qualcosa è andato storto mentre cercavo di ottenere dati
+        # caso in cui qualcosa è andato storto mentre cercavo di ottenere dati
+        if tiobe_header is None or tiobe_content is None:
             Log().logMe(f"errore durante l'estrazione dei dati dalla tabella di tiobe: variabile tiobe_header o tiobe_content == None!")
-            return render(request, "./library/library.html", {})    # non mostro la table di tiobe
+            # non mostro la table di tiobe
+            return render(request, "./library/library.html", {})
 
         else:
             tiobe_header.remove("Change")
@@ -362,9 +369,9 @@ def library(request):
             lista.append([rank_current, rank_previous, language, rating_current, rating_change])
 
         context = {
-            "head" : tiobe_header,
-            "body" : lista,
-            "tiobe" : link_table,
+            "head": tiobe_header,
+            "body": lista,
+            "tiobe": link_table,
         }
         return render(request, "./library/library.html", context)
     except Exception as e:
@@ -405,7 +412,7 @@ class C_section:
 
     def stdint(request):
         return render(request, './library/c/lezioni/clibrary/stdint.html')
-    
+
     def string(request):
         return render(request, './library/c/lezioni/clibrary/string.html')
 
@@ -414,10 +421,10 @@ class C_section:
 
     def locale(request):
         return render(request, './library/c/lezioni/clibrary/locale.html')
-    
+
     def unistd(request):
         return render(request, './library/c/lezioni/clibrary/unistd.html')
-    
+
     def errno(request):
         return render(request, './library/c/lezioni/clibrary/errno.html')
 
@@ -446,7 +453,7 @@ class C_section:
 class Cpp_section:
     def intro(request):
         return render(request, './library/cpp/intro.html')
-    
+
     def lesson(request, num_lesson: str):
         if int(num_lesson) > 0 and int(num_lesson) < 5:  
             return render(request, f'./library/cpp/lezione/lezione{num_lesson}.html')
@@ -462,7 +469,7 @@ class Js_section:
 class Py_section:
     def intro(request):
         return render(request, 'library/python/intro.html')
-    
+
     def lesson(request, num_lesson: str):
         if int(num_lesson) > 0 and int(num_lesson) < 8:  
             return render(request, f'./library/python/lezioni/lezione{num_lesson}.html')

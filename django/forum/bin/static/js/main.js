@@ -57,7 +57,7 @@ function topbar(name_page, comeback)
     $(".topbar").append("<h2>" + name_page + "</h2>");
     $(".topbar").append("<div class='section'></div>");
 
-    $(".section").append("<a href='/desktop'>" + name_sections_topbar[0] + "</a>");
+    $(".section").append("<a href='/'>" + name_sections_topbar[0] + "</a>");
     //$(".section").append("<a href='/forum'>" + name_sections_topbar[1] + "</a>");
     $(".section").append("<a href='/library'>" + name_sections_topbar[1] + "</a>");
 

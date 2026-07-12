@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>API HomePage</title>
+    </head>
+    <body>
+        elenco API:<br>
+        {% for name, link in urls.items() %}
+            link: <a href="/data?url={{ name }}">{{ name }}</a><br>
+        {% endfor %}
+    </body>
+</html>

@@ -1,0 +1,196 @@
+{% extends "components/base.html" %}
+{% load static %}
+
+{% block title %}
+    profilo - {{ user.username }}
+{% endblock %}
+
+{% block main %}
+    <div>
+        <div>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary" id="main-cta">Logout</button>
+            </form>
+        </div>
+        <br>
+        <section class="hero">
+            <div>
+                <h2>Profilo {{ user.username }}</h2>
+                <span class="mini-title">nome:</span> {{ user.first_name }}<br>
+                <span class="mini-title">cognome:</span> {{ user.last_name }}<br>
+                <span class="mini-title">last login:</span> {{ user.last_login }}<br>
+            </div>
+        </section>
+
+        {% if type_profilo == "azienda" %}
+            <br>
+            <section class="hero">
+                <div>
+                    <h2>Anagrafica Supervisore</h2>
+                    <span class="mini-title">nome</span>:               {{ supervisore.user.first_name }}<br>
+                    <span class="mini-title">cognome</span>:            {{ supervisore.user.last_name }}<br>
+                    <span class="mini-title">data di nascita</span>:    {{ supervisore.user.DataNascita }}<br>
+                </div>
+            </section>
+            <br>
+            <section class="hero">
+                <div>
+                    <h2>Dati Aziendali</h2>
+                    <span class="mini-title">azienda</span>:            {{ azienda.nome }}<br>
+                    <span class="mini-title">piva</span>:               {{ azienda.piva }}<br>
+                    <span class="mini-title">descrizione</span>:        {{ azienda.id }}<br>
+                </div>
+            </section>
+
+            <div>
+                <h3>Elenco Progetti dell'azienda</h3>
+                <a href="/new_project" class="btn btn-primary">Add New Project</a>
+                <br>
+                <br><br>
+                {% for progetto in progetti %}
+                    <section class="hero">
+                        <div>
+                            <h2>{{ progetto.titolo }}</h2>
+                            <p>{{ progetto.descrizione }}</p>
+                            <p>{{ progetto.requisiti }}</p>
+                            <br>
+                            <a href="{% url 'more_info_project' id_progetto=progetto.id %}" class="btn btn-primary">Dettagli</a>
+                        </div>
+                    </section>
+                    <br>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- TIPO STUDENTE -->
+        {% if type_profilo == "studente" %}
+            <br>
+            <input 
+                type="submit"
+                onclick="displaySection(1)"
+                value="{% if progetto_in_carica %}Progetto in Carica{% else %}Elenco progetti{% endif %}"
+                class="btn btn-primary"
+                id="main-cta">
+            <input type="submit" onclick="displaySection(2)" value="Diario" class="btn btn-primary" id="main-cta">
+
+            <!--
+                info = {
+                    "type_profilo":         "studente",
+                    "studente":             studente,
+                    "progetto_in_carica":   progetto_in_carica,
+                    "filiale_assegnata":    filiale_assegnata,
+                    "supervisore":          supervisore,
+                    "azienda":              azienda,
+                    "elenco_progetti":      elenco_progetti
+                }
+            -->
+
+            {% if progetto_in_carica %}
+                <div id="PrimaSezione">
+                    <br>
+                    <section class="hero">
+                        <h3>{{ progetto_in_carica.titolo }}</h3>
+                        <p><strong class="mini-title">Descrizione</strong>: {{ progetto_in_carica.descrizione }}</p>
+                        <p><strong class="mini-title">Requisiti</strong>: {{ progetto_in_carica.requisiti }}</p>
+                        <p><strong class="mini-title">Tutore</strong>: {{ supervisore.user.last_name }} {{ supervisore.user.first_name }}</p>
+                        <p><strong class="mini-title">tempo stimato al completamento</strong>: {{ progetto_in_carica.tempo_stimato }}</p>
+
+                        <button class="btn btn-primary" onclick="viewWarning('sei sicuro di voler abbandonare questo progetto? dopo non potrai più farne parte.')">
+                            Abbandona
+                        </button>
+
+                        <form method="post" id="abbandona">
+                            {% csrf_token %}
+                            <p id="warning" class="mini-title"></p>
+                            <button type="submit" class="btn btn-primary">Confermo</button>
+                        </form>
+
+                    </section>
+
+                    <style>
+                        #abbandona{
+                            display:none;
+                        }
+                    </style>
+
+                    <script>
+                        function viewWarning(msg)
+                        {
+                            if (msg) {
+                                var form = document.getElementById("abbandona").style.display = "block";
+                                document.getElementById("warning").innerHTML = msg;
+                            }
+                        }
+                    </script>
+                </div>
+            {% else %}
+                <!-- caso in cui lo studente non ha in incarico un progetto -->
+                <div id="PrimaSezione">
+                    <br>
+                    <h2>Elenco progetti</h2>
+                    {% if elenco_progetti %}
+                        {% for progetto in elenco_progetti %}
+                            <section class="hero">
+                                <h3>{{ progetto.titolo }}</h3>
+                                <p><strong class="mini-title">Nome azienda</strong>:<br>{{ progetto.supervisore.filiale.azienda.nome }}</p>
+                                <p><strong class="mini-title">Descrizione</strong>:<br>{{ progetto.titolo }}</p>
+                                <p><strong class="mini-title">Requisiti</strong>:<br>{{ progetto.requisiti }}</p>
+                                <p><strong class="mini-title">Tempo stimato al completamento</strong>: {{ progetto.tempo_stimato }} ore</p><br>
+                                <a href="{% url 'more_info_project' id_progetto=progetto.id %}" class="btn btn-primary" id="main-cta">Vedi dettagli</a>
+
+                            </section>
+                            <br>
+                        {% endfor %}
+                    {% else %}
+                        <p>Nessun progetto disponibile</p>
+                    {% endif %}
+                    <br><br><br>
+                </div>
+
+            {% endif %}
+
+            <div id="SecondaSezione">
+                <!-- Visualizzazione Pagine Diario -->
+                {% if pagine %}
+                    {% for pagina in pagine %}
+                        <br>
+                        <section class="hero">
+                            Descrizione di cosa ha fatto lo studente:<br>
+                            <p>{{ pagina.contenuto }}</p><br>
+                            <p>Firmato da: {{ pagina.supervisore.user.last_name }} {{ pagina.supervisore.user.first_name }}</p>
+                            <p>In data: {{ pagina.data }}</p>
+                        </section>
+                    {% endfor %}
+                {% else %}
+                    <br>
+                    <section class="hero">
+                        <p>Nessuna pagina compilata</p>
+                    </section>
+                {% endif %}
+            </div>
+
+            <style>
+                #SecondaSezione{
+                    display: none;
+                }
+            </style>
+
+            <script>
+                function displaySection(numSection)
+                {
+                    if (numSection === 1) {
+                        document.getElementById("PrimaSezione").style.display = "block";
+                        document.getElementById("SecondaSezione").style.display = "none";
+                    }
+          
+                    if (numSection === 2) {
+                        document.getElementById("SecondaSezione").style.display = "block";
+                        document.getElementById("PrimaSezione").style.display = "none";
+                    }
+                }
+            </script>
+
+        {% endif %}
+    </div>
+{% endblock %}

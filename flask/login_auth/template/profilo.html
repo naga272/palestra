@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ context.user.username }} - profilo</title>
+        <meta charset="utf-8">
+        <!-- non voglio perdere tempo sul fe-->
+        <style>
+            table, tr, td, th{
+                border: 1px solid black;
+            }
+
+            * {
+                text-decoration:none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="user-info">
+            {% if session.logged_in %}
+                Benvenuto <strong>{{ session.username }}</strong> |
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </div>
+
+        {% if context.valid %}
+            {% if context.user.permessi %}
+                <!-- caso amministratore -->
+
+                <!--id, username, password, is_admin, is_authenticated, last_login-->
+                <h2>tabella users</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>username</th>
+                            <th>password</th>
+                            <th>is_admin</th>
+                            <th>is_authenticated</th>
+                            <th>last_login</th>
+                            <th>cancella utente</th>
+                            <th>cambia password</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for user in context.table_user %}
+                        <tr>
+                            <td>{{ user[0] }}</td>  <!-- id -->
+                            <td>{{ user[1] }}</td>  <!-- username -->
+                            <td>{{ user[2][:10] }}...</td>  <!-- password -->
+                            <td>{{ "Sì" if user[3] else "No" }}</td>  <!-- is_admin -->
+                            <td>{{ "Sì" if user[4] else "No" }}</td>  <!-- is_authenticated -->
+                            <td>{{ user[5] if user[5] else "Mai" }}</td>  <!-- last_login -->
+                            <td>
+                                <a href="/delete_user/{{ user[0] }}">
+                                    X
+                                </a>
+                            </td>
+
+                            <td>
+                                <form action="/update_account/{{ user[0] }}" method="POST">
+                                    <input type="password" placeholder="new password" name="password_update">
+                                    <input type="submit" value=">">
+                                </form>
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+                <h2>Conteggio protocolli</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>entrata</th>
+                            <th>uscita</th>
+                            <th>anno</th>
+                            <th>mese</th>
+                            <th>descrizione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for protocollo in context.conteggio_protocolli %}
+                        <tr>
+                            <td>{{ protocollo[1] }}</td>
+                            <td>{{ protocollo[2] }}</td>
+                            <td>{{ protocollo[3] }}</td>
+                            <td>{{ protocollo[4] }}</td>
+                            <td>{{ protocollo[5] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        {% else %}
+            Error! credenziali invalide<br>
+        {% endif %}
+    </body>
+</html>
